@@ -1,0 +1,576 @@
+% ejemplo_uso.tex — Ejemplos del sistema visual "Vía Accesible" con la plantilla TFUOC
+% Copia en la carpeta de la plantilla (junto a TFUOC.cls): tfm-estilo.sty
+% Compila: pdflatex → biber → pdflatex → pdflatex (Overleaf lo hace solo).
+\documentclass[IB]{TFUOC}
+\usepackage[tabla,bibliografia]{tfm-estilo}   % quita [tabla] si prefieres «Cuadro»; añade final para la entrega
+\addbibresource{referencias.bib}
+
+\title{Clasificación de la accesibilidad de calles mediante segmentación semántica de imágenes aéreas}
+\titcrt{Accesibilidad de calles desde el aire}
+\author{Víctor Pariente}
+\date{2026}
+\nomPDC{Nombre Tutor}
+\nomPRA{Nombre Profesorado Responsable}
+\titulac{Máster en Ciencia de Datos}
+\area{Área del trabajo}
+\idioma{Castellano}
+\credits{15}
+\parcla{segmentación semántica, accesibilidad, imágenes aéreas}
+\licenc{ccBy}
+\abstractidioma{Resumen.}
+\abstractenglish{Abstract.}
+
+\begin{document}
+\estructura
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter{Ejemplos del sistema visual}
+
+\section{Gráfico de líneas}
+La figura~\ref{fig:perdida} muestra la pérdida por época.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[tfm, width=0.8\textwidth, height=0.45\textwidth,
+        xlabel={Época}, ylabel={Pérdida (u.a.)}, legend pos=north east]
+      \addplot coordinates {(1,0.92)(2,0.66)(3,0.52)(4,0.44)(5,0.39)(6,0.35)(7,0.33)(8,0.31)};
+      \addlegendentry{Entrenamiento}
+      \addplot coordinates {(1,0.98)(2,0.74)(3,0.61)(4,0.55)(5,0.51)(6,0.49)(7,0.48)(8,0.48)};
+      \addlegendentry{Validación}
+      \addplot[serie-base, dashed, line width=\trazo] coordinates {(1,0.45)(8,0.45)};
+      \addlegendentry{Referencia (FCN)}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Pérdida de entrenamiento y validación por época (datos de ejemplo).}
+  \label{fig:perdida}
+  \fuente{elaboración propia.}
+\end{figure}
+
+\section{Barras agrupadas}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[tfmbarras, width=0.9\textwidth, height=0.45\textwidth,
+        ylabel={IoU}, xlabel={Clase}, ymin=0, ymax=1,
+        symbolic x coords={Calzada,Acera,Paso peat.,Vegetación,Obstáculo},
+        legend style={at={(0.5,1.03)}, anchor=south}, legend columns=3]
+      \addplot coordinates {(Calzada,0.91)(Acera,0.68)(Paso peat.,0.58)(Vegetación,0.84)(Obstáculo,0.41)};
+      \addplot coordinates {(Calzada,0.92)(Acera,0.69)(Paso peat.,0.62)(Vegetación,0.85)(Obstáculo,0.44)};
+      \addplot coordinates {(Calzada,0.93)(Acera,0.73)(Paso peat.,0.66)(Vegetación,0.86)(Obstáculo,0.49)};
+      \legend{U-Net, DeepLabV3+, SegFormer-B2}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{IoU por clase para cada modelo (datos de ejemplo).}
+\end{figure}
+
+\section{Tabla de resultados}
+\begin{table}[htbp]
+  \centering
+  \caption{Resultados de segmentación en el conjunto de validación (datos de ejemplo).}
+  \begin{tabular}{lrrr}
+    \toprule
+    \cabeceratabla Modelo & mIoU & IoU acera & F1 \\
+    \midrule
+    FCN-8s (referencia) & 0,61 & 0,55 & 0,70 \\
+    U-Net (ResNet-34)   & 0,72 & 0,68 & 0,79 \\
+    SegFormer-B2        & \mejor{0,77} & \mejor{0,73} & \mejor{0,83} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Escala de accesibilidad}
+\claseacc{accesible}{Accesible}\quad
+\claseacc{practicable}{Practicable}\quad
+\claseacc{deficiente}{Deficiente}\quad
+\claseacc{no-accesible}{No accesible}\quad
+\claseacc{sin-datos}{Sin datos}
+
+\section{Diagrama de red (U-Net simplificada)}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm, node distance=3mm]
+    \node[nnentrada, minimum height=22mm] (in) {RGB\\$512^2$};
+    \node[nnconv, right=of in, minimum height=22mm] (e1) {64};
+    \node[nnpool, right=of e1, minimum height=14mm, minimum width=4mm] (p1) {};
+    \node[nnconv, right=of p1, minimum height=14mm] (e2) {128};
+    \node[nnatencion, right=of e2, minimum height=9mm] (b) {256};
+    \node[nnup, right=of b, minimum height=14mm, minimum width=4mm] (u1) {};
+    \node[nnconv, right=of u1, minimum height=14mm] (d2) {128};
+    \node[nnup, right=of d2, minimum height=22mm, minimum width=4mm] (u2) {};
+    \node[nnconv, right=of u2, minimum height=22mm] (d1) {64};
+    \node[nnsalida, right=of d1, minimum height=22mm] (out) {Softmax};
+    \foreach \a/\b in {in/e1, e1/p1, p1/e2, e2/b, b/u1, u1/d2, d2/u2, u2/d1, d1/out}
+      \draw[flecha] (\a) -- (\b);
+    \draw[skip] (e1.north) to[bend left=25] (d1.north);
+    \draw[skip] (e2.north) to[bend left=30] (d2.north);
+  \end{tikzpicture}
+  \caption{Arquitectura encoder–decoder con conexiones \emph{skip}.}
+\end{figure}
+
+\section{Diagrama de arquitectura}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm, node distance=5mm]
+    \node[arqexterno] (pnoa) {Ortofoto\\PNOA};
+    \node[arqmodulo, right=of pnoa] (tes) {Teselado};
+    \node[arqdatos, right=of tes] (tiles) {Teselas};
+    \node[arqmodulo, right=of tiles] (seg) {Modelo de\\segmentación};
+    \node[arqdatos, right=of seg] (mask) {Máscaras};
+    \node[arqmodulo, below=8mm of mask] (cla) {Clasificador de\\accesibilidad};
+    \node[arqexterno, left=of cla] (sig) {SIG\\municipal};
+    \draw[flecha] (pnoa) -- (tes); \draw[flecha] (tes) -- (tiles);
+    \draw[flecha] (tiles) -- (seg); \draw[flecha] (seg) -- (mask);
+    \draw[flecha] (mask) -- (cla); \draw[flecha] (cla) -- (sig);
+    \begin{scope}[on background layer]
+      \node[arqgrupo, fit=(tes)(mask)(cla), label={[etiqueta]above left:Pipeline en Python}] {};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Arquitectura del sistema.}
+\end{figure}
+
+\section{Imagen externa}
+La figura~\ref{fig:externa} usa una imagen de la plantilla como ejemplo; sustitúyela por tu ortofoto.
+
+\figuraexterna[0.45\textwidth]{Rplotmanh.png}{Ejemplo de imagen externa con su fuente.}{fig:externa}{plantilla TFM de la UOC.}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.3\textwidth}\includegraphics[width=\linewidth]{Rplotmanh.png}\caption{Imagen}\end{subfigure}\hfill
+  \begin{subfigure}{0.3\textwidth}\includegraphics[width=\linewidth]{Rplotmanh.png}\caption{Referencia}\end{subfigure}\hfill
+  \begin{subfigure}{0.3\textwidth}\includegraphics[width=\linewidth]{Rplotmanh.png}\caption{Predicción}\end{subfigure}
+  \caption{Mosaico imagen, referencia y predicción.}
+\end{figure}
+
+\section{Texto a dos columnas}
+El texto normal de la memoria sigue a una columna. Los bloques que lo necesiten (resumen ampliado, estado del arte, comparativas) pueden ir a dos o más columnas.
+
+\begin{doscolumnas}[filete=true]
+Los planes de accesibilidad municipales requieren inventariar cada tramo de calle: ancho libre de paso, pendientes, rebajes en los pasos de peatones y obstáculos. La inspección in situ es lenta y costosa, y rara vez se actualiza.
+
+Las ortofotos de alta resolución permiten observar gran parte de estos elementos desde el aire. Un modelo de segmentación semántica separa calzada, acera, pasos de peatones, vegetación y obstáculos, y a partir de las máscaras se calculan métricas por tramo.
+
+\begin{figuracolumna}
+  \begin{tikzpicture}
+    \begin{axis}[tfm, height=4.5cm, xlabel={Época}, ylabel={mIoU}]
+      \addplot coordinates {(1,0.41)(2,0.55)(3,0.63)(4,0.68)(5,0.71)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{mIoU en validación (datos de ejemplo).}
+  \label{fig:columna}
+\end{figuracolumna}
+
+La figura~\ref{fig:columna} se compone dentro de la columna, sin flotar, y se numera con las demás figuras. Las tablas usan \texttt{tablacolumna} de la misma forma.
+
+\begin{tablacolumna}
+  \caption{Resultados (ejemplo).}
+  \begin{tabular}{lr}
+    \toprule
+    \cabeceratabla Modelo & mIoU \\
+    \midrule
+    U-Net & 0,72 \\
+    SegFormer-B2 & \mejor{0,77} \\
+    \bottomrule
+  \end{tabular}
+\end{tablacolumna}
+
+Con \texttt{equilibrar=false} la primera columna se llena entera antes de pasar a la siguiente; con \texttt{columnas=3} el bloque se reparte en tres.
+\end{doscolumnas}
+
+\begin{doscolumnas}[columnas=3, separacion=6mm, titulo={\subsection*{Tres columnas con título común}}]
+\textbf{Calzada.} Superficie rodada; delimita el ancho disponible para la acera.
+
+\textbf{Acera.} Itinerario peatonal; su ancho libre define la clase de accesibilidad.
+
+\textbf{Obstáculos.} Mobiliario y vehículos que reducen el paso efectivo.
+\end{doscolumnas}
+
+\section{Diagrama de flujo}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm, node distance=5mm and 7mm]
+    \node[flujoterminal] (ini) {Inicio};
+    \node[flujodatos, below=of ini] (orto) {Ortofoto PNOA};
+    \node[flujoalgoritmo, below=of orto] (seg) {Segmentación\\semántica (SegFormer)};
+    \node[flujodecision, below=of seg] (conf) {¿Confianza\\$\geq 0{,}8$?};
+    \node[flujoalgoritmo, below=of conf] (vec) {Vectorización\\y métricas por tramo};
+    \node[flujoproceso, right=12mm of conf] (rev) {Revisión\\manual};
+    \node[flujoalgoritmo, below=of vec] (cla) {Clasificación de\\accesibilidad};
+    \node[flujodatos, below=of cla] (sal) {Capa SIG por tramo};
+    \node[flujoterminal, below=of sal] (fin) {Fin};
+    \draw[flecha] (ini) -- (orto); \draw[flecha] (orto) -- (seg); \draw[flecha] (seg) -- (conf);
+    \draw[flecha] (conf) -- node[flujoetiqueta, right] {sí} (vec);
+    \draw[flecha] (conf) -- node[flujoetiqueta, above] {no} (rev);
+    \draw[flecha] (rev) |- (vec);
+    \draw[flecha] (vec) -- (cla); \draw[flecha] (cla) -- (sal); \draw[flecha] (sal) -- (fin);
+  \end{tikzpicture}
+  \caption{Flujo del procesado: la salida de cada algoritmo alimenta al siguiente.}
+\end{figure}
+
+\section{Esquema conceptual}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm]
+    \node[conceptocentral] (c) {Accesibilidad\\de la calle};
+    \node[concepto] (a) at (-4.2,1.4) {Ancho libre\\de acera};
+    \node[concepto] (p) at (4.2,1.4) {Pasos de\\peatones};
+    \node[concepto] (o) at (-4.2,-1.4) {Obstáculos};
+    \node[concepto] (e) at (4.2,-1.4) {Pendiente};
+    \node[conceptosec] (m) at (0,-2.6) {Máscara de segmentación};
+    \foreach \n/\t in {a/determina, p/condiciona, o/reduce, e/limita}
+      \draw[relacion] (\n) -- node[relacionetiqueta] {\t} (c);
+    \draw[relacion] (m) -- node[relacionetiqueta] {mide} (o);
+    \draw[relacion] (m) -- node[relacionetiqueta, pos=0.4] {no mide} (e);
+  \end{tikzpicture}
+  \caption{Esquema conceptual de los factores de accesibilidad.}
+\end{figure}
+
+\section{Estados}
+Estados en línea: \estado{pendiente} \estado{en-curso} \estado{revision} \estado{completado} \estado{bloqueado} \estado[Validado]{completado}.
+
+\estadobloque{revision}{Revisar las cifras de la tabla 3.2 con el tutor.}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Estado de los objetivos.}
+  \begin{tabular}{llc}
+    \toprule
+    \cabeceratabla Objetivo & Estado & \\
+    \midrule
+    O1. Dataset anotado & \estado{completado} & \glifoestado{completado} \\
+    O2. Modelo de segmentación & \estado{revision} & \glifoestado{revision} \\
+    O3. Clasificación por tramo & \estado{en-curso} & \glifoestado{en-curso} \\
+    O4. Validación en campo & \estado{bloqueado} & \glifoestado{bloqueado} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Tablero Kanban}
+\begin{kanban}[4]
+  \kanbancolumna{Pendiente}{\tarjeta{Validación en campo}{pendiente}{PEC 4}\tarjeta{Anexo de instalación}{pendiente}{}}
+  \kanbancolumna{En curso}{\tarjeta{Clasificador por tramo}{en-curso}{Reglas de ancho libre}}
+  \kanbancolumna{En revisión}{\tarjeta{Entrenamiento SegFormer}{revision}{Tutor}}
+  \kanbancolumna{Hecho}{\tarjeta{Dataset anotado}{completado}{1\,200 teselas}\tarjeta{Descarga PNOA}{completado}{}}
+\end{kanban}
+
+\section{Recuadros}
+\begin{recuadro}[definicion]{Itinerario peatonal accesible}
+Ámbito de paso peatonal con ancho libre mínimo de 1,80~m y sin escalones.
+\end{recuadro}
+\begin{recuadro}[atencion]{}
+Las sombras de edificios altos reducen la calidad de la segmentación.
+\end{recuadro}
+\begin{recuadro}[hipotesis]{H1}
+La segmentación permite estimar el ancho libre con un error inferior a 0,3~m.
+\end{recuadro}
+
+\section{Diagrama de secuencia}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm]
+    \foreach \x/\n/\t/\s in {0/u/Técnico/participante, 3.6/p/Pipeline/participante, 7.2/m/Modelo/participante, 10.8/g/SIG municipal/participanteext}
+      {\node[\s] (\n) at (\x,0) {\t}; \draw[lineavida] (\n.south) -- ++(0,-5.2);}
+    \fill[activacion] (3.5,-0.9) rectangle (3.7,-4.6);
+    \fill[activacion] (7.1,-1.6) rectangle (7.3,-2.6);
+    \draw[activacion] (3.5,-0.9) rectangle (3.7,-4.6); \draw[activacion] (7.1,-1.6) rectangle (7.3,-2.6);
+    \draw[mensaje] (0,-1) -- node[mensajetexto] {1. procesar(zona)} (3.5,-1);
+    \draw[mensaje] (3.7,-1.7) -- node[mensajetexto] {2. predecir(teselas)} (7.1,-1.7);
+    \draw[respuesta] (7.1,-2.5) -- node[mensajetexto] {3. máscaras} (3.7,-2.5);
+    \draw[mensaje] (3.7,-3.4) -- node[mensajetexto] {4. publicar(capa)} (10.8,-3.4);
+    \draw[respuesta] (3.5,-4.4) -- node[mensajetexto] {5. informe} (0,-4.4);
+  \end{tikzpicture}
+  \caption{Secuencia de una ejecución del sistema.}
+\end{figure}
+
+\section{Barras horizontales, apiladas y líneas verticales}
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+  \begin{tikzpicture}
+    \begin{axis}[tfmbarrash, width=\linewidth, height=6cm, xlabel={IoU}, xmin=0, xmax=1,
+        symbolic y coords={Calzada,Acera,Paso peat.,Obstáculo}, legend pos=south east]
+      \addplot coordinates {(0.91,Calzada)(0.68,Acera)(0.58,Paso peat.)(0.41,Obstáculo)};
+      \addplot coordinates {(0.93,Calzada)(0.73,Acera)(0.66,Paso peat.)(0.49,Obstáculo)};
+      \legend{U-Net, SegFormer-B2}
+    \end{axis}
+  \end{tikzpicture}\caption{Horizontal agrupado}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+  \begin{tikzpicture}
+    \begin{axis}[tfmapiladash, width=\linewidth, height=6cm, xlabel={Tramos (\%)}, xmin=0, xmax=100,
+        cycle list name=tfmaccesibilidad, symbolic y coords={Centro,Ensanche,Periferia}]
+      \addplot coordinates {(52,Centro)(38,Ensanche)(25,Periferia)};
+      \addplot coordinates {(24,Centro)(30,Ensanche)(28,Periferia)};
+      \addplot coordinates {(15,Centro)(20,Ensanche)(27,Periferia)};
+      \addplot coordinates {(7,Centro)(9,Ensanche)(16,Periferia)};
+      \addplot coordinates {(2,Centro)(3,Ensanche)(4,Periferia)};
+    \end{axis}
+  \end{tikzpicture}\caption{Horizontal apilado (100 \%)}
+  \end{subfigure}
+
+  \begin{subfigure}{0.48\textwidth}
+  \begin{tikzpicture}
+    \begin{axis}[tfmapiladas, width=\linewidth, height=5.5cm, ylabel={Tramos}, symbolic x coords={Centro,Ensanche,Periferia}, cycle list name=tfmaccesibilidad]
+      \addplot coordinates {(Centro,52)(Ensanche,38)(Periferia,25)};
+      \addplot coordinates {(Centro,24)(Ensanche,30)(Periferia,28)};
+      \addplot coordinates {(Centro,15)(Ensanche,20)(Periferia,27)};
+      \addplot coordinates {(Centro,7)(Ensanche,9)(Periferia,16)};
+    \end{axis}
+  \end{tikzpicture}\caption{Vertical apilado}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+  \begin{tikzpicture}
+    \begin{axis}[tfmlineasv, width=\linewidth, height=5.5cm, xlabel={Ancho libre (m)}, ylabel={Distancia (m)}]
+      \addplot coordinates {(2.1,0)(1.9,10)(1.4,20)(1.6,30)(2.0,40)}; \addlegendentry{Acera norte}
+      \addplot coordinates {(1.5,0)(1.2,10)(0.9,20)(1.1,30)(1.3,40)}; \addlegendentry{Acera sur}
+    \end{axis}
+  \end{tikzpicture}\caption{Líneas en vertical (perfil)}
+  \end{subfigure}
+  \caption{Variantes de barras y líneas.}
+\end{figure}
+
+\section{Gráfico circular}
+\begin{figure}[htbp]
+  \centering
+  \graficocircular{42/acc-accesible/Accesible, 27/acc-practicable/Practicable, 19/acc-deficiente/Deficiente, 9/acc-no-accesible/No accesible, 3/acc-sin-datos/Sin datos}
+  \hspace{12mm}
+  \graficocircular[hueco=10mm, leyenda=true, centro={1\,240\\[-2pt]{\scriptsize\color{tinta-suave}tramos}}]{42/acc-accesible/Accesible, 27/acc-practicable/Practicable, 19/acc-deficiente/Deficiente, 9/acc-no-accesible/No accesible, 3/acc-sin-datos/Sin datos}
+  \caption{Distribución de tramos por clase: sectores y anillo (datos de ejemplo).}
+\end{figure}
+
+\section{Cronograma}
+\begin{figure}[htbp]
+  \centering
+  \begin{ganttchart}[tfmgantt]{1}{16}
+    \gantttitle{Semanas}{16} \\
+    \gantttitlelist{1,...,16}{1} \\
+    \ganttgroup{Datos}{1}{5} \\
+    \ganttbar{Descarga PNOA}{1}{2} \\
+    \ganttbar{Anotación}{2}{5} \\
+    \ganttmilestone{PEC 2}{5} \\
+    \ganttgroup{Modelos}{6}{11} \\
+    \ganttbar{Entrenamiento}{6}{9} \\
+    \ganttbar{Clasificación}{9}{11} \\
+    \ganttmilestone{PEC 3}{11} \\
+    \ganttbar{Memoria}{10}{16}
+    \ganttlink{elem2}{elem4}
+  \end{ganttchart}
+  \caption{Planificación del trabajo.}
+\end{figure}
+
+\section{Mapa de tramos}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm]
+    \fill[rejilla] (0,0) rectangle (2.6,1.6); \fill[rejilla] (3.2,0) rectangle (6,1.6);
+    \fill[rejilla] (0,2.2) rectangle (2.6,3.6); \fill[rejilla] (3.2,2.2) rectangle (6,3.6);
+    \draw[tramo, acc-accesible] (-0.3,1.9) -- (2.9,1.9);
+    \draw[tramo, acc-deficiente] (2.9,1.9) -- (6.3,1.9);
+    \draw[tramo, acc-practicable] (2.9,-0.3) -- (2.9,1.9);
+    \draw[tramo, acc-no-accesible] (2.9,1.9) -- (2.9,3.9);
+  \end{tikzpicture}
+  \caption{Tramos coloreados por clase de accesibilidad.}
+\end{figure}
+
+\section{Citas}
+Cita corta en línea: según los autores, el modelo \enquote{unifica un codificador jerárquico con un decodificador ligero}~\cite{xie2021segformer}\traduccionpropia.
+
+\begin{citalarga}[Xie et al.~\cite{xie2021segformer}, p.~2, traducción propia]
+Texto literal de ejemplo de una cita larga, de cuarenta palabras o más, que se compone en un bloque sangrado por ambos lados, con un cuerpo de letra menor, sin comillas y con la referencia al pie, alineada a la derecha y precedida de una raya.
+\end{citalarga}
+
+\begin{citanorma}[El subrayado es nuestro.]{Orden TMA/851/2021, art.~5}
+Texto literal del artículo citado, copiado sin modificar y con la referencia exacta de la norma, el artículo y el apartado.
+\end{citanorma}
+
+\section{Estado del arte}
+\begin{table}[htbp]
+  \centering
+  \caption{Comparativa de trabajos previos (ejemplo de formato). \leyendacumple.}
+  \small
+  \begin{tabular}{llcccl}
+    \toprule
+    \cabeceratabla Trabajo & Arquitectura & Aérea & Aceras & Accesib. & Métrica \\
+    \midrule
+    Long et al.~\cite{long2015fcn} & FCN & \cumple{no} & \cumple{no} & \cumple{no} & mIoU \\
+    Ronneberger et al.~\cite{ronneberger2015unet} & U-Net & \cumple{no} & \cumple{no} & \cumple{no} & IoU \\
+    Chen et al.~\cite{chen2018deeplab} & DeepLabV3+ & \cumple{no} & \cumple{parcial} & \cumple{no} & mIoU \\
+    Xie et al.~\cite{xie2021segformer} & SegFormer & \cumple{no} & \cumple{parcial} & \cumple{na} & mIoU \\
+    \filapropia Este trabajo & SegFormer-B2 & \cumple{si} & \cumple{si} & \cumple{si} & mIoU, MAE \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \lineatemporal[desde=2014, hasta=2024]{2015/FCN/Long et al.~\cite{long2015fcn}, 2017/PSPNet/Zhao et al., 2018/DeepLabV3+/Chen et al.~\cite{chen2018deeplab}, 2021/SegFormer/Xie et al.~\cite{xie2021segformer}, 2023/SAM/Kirillov et al.~\cite{kirillov2023sam}}
+  \caption{Evolución de las arquitecturas de segmentación semántica.}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm, node distance=5mm and 8mm]
+    \node[prismacaja] (id) {Registros identificados en Scopus y WoS\\(n = XX)};
+    \node[prismacaja, below=of id] (cr) {Registros cribados por título y resumen\\(n = XX)};
+    \node[prismacaja, below=of cr] (el) {Textos completos evaluados\\(n = XX)};
+    \node[prismacaja, below=of el] (in) {Estudios incluidos\\(n = XX)};
+    \node[prismaexcluido, right=of id] (x1) {Duplicados eliminados (n = XX)};
+    \node[prismaexcluido, right=of cr] (x2) {Excluidos: no usan imagen aérea (n = XX)};
+    \node[prismaexcluido, right=of el] (x3) {Excluidos: sin métricas comparables (n = XX)};
+    \foreach \a/\b in {id/cr, cr/el, el/in} \draw[flecha] (\a) -- (\b);
+    \foreach \a/\b in {id/x1, cr/x2, el/x3} \draw[flecha] (\a) -- (\b);
+    \node[prismafase, minimum width=10mm] at ([xshift=-6mm]id.west) {Identif.};
+    \node[prismafase, minimum width=21mm] at ([xshift=-6mm,yshift=-7.5mm]cr.west) {Cribado};
+    \node[prismafase, minimum width=10mm] at ([xshift=-6mm]in.west) {Inclusión};
+  \end{tikzpicture}
+  \caption{Selección de artículos (diagrama PRISMA).}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[tfmdispersion, width=0.7\textwidth, height=0.42\textwidth, xlabel={Parámetros (M)}, ylabel={mIoU (\%)}, xmin=0, xmax=160, ymin=60, ymax=90]
+      \addplot[serie-1, mark=*] table[x=p, y=m, meta=etiqueta] {
+        p   m    etiqueta
+        134 65   FCN-8s
+        31  72   U-Net
+        44  79   DeepLabV3+
+        27  81   SegFormer-B2
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Precisión frente a tamaño del modelo (datos de ejemplo).}
+\end{figure}
+
+\section{Real frente a predicho}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[tfmrealpredicho, width=0.5\textwidth, xmin=0, xmax=4, ymin=0, ymax=4,
+        xlabel={Ancho real (m)}, ylabel={Ancho predicho (m)}]
+      \fill[bandatolerancia] (axis cs:0,0.3) -- (axis cs:3.7,4) -- (axis cs:4,4) -- (axis cs:4,3.7) -- (axis cs:0.3,0) -- (axis cs:0,0) -- cycle;
+      \draw[diagonal] (axis cs:0,0) -- (axis cs:4,4);
+      \addplot coordinates {(1.2,1.3)(1.8,1.6)(2.4,2.5)(3.1,2.6)(0.9,1.4)(2.0,2.1)(2.8,2.9)(1.5,1.4)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Ancho de acera real frente a predicho; banda de $\pm 0{,}3$~m.}
+\end{figure}
+
+\tolerancia{0.3}
+\begin{table}[htbp]
+  \centering
+  \caption{Comparación por tramo (datos de ejemplo).}
+  \begin{tabular}{lrrrll}
+    \toprule
+    \cabeceratabla Tramo & Real (m) & Pred. (m) & Error (m) & Clase real $\to$ pred. & \\
+    \midrule
+    C/ Mayor 1   & 1,20 & 1,30 & \errorval{0.10}  & 3 $\to$ 3 & \comparaclase{3}{3} \\
+    C/ Mayor 2   & 3,10 & 2,60 & \errorval{-0.50} & 1 $\to$ 2 & \comparaclase{1}{2} \\
+    Av. Sur 4    & 0,90 & 1,40 & \errorval{0.50}  & 4 $\to$ 3 & \comparaclase{4}{3} \\
+    \midrule
+    \multicolumn{3}{l}{MAE / RMSE} & 0,37 / 0,41 & \multicolumn{2}{l}{Acierto de clase: 33\,\%} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm]
+    \fill[rejilla] (0,0) rectangle (2.6,1.6); \fill[rejilla] (3.2,0) rectangle (6,1.6);
+    \draw[tramoacierto] (-0.3,1.9) -- (2.9,1.9);
+    \draw[tramosobre] (2.9,1.9) -- (6.3,1.9);
+    \draw[tramosub] (2.9,-0.3) -- (2.9,1.9);
+  \end{tikzpicture}
+  \caption{Mapa de errores de clase por tramo.}
+\end{figure}
+
+\section{Notas y aclaraciones}
+Texto de la memoria con una nota al pie\footnote{Las notas al pie siguen siendo la forma preferente para comentarios breves.}.
+
+\postit[Víctor]{Comprobar con el tutor si incluimos los tramos peatonales interiores.}
+
+\aclaracion{En este trabajo, «tramo» es el segmento de acera entre dos cruces consecutivos.}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tabla con nota.}
+  \begin{tabular}{lr}\toprule \cabeceratabla Clase & Tramos \\ \midrule Accesible & 520 \\ \bottomrule\end{tabular}
+  \notatabla{Se excluyen los tramos sin ortofoto de 2025.}
+\end{table}
+
+\section{Listas}
+Viñetas por niveles:
+\begin{itemize}
+  \item Imagen aérea de alta resolución (PNOA, 25~cm/píxel).
+  \item Anotación de clases:
+  \begin{itemize}
+    \item calzada y acera;
+    \item pasos de peatones;
+    \begin{itemize}\item con rebaje;\item sin rebaje.\end{itemize}
+    \item obstáculos.
+  \end{itemize}
+  \item Validación en campo.
+\end{itemize}
+
+Numeradas:
+\begin{enumerate}
+  \item Descargar las ortofotos.
+  \item Preparar el conjunto de datos:
+  \begin{enumerate}
+    \item teselar a $512\times512$;
+    \item dividir en entrenamiento y validación.
+  \end{enumerate}
+  \item Entrenar el modelo.\label{it:entrenar}
+\end{enumerate}
+El paso~\ref{it:entrenar} es el más costoso.
+
+\begin{description}
+  \item[Tramo] Segmento de acera entre dos cruces consecutivos.
+  \item[Ancho libre] Distancia mínima sin obstáculos medida perpendicularmente al eje.
+\end{description}
+
+Objetivos:
+\begin{codigos}[O]
+  \item Generar un conjunto de datos anotado.\label{obj:datos}
+  \item Entrenar un modelo de segmentación.
+  \begin{codigos}\item Comparar arquitecturas.\end{codigos}
+  \item Clasificar los tramos por accesibilidad.
+\end{codigos}
+El objetivo~\ref{obj:datos} condiciona el resto.
+
+\begin{codigos}[H]
+  \item La segmentación estima el ancho libre con un error $< 0{,}3$~m.
+\end{codigos}
+
+\begin{pasos}
+  \item Segmentar la ortofoto.
+  \item Vectorizar la máscara.
+  \item Calcular métricas por tramo.
+\end{pasos}
+
+\begin{ventajas}
+  \item Coste por kilómetro muy inferior a la inspección in situ.
+  \item Actualizable con cada vuelo del PNOA.
+\end{ventajas}
+\begin{inconvenientes}
+  \item No detecta pendientes ni rebajes finos.
+\end{inconvenientes}
+
+\begin{comprobacion}
+  \item[\hecho] Dataset anotado.
+  \item[\parcial] Modelo entrenado.
+  \item[\porhacer] Validación en campo.
+\end{comprobacion}
+
+En línea: las clases son \begin{enlinea}\item calzada \item acera \item obstáculo\end{enlinea}.
+
+\section{Código}
+\begin{lstlisting}[language=Python, caption={Definición del modelo.}]
+import segmentation_models_pytorch as smp
+model = smp.Unet(encoder_name="resnet34", classes=8)  # 8 clases
+\end{lstlisting}
+
+\printbibliography[heading=bibintoc]
+\end{document}

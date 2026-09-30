@@ -1,0 +1,60 @@
+# tfm.mplstyle — sistema visual "Vía Accesible" para matplotlib
+# Uso: plt.style.use("tfm.mplstyle")
+# Coma decimal: import locale; locale.setlocale(locale.LC_NUMERIC, "es_ES.UTF-8") antes de dibujar
+#   (axes.formatter.use_locale ya está activado abajo).
+# Fuentes: instala CMU Serif / CMU Sans Serif (fonts/ del sistema) o usa text.usetex: True.
+# Paletas en Python:
+#   ACC = {"Accesible": "#005A8F", "Practicable": "#3A93D0", "Deficiente": "#C47F00",
+#          "No accesible": "#B23C00", "Sin datos": "#8A8FA3"}
+#   SEG = {"calzada": "#404040", "acera": "#CCBB44", "paso de peatones": "#EE6677", "vegetación": "#228833",
+#          "edificio": "#BBBBBB", "vehículo": "#33BBEE", "obstáculo": "#AA3377", "sombra": "#332288"}
+
+figure.figsize        : 5.9, 3.3
+figure.dpi            : 150
+figure.facecolor      : FFFFFF
+savefig.dpi           : 300
+savefig.format        : pdf
+savefig.bbox          : tight
+savefig.facecolor     : FFFFFF
+
+font.family           : sans-serif
+font.sans-serif       : CMU Sans Serif, Latin Modern Sans, DejaVu Sans
+font.serif            : CMU Serif, Latin Modern Roman, DejaVu Serif
+font.monospace        : CMU Typewriter Text, Latin Modern Mono, DejaVu Sans Mono
+mathtext.fontset      : cm
+font.size             : 9
+
+text.color            : 000000
+axes.facecolor        : FFFFFF
+axes.edgecolor        : 4A4D5C
+axes.linewidth        : 0.8
+axes.labelcolor       : 000000
+axes.labelsize        : 9
+axes.titlesize        : 10
+axes.titleweight      : bold
+axes.titlelocation    : left
+axes.spines.top       : False
+axes.spines.right     : False
+axes.grid             : True
+axes.grid.axis        : y
+axes.axisbelow        : True
+axes.formatter.use_locale : True
+axes.prop_cycle       : cycler(color=["010073", "006D82", "C47F00", "7A3D99", "8A8FA3"], marker=["o", "s", "^", "D", "None"])
+
+grid.color            : E4E6EE
+grid.linewidth        : 0.5
+
+xtick.color           : 4A4D5C
+ytick.color           : 4A4D5C
+xtick.labelsize       : 8
+ytick.labelsize       : 8
+xtick.direction       : out
+ytick.direction       : out
+
+lines.linewidth       : 1.5
+lines.markersize      : 4
+
+legend.frameon        : False
+legend.fontsize       : 8
+
+image.cmap            : cividis
