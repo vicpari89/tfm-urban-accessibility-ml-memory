@@ -1,0 +1,29 @@
+## Archivos auxiliares y temporales de compilación de LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.vrb
+*.snm
+*.nav
+
+## Archivos de entorno y editores
+.vscode/
+.idea/
+.DS_Store
+*.swp
+/build
+__pycache__/

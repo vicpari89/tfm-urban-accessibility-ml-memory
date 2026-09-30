@@ -1,0 +1,100 @@
+\documentclass[IB]{TFUOC}%IB: CASTELLANO, CAT: CATALÁN, ENG: ANGLÈS
+\graphicspath{{figuras/}{plantilla-uoc/}}
+
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{pgfgantt}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+
+%Introducción de datos del trabajo
+\title{TFM-Víctor Pariente González}
+\titcrt{TFM-Víctor Pariente González} %Título corto que aparecerá a la cabecera
+\author{Víctor Pariente González}
+\date{24 de septiembre de 2026}
+
+
+\nomPDC{Sergi Sanz Bravo}
+\nomPRA{Antonio Ruiz Falcó Rojas}
+\titulac{Máster en Ciencia de Datos}
+\area{Área 3}
+\idioma{Castellano}
+\credits{15}
+\parcla{palabra, clave, trabajo}
+
+\licenc{ccBy}
+%Posibles licencias
+%ccByNcNd
+%ccByNcSa
+%ccByNc
+%ccByNd
+%ccBySa
+%ccBy
+%GNU
+%copyright
+
+
+%%%%%%%%%%
+% Resumen en el idioma
+
+\abstractidioma{
+Máximo 250 palabras, con la finalidad, contexto de aplicación, metodología, resultados y conclusiones del trabajo.
+}
+
+% Resumen en inglés.
+\abstractenglish{
+A maximum of 250 words, detailing the purpose, contexto of application, methodology, results and conclusiones of the work.
+}
+
+\begin{document}
+
+\estructura
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+
+
+
+\chapter{Introducción}
+\input{capitulos/01-introduccion.tex}
+
+\chapter{Características de vías accesibles. Marco legal y normativo.}
+\input{capitulos/02-marco-legal-caracteristicas.tex}
+
+\chapter{Estado del arte}
+\input{capitulos/03-estado-del-arte.tex}
+
+\chapter{Arquitectura del sistema}
+\input{capitulos/04-arquitectura-del-sistema.tex}
+
+\chapter{Diseño e implementación de los algoritmos}
+\input{capitulos/05-diseno-implementacion.tex}
+
+\chapter{Resultados y evaluación}
+\input{capitulos/06-resultados-evaluacion.tex}
+
+\chapter{Conclusiones y trabajos futuros}
+\input{capitulos/07-conclusiones-trabajos-futuros.tex}
+
+\chapter{Glosario}
+\input{capitulos/08-glosario}
+
+
+\chapter{Bibliografía}
+\input{capitulos/09-bibliografia}
+
+\newpage
+\appendix
+Listado de apartados que son demasiado extensos para incluir dentro de la memoria y tienen un carácter autocontenido (por ejemplo, manuales de usuario, manuales de instalación, etc.)
+ 
+Dependiendo del tipo de trabajo, es posible que no haya que añadir algún anexo.
+
+\end{document}
