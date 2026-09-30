@@ -1,0 +1,94 @@
+\chapter{Registro de uso de inteligencia artificial generativa}
+
+\label{anx:ia}
+
+En este anexo se indican todos los usos de inteligencia artificial generativa realizados durante la elaboración de este trabajo, indicando la herramienta usada, el objetivo de su uso, el prompt empleado junto con los parámetros de entrada y el resultado obtenido, en caso de que sea necesario.
+No se incluyen como resultados obtenidos aquellos que ya están incluidos en la memoria, sino que se hace una referencia a la sección de la memoria correspondiente.
+ 
+\begin{fichaia}{FichaIA. Registro de trazabilidad y generación de metadatos de IA}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Gemini (Google)}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Ofrecer de forma transparente la infomación sobre el uso de inteligencia artificial generativa utilizada por el autor, incluyendo los prompts y ajustes realizados.}
+  \fichadato{Resultado}{Código de ficha en LaTeX (\texttt{\textbackslash begin\{fichaia\}}) normalizado que compila los comandos, parámetros y modificaciones de la sesión.}
+  \fichadato{Validación}{Elaboración propia y verificación de la estructura exigida para el anexo de transparencia de la memoria del TFM.}
+  \fichaprompt{A partir de la conversación o de las modificaciones que acabamos de realizar, genera la ficha de registro en formato LaTeX \textbackslash begin\{fichaia\}... (incluyendo la ficha completa del componente en Latex)}
+\end{fichaia}
+
+\begin{fichaia}{Sistema de diseño de la memoria}
+  \fichadato{Fecha}{29/09/2026 (con ajustes hasta el 30/09/2026)}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Disponer de un sistema de diseño completo para la memoria, siguiendo los estilos base definidos por la universidad, aportando una visualización homogénea y atractiva, y facilitando al autor la generación de informes, gráficas, infografías, tablas o mapas.}
+  \fichadato{Resultado}{Guía de estilo y sistema de diseño para la memoria, junto con un listado de componentes de LaTeX.}
+  \fichadato{Validación}{Comprobación de la compilación con la plantilla base de la universidad; revisión visual del autor; comprobación a medida que se han ido incorporando los componentes a la memoria.}
+  \fichaprompt{Estoy haciendo un trabajo fin de master del máster de ciencia de datos de la UOC, necesito un sistema de diseño para poder generar informes, gráficos, infografías, presentación de resultados, diagramas de arquitectura de redes neuronales, arquitectura y diseño de código. La temática del proyecto es la utilización de imágenes aéreas de alta resolución para extraer información de las calles mediante deep learning, segmentación semántica y visión por computador, para permitir clasificar las calles en base a su accesibilidad, para poder ayudar a generar los planes de accesibilidad con información sacda de fotos, y reducir el gasto y tiempo que lleva la inspección in situ. Te paso unas capturas del estilo definido por la universidad para la entrega de la memoria. Evidentemente el formato de la memoria es académico, pero podría llegar a tener algún cambio si así lo solicito. ¿Me puedes crear el sistema de diseño? Si tienes alguna pregunta previa, me dices}
+  \fichadato{Ajustes}{Solicitud de colores accessibles; cambio a idioma castellano; solicitud de texto a dos columnas; solicitud de nuevos componentes (diagramas de flujo, conceptual y de secuencia, Kanban, estados, gráficos de barras, líneas y circular); solicitud de creación de componentes para citas y estado del arte; solicitud de componentes para comparación real frente a predicho; solicitud de componentes para notas; mejora de estilos de listas; componente para citas destacadas.}
+\end{fichaia}
+ 
+\begin{fichaia}{Figuras~\ref{fig:ipa-plano} y \ref{fig:ipa-seccion}. Itinerario peatonal accesible}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos, WP2.1. Análisis legal}
+  \fichadato{Objetivo}{Realizar una visualización del itinerario peatonal accesible atractiva para el lector, y comprensible, para mejorar la comprensión de términos técnicos relacionados con la ley.}
+  \fichadato{Resultado}{Código TikZ de las figuras~\ref{fig:ipa-plano} y \ref{fig:ipa-seccion}, en una sola figura (la división de la figura en dos fue realizada de manera manual).}
+  \fichadato{Validación}{Medidas contrastadas con el texto de la Orden TMA/851/2021.}
+  \fichaprompt{NEcesito que realices un mapa con medidas utilizando el componente de mapas, que defina qué es un itinerario peatona accesible según la Orden TMA/851/2021, incluyendo: ancho libre de paso (mínimo 1,80m de anchura), sin obstáculos. Altura libre de paso, mínimo 2,20m, ubicación de mobiliario en la banda exterior de la acera (con un mínimo de 40 cm de bordillo)}
+  \fichaajuste{Utiliza los componentes que tienes, ¿no podrías utilizarlos?}
+  \fichaajuste{ME gustaría indicar como fuente Claude, a partir de un prompt inicando qué necesito}
+\end{fichaia}
+ 
+\begin{fichaia}{Figura~\ref{fig:infografia_accesibilidad}. La accesibilidad en tres cifras}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Resultado}{Código TikZ de la infografía (figura~\ref{fig:infografia_accesibilidad}).}
+  \fichadato{Validación}{Cifras aportadas por el autor a partir del INE (EDAD 2020) y del Observatorio 2030 CSCAE--Fundación ONCE (\emph{Documenta 1.2}).}
+  \fichaprompt{Necesito diseñar un gráfico conceptual que muestre que en España, en el año 2020, según el Instituto Nacional de Estadística, había 4.38 millones de habitantes con algún tipo de diversidad funcional o discapacidad. Necesitaría que mostrases en una barra el número de personas y el porcentaje de personas con discapacidad reconocida (4.38 millones, el 9,5\% de la población). Y que ampliando el concepto, en otra barra, incluyendo aparte de las personas con discapacidad oficial, sumadas a las personas mayores de 65 años (un 7.5\% estimado) con problemas de movilidad y funcionales, personas con movilidad reducida temporal (un 2.5\%), y familias con carritos de bebé (un 10.5\%). Los datos de estos tres últimos son difíciles de estimar, pero representan un 30\% en total de la población (incluidas las personas con discapacidad reconocida). También quiero incluir que hay un porcentaje superior al 30\,\% en las personas mayores de 65 años (exactamente 32.3\%). Representa esto: primero en un gráfico conceptual los dos primeros valores, y como cifra de infografía el segundo valor}
+  \fichaajuste{En lugar de dar el dato aproximado... me gustaría que mostrases todo en una columna para llegar al 30\% y así puedo poner la referencia a Barra 2 (\textgreater30\,\%): Población beneficiaria real de la accesibilidad universal * (Fuente: Observatorio 2030 CSCAE \& Fundación ONCE, Documenta 1.2)., en el gráfico conceptual}
+  \fichaajuste{Lo mismo es mejor explorar la idea de hacer una infografía conl los tres valores}
+\end{fichaia}
+
+\begin{fichaia}{Figura~\ref{fig:proceso_actual_propuesto}. Proceso actual e inspección automatizada de accesibilidad}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Gemini (Google)~\cite{gemini}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Maquetación de la infografía del proceso manual actual frente al proceso automático propuesto, para mejorar la visualización del elemento creado por elaboración propia a partir del design system.}
+  \fichadato{Validación}{Comprobación manual al generar el PDF con el resultado obtenido por Gemini, haciendo ajustes de maquetación.}
+  \fichaprompt{Puedes mover un poco más abajo los términos positivos de lo propuesto y hacer que entre ACTUAL manual (in situ) bien?}
+  \fichaajuste{Prefiero que no reduzcas la letra, de actual manual, mejor amplía el alto.}
+  \fichaajuste{¿Me divides la infografía en 2?}
+\end{fichaia}
+
+\begin{fichaia}{Figura~\ref{fig:gantt_tfm}. Diagrama de Gantt del proyecto}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Adaptar el diagrama de Gantt anteriormente elaborado de forma manual por el autor al design system de la memoria, sin modificar el contenido.}
+  \fichadato{Material aportado}{Código LaTeX original del diagrama (\texttt{pgfgantt}), con las tareas, fechas e hitos definidos por el autor.}
+  \fichadato{Resultado}{Código de la figura~\ref{fig:gantt_tfm}: estilo \texttt{tfmgantt}, meses en castellano, rejilla semanal, fases WP2 y WP3 agrupadas, tareas secundarias con borde discontinuo, descanso rayado y leyenda.}
+  \fichadato{Validación}{Fechas, tareas e hitos comprobados frente al original; nombres de las fases agrupadas revisados por el autor; compilación con la plantilla TFUOC.}
+  \fichaprompt{Transforma este cronograma a tu estilo por favor, dame el código latex para copiar y pegar}
+\end{fichaia}
+ 
+\begin{fichaia}{Tabla~\ref{tab:planificacion_tfm}. Planificación del proyecto y carga en ECTS}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Adaptar la tabla de planificación anteriormente elaborada de forma manual por el autor al design system de la memoria, manteniendo su contenido.}
+  \fichadato{Material aportado}{Código LaTeX original de la tabla (\texttt{tabularx}), con todos los datos definidos por el autor.}
+  \fichadato{Resultado}{Código de la tabla~\ref{tab:planificacion_tfm}: carga separada en ECTS y horas con coma decimal, fechas abreviadas, descanso diferenciado, tareas secundarias marcadas con \textsuperscript{\dag}, fila de total y nota de tabla. Ajustes menores de redacción en algunas descripciones.}
+  \fichadato{Validación}{Cargas, fechas y entregas comprobadas frente al original; suma total de ECTS y horas revisada por el autor; redacción de las descripciones revisada.}
+  \fichaprompt{La tabla también}
+\end{fichaia}
+
+\begin{fichaia}{Bibliografía de la memoria}
+  \fichadato{Fecha}{30/09/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Transformar la bibliografía manual de formato \texttt{thebibliography} a formato BibTeX estándar, de manera más rápida y eficiente para el autor.}
+  \fichadato{Material aportado}{Archivo original \texttt{09-bibliografia.tex} con entradas manuales en formato \texttt{thebibliography}.}
+  \fichadato{Resultado}{Archivo \texttt{referencias.bib} con 21 entradas bibliográficas en formato BibTeX; configuración de \texttt{\textbackslash usepackage[bibliografia]\{tfm-estilo\}} y \texttt{\textbackslash addbibresource\{referencias.bib\}} en el preámbulo; sustitución del capítulo de bibliografía por \texttt{\textbackslash printbibliography[heading=bibintoc]}.}
+  \fichadato{Validación}{Compilación con biber; verificación de citas en el documento; comprobación de que todas las referencias se generan correctamente en el PDF.}
+  \fichaprompt{Transforma la bibliografía en referencias.bib, y carga la bibliografía en la sección en la que está}
+\end{fichaia}

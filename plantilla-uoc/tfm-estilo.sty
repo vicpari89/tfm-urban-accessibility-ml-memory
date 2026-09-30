@@ -3,7 +3,7 @@
 % Compatible con TFUOC.cls: no redefine sus colores (darkblueUOC, lightblueUOC, greyUOC).
 % Los nombres de color coinciden con los tokens del sistema de diseño.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tfm-estilo}[2026/09/29 v1.4 Sistema visual TFM]
+\ProvidesPackage{tfm-estilo}[2026/09/29 v1.7 Sistema visual TFM]
 
 % Opción [tabla]: "Tabla" / "Índice de tablas" en lugar de "Cuadro" / "Índice de cuadros" (babel spanish)
 \newif\iftfm@tabla
@@ -146,7 +146,21 @@
   mensajetexto/.style={font=\sffamily\scriptsize, text=tinta, fill=papel, inner sep=1pt, above},
 % ---------------------------------------------------------------- Mapas de tramos
   tramo/.style={line width=2.5pt, line cap=round, preaction={draw=papel, line width=4.5pt, line cap=round}},
+  % Planos acotados (planta y sección): cotas y líneas de referencia
+  cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
+  cotatexto/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
+  cotaref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
+  zonaipa/.style={draw=acc-accesible, line width=1.2pt},
+  rotulomapa/.style={font=\sffamily\scriptsize, text=tinta},
 }
+
+
+% Escala gráfica para planos: \escalagrafica{(x,y)}{2}{2\,m}  (longitud en unidades del dibujo)
+\newcommand{\escalagrafica}[3]{%
+  \fill[tinta] #1 rectangle ++(#2/2,0.08); \fill[papel] #1 ++(#2/2,0) rectangle ++(#2/2,0.08);
+  \draw[tinta, line width=0.4pt] #1 rectangle ++(#2,0.08);
+  \node[font=\sffamily\tiny, text=tinta, above] at #1 {0};
+  \node[font=\sffamily\tiny, text=tinta, above] at ($#1+(#2,0)$) {#3};}
 
 % ---------------------------------------------------------------- Estados
 % \estado{pendiente|en-curso|revision|completado|bloqueado}   \estado[Validado]{completado}
@@ -278,6 +292,21 @@
 \newenvironment{citanorma}[2][]{\def\tfm@normanota{#1}\begin{tfm@normabox}{#2}}{%
   \ifx\tfm@normanota\empty\else\par\smallskip{\sffamily\scriptsize\color{tinta-suave}\tfm@normanota}\fi
   \end{tfm@normabox}}
+% Cita destacada: frase breve y literal que resume una idea clave (1–2 en toda la memoria).
+%   \citadestacada{La accesibilidad es imprescindible para el 10\,\% ...}{PREDIF~\cite{predif}}
+%   Opcional: ancho relativo \citadestacada[0.7]{...}{...}  (por defecto 0.82)
+\newcommand{\citadestacada}[3][0.82]{%
+  \par\bigskip
+  \begin{center}
+  \begin{minipage}{#1\linewidth}
+    {\color{uoc-cian-filete}\rule{\linewidth}{1mm}}\par\medskip
+    {\centering\large\itshape\color{uoc-azul}\enquote{#2}\par}
+    \smallskip
+    {\raggedleft\sffamily\footnotesize\color{tinta-suave}\textemdash\ #3\par}
+    \medskip{\color{uoc-cian-filete}\rule{\linewidth}{1mm}}
+  \end{minipage}
+  \end{center}
+  \bigskip}
 % Traducción propia de una cita en otro idioma: \traduccionpropia tras la referencia
 \newcommand{\traduccionpropia}{\,{\footnotesize(traducción propia)}}
 
@@ -435,6 +464,29 @@
 % Notas al pie: número en uoc-azul
 \let\tfm@thefnmark\thefootnote
 \renewcommand{\thefootnote}{\textcolor{uoc-azul}{\arabic{footnote}}}
+
+
+% ---------------------------------------------------------------- Fichas de uso de IA
+% Registro de cada uso relevante de IA generativa (anexo de la memoria).
+% \begin{fichaia}{Figura~\ref{fig:ipa}. Itinerario peatonal accesible}
+%   \fichadato{Fecha}{30/09/2026}   \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+%   \fichaprompt{Texto literal de la instrucción}
+%   \fichaajuste{Texto literal de un ajuste posterior}
+% \end{fichaia}
+\newtcolorbox{fichaia}[1]{enhanced, breakable, sharp corners,
+  colback=papel, colframe=uoc-azul, boxrule=0pt, toprule=1.2pt, bottomrule=0.4pt,
+  leftrule=0pt, rightrule=0pt, colbacktitle=superficie, coltitle=uoc-azul,
+  titlerule=0.4pt, titlerule style={draw=filete},
+  fonttitle=\sffamily\small\bfseries, title={Uso de IA\ ·\ #1},
+  fontupper=\small, left=6pt, right=6pt, top=5pt, bottom=5pt, before skip=10pt, after skip=10pt}
+\newcommand{\fichadato}[2]{\par\noindent\hangindent=3cm\hangafter=1%
+  \makebox[3cm][l]{\sffamily\footnotesize\bfseries\color{uoc-azul}#1}#2\par\smallskip}
+\newcommand{\tfm@fichatexto}[2]{\par\smallskip\noindent{\sffamily\footnotesize\bfseries\color{uoc-azul}#1}\par\nopagebreak
+  \begin{tcolorbox}[enhanced, breakable, sharp corners, colback=superficie, boxrule=0pt, frame hidden,
+    left=6pt, right=6pt, top=3pt, bottom=3pt, before skip=2pt, after skip=6pt, fontupper=\small\itshape]
+  \enquote{#2}\end{tcolorbox}}
+\newcommand{\fichaprompt}[1]{\tfm@fichatexto{Instrucción}{#1}}
+\newcommand{\fichaajuste}[1]{\tfm@fichatexto{Ajuste}{#1}}
 
 % ---------------------------------------------------------------- Imágenes externas
 % Carpetas donde LaTeX busca imágenes (crea las que uses junto al .tex)

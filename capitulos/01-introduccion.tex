@@ -5,18 +5,116 @@ Las ciudades tienen una \textbf{deuda histórica con la diversidad humana} de su
 Cualquier persona puede pasar a lo largo de su vida de ser <<normativa>> a tener necesidades específicas de movilidad. Por esa razón, la \textbf{accesibilidad universal} no es una demanda exclusiva de la ciudadanía con discapacidad permanente, sino una condición que \textbf{afecta a toda la sociedad} en distintas etapas de la vida.
 \\
 
-En España, según información de 2020, \textbf{4,38 millones de habitantes tenían algún tipo de diversidad funcional o discapacidad} (física, visual, auditiva, cognitiva o relacional), lo que representa aproximadamente un 9,5\% de la población. Este porcentaje se va acentuando con la edad, alcanzando valores superiores al \textbf{30\% en las personas mayores de 65 años} (colectivo que representa un 20\% del total y en constante aumento por el envejecimiento demográfico). No se pueden olvidar tampoco las personas con \textbf{movilidad reducida temporal} (lesiones, uso de muletas o silla de ruedas) ni las \textbf{familias con carritos de bebé}.
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[font=\sffamily, x=1cm, y=1cm]
+    % --- Bloque de identidad con el titular
+    \fill[uoc-cian] (0,0) rectangle (3.8,5.2);
+    \node[anchor=north west, text width=3.3cm, align=left, text=uoc-azul,
+          font=\sffamily\large\bfseries] at (0.3,4.8)
+      {\begin{hyphenrules}{nohyphenation}¿A quién beneficia la accesibilidad?\end{hyphenrules}};
+    \node[anchor=south west, text width=3.1cm, align=left, text=tinta,
+          font=\sffamily\scriptsize] at (0.3,0.3) {España};
+ 
+    % --- Filetes del panel (como la cabecera UOC)
+    \draw[uoc-cian-filete, line width=1mm] (3.8,5.15) -- (16.7,5.15);
+    \draw[uoc-cian-filete, line width=1mm] (3.8,0.05) -- (16.7,0.05);
+ 
+    % --- Tres cifras: \x = inicio de columna, \pct = % para la minibarra
+    \foreach \x/\cifra/\pct/\txt/\base in {
+        4.3/{9,5\,\%}/9.5/{de la población tiene una \textbf{discapacidad reconocida}: 4,38 millones de personas}/{Base: población total},
+        8.4/{\textgreater\,30\,\%}/30/{de la población es \textbf{beneficiaria real} de la accesibilidad universal}/{Base: población total},
+        12.5/{32,3\,\%}/32.3/{de las personas \textbf{mayores de 65 años} tiene alguna discapacidad}/{Base: mayores de 65 años}} {
+      % cifra
+      \node[anchor=north west, inner sep=0pt, text=uoc-azul, font=\sffamily\bfseries, scale=2.2]
+        at (\x,4.75) {\cifra};
+      % texto
+      \node[anchor=north west, inner sep=0pt, text width=3.6cm, align=left, text=tinta,
+            font=\sffamily\small] at (\x,3.5) {\begin{hyphenrules}{nohyphenation}\txt\end{hyphenrules}};
+      % minibarra sobre el 100 % de su base
+      \fill[rejilla] (\x,1.05) rectangle ++(3.6,0.3);
+      \fill[uoc-azul] (\x,1.05) rectangle ++(3.6*\pct/100,0.3);
+      \node[anchor=north west, inner sep=0pt, text=tinta-suave, font=\sffamily\scriptsize]
+        at (\x,0.85) {\base};
+    }
+    % separadores verticales finos
+    \foreach \x in {8.1,12.2} \draw[filete, line width=\trazofino] (\x,0.5) -- (\x,4.7);
+  \end{tikzpicture}
+  \caption{La accesibilidad en tres cifras.}
+  \label{fig:infografia_accesibilidad}
+  \fuente{INE, Encuesta de Discapacidad, Autonomía personal y situaciones de Dependencia (EDAD) 2020; Observatorio 2030 CSCAE y Fundación ONCE, \emph{Documenta 1.2}.}
+\end{figure}
+
+
+
+En España, según información de 2020, \textbf{4,38 millones de habitantes tenían algún tipo de discapacidad reconocida} (física, visual, auditiva, cognitiva o relacional), lo que representa aproximadamente un 9,5\% de la población. Este porcentaje se va acentuando con la edad, alcanzando valores superiores al \textbf{30\% en las personas mayores de 65 años} (colectivo que representa un 20\% del total y en constante aumento por el envejecimiento demográfico). No se pueden olvidar tampoco las personas con \textbf{movilidad reducida temporal} (lesiones, uso de muletas o silla de ruedas) ni las \textbf{familias con carritos de bebé}.
 \\
 
 Todos estos colectivos representan más de un 30\% de la ciudadanía, y reflejan que la problemática de la accesibilidad no solo impacta en ciertos colectivos, sino en amplios grupos de personas en el momento actual, y que \textbf{nos afectará en mayor o menor medida a todos}.
-Citando a \textit{PREDIF}:
-\begin{quote}
-«La accesibilidad es imprescindible para el 10\% de la población, necesaria para el 40\% y cómoda para el 100».
-\end{quote}
+\citadestacada{La accesibilidad es imprescindible para el 10\,\% de la población, necesaria para el 40\,\% y cómoda para el 100.}{PREDIF}
 
 De esta necesidad, y con el objetivo de tratar de tirar abajo la deuda accesible de las ciudades, se han redactado varias leyes en la legislación estatal española, de las comunidades autónomas y municipal.
 El marco estatal de referencia es la \textbf{Orden TMA/851/2021 de 23 de julio}, que legisla sobre las \textbf{condiciones básicas de accesibilidad} y no discriminación, y los derechos de utilización de los espacios públicos urbanos.
 \\
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}},
+      cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
+      cotatxt/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
+      ref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
+      mobiliario/.style={fill=tinta-suave, draw=tinta},
+      rotulo/.style={font=\sffamily\scriptsize, text=tinta-suave},
+    ]
+    % =============== a) PLANTA (vista cenital, como en la ortofoto) ===============
+    \begin{scope}[x=1.15cm, y=1.15cm]
+      \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0,4.45) {Itinerario peatonal accesible: dimensiones mínimas};
+      % edificación
+      \fill[rejilla] (0,3.2) rectangle (12,4.2);
+      \draw[tinta-suave, line width=\trazo] (0,3.2) -- (12,3.2);
+      \node[rotulo] at (6,3.7) {Edificación · línea de fachada};
+      % acera
+      \fill[papel] (0,0) rectangle (12,3.2);
+      % IPA: banda libre junto a la fachada
+      \fill[uoc-cian-suave] (0,1.4) rectangle (12,3.2);
+      \draw[uoc-azul, dashed, line width=\trazo] (0,1.4) -- (12,1.4);
+      \node[font=\sffamily\small\bfseries, text=uoc-azul] at (5.2,2.5) {Itinerario peatonal accesible (IPA)};
+      \node[font=\sffamily\scriptsize, text=uoc-azul] at (5.2,2.05) {continuo y sin obstáculos};
+      % banda exterior (mobiliario)
+      \node[rotulo, anchor=west] at (9.35,0.7) {Banda exterior: mobiliario};
+      % bordillo y calzada
+      \fill[seg-calzada] (0,-1.8) rectangle (12,0);
+      \draw[tinta, line width=1.6pt] (0,0) -- (12,0);
+      \draw[papel, line width=1pt, dash pattern=on 10pt off 8pt] (0,-1.1) -- (12,-1.1);
+      \node[font=\sffamily\scriptsize, text=papel] at (1.3,-0.55) {Calzada};
+            % mobiliario a >= 0,40 m del bordillo
+      \fill[mobiliario] (2.4,0.7) circle (0.15);            \node[rotulo, below=1pt] at (2.4,0.55) {farola};
+      \filldraw[mobiliario] (3.7,0.5) rectangle (4.1,0.9);   \node[rotulo, below=1pt] at (3.9,0.5) {papelera};
+      \draw[tinta, fill=rejilla] (5.9,0.4) rectangle (6.9,1.2);
+      \fill[seg-vegetacion] (6.4,0.8) circle (0.28);         \node[rotulo, below=1pt] at (6.4,0.4) {alcorque};
+      \foreach \x in {8.2,8.8} \fill[mobiliario] (\x,0.55) circle (0.09);
+      \node[rotulo, below=1pt] at (8.5,0.45) {bolardos};
+      % cotas
+      \draw[ref] (11.2,1.4) -- (11.6,1.4);
+      \draw[cota] (11.4,1.4) -- (11.4,3.2) node[midway, cotatxt, rotate=90] {$\geq$\,1,80\,m};
+      \draw[ref] (2.4,0.55) -- (1.55,0.55);
+      \draw[cota] (1.65,0) -- (1.65,0.55) node[midway, cotatxt, left=1pt] {$\geq$\,0,40\,m};
+      \node[rotulo, anchor=north east] at (12,-0.02) {\textcolor{papel}{bordillo}};
+      % escala gráfica
+      \begin{scope}[shift={(9.6,-1.55)}]
+        \fill[papel] (0,0) rectangle (1,0.08); \fill[tinta-suave] (1,0) rectangle (2,0.08);
+        \draw[papel, line width=0.4pt] (0,0) rectangle (2,0.08);
+        \node[font=\sffamily\tiny, text=papel, above] at (0,0.08) {0};
+        \node[font=\sffamily\tiny, text=papel, above] at (2,0.08) {2\,m};
+      \end{scope}
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{Itinerario peatonal accesible: dimensiones mínimas en plano.}
+  \label{fig:ipa-plano}
+  \fuente{elaboración propia a partir de la Orden TMA/851/2021.}
+\end{figure}
 
 En esta normativa se impone como mínimo a las administraciones municipales:
 \begin{itemize}
@@ -24,6 +122,64 @@ En esta normativa se impone como mínimo a las administraciones municipales:
     \item Impulsar el concepto de \textbf{accesibilidad universal}, no solo pensando en la población con problemas de movilidad, sino atendiendo a todos los tipos de diversidad.
     \item Establecer los \textbf{requisitos mínimos} para considerar las vías urbanas como accesibles, bajo el concepto de \textbf{Itinerario Peatonal Accesible (IPA)}.
 \end{itemize}
+ 
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}},
+      cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
+      cotatxt/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
+      ref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
+      mobiliario/.style={fill=tinta-suave, draw=tinta},
+      rotulo/.style={font=\sffamily\scriptsize, text=tinta-suave},
+    ]
+    % =============== b) SECCIÓN TRANSVERSAL ===============
+    \begin{scope}[shift={(0,-7.4)}, x=1.15cm, y=1.15cm]
+      \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0,3.35) {Vista transversal del itinerario peatonal accesible};
+      % calzada (más baja) y acera
+      \fill[seg-calzada] (0,-0.35) rectangle (1.5,-0.15);
+      \fill[rejilla] (1.5,-0.35) rectangle (4.7,0);
+      \draw[tinta, line width=\trazo] (0,-0.15) -- (1.5,-0.15) -- (1.5,0) -- (4.7,0);
+      % fachada
+      \fill[rejilla] (4.7,-0.35) rectangle (5.1,3.1);
+      \draw[tinta-suave, line width=\trazo] (4.7,0) -- (4.7,3.1);
+      % volumen libre del IPA
+      \fill[uoc-cian-suave] (2.9,0) rectangle (4.7,2.2);
+      \draw[uoc-azul, dashed, line width=\trazo] (2.9,0) -- (2.9,2.2) -- (4.7,2.2);
+      % persona genérica
+      \fill[uoc-azul] (3.8,1.62) circle (0.13);
+      \fill[uoc-azul, rounded corners=2pt] (3.62,0.02) rectangle (3.98,1.45);
+      \node[font=\sffamily\scriptsize\bfseries, text=uoc-azul] at (3.3,1.95) {IPA};
+      % farola en la banda exterior
+      \fill[tinta-suave] (1.95,0) rectangle (2.03,2.9);
+      \fill[tinta-suave] (2.03,2.84) rectangle (2.6,2.9);
+      % elemento volado (toldo o banderola) por encima de 2,20 m
+      \fill[tinta-suave] (4.7,2.45) -- (3.9,2.35) -- (3.9,2.3) -- (4.7,2.3) -- cycle;
+      % cotas
+      \draw[cota] (2.9,-0.55) -- (4.7,-0.55) node[midway, cotatxt, below=1pt, fill=none] {$\geq$\,1,80\,m};
+      \draw[ref] (2.9,0) -- (2.9,-0.65); \draw[ref] (4.7,-0.35) -- (4.7,-0.65);
+      \draw[cota] (2.65,0) -- (2.65,2.2) node[midway, cotatxt, rotate=90] {$\geq$\,2,20\,m};
+      \draw[ref] (2.55,2.2) -- (2.9,2.2);
+      \draw[cota] (1.5,0.35) -- (1.95,0.35) node[midway, cotatxt, above=1pt, fill=none] {$\geq$\,0,40\,m};
+      \node[rotulo, align=center] at (0.75,0.3) {calzada};
+    \end{scope}
+ 
+    % =============== Requisitos ===============
+    \begin{scope}[shift={(7.0,-7.4)}]
+      \node[anchor=north west, text width=7.2cm, align=left, font=\sffamily\scriptsize, text=tinta,
+            draw=uoc-azul, line width=\trazofino, fill=superficie, inner sep=6pt] at (0,3.75) {%
+        {\small\bfseries\color{uoc-azul} Requisitos del IPA}\\[2pt]
+        {\color{tinta-suave}Orden TMA/851/2021}\\[5pt]
+        \textbf{Ancho libre de paso} $\geq$\,1,80\,m, continuo y sin obstáculos.\\[3pt]
+        \textbf{Altura libre de paso} $\geq$\,2,20\,m en todo el ancho del itinerario.\\[3pt]
+        \textbf{Mobiliario urbano} en la banda exterior de la acera, a $\geq$\,0,40\,m del borde del bordillo.\\[3pt]
+        \textbf{Trazado} junto a la línea de fachada o elemento que la sustituya.};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Itinerario peatonal accesible: dimensiones mínimas en sección transversal.}
+  \label{fig:ipa-seccion}
+  \fuente{elaboración propia a partir de la Orden TMA/851/2021.}
+\end{figure}
 
 
 A pesar de esta legislación, según los diagnósticos realizados por el IMSERSO, el estado actual de la accesibilidad de las ciudades es bastante negligente. En el año 2005, más del \textbf{16\% de aceras eran totalmente inaccesibles} por tener anchos inferiores a lo establecido por ley, y peor aún, más del \textbf{63\% de los itinerarios peatonales tenían obstáculos físicos} que dificultan la movilidad de los viandantes. Según el informe de Índice de Accesibilidad e Inclusión de la Fundación ONCE (2022), el \textbf{37\%} de las necesidades de accesibilidad en la vía urbana \textbf{siguen incumpliendo la ley}.
@@ -35,6 +191,79 @@ La ejecución de los planes de accesibilidad sufre de unos procedimientos excesi
     \item \textbf{Rápida caducidad de los diagnósticos:} al ser tan lentos, no se adaptan al crecimiento dinámico de las ciudades, como obras o cambios en el mobiliario urbano.
     \item \textbf{Procesamiento lento de los datos:} una vez obtenidas las mediciones, los datos se tienen que subir a las plataformas web, en algunos casos inexistentes.
 \end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[tfm,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
+      paso/.style={arqbase, text width=22mm, minimum height=11mm, inner sep=3pt,
+                   font=\sffamily\scriptsize, align=center},
+      manual/.style={paso, fill=superficie, draw=tinta-suave},
+      datos/.style={paso, fill=arq-datos},
+      algoritmo/.style={paso, fill=nn-conv, double=nn-conv, double distance=1.2pt},
+      externo/.style={paso, fill=arq-externo, draw=acc-deficiente},
+      nota/.style={font=\sffamily\scriptsize, text=tinta, anchor=north west, inner sep=0pt,
+                   text width=41mm, align=left},
+    ]
+    % ---------- Carriles (fondo con mayor altura)
+    \fill[uoc-gris]       (-1.9, 2.00) rectangle (12.45,-2.00);
+    \fill[uoc-cian-suave] (-1.9,-2.30) rectangle (12.45,-7.10);
+    
+    % Etiquetas laterales (mantiene \scriptsize)
+    \node[rotate=90, font=\sffamily\scriptsize\bfseries, text=tinta-suave] at (-1.6, 0.0) {ACTUAL · manual (\emph{in situ})};
+    \node[rotate=90, font=\sffamily\scriptsize\bfseries, text=uoc-azul]       at (-1.6,-4.65) {PROPUESTO · automático};
+
+    % ---------- Proceso actual
+    \node[manual] (a1) at (0,0)    {Planificación de rutas por barrios o sectores};
+    \node[manual] (a2) at (2.75,0)  {Desplazamiento del equipo técnico};
+    \node[manual] (a3) at (5.5,0)  {Medición manual calle a calle};
+    \node[manual] (a4) at (8.25,0)  {Registro en informes y fotografías};
+    \node[datos]  (a5) at (11,0) {Carga manual en la plataforma};
+    \foreach \i/\j in {a1/a2,a2/a3,a3/a4,a4/a5} \draw[flecha] (\i) -- (\j);
+    \draw[flecha, dashed] (a3.north) .. controls +(0,8mm) and +(0,8mm) .. (a2.north)
+      node[pos=0.5, above, etiqueta] {se repite en cada calle};
+    \foreach \x/\t in {-1.1/{Coste elevado de personal y desplazamientos},
+                        3.45/{Foto puntual del diagnóstico, se queda obsoleta pronto},
+                        8.0/{Datos lentos de procesar, difícil tener una visión global}}
+      \node[nota] at (\x,-1.0) {\textcolor{estado-bloqueado}{\textbf{\textminus}}~\t};
+
+    % ---------- Proceso propuesto
+    \node[externo]   (b1) at (0,-4.3)    {Foto aérea de alta resolución};
+    \node[algoritmo] (b2) at (2.75,-4.3)  {Segmentación semántica};
+    \node[algoritmo] (b3) at (5.5,-4.3)  {Extracción geométrica de métricas};
+    \node[algoritmo] (b4) at (8.25,-4.3)  {Clasificación de accesibilidad por tramo};
+    \node[datos]     (b5) at (11,-4.3) {Visor GIS y datos exportables};
+    \foreach \i/\j in {b1/b2,b2/b3,b3/b4,b4/b5} \draw[flecha] (\i) -- (\j);
+    \node[manual, minimum height=8mm] (v) at (8.25,-2.85) {Validación puntual \emph{in situ}};
+    \draw[flecha, dashed] (v) -- (b4);
+    \draw[flecha, dashed] (b5.south) .. controls +(0,-8mm) and +(0,-8mm) .. (b1.south)
+      node[pos=0.5, below=1pt, etiqueta, fill=uoc-cian-suave] {se actualiza con cada nueva carga de imágenes};
+      
+    % Términos positivos desplazados a -6.20
+    \foreach \x/\t in {-1.1/{Cobertura más amplia en menos tiempo},
+                        3.45/{Foto global de la ciudad, fácil de actualizar y visualizar},
+                        8.0/{Facilitala priorización de intervenciones}}
+      \node[nota] at (\x,-6.20) {\textcolor{estado-completado}{\textbf{+}}~\t};
+  \end{tikzpicture}
+
+  \vspace{3mm}
+  % ---------- Leyenda
+  \begin{tikzpicture}[font=\sffamily\scriptsize, text=tinta]
+    \draw[tinta-suave, fill=superficie, line width=\trazo] (0,-0.12) rectangle (0.5,0.12);
+    \node[anchor=west] at (0.6,0) {Tarea manual};
+    \draw[uoc-azul, fill=nn-conv, double=nn-conv, double distance=0.8pt] (2.8,-0.12) rectangle (3.3,0.12);
+    \node[anchor=west] at (3.4,0) {Algoritmo};
+    \draw[uoc-azul, fill=arq-datos, line width=\trazo] (5.2,-0.12) rectangle (5.7,0.12);
+    \node[anchor=west] at (5.8,0) {Datos / resultado};
+    \draw[acc-deficiente, fill=arq-externo, line width=\trazo] (8.6,-0.12) rectangle (9.1,0.12);
+    \node[anchor=west] at (9.2,0) {Fuente externa};
+    \draw[flecha, dashed] (11.6,0) -- (12.3,0);
+    \node[anchor=west] at (12.4,0) {Repetición};
+  \end{tikzpicture}
+  \caption{Proceso actual de diagnóstico de la accesibilidad mediante inspección \emph{in situ} frente al proceso automatizado propuesto.}
+  \label{fig:proceso_actual_propuesto}
+  \fuente{elaboración propia, con el design system generado con Claude, y con ayuda de Gemini para maquetar las alturas.}
+\end{figure}
 
 La necesidad de acelerar los planes de accesibilidad es el punto de partida de este proyecto. Para ello, se plantea la \textbf{utilización de imágenes aéreas de alta resolución} como fuente de datos para el diagnóstico de las vías urbanas, utilizando técnicas de inteligencia artificial, construyendo un \textbf{sistema que procese de manera automática} la evaluación de las calles de cada ciudad.
 \\
@@ -244,7 +473,7 @@ Además, se han incluido paquetes de trabajo para los \textbf{objetivos secundar
 
 En primer lugar, se muestra en la siguiente tabla la división de las tareas a realizar durante el trabajo, descompuestas en \textbf{6 paquetes de trabajo principales}, indicando el número de créditos ETCS y horas, y a qué entrega de evaluación continua se corresponden. Para el hito de implementación (WP3), se ha realizado una \textbf{división inicial en subfases}, que podría verse actualizada una vez se consolide la investigación del estado del arte (WP2).
 
-\begin{table}[H] %
+\begin{table}[H]
   \centering
   \caption{Planificación del proyecto y distribución de carga ECTS}
   \label{tab:planificacion_tfm}
@@ -253,6 +482,7 @@ En primer lugar, se muestra en la siguiente tabla la división de las tareas a r
 
   \begin{tabularx}{\textwidth}{l X c c c}
     \toprule
+    \cabeceratabla
     \textbf{WP} & \textbf{Tarea y descripción detallada} & \textbf{Carga} & \textbf{Fechas} & \textbf{UOC} \\
     \midrule
     WP1 & \textbf{Definición y objetivos:} planteamiento inicial, problemática, alineación de objetivos, metodología y planificación temporal. & \makecell{0.6 ECTS \\ (15 h)} & 24 sep - 04 oct & PEC1 \\
@@ -286,44 +516,43 @@ El cronograma del proyecto, incluyendo tanto los paquetes de trabajo como hilos 
 
 \begin{figure}[H]
   \centering
-  \scriptsize
-
-  \definecolor{mainbar}{RGB}{51,102,204}
-  \definecolor{secbar}{RGB}{46,125,50}
-  \definecolor{breakbar}{RGB}{180,180,180}
-  \definecolor{milestonecolor}{RGB}{211,47,47}
-
   \begin{ganttchart}[
-      vgrid={*6{dotted}, *1{dashed}},
-      hgrid,
-      x unit=1.05mm, % Ancho temporal optimizado para A4
+      tfmgantt,                          % estilo del sistema (tfm-estilo.sty)
       time slot format=isodate,
-      title height=1,
-      y unit chart=0.42cm,
-      y unit title=0.5cm,
-      bar/.append style={fill=mainbar, draw=none},
-      bar height=0.5,
-      milestone/.append style={fill=milestonecolor, draw=none},
-      milestone height=0.6,
-      bar label font=\tiny\sffamily, % Fuente limpia para los nombres
-      milestone label font=\tiny\itshape\color{milestonecolor},
-      title label font=\tiny\bfseries,
-      canvas/.append style={draw=black!30}
+      x unit=1.0mm,                      % 120 días en el ancho de página
+      y unit chart=0.42cm, y unit title=0.5cm,
+      vgrid={*6{draw=none}, *1{draw=rejilla, line width=\trazofino}},  % una línea por semana
+      hgrid={*1{draw=rejilla, line width=\trazofino}},
+      canvas/.append style={draw=filete, line width=\trazofino},
+      bar height=0.55, milestone height=0.6, group peaks height=0.2,
+      milestone left shift=-1.5, milestone right shift=1.5,  % rombo de ~4 mm
+      bar label font=\sffamily\scriptsize,
+      group label font=\sffamily\scriptsize\bfseries\color{uoc-azul},
+      milestone label font=\sffamily\scriptsize\itshape\color{tinta-suave},
+      title label font=\sffamily\scriptsize\bfseries\color{uoc-azul},
+      secundaria/.style={bar/.append style={fill=papel, draw=uoc-azul, dashed}},
+      descanso/.style={bar/.append style={fill=uoc-gris, draw=tinta-suave, line width=\trazofino,
+                        pattern=north east lines, pattern color=tinta-suave},
+                       bar label font=\sffamily\scriptsize\itshape\color{tinta-suave}},
     ]{2026-09-24}{2027-01-21}
 
-    % Escala de tiempo
-    \gantttitlecalendar{year, month=shortname} \\
+    % Escala de tiempo (en castellano; los números son días de cada mes dentro del rango)
+    \gantttitle{2026}{99} \gantttitle{2027}{21} \\
+    \gantttitle{sep.}{7} \gantttitle{oct.}{31} \gantttitle{nov.}{30}
+    \gantttitle{dic.}{31} \gantttitle{ene.}{21} \\
 
     % WP1
     \ganttbar{WP1 Definición y objetivos}{2026-09-24}{2026-10-04} \\
     \ganttmilestone{Entrega PEC1}{2026-10-04} \\
 
     % WP2
+    \ganttgroup{WP2 Contexto}{2026-10-05}{2026-10-25} \\
     \ganttbar{WP2.1 Análisis legal}{2026-10-05}{2026-10-12} \\
     \ganttbar{WP2.2 Estado del arte}{2026-10-13}{2026-10-25} \\
     \ganttmilestone{Entrega PEC2}{2026-10-25} \\
 
     % WP3
+    \ganttgroup{WP3 Desarrollo}{2026-10-19}{2026-12-15} \\
     \ganttbar{WP3.1 Preparación de datos}{2026-10-19}{2026-11-03} \\
     \ganttbar{WP3.2 Entrenamiento IA}{2026-10-25}{2026-11-24} \\
     \ganttbar{WP3.3 Extracción geométrica}{2026-11-03}{2026-11-24} \\
@@ -331,27 +560,38 @@ El cronograma del proyecto, incluyendo tanto los paquetes de trabajo como hilos 
     \ganttbar{WP3.5 Validación e iteración}{2026-11-13}{2026-12-05} \\
     \ganttbar{WP3.6 Integración con el callejero}{2026-11-18}{2026-12-03} \\
     \ganttbar{WP3.7 Visor GIS e interfaz}{2026-11-20}{2026-12-05} \\
-
-    % Descanso
-    \ganttbar[bar/.append style={fill=breakbar}]{Descanso}{2026-12-02}{2026-12-07} \\
-
-    % Secundarios
-    \ganttbar[bar/.append style={fill=secbar}]{WP3.8 Portal web ciudadano}{2026-12-08}{2026-12-13} \\
-    \ganttbar[bar/.append style={fill=secbar}]{WP3.9 Catálogo municipio}{2026-12-08}{2026-12-14} \\
-    \ganttbar[bar/.append style={fill=secbar}]{WP3.10 Exportación GIS}{2026-12-11}{2026-12-15} \\
+    \ganttbar[descanso]{Descanso}{2026-12-02}{2026-12-07} \\
+    \ganttbar[secundaria]{WP3.8 Portal web ciudadano}{2026-12-08}{2026-12-13} \\
+    \ganttbar[secundaria]{WP3.9 Catálogo municipio}{2026-12-08}{2026-12-14} \\
+    \ganttbar[secundaria]{WP3.10 Exportación GIS}{2026-12-11}{2026-12-15} \\
     \ganttmilestone{Entrega PEC3}{2026-12-15} \\
 
     % WP4
     \ganttbar{WP4 Redacción memoria}{2026-12-16}{2026-12-27} \\
     \ganttmilestone{Entrega PEC4}{2026-12-27} \\
 
-    % WP5 & WP6
+    % WP5 y WP6
     \ganttbar{WP5 Presentación vídeo}{2026-12-28}{2027-01-05} \\
     \ganttmilestone{Entrega PEC5}{2027-01-05} \\
     \ganttbar{WP6 Defensa oral}{2027-01-06}{2027-01-21} \\
     \ganttmilestone{Entrega PEC6 / Final}{2027-01-21}
-
   \end{ganttchart}
+
+  \vspace{3mm}
+  % Leyenda
+  \begin{tikzpicture}[font=\sffamily\scriptsize, text=tinta]
+    \draw[uoc-azul, fill=uoc-azul] (0,-0.06) rectangle (0.5,0.06);
+    \node[anchor=west] at (0.6,0) {Fase};
+    \draw[uoc-azul, fill=nn-conv, line width=\trazofino] (1.6,-0.1) rectangle (2.1,0.1);
+    \node[anchor=west] at (2.2,0) {Tarea};
+    \draw[uoc-azul, fill=papel, dashed, line width=\trazofino] (3.3,-0.1) rectangle (3.8,0.1);
+    \node[anchor=west] at (3.9,0) {Tarea secundaria};
+    \draw[tinta-suave, fill=uoc-gris, line width=\trazofino, pattern=north east lines, pattern color=tinta-suave] (6.3,-0.1) rectangle (6.8,0.1);
+    \node[anchor=west] at (6.9,0) {Descanso};
+    \draw[acc-no-accesible, fill=acc-deficiente] (8.35,0) -- ++(0.1,0.1) -- ++(0.1,-0.1) -- ++(-0.1,-0.1) -- cycle;
+    \node[anchor=west] at (8.6,0) {Hito (entrega de PEC)};
+  \end{tikzpicture}
+
   \caption{Diagrama de Gantt del proyecto.}
   \label{fig:gantt_tfm}
 \end{figure}
@@ -371,6 +611,7 @@ Los principales riesgos identificados han estado centrados en la incentidumbre d
   
   \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm} c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
     \toprule
+    \cabeceratabla
     \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
     \midrule
     
@@ -406,22 +647,37 @@ Los principales riesgos identificados han estado centrados en la incentidumbre d
 
 Los productos que se obtendrán tras la ejecución del proyecto se detallan a continuación, distinguiendo los entregablos del MVP de los secundarios:
 
-\textbf{Productos del MVP}
-\begin{enumerate}
-    \item Conjunto de datos de imágenes aéreas de alta resolución.
-    \item Repositorio en GitHub de código fuente del modelo de entrenamiento de la segmentación semántica de imágenes, así como una exportación del mismo.
-    \item Repositorio y código fuente de los procedimientos de extracción geométrica, así como de los algoritmos de clasificación accesible.
-    \item Repositorio y código fuente del portal web GIS interactivo.
-    \item Archivos de datos con las predicciones obtenidas del modelo a partir del conjunto de imágenes iniciales.
-    \item Memoria del trabajo.
-\end{enumerate}
 
-\textbf{Productos secundarios}
-\begin{enumerate}
-    \item Repositorio y código fuente del portal web ciudadano.
-    \item Conjunto de datos del observatorio de transparencia municipal, así como el repositorio y código fuente del algoritmo de extracción de datos.
-    \item Servicios web de mapas preparados para su consumo en geoportales.
-\end{enumerate}
+\begin{table}[H]
+  \centering
+  \caption{Productos del proyecto.}
+  \label{tab:productos}
+  \small
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{l >{\raggedright\arraybackslash}X l l}
+    \toprule
+    \cabeceratabla
+    Código & Producto & Formato & WP \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Producto mínimo viable (MVP)} \\
+    P1 & Conjunto de datos de imágenes aéreas de alta resolución, con sus máscaras anotadas. & Dataset & WP3.1 \\
+    P2 & Repositorio en GitHub con el código de entrenamiento del modelo de segmentación semántica y su exportación. & Código y modelo & WP3.2 \\
+    P3 & Módulo de extracción geométrica y clasificación de la accesibilidad por tramo. & Código & WP3.3--3.4 \\
+    P4 & Capa de tramos clasificados integrada en el callejero municipal. & Capa GIS & WP3.6 \\
+    P5 & Visor GIS interactivo con los resultados. & Aplicación web & WP3.7 \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Productos secundarios\textsuperscript{*}} \\
+    P6 & Portal web ciudadano con canal de consultas e incidencias. & Aplicación web & WP3.8 \\
+    P7 & Catálogo u observatorio municipal de índices de accesibilidad. & Aplicación web & WP3.9 \\
+    P8 & Servicios web de mapas con los resultados (WMS/WFS). & Servicio OGC & WP3.10 \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Entregables académicos} \\
+    P9  & Memoria del TFM. & PDF & WP4 \\
+    P10 & Presentación en vídeo. & Vídeo & WP5 \\
+    \bottomrule
+  \end{tabularx}
+  \notatabla{\textsuperscript{*}\,Productos secundarios: se desarrollarán si el calendario lo permite y no condicionan el cumplimiento de los objetivos.}
+\end{table}
 
 \section{Breve descripción de los otros capítulos de la memoria}
 
