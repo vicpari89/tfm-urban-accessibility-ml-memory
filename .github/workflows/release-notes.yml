@@ -1,0 +1,69 @@
+name: Generate Release Notes
+
+on:
+  release:
+    types: [published, edited]
+
+permissions:
+  contents: read
+  releases: write
+
+jobs:
+  generate-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate file changes
+        id: changes
+        run: |
+          CURRENT_TAG="${{ github.event.release.tag_name }}"
+
+          # Get all tags sorted by version, excluding current
+          PREVIOUS_TAG=$(git tag --sort=-version:refname | grep -v "^${CURRENT_TAG}$" | head -1)
+
+          if [ -z "$PREVIOUS_TAG" ]; then
+            # First release - show all files
+            echo "notes=📦 **Initial Release** — No previous version to compare." >> $GITHUB_OUTPUT
+          else
+            # Generate file changes with safety checks
+            echo "notes<<EOF" >> $GITHUB_OUTPUT
+            echo "## 📝 Files Changed Since $PREVIOUS_TAG" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+
+            git diff --name-status "$PREVIOUS_TAG" "$CURRENT_TAG" | while read status file; do
+              # Count additions and deletions
+              additions=$(git diff "$PREVIOUS_TAG" "$CURRENT_TAG" -- "$file" 2>/dev/null | grep -c "^+" | grep -v "^+++" || echo "0")
+              deletions=$(git diff "$PREVIOUS_TAG" "$CURRENT_TAG" -- "$file" 2>/dev/null | grep -c "^-" | grep -v "^---" || echo "0")
+
+              # Format output based on status
+              case $status in
+                M) echo "- **$file** (Modified) — +$additions −$deletions" ;;
+                A) echo "- **$file** (Added) — +$additions" ;;
+                D) echo "- **$file** (Deleted) — −$deletions" ;;
+                R*) echo "- **$file** (Renamed)" ;;
+              esac
+            done >> $GITHUB_OUTPUT
+
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update release body
+        run: |
+          CURRENT_BODY="${{ github.event.release.body }}"
+          NEW_NOTES="${{ steps.changes.outputs.notes }}"
+
+          # Combine existing body with new notes
+          COMBINED_BODY="${CURRENT_BODY}
+
+${NEW_NOTES}"
+
+          # Update release with combined body
+          gh release edit "${{ github.event.release.tag_name }}" \
+            --notes "${COMBINED_BODY}" \
+            --repo "${{ github.repository }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
