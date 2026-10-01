@@ -14,6 +14,11 @@
 \usepackage[spanish]{babel}
 \usepackage{hyperref}
 
+% Glossary configuration with glossaries-extra and bib2gls
+\usepackage[record,toc,nomain,style=altlist,abbreviations]{glossaries-extra}
+\setabbreviationstyle[abbreviation]{long-short}
+\GlsXtrLoadResources[src=glosario,sort=es]
+
 %Introducción de datos del trabajo
 \title{Sistema automatizado de clasificación de la accesibilidad de las vías urbanas a partir de imágenes aéreas de alta resolución}
 \titcrt{Clasificación de accesibilidad urbana}
