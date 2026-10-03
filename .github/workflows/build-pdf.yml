@@ -2,16 +2,8 @@ name: Build PDF
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - '*'
-    paths:
-      - 'capitulos/**'
-      - 'referencias.bib'
-      - 'glosario.bib'
-      - 'TFUOC.cls'
-      - 'TFM_Victor_Pariente_Gonzalez.tex'
+    branches: [main]
+    tags: ['*']
   release:
     types: [created, published]
 
