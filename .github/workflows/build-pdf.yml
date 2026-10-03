@@ -9,7 +9,7 @@ on:
       - 'referencias.bib'
       - 'glosario.bib'
       - 'TFUOC.cls'
-      - 'memoria.tex'
+      - 'TFM_Victor_Pariente_Gonzalez.tex'
 
 jobs:
   build:
@@ -25,24 +25,23 @@ jobs:
 
     - name: Build PDF
       run: |
-        cd /home/runner/work/tfm-victor-pariente-ciencia-de-datos-uoc/tfm-victor-pariente-ciencia-de-datos-uoc
-        pdflatex -interaction=nonstopmode memoria.tex
-        bibtex memoria
-        pdflatex -interaction=nonstopmode memoria.tex
-        pdflatex -interaction=nonstopmode memoria.tex
+        pdflatex -interaction=nonstopmode TFM_Victor_Pariente_Gonzalez.tex
+        bibtex TFM_Victor_Pariente_Gonzalez
+        pdflatex -interaction=nonstopmode TFM_Victor_Pariente_Gonzalez.tex
+        pdflatex -interaction=nonstopmode TFM_Victor_Pariente_Gonzalez.tex
       continue-on-error: true
 
     - name: Upload PDF as Release Asset
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: memoria.pdf
+        files: TFM_Victor_Pariente_Gonzalez.pdf
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload PDF as Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: memoria-pdf
-        path: memoria.pdf
+        name: TFM-PDF
+        path: TFM_Victor_Pariente_Gonzalez.pdf
         retention-days: 30
