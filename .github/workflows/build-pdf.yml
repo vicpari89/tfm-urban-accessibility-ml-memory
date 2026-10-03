@@ -1,0 +1,48 @@
+name: Build PDF
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'capitulos/**'
+      - 'referencias.bib'
+      - 'glosario.bib'
+      - 'TFUOC.cls'
+      - 'memoria.tex'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full
+
+    - name: Build PDF
+      run: |
+        cd /home/runner/work/tfm-victor-pariente-ciencia-de-datos-uoc/tfm-victor-pariente-ciencia-de-datos-uoc
+        pdflatex -interaction=nonstopmode memoria.tex
+        bibtex memoria
+        pdflatex -interaction=nonstopmode memoria.tex
+        pdflatex -interaction=nonstopmode memoria.tex
+      continue-on-error: true
+
+    - name: Upload PDF as Release Asset
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: memoria.pdf
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload PDF as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: memoria-pdf
+        path: memoria.pdf
+        retention-days: 30
