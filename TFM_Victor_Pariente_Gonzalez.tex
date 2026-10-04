@@ -18,7 +18,7 @@
 % Glossary configuration with glossaries-extra and bib2gls
 \usepackage[record,toc,nomain,style=altlist,abbreviations]{glossaries-extra}
 \setabbreviationstyle[abbreviation]{long-short}
-\GlsXtrLoadResources[src=glosario,sort=es]
+\GlsXtrLoadResources[src=glosario,sort=es,selection=all]
 
 %Introducción de datos del trabajo
 \title{Modelo de clasificación de la accesibilidad de las vías urbanas a partir de parámetros extraíbles de imágenes}
@@ -90,7 +90,8 @@ The goal is to determine whether it is possible to predict the accessibility of 
 \input{capitulos/01-introduccion.tex}
 
 \chapter{Características de vías accesibles. Marco legal y normativo.}
-\input{capitulos/02-marco-legal-caracteristicas.tex}
+\input{capitulos/02-01-marco-legal.tex}
+\input{capitulos/02-02-caracteristicas-accesibilidad.tex}
 
 \chapter{Estado del arte}
 \input{capitulos/03-estado-del-arte.tex}
@@ -108,14 +109,13 @@ The goal is to determine whether it is possible to predict the accessibility of 
 \input{capitulos/07-conclusiones-trabajos-futuros.tex}
 
 \chapter{Glosario}
-\input{capitulos/08-glosario}
-
+\input{capitulos/08-glosario.tex}
 
 \chapter{Bibliografía}
-\input{capitulos/09-bibliografia}
+\input{capitulos/09-bibliografia.tex}
 
 \newpage
 \appendix
-\input{capitulos/appendix-generative-ai}
+\input{capitulos/appendix-generative-ai.tex}
 
 \end{document}

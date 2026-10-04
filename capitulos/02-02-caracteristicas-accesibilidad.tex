@@ -1,0 +1,363 @@
+\providecommand{\porrellenar}[1][por rellenar]{{\sffamily\footnotesize\color{tinta-suave}[#1]}}
+
+\newenvironment{tablarequisitos}[2]{%
+  \begin{table}[htbp]\centering\small
+  \caption{#1}\label{#2}%
+  \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.24\linewidth-2\tabcolsep\relax}
+                  >{\raggedright\arraybackslash}p{\dimexpr0.62\linewidth-2\tabcolsep\relax}
+                  >{\raggedright\arraybackslash}p{\dimexpr0.14\linewidth-2\tabcolsep\relax}}
+  \toprule
+  \cabeceratabla \textbf{Parámetro} & \textbf{Requisito} & \textbf{Artículo} \\
+  \midrule}
+ {\bottomrule
+  \end{tabular}
+  \fuente{Orden TMA/851/2021.}%
+  \end{table}}
+
+% (4) Cómo aparece en los datos
+\newcommand{\datosplanes}[2]{%
+  \begin{recuadro}[nota]{Cómo aparece en los datos}
+    \textbf{Albacete.} #1\par\smallskip
+    \textbf{Algeciras.} #2
+  \end{recuadro}}
+
+% Conclusión: parámetro que más condiciona la accesibilidad del elemento
+\newcommand{\parametroclave}[1]{\aclaracion[Parámetro determinante]{#1}}
+
+
+% =====================================================================
+\section{Características del entorno urbano accesible}
+\label{sec:caracteristicas}
+% =====================================================================
+\porrellenar[párrafo de entrada: qué elementos se revisan, por qué la Orden
+TMA/851/2021 y cómo se organiza cada subsección]
+
+% ---------------------------------------------------------------------
+\subsection{Itinerario peatonal accesible (IPA)}
+\label{subsec:ipa}
+
+El itinerario peatonal accesible (IPA) es la parte de uso peatonal de la vía urbana que garantiza la movilidad segura y circulación, de manera autónoma por parte de todas las personas, independientemente de su diversidad funcional.
+\\
+
+\textbf{La anchura libre de paso} es el ancho del área de itinerario peatonal que permite la circulación de peatones totalmente libre de obstáculos, tanto permanentes como temporales.
+\\
+
+\textbf{La altura libre de paso} es el alto del trayecto peatonal durante el que las personas pueden circular sin riesgo de impacto contra elementos situados superiormente.
+\\
+
+\textbf{La pendiente longitudinal} es la inclinación del itinerario, en porcentaje, en dirección de la marcha.
+\\
+
+Mientras que \textbf{la pendiente transversal} es la inclinación del itinerario, en porcentaje, perpendicular a la dirección de la marcha.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos del itinerario peatonal accesible.}{tab:req-ipa}
+  Anchura libre de paso    & Anchura mínima de 1,80 metros. & art. 5.2.a y 5.2.b \\
+  \cmidrule(lr){1-3}
+  Altura libre de paso     & Altura mínima de 2,20 metros. & art. 5.2.c \\
+  \cmidrule(lr){1-3}
+  Pendiente longitudinal   & Máxima del 6\%. & art. 5.2.g \\
+  \cmidrule(lr){1-3}
+  Pendiente transversal    & Máxima del 2\%. & art. 5.2.f \\
+  \cmidrule(lr){1-3}
+  Resaltes y desniveles    & Sin escalones aislados & art. 5.2.d \\
+  \cmidrule(lr){1-3}
+  Continuidad              & Sin interrupciones ni obstáculos en todo el recorrido. Uniforme horizontal y vertical. & art. 5.2.a \\
+  \cmidrule(lr){1-3}
+  Ubicación                & Preferentemente junto a la línea de fachada. En caso de no poder cumplirse, instalar una franja guía de pavimento táctil. & art. 5.2.a, 45 y 46 \\
+  \cmidrule(lr){1-3}
+  Plataforma única         & Incorporar señalización adecuada para separar la zona peatonal de la zona de circulación. & art. 5.3 \\
+\end{tablarequisitos}
+
+\autoref{fig:ipa-plano} ilustra gráficamente cómo se miden y aplican estos parámetros en el itinerario peatonal accesible.
+
+A continuación se indican cuáles son los incumplimientos típicos de estas normas, y su efecto:
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Anchura libre inferior a la exigida:} hace inviable la circulación de personas con movilidad reducida, en silla de ruedas o con carritos de bebé o de la compra.
+  \item \textbf{Altura libre insuficiente:} riesgo de impacto en las personas altas, y personas con discapacidad visual.
+  \item \textbf{Pendiente longitudinal superior al 6\%:} complicación de la circulación para personas usuarias de silla de ruedas, personas mayores y aquellas con problemas del corazón o esfuerzo físico.
+  \item \textbf{Pendiente transversal excesiva:} hace que las personas usuarias de silla de ruedas o diferentes tipos de carrito no sigan una línea recta, desviándose involuntariamente hacia la pendiente, dificultando el tránsito de peatones.
+  \item \textbf{Falta de continuidad:} interrumpe la circulación de peatones, dificultando el movimiento de personas ciegas o con diversidad cognitiva.
+  \item \textbf{Falta de señalización en plataformas únicas:} incrementa el riesgo de atropello para todo tipo de peatones, con mayor incidencia en las personas ciegas o con problemas cognitivos.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Pavimentos y elementos táctiles indicadores}
+\label{subsec:pavimentos}
+
+% (1) Qué es y por qué importa
+La elección del pavimento, así como su calidad y estado, son vitales para garantizar la seguridad en la accesibilidad de vías urbanas. Se deben optar por superficies uniformes, que no resbalen y que ofrezcan una estabilidad para todas las personas, independientemente de su diversidad funcional.
+\\
+
+Se regulan los tipos de pavimento táctil según su finalidad, distinguiento entre advertencia y encaminamiento. En cuanto a los pavimentos de advertencia, son necesarios para indicar la cercanía a un peligro, desnivel u obstáculo; o fin de una zona de riesgo, alertando a las personas ciegas o con baja visión.
+\\
+
+Por otro lado, los pavimentos de encaminamiento se utilizan para orientar y dirigir a las personas, utilizando franjas de inicio y acabado.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de pavimentos y elementos táctiles indicadores.}{tab:req-pavimentos}
+  Resbaladicidad                     & El material debe cumplir con los requisitos de accesibilidad Clase 3 (resistencia al deslizamiento mayor a 45) del Código Técnico de la Edificación. & art. 11.1, Real Decreto 314/2006, de 17 de marzo \\
+  \cmidrule(lr){1-3}
+  Continuidad y resaltes             & Superficie dura y estable y sin resaltes superiores a 4 mm. & art. 11.1, 12.1 \\
+  \cmidrule(lr){1-3}
+  Pavimento táctil de encaminamiento & Piezas de 4 mm de altura y 40 cm de anchura, de relieve lineal. & art. 45.2.a \\
+  \cmidrule(lr){1-3}
+  Pavimento táctil de advertencia    & Piezas de 4 mm de altura y 40 cm de anchura, de relieve de botones o franjas. & art. 45.2.b \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Pavimentos resbaladizos:} aumento de riesgo de caídas, disminución de la movilidad, afectando a personas mayores, gente usuaria de sillas de ruedas o muletas, incluso a toda la población.
+  \item \textbf{Resaltes elevados (alcantarillas, baldosines):} riesgo de tropiezos y caídas, afectando principalmente a personas mayores o con problemas de movilidad, también a toda la población - por ejemplo, personas mirando el móvil.
+  \item \textbf{Ausencia de pavimento táctil:} en el caso de advertencias, dificultad para detectar peligros, especialmente para personas ciegas; o en el caso de encaminamiento, posibilidad de pérdida de la trayectoria en línea recta, con riesgo de invasión de calzada o cruces con otras personas.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Vados peatonales, pasos de peatones e isletas de refugio}
+\label{subsec:vados}
+
+% (1) Qué es y por qué importa
+Los vados, pasos o isletas constituyen los cruces peatonales con el tráfico rodante, y constituyen puntos críticos con alta siniestralidad y mayor riesgo para los peatones si no se diseñan de manera correcta.
+
+En primer lugar, un vado peatonal es el área de la acera destinada al inicio del cruce peatonal, habilitando un acceso seguro a la calzada, generalmente utilizando una inclinación suave para salvar el habitual desnivel entre la acera y la calzada.
+
+El siguiente elemento que se encuentran las personas es el paso de peatones, siendo el área de la calzada destinada al cruce seguro de peatones, suficientemente señalizada y delimitada para garantizar la visibilidad, y en ocasiones ayudada por semaforización.
+
+Por último, las isletas de refugio son áreas intermedias situadas en la calzada habilitadas para permitir a la ciudadanía cruzar la calzada en los tiempos necesarios, sirviendo de lugar seguro de espera, especialmente para calzadas anchas y avenidas.
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de vados, pasos de peatones e isletas.}{tab:req-vados}
+  Dimensiones del vado         & Anchura mínima de 1,80 m, con resalte inferior a 4 mm. & art. 20.2 \\
+  \cmidrule(lr){1-3}
+  Pendiente del vado           & Pendiente longitudinal máxima del 8\% (tramos hasta 3 m), o 10\% (tramos hasta 2 m) en el plano inclinado y transversal máxima del 2\%. & art. 20.6 \\
+  \cmidrule(lr){1-3}
+  Dimensiones del cruce        & Anchura igual o mayor que los vados que lo inician y finalizan (mínimo 1,80 m). & art. 21.3 \\
+  \cmidrule(lr){1-3}
+  Pavimento táctil en el cruce & Franja táctil indicador de advertencia (60 a 120 cm) separada de calzada 10 a 30 cm. Franja-guía direccional (80 a 120 cm) desde fachada al centro de advertencia, perpendicular al tráfico y alineada con el lado opuesto. & art. 20 y 21.4 \\
+  \cmidrule(lr){1-3}
+  Semaforización accesible     & Pulsador accesible (altura entre 0,80 y 1,20 m) a menos de 1,50 m del límite externo y avisador acústico homologado (activado por demanda o mando). & art. 23 \\
+  \cmidrule(lr){1-3}
+  Isletas de refugio           & Anchura mínima igual al paso de peatones (mínimo 1,80 m) y nivelada con la calzada o con vados. Son obligatorios para distancias de cruce mayores a 14 m. & art. 22 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Desnivel entre calzada y vado peatonal elevado:} riesgo de vuelco para personas usuarias de silla de ruedas, o dificultad (incluso imposibilidad) de acceso a la calzada.
+  \item \textbf{Pendiente del vado excesiva:} peligro para las personas usuarias de silla de ruedasm con movilidad reducida o mayores, dificultando o impidiendo el acceso al cruce.
+  \item \textbf{Falta o inoperatividad del aviso acústico en semáforos:} hace más difícil el cruce seguro para personas ciegas o con discapacidad visual.
+  \item \textbf{Isleta de refugio con ancho insuficiente:} echa atrás a las personas con problemas de movilidad o agilidad, por no poder utilizar las isletas como refugio seguro para cruzar.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Obras e intervenciones}
+\label{subsec:obras}
+
+% (1) Qué es y por qué importa
+Las obras constituyen, según la \textit{Guía para una política integral de promoción y gestión} del IMSERSO \cite{sala_alonso_2012}, el mayor obstáculo para la accesibilidad peatonal en la vía pública. Además, dada su circustancia temporal, impide a las administraciones a determinar la accesibilidad real de la vía pública en todo momento.
+\\
+Por este motivo fundamental, se incluye en la normativa un capítulo exclusivo a obras e intervenciones (capítulo X).
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de las obras e intervenciones en la vía pública.}{tab:req-obras}
+  Itinerario peatonal accesible   & O mantenerlo accesible o demarcar uno alternativo señalizado según lo indicado en art. 5. & art. 39.1 \\
+  \cmidrule(lr){1-3}
+  Andamios y estructuras provisionales & Elementos externos cubiertos frente a golpes, garantizando accesibildad con colores alto contraste. & art. 39.2 \\
+  \cmidrule(lr){1-3}
+  Itinerario alternativo exterior  & Pasamanos continuo a 90 cm altura y guía inferior; o franja-guía de pavimento táctil indicador. & art. 39.3 \\
+  \cmidrule(lr){1-3}
+  Delimitación de zonas de obras   & Vallas estables y detectables, altura mín. 90 cm. Señalización luminosa cada 50 m, con color contrastado. & art. 39.4 \\
+  \cmidrule(lr){1-3}
+  Puertas, portones y accesos      & No invadirán el itinerario peatonal accesible. Elementos sobresalientes protegidos con color contrastado hasta 2,20 m de altura. & art. 39.5 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Ancho del itinerario provisional (provisional) insuficiente:} mismos problemas que en un IPA de menos de 1,80 m.
+  \item \textbf{Falta de elementos táctiles indicadores:} pueden provocar caídas o desorientación en personas con discapacidad visual o con problemas cognitivos.
+  \item \textbf{Elementos de protección mal cubiertos:} pueden provocar accidentes o caídas de elementos que impacten en peatones, de todo tipo de diversidad.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos (aquí: tratamiento en el análisis)
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Mobiliario urbano y terrazas}
+\label{subsec:mobiliario}
+
+% (1) Qué es y por qué importa
+El mobiliario urbano y las terrazas de hostelería consituyen un punto crítico en la accesibilidad de las calles, al ubicarse en el ancho de las aceras.
+\\
+Por lo que su disposición y delimitaciones se deben regular cuidadosamente para no obstaculizar las trayectorias peatonales accesibles.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos del mobiliario urbano y las terrazas.}{tab:req-mobiliario}
+  Ubicación del mobiliario & Alineado en una banda específica fuera del itinerario peatonal accesible, preferentemente colindante al bordillo. & art. 25.1 \\
+  \cmidrule(lr){1-3}
+  Dimensiones y alturas    & Elementos elevados deben tener una altura libre $\ge$ 2,20 m o estar protegidos hasta el suelo detectables con bastón. & art. 25.2 \\
+  \cmidrule(lr){1-3}
+  Franja libre de paso     & Se debe mantener la anchura mínima del IPA (1,80 m), respetando la línea de fachada. & art. 25.1 y art. 5 \\
+  \cmidrule(lr){1-3}
+  Ocupación por terrazas   & Terrazas, mamparas o puestos temporales no podrán invadir el IPA, ni ocultar la señalización. & art. 25.3 \\
+  \cmidrule(lr){1-3}
+  Bolardos                 & Alineados, con altura entre 0,75 y 1,00 m y color contrastado diferenciador. & art. 29 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Mobiliario no alineado:} elimina previsibilidad en el trayecto, y dificulta la movilidad a personas con baja visión o con diversidad cognitiva.
+  \item \textbf{Invasión de la franja peatonal por terrazas:} reduce la anchura libre establecida en el artículo 5, con los mismos problemas indicados anteriormente. 
+  \item \textbf{Elementos elevados invadiendo la franja peatonal:} peligro de impacto con los peatones, especialmente en las personas altas y con discapacidad visual.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Calles de plataforma única}
+\label{subsec:plataforma}
+
+% (1) Qué es y por qué importa
+Las plataformas únicas son una solución para las calles estrechas cuyo ancho impida la construcción de un itinerario peatonal accesible con bordillos, en base a los mínimos requisitos de la normativa.
+\\
+Necesitan combinar la integración de la accesibilidad de las calles con la convivencia entre peatones y vehículos. Tienen prioridad peatonal, y la acera y la calzada se encuentran al mismo nivel, para evitar barreras físicas que penalicen al tránsito peatonal.
+
+La guía de la ONCE distingue dos tipos \cite{once_2024}: \textbf{tránsito compartido}, donde toda la superficie es de prioridad peatonal con una zona delimitada para los vehículos; y \textbf{tránsito diferenciado}, donde acera y calzada se dividen utilizando pavimentos diferentes, con franjas de aviso o mobiliario separador.
+\\
+
+% (2) Parámetros que exige la Orden
+
+\textbf{Plataforma única de tránsito compartido}
+
+\begin{tablarequisitos}{Requisitos de plataforma única de tránsito compartido.}{tab:req-plataforma-compartido}
+  Velocidad máxima                & Como mucho 20 km/h. & art. 5.3, ONCE 2024 \\
+  \cmidrule(lr){1-3}
+  Prioridad peatonal y organización & Las personas pueden caminar y trasladarse por toda la zona. Solo se autoriza el paso de un grupo restringido de vehículos (residentes, carga y descarga o emergencias; pero nunca transporte urbano). & ONCE 2024, 5.1--5.4 \\
+  \cmidrule(lr){1-3}
+  Pavimento homogéneo             & Se usa el mismo pavimento en toda la plataforma; el mobiliario debe estar alineado uniformemente. & ONCE 2024, 5.5 \\
+  \cmidrule(lr){1-3}
+  Zona de entrada y salida        & Es la zona que necesita más seguridad. Anchura mínima de 1,80 m desde fachada a ambos lados. Banda tacto-visual de advertencia de 40 a 60 cm o banda de encaminamiento. & ONCE 2024, 5.6 \\
+\end{tablarequisitos}
+
+\medskip
+\textbf{Plataforma única de tránsito diferenciado}
+
+\begin{tablarequisitos}{Requisitos de plataforma única de tránsito diferenciado.}{tab:req-plataforma-diferenciado}
+  Pavimento                 & Acera y calzada diferenciadas por pavimento distinto (color y textura). & ONCE 2024, 6.1 \\
+  \cmidrule(lr){1-3}
+  Bandas delimitación       & Banda tacto-visual de advertencia de 40 a 60 cm. Mobiliario alineado con separación máxima 120 cm. & art. 46, ONCE 2024, 6.2 \\
+  \cmidrule(lr){1-3}
+  Señalización normalizada  & Señalización vertical y horizontal indicando velocidad máxima, estacionamiento autorizado y delimitación peatón-vehículo. & art. 5.3, ONCE 2024, 6.4 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Vehículos no respetan la prioridad:} hace añicos la plataforma única, y transmite inseguridad y un elevado riesgo de accidentes a todas las personas, afectando especialmente a las personas ciegas.
+  \item \textbf{Ausencia de bandas de delimitación en tránsito diferenciado:} potencial invasión de la zona delimitada a los vehículos por parte de peatones, con riesgo de atropello, afectando principalmente a las personas con baja visión.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Señalización y elementos de información}
+\label{subsec:senalizacion}
+
+% (1) Qué es y por qué importa
+La normativa estatal establece requisitos específicos para la señalización y los carteles informativos, para que puedan ser detectados y leídos por todas las personas, independientemente de su diversidad. Cabe recordar que la accesibilidad universal necesita tener en cuenta no solo los problemas de movilidad, sino aspectos auditivos, para las personas ciegas y con baja audición o aspectos de adaptación de la lectura, para personas ciegas.
+\\
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de señalización y elementos de información.}{tab:req-senalizacion}
+  Señalización visual & Fuentes legibles, tamaño según distancia (0,7 a 7,0 cm), altura entre 0,90 y 1,20 m, con mínimo contraste cromático, evitando reflejos o sombras. & art. 41 \\
+  \cmidrule(lr){1-3}
+  Información escrita & Priorizar lectura fácil, con textos concisos con pictogramas. Uniformidad de los paneles en el municipio. Nombres de las vías obligatorios en todos los cruces. & art. 40, 41, 42 \\
+  \cmidrule(lr){1-3}
+  Señalización táctil & Información en Braille y alto relieve en todos los carteles. & art. 44 \\
+  \cmidrule(lr){1-3}
+  Información sonora & Señalización acústica audible en cruces, acompañada de señalización visual equivalente. & art. 41 \\
+  \cmidrule(lr){1-3}
+  Elementos transparentes & Obligación de señalizar con bandas opacas de 5 a 10 cm a alturas: entre 0,85 y 1,10 m la primera y de 1,50a 1,70 m la segunda. & art. 42 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Falta de paneles informativos o a mala altura:} genera problemas de orientación a todas las personas. Una mala colocación impide que personas en silla de ruedas o con problemas visuales alcancen la información.
+  \item \textbf{Falta de contraste cromático y visual:} hace difícil o imposible la lectura a personas con baja visión o daltónicas, por no poder distinguir los textos o pictogramas.
+  \item \textbf{Ausencia de información en Braille o altorrelieve:} provoca problemas de orientación a personas ciegas o de baja visión, al no poder leer la información de los paneles.
+  \item \textbf{Falta de señalización acústica en cruces:} dificulta el cruce seguro a personas con discapacidad visual, al no saber directamente cuándo es posible iniciar el cruce.
+  \item \textbf{Cristales sin señalización táctil:} aumenta el riesgo de colisión contra la superficie transparente para todas las personas, pero especialmente para personas ciegas o con problemas de visión.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
+% ---------------------------------------------------------------------
+\subsection{Iluminación y visibilidad}
+\label{subsec:iluminacion}
+
+% (1) Qué es y por qué importa
+La iluminación influye de manera notable en la seguridad de las personas cuando se desplazan por la vía pública en horas de baja visibilidad natural, como las horas nocturnas o los días con niebla, lluvia o cielos cubiertos.
+\\
+
+Aunque la orden de referencia TMA/851/2021 establece ciertos requisitos de iluminación para las vías accesibles, las características específicas de los niveles de iluminación están regulados por el Real Decreto 1890/2008 sobre eficiencia energética.
+\\
+
+La mayoría de estos parámetros necesitan que los equipos técnicos necesiten desplazarse in situ, para el uso de luxómetros; por lo que son complicados de obtener mediante el uso de imágenes aéreas o a pie de calle.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de iluminación en itinerarios peatonales accesibles.}{tab:req-iluminacion}
+  Niveles de iluminación & Ajustados a los especificados en \cite{rd_1890_2008} sobre eficiencia energética en alumbrado exterior. & art. 5.2.h \\
+  \cmidrule(lr){1-3}
+  Uniformidad luminosa & Distribución homogénea de luz sin zonas oscuras, sombras o deslumbramientos que dificulten la visibilidad. & \cite{rd_1890_2008} \\
+  \cmidrule(lr){1-3}
+  Detección de obstáculos & Iluminación suficiente que permita detectar posibles obstáculos como mobiliario, rejillas, marquesinas o cambios de nivel. & art. 5.2.h \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Niveles de iluminación insuficientes o irregulares:} afecta a todas las personas, cuando los niveles de luz natural no permiten la visión, pudiendo provocar accidentes o caídas.
+  \item \textbf{Deslumbramientos o reflejos:} pueden ocasionar molestias así como posibles caídas, especialmente en aquellas personas con baja visión.
+  \item \textbf{Falta de iluminación en cruces u obstáculos:} ocasiona dificultad, miedo o impedimento de cruzar las calzadas, así como posible riesgo de accidente o impacto, en todas las personas, pero especialmente en las que tienen problemas de visión.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+
+\parametroclave{\porrellenar}
+
