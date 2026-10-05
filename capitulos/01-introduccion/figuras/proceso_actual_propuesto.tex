@@ -1,0 +1,80 @@
+\begin{tikzpicture}[tfm,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
+      paso/.style={arqbase, text width=22mm, minimum height=11mm, inner sep=3pt,
+                   font=\sffamily\scriptsize, align=center},
+      manual/.style={paso, fill=superficie, draw=tinta-suave},
+      datos/.style={paso, fill=arq-datos},
+      algoritmo/.style={paso, fill=nn-conv, double=nn-conv, double distance=1.2pt},
+      externo/.style={paso, fill=arq-externo, draw=acc-deficiente},
+      % Etapas del objetivo secundario (línea discontinua)
+      extension/.style={paso, fill=nn-conv!40, draw=uoc-azul, dashed},
+      extext/.style={paso, fill=arq-externo, draw=acc-deficiente, dashed},
+      nota/.style={font=\sffamily\scriptsize, text=tinta, anchor=north west, inner sep=0pt,
+                   text width=41mm, align=left},
+    ]
+    % ---------- Carriles (fondo con mayor altura)
+    \fill[uoc-gris]       (-2.25, 2.00) rectangle (12.45,-2.00);
+    \fill[uoc-cian-suave] (-2.25,-2.30) rectangle (12.45,-7.10);
+
+    % Etiquetas laterales a dos líneas (la segunda línea no negrita) para que quepan en el carril
+    \node[rotate=90, align=center, font=\sffamily\scriptsize, text=tinta-suave] at (-1.8, 0.0)  {\textbf{ACTUAL}\\manual (\emph{in situ})};
+    \node[rotate=90, align=center, font=\sffamily\scriptsize, text=uoc-azul]    at (-1.8,-4.65) {\textbf{PROPUESTO}\\variables seleccionadas};
+
+    % ---------- Proceso actual
+    \node[manual] (a1) at (0,0)    {Planificación de rutas por barrios o sectores};
+    \node[manual] (a2) at (2.75,0)  {Desplazamiento del equipo técnico};
+    \node[manual] (a3) at (5.5,0)  {Medición manual calle a calle};
+    \node[manual] (a4) at (8.25,0)  {Registro en informes y fotografías};
+    \node[datos]  (a5) at (11,0) {Carga manual en la plataforma};
+    \foreach \i/\j in {a1/a2,a2/a3,a3/a4,a4/a5} \draw[flecha] (\i) -- (\j);
+    \draw[flecha, dashed] (a3.north) .. controls +(0,8mm) and +(0,8mm) .. (a2.north)
+      node[pos=0.5, above, etiqueta] {se repite en cada calle};
+    \foreach \x/\t in {-1.1/{Coste elevado de personal y desplazamientos},
+                        3.45/{Foto puntual del diagnóstico, se queda obsoleta pronto},
+                        8.0/{Datos lentos de procesar, difícil tener una visión global}}
+      \node[nota] at (\x,-1.0) {\textcolor{estado-bloqueado}{\textbf{\textminus}}~\t};
+
+    % ---------- Proceso propuesto
+    % Etapas discontinuas = objetivo secundario (extracción de variables desde imagen).
+    % En el trabajo principal las variables se toman de los datos de campo de los ayuntamientos.
+    \node[extext]    (b1) at (0,-4.3)    {Imágenes aéreas y a pie de calle};
+    \node[extension] (b2) at (2.75,-4.3)  {Extracción de variables seleccionadas};
+    \node[datos]     (b3) at (5.5,-4.3)  {Variables seleccionadas por tramo};
+    \node[algoritmo] (b4) at (8.25,-4.3)  {Modelo de clasificación de accesibilidad};
+    \node[datos]     (b5) at (11,-4.3) {Resultados y datos exportables};
+    \foreach \i/\j in {b1/b2,b2/b3,b3/b4,b4/b5} \draw[flecha] (\i) -- (\j);
+    \node[externo, text width=34mm, minimum height=8mm] (v) at (8.25,-2.95) {Datos de campo de Albacete y Algeciras};
+    \draw[flecha, dashed] (v) -- (b4);
+    \draw[flecha, dashed] (b5.south) .. controls +(0,-8mm) and +(0,-8mm) .. (b1.south)
+      node[pos=0.5, below=1pt, etiqueta, fill=uoc-cian-suave] {se actualiza con cada nueva carga de imágenes};
+
+    % Términos positivos desplazados a -6.20
+    \foreach \x/\t in {-1.1/{Cobertura más amplia con menos visitas de campo},
+                        3.45/{Se identifica qué variables bastan para clasificar},
+                        8.0/{Facilita la priorización de intervenciones}}
+      \node[nota] at (\x,-6.20) {\textcolor{estado-completado}{\textbf{+}}~\t};
+  \end{tikzpicture}
+
+  \vspace{3mm}
+  % ---------- Leyenda
+  % Los elementos se encadenan con posiciones relativas (no coordenadas fijas),
+  % de modo que no se solapan aunque la tipografía sea más ancha.
+  \begin{tikzpicture}[font=\sffamily\scriptsize, text=tinta,
+      leg/.style={minimum width=4.5mm, minimum height=2.4mm, inner sep=0pt, anchor=west, line width=\trazo},
+      legt/.style={anchor=west, inner sep=0pt}]
+    \node[leg, draw=tinta-suave, fill=superficie] (k1) at (0,0) {};
+    \node[legt] (t1) at ([xshift=1.2mm]k1.east) {Tarea manual};
+    \node[leg, draw=uoc-azul, fill=nn-conv, double=nn-conv, double distance=0.8pt] (k2) at ([xshift=3.5mm]t1.east) {};
+    \node[legt] (t2) at ([xshift=1.2mm]k2.east) {Algoritmo};
+    \node[leg, draw=uoc-azul, fill=arq-datos] (k3) at ([xshift=3.5mm]t2.east) {};
+    \node[legt] (t3) at ([xshift=1.2mm]k3.east) {Datos / resultado};
+    \node[leg, draw=acc-deficiente, fill=arq-externo] (k4) at ([xshift=3.5mm]t3.east) {};
+    \node[legt] (t4) at ([xshift=1.2mm]k4.east) {Fuente externa};
+    \node[leg, draw=uoc-azul, fill=nn-conv!40, dashed] (k5) at ([xshift=3.5mm]t4.east) {};
+    \node[legt] (t5) at ([xshift=1.2mm]k5.east) {Extensión};
+    \draw[flecha, dashed] ([xshift=3.5mm]t5.east) -- ++(5mm,0) coordinate (k6);
+    \node[legt] (t6) at ([xshift=1.2mm]k6) {Repetición};
+  \end{tikzpicture}
+  \caption{Proceso actual de diagnóstico de la accesibilidad mediante inspección \emph{in situ} frente al proceso propuesto basado en variables seleccionadas.}
+  \label{fig:proceso_actual_propuesto}
+  \fuente{elaboración propia, con ayuda de Claude y Gemini.}

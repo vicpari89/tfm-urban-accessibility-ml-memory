@@ -130,3 +130,29 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
     Orden TMA/851/2021, de 23 de julio: es el documento técnico de referencia para este trabajo, pues establece las características técnicas y condiciones precisas de accesibilidad en las vías públicas. Entró en vigor el 2 de enero de 2022, y deroga la Orden VIV/561/2010.}
   \fichaajuste{Tras revisar la figura en la memoria, el autor pidió algunos cambios de formato: dar fondo a las etiquetas de año para que no las crucen las líneas.}
 \end{fichaia}
+
+\begin{fichaia}{Figura~\ref{fig:vados}. Vados, pasos de peatones e isletas de refugio}
+  \fichadato{Fecha}{05/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Representar visualmente los requisitos para vados, pasos de peatones, isletas de refugio, pavimento táctil y semaforización accesible, de manera que sea más sencillo para seguir el documento.}
+  \fichadato{Material aportado}{Tabla~\ref{tab:req-vados}, con los parámetros, valores y artículos seleccionados y redactados por el autor.}
+  \fichadato{Resultado}{Código TikZ de la figura~\ref{fig:vados}: planta de un cruce con isleta, vados, paso de peatones, franjas táctiles de advertencia y direccional (diferenciadas por trama) y semáforos con pulsador; sección por el vado con pendientes y franjas; alzado del pulsador; cotas con los valores mínimos y leyenda.}
+  \fichadato{Validación}{Valores y artículos de las cotas comprobados por el autor frente a la tabla~\ref{tab:req-vados} y la Orden TMA/851/2021; las dimensiones no acotadas (anchura del cruce y del vado) son ilustrativas; compilación con la plantilla TFUOC.}
+  \fichaprompt{Necesito realizar una visualización de figuras para algunos de los apartados de mi memoria, como los que te pedí para el itinerario peatonal accesible. En primer lugar, quiero un diagrama de figuras (visualización de las calles), que visualice los vados, pasos de peatones e islas [se adjunta el código de la tabla~\ref{tab:req-vados}].}
+  \fichaajuste{Por favor, utiliza la guía de colores del sistema de diseño, respetando la homogeneidad de la memoria.}
+  \fichaajuste{Necesito que reduzcas un poco (no demasiado) el alto del gráfico de vados.}
+\end{fichaia}
+
+\begin{fichaia}{Figura~\ref{fig:obras}. Obras e intervenciones en la vía pública}
+  \fichadato{Fecha}{05/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Representar gráficamente los requisitos de obras de manera más atractiva visualmente.}
+  \fichadato{Material aportado}{Tabla~\ref{tab:req-obras}, con los parámetros, requisitos y artículos (39.1 a 39.5) seleccionados y redactados por el autor.}
+  \fichadato{Resultado}{Código TikZ de la figura~\ref{fig:obras}: planta con el itinerario peatonal mantenido junto al andamio, zona de obras vallada, puerta de acceso e itinerario alternativo exterior con vallas, pasamanos y señalización luminosa; sección del itinerario alternativo (pasamanos a 0,90\,m, guía inferior y anchura $\geq$\,1,80\,m) y sección por el andamio (altura libre y protección hasta 2,20\,m); leyenda.}
+  \fichadato{Validación}{Requisitos y artículos comprobados por el autor frente a la tabla~\ref{tab:req-obras} y la Orden TMA/851/2021; la distancia entre luces se indica fuera de escala; compilación con la plantilla TFUOC.}
+  \fichaprompt{Realiza un diagrama similar que recoja toda la normativa de obras especificado en estas normas [se adjunta el contenido de la tabla~\ref{tab:req-obras}].}
+  \fichaajuste{Versión de menor tamaño, con las secciones b y c a la derecha y la planta en el espacio restante, como en la figura anterior; anchura del itinerario indicada como $\geq$\,1,80\,m; sin rótulo explicativo en la puerta de la obra.}
+  \fichaajuste{Desplazar el rótulo del andamio a la derecha para que no quede debajo del título de la planta.}
+\end{fichaia}

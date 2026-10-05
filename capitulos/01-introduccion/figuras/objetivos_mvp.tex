@@ -1,0 +1,36 @@
+\begin{tikzpicture}[tfm,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
+      obj/.style={arqbase, fill=arq-datos, draw=uoc-azul, text width=40mm, minimum height=19mm,
+                  inner sep=4pt, font=\sffamily\scriptsize, align=left, text=tinta},
+      objalg/.style={obj, fill=nn-conv, double=nn-conv, double distance=1.2pt},
+      num/.style={circle, fill=uoc-azul, text=white, font=\sffamily\scriptsize\bfseries,
+                  inner sep=0pt, minimum size=5mm},
+    ]
+    % ---------- Fondo del MVP
+    \fill[uoc-gris] (-2.55, 2.15) rectangle (12.55,-4.65);
+    \node[anchor=north west, font=\sffamily\scriptsize\bfseries, text=uoc-azul] at (-2.35, 2.05)
+      {Producto mínimo viable (MVP): objetivos principales, en orden de ejecución};
+
+    % ---------- Objetivos
+    \node[obj]    (o1) at (0,0)   {\textbf{OP1}\\[1pt] Identificar necesidades y requisitos de accesibilidad universal};
+    \node[obj]    (o2) at (5,0)   {\textbf{OP2}\\[1pt] Identificar, analizar y preparar los datos};
+    \node[obj]    (o3) at (10,0)  {\textbf{OP3}\\[1pt] Identificar y definir las métricas e indicadores de evaluación de la accesibilidad};
+    \node[objalg] (o4) at (0,-3.3) {\textbf{OP4}\\[1pt] Entrenar modelos de aprendizaje automático de clasificación de accesibilidad};
+    \node[obj]    (o5) at (5,-3.3) {\textbf{OP5}\\[1pt] Validación de los modelos};
+    \node[obj]    (o6) at (10,-3.3){\textbf{OP6}\\[1pt] Interpretación de los resultados};
+
+    % ---------- Números de orden
+    \foreach \i in {1,...,6}
+      \node[num] at (o\i.north west) {\i};
+
+    % ---------- Flechas en orden
+    \draw[flecha] (o1) -- (o2);
+    \draw[flecha] (o2) -- (o3);
+    \draw[flecha] (o3.south) -- ++(0,-0.62) -| (o4.north);
+    \draw[flecha] (o4) -- (o5);
+    \draw[flecha] (o5) -- (o6);
+  \end{tikzpicture}
+
+  \caption{Objetivos principales del proyecto (MVP).}
+  \label{fig:objetivos_mvp}
+  \fuente{elaboración propia, con ayuda de Claude.}

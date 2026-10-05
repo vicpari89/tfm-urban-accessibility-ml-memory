@@ -1,0 +1,54 @@
+\begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}},
+      cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
+      cotatxt/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
+      ref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
+      mobiliario/.style={fill=tinta-suave, draw=tinta},
+      rotulo/.style={font=\sffamily\scriptsize, text=tinta-suave},
+    ]
+    % =============== b) SECCIÓN TRANSVERSAL ===============
+    \begin{scope}[shift={(0,-7.4)}, x=1.15cm, y=1.15cm]
+      \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0,3.35) {Vista transversal del itinerario peatonal accesible};
+      % calzada (más baja) y acera
+      \fill[seg-calzada] (0,-0.35) rectangle (1.5,-0.15);
+      \fill[rejilla] (1.5,-0.35) rectangle (4.7,0);
+      \draw[tinta, line width=\trazo] (0,-0.15) -- (1.5,-0.15) -- (1.5,0) -- (4.7,0);
+      % fachada
+      \fill[rejilla] (4.7,-0.35) rectangle (5.1,3.1);
+      \draw[tinta-suave, line width=\trazo] (4.7,0) -- (4.7,3.1);
+      % volumen libre del IPA
+      \fill[uoc-cian-suave] (2.9,0) rectangle (4.7,2.2);
+      \draw[uoc-azul, dashed, line width=\trazo] (2.9,0) -- (2.9,2.2) -- (4.7,2.2);
+      % persona genérica
+      \fill[uoc-azul] (3.8,1.62) circle (0.13);
+      \fill[uoc-azul, rounded corners=2pt] (3.62,0.02) rectangle (3.98,1.45);
+      \node[font=\sffamily\scriptsize\bfseries, text=uoc-azul] at (3.3,1.95) {IPA};
+      % farola en la banda exterior
+      \fill[tinta-suave] (1.95,0) rectangle (2.03,2.9);
+      \fill[tinta-suave] (2.03,2.84) rectangle (2.6,2.9);
+      % elemento volado (toldo o banderola) por encima de 2,20 m
+      \fill[tinta-suave] (4.7,2.45) -- (3.9,2.35) -- (3.9,2.3) -- (4.7,2.3) -- cycle;
+      % cotas
+      \draw[cota] (2.9,-0.55) -- (4.7,-0.55) node[midway, cotatxt, below=1pt, fill=none] {$\geq$\,1,80\,m};
+      \draw[ref] (2.9,0) -- (2.9,-0.65); \draw[ref] (4.7,-0.35) -- (4.7,-0.65);
+      \draw[cota] (2.65,0) -- (2.65,2.2) node[midway, cotatxt, rotate=90] {$\geq$\,2,20\,m};
+      \draw[ref] (2.55,2.2) -- (2.9,2.2);
+      \draw[cota] (1.5,0.35) -- (1.95,0.35) node[midway, cotatxt, above=1pt, fill=none] {$\geq$\,0,40\,m};
+      \node[rotulo, align=center] at (0.75,0.3) {calzada};
+    \end{scope}
+ 
+    % =============== Requisitos ===============
+    \begin{scope}[shift={(7.0,-7.4)}]
+      \node[anchor=north west, text width=7.2cm, align=left, font=\sffamily\scriptsize, text=tinta,
+            draw=uoc-azul, line width=\trazofino, fill=superficie, inner sep=6pt] at (0,3.75) {%
+        {\small\bfseries\color{uoc-azul} Requisitos del IPA}\\[2pt]
+        {\color{tinta-suave}Orden TMA/851/2021}\\[5pt]
+        \textbf{Ancho libre de paso} $\geq$\,1,80\,m, continuo y sin obstáculos.\\[3pt]
+        \textbf{Altura libre de paso} $\geq$\,2,20\,m en todo el ancho del itinerario.\\[3pt]
+        \textbf{Mobiliario urbano} en la banda exterior de la acera, a $\geq$\,0,40\,m del borde del bordillo.\\[3pt]
+        \textbf{Trazado} junto a la línea de fachada o elemento que la sustituya.};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Itinerario peatonal accesible: dimensiones mínimas en sección transversal.}
+  \label{fig:ipa-seccion}
+  \fuente{elaboración propia a partir de la Orden TMA/851/2021.}

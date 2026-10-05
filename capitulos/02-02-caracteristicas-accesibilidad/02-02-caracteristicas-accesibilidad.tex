@@ -1,36 +1,16 @@
-\providecommand{\porrellenar}[1][por rellenar]{{\sffamily\footnotesize\color{tinta-suave}[#1]}}
-
-\newenvironment{tablarequisitos}[2]{%
-  \begin{table}[htbp]\centering\small
-  \caption{#1}\label{#2}%
-  \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.24\linewidth-2\tabcolsep\relax}
-                  >{\raggedright\arraybackslash}p{\dimexpr0.62\linewidth-2\tabcolsep\relax}
-                  >{\raggedright\arraybackslash}p{\dimexpr0.14\linewidth-2\tabcolsep\relax}}
-  \toprule
-  \cabeceratabla \textbf{Parámetro} & \textbf{Requisito} & \textbf{Artículo} \\
-  \midrule}
- {\bottomrule
-  \end{tabular}
-  \fuente{Orden TMA/851/2021.}%
-  \end{table}}
-
-% (4) Cómo aparece en los datos
-\newcommand{\datosplanes}[2]{%
-  \begin{recuadro}[nota]{Cómo aparece en los datos}
-    \textbf{Albacete.} #1\par\smallskip
-    \textbf{Algeciras.} #2
-  \end{recuadro}}
-
-% Conclusión: parámetro que más condiciona la accesibilidad del elemento
-\newcommand{\parametroclave}[1]{\aclaracion[Parámetro determinante]{#1}}
-
-
 % =====================================================================
 \section{Características del entorno urbano accesible}
 \label{sec:caracteristicas}
 % =====================================================================
-\porrellenar[párrafo de entrada: qué elementos se revisan, por qué la Orden
-TMA/851/2021 y cómo se organiza cada subsección]
+
+Una vez identificada la norma Orden TMA/851/2021 como la normativa legal de referencia, en esta sección se va a realizar la extracción de los requisitos técnicos específicos para considerar una vía como accesible: itinerarios peatonales accesibles, obras, mobiliario o vados y pasos peatonales.
+\\
+
+En cada una de las categorías de características, se describen los parámetros mínimos establecidos, cuáles son los incumplimientos habituales y de qué manera afectan a la diversidad funcional, y finalmente cómo aparecen en los conjuntos de datos de Albacete y Algeciras.
+\\
+
+Se identifican también los parámetros que se pueden extraer automáticamente desde imágenes aéreas o transversales, sirviendo de base para las hipótesis de investigación.
+\\
 
 % ---------------------------------------------------------------------
 \subsection{Itinerario peatonal accesible (IPA)}
@@ -71,6 +51,7 @@ Mientras que \textbf{la pendiente transversal} es la inclinación del itinerario
 \end{tablarequisitos}
 
 \autoref{fig:ipa-plano} ilustra gráficamente cómo se miden y aplican estos parámetros en el itinerario peatonal accesible.
+\\
 
 A continuación se indican cuáles son los incumplimientos típicos de estas normas, y su efecto:
 % (3) Incumplimientos típicos y su efecto
@@ -115,6 +96,7 @@ Por otro lado, los pavimentos de encaminamiento se utilizan para orientar y diri
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+En cuanto a los incumplimientos:
 \begin{inconvenientes}
   \item \textbf{Pavimentos resbaladizos:} aumento de riesgo de caídas, disminución de la movilidad, afectando a personas mayores, gente usuaria de sillas de ruedas o muletas, incluso a toda la población.
   \item \textbf{Resaltes elevados (alcantarillas, baldosines):} riesgo de tropiezos y caídas, afectando principalmente a personas mayores o con problemas de movilidad, también a toda la población - por ejemplo, personas mirando el móvil.
@@ -133,12 +115,25 @@ Por otro lado, los pavimentos de encaminamiento se utilizan para orientar y diri
 
 % (1) Qué es y por qué importa
 Los vados, pasos o isletas constituyen los cruces peatonales con el tráfico rodante, y constituyen puntos críticos con alta siniestralidad y mayor riesgo para los peatones si no se diseñan de manera correcta.
+\\
 
-En primer lugar, un vado peatonal es el área de la acera destinada al inicio del cruce peatonal, habilitando un acceso seguro a la calzada, generalmente utilizando una inclinación suave para salvar el habitual desnivel entre la acera y la calzada.
+En primer lugar, un \textbf{vado peatonal} es el área de la acera destinada al inicio del cruce peatonal, habilitando un acceso seguro a la calzada, generalmente utilizando una inclinación suave para salvar el habitual desnivel entre la acera y la calzada.
+\\
 
-El siguiente elemento que se encuentran las personas es el paso de peatones, siendo el área de la calzada destinada al cruce seguro de peatones, suficientemente señalizada y delimitada para garantizar la visibilidad, y en ocasiones ayudada por semaforización.
+El siguiente elemento que se encuentran las personas es el \textbf{paso de peatones}, siendo el área de la calzada destinada al cruce seguro de peatones, suficientemente señalizada y delimitada para garantizar la visibilidad, y en ocasiones ayudada por semaforización.
+\\
 
-Por último, las isletas de refugio son áreas intermedias situadas en la calzada habilitadas para permitir a la ciudadanía cruzar la calzada en los tiempos necesarios, sirviendo de lugar seguro de espera, especialmente para calzadas anchas y avenidas.
+Por último, las \textbf{isletas de refugio} son áreas intermedias situadas en la calzada habilitadas para permitir a la ciudadanía cruzar la calzada en los tiempos necesarios, sirviendo de lugar seguro de espera, especialmente para calzadas anchas y avenidas.
+\\
+
+\begin{figure}[htbp]
+\centering
+\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/vados}
+\caption{Vados, pasos de peatones e isletas de refugio: disposición en planta y parámetros
+  mínimos (tabla~\ref{tab:req-vados}).}
+\label{fig:vados}
+\fuente{elaboración propia a partir de la Orden TMA/851/2021, con asistencia de Claude (Anthropic) mediante instrucciones del autor~\cite{claude}.}
+\end{figure}
 
 % (2) Parámetros que exige la Orden
 \begin{tablarequisitos}{Requisitos de vados, pasos de peatones e isletas.}{tab:req-vados}
@@ -156,6 +151,7 @@ Por último, las isletas de refugio son áreas intermedias situadas en la calzad
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+Se detallan a continuación los efectos de no cumplir con los requisitos:
 \begin{inconvenientes}
   \item \textbf{Desnivel entre calzada y vado peatonal elevado:} riesgo de vuelco para personas usuarias de silla de ruedas, o dificultad (incluso imposibilidad) de acceso a la calzada.
   \item \textbf{Pendiente del vado excesiva:} peligro para las personas usuarias de silla de ruedasm con movilidad reducida o mayores, dificultando o impidiendo el acceso al cruce.
@@ -176,8 +172,18 @@ Por último, las isletas de refugio son áreas intermedias situadas en la calzad
 % (1) Qué es y por qué importa
 Las obras constituyen, según la \textit{Guía para una política integral de promoción y gestión} del IMSERSO \cite{sala_alonso_2012}, el mayor obstáculo para la accesibilidad peatonal en la vía pública. Además, dada su circustancia temporal, impide a las administraciones a determinar la accesibilidad real de la vía pública en todo momento.
 \\
+
 Por este motivo fundamental, se incluye en la normativa un capítulo exclusivo a obras e intervenciones (capítulo X).
 \\
+
+\begin{figure}[htbp]
+\centering
+\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/obras}
+\caption{Obras e intervenciones en la vía pública: continuidad del itinerario peatonal
+  accesible, itinerario alternativo, delimitación y protección (tabla~\ref{tab:req-obras}).}
+\label{fig:obras}
+\fuente{elaboración propia a partir de la Orden TMA/851/2021, con asistencia de Claude (Anthropic) mediante instrucciones del autor~\cite{claude}.}
+\end{figure}
 
 % (2) Parámetros que exige la Orden
 \begin{tablarequisitos}{Requisitos de las obras e intervenciones en la vía pública.}{tab:req-obras}
@@ -193,6 +199,7 @@ Por este motivo fundamental, se incluye en la normativa un capítulo exclusivo a
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+Los problemas que pueden ocasionar los incumplimientos son:
 \begin{inconvenientes}
   \item \textbf{Ancho del itinerario provisional (provisional) insuficiente:} mismos problemas que en un IPA de menos de 1,80 m.
   \item \textbf{Falta de elementos táctiles indicadores:} pueden provocar caídas o desorientación en personas con discapacidad visual o con problemas cognitivos.
@@ -212,6 +219,7 @@ Por este motivo fundamental, se incluye en la normativa un capítulo exclusivo a
 % (1) Qué es y por qué importa
 El mobiliario urbano y las terrazas de hostelería consituyen un punto crítico en la accesibilidad de las calles, al ubicarse en el ancho de las aceras.
 \\
+
 Por lo que su disposición y delimitaciones se deben regular cuidadosamente para no obstaculizar las trayectorias peatonales accesibles.
 \\
 
@@ -229,9 +237,10 @@ Por lo que su disposición y delimitaciones se deben regular cuidadosamente para
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+Se listan a continuación los incumplimientos y su efecto:
 \begin{inconvenientes}
   \item \textbf{Mobiliario no alineado:} elimina previsibilidad en el trayecto, y dificulta la movilidad a personas con baja visión o con diversidad cognitiva.
-  \item \textbf{Invasión de la franja peatonal por terrazas:} reduce la anchura libre establecida en el artículo 5, con los mismos problemas indicados anteriormente. 
+  \item \textbf{Invasión de la franja peatonal por terrazas:} reduce la anchura libre establecida en el artículo 5, con los mismos problemas indicados anteriormente.
   \item \textbf{Elementos elevados invadiendo la franja peatonal:} peligro de impacto con los peatones, especialmente en las personas altas y con discapacidad visual.
 \end{inconvenientes}
 
@@ -248,7 +257,9 @@ Por lo que su disposición y delimitaciones se deben regular cuidadosamente para
 % (1) Qué es y por qué importa
 Las plataformas únicas son una solución para las calles estrechas cuyo ancho impida la construcción de un itinerario peatonal accesible con bordillos, en base a los mínimos requisitos de la normativa.
 \\
+
 Necesitan combinar la integración de la accesibilidad de las calles con la convivencia entre peatones y vehículos. Tienen prioridad peatonal, y la acera y la calzada se encuentran al mismo nivel, para evitar barreras físicas que penalicen al tránsito peatonal.
+\\
 
 La guía de la ONCE distingue dos tipos \cite{once_2024}: \textbf{tránsito compartido}, donde toda la superficie es de prioridad peatonal con una zona delimitada para los vehículos; y \textbf{tránsito diferenciado}, donde acera y calzada se dividen utilizando pavimentos diferentes, con franjas de aviso o mobiliario separador.
 \\
@@ -279,6 +290,7 @@ La guía de la ONCE distingue dos tipos \cite{once_2024}: \textbf{tránsito comp
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+En cuanto a los incumplimientos típicos, se encuentran:
 \begin{inconvenientes}
   \item \textbf{Vehículos no respetan la prioridad:} hace añicos la plataforma única, y transmite inseguridad y un elevado riesgo de accidentes a todas las personas, afectando especialmente a las personas ciegas.
   \item \textbf{Ausencia de bandas de delimitación en tránsito diferenciado:} potencial invasión de la zona delimitada a los vehículos por parte de peatones, con riesgo de atropello, afectando principalmente a las personas con baja visión.
@@ -311,6 +323,7 @@ La normativa estatal establece requisitos específicos para la señalización y 
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+Se detallan los incumplimientos y su efecto en las personas:
 \begin{inconvenientes}
   \item \textbf{Falta de paneles informativos o a mala altura:} genera problemas de orientación a todas las personas. Una mala colocación impide que personas en silla de ruedas o con problemas visuales alcancen la información.
   \item \textbf{Falta de contraste cromático y visual:} hace difícil o imposible la lectura a personas con baja visión o daltónicas, por no poder distinguir los textos o pictogramas.
@@ -349,6 +362,7 @@ La mayoría de estos parámetros necesitan que los equipos técnicos necesiten d
 \end{tablarequisitos}
 
 % (3) Incumplimientos típicos y su efecto
+Se listan los incumplimientos y sus efectos:
 \begin{inconvenientes}
   \item \textbf{Niveles de iluminación insuficientes o irregulares:} afecta a todas las personas, cuando los niveles de luz natural no permiten la visión, pudiendo provocar accidentes o caídas.
   \item \textbf{Deslumbramientos o reflejos:} pueden ocasionar molestias así como posibles caídas, especialmente en aquellas personas con baja visión.
@@ -361,3 +375,10 @@ La mayoría de estos parámetros necesitan que los equipos técnicos necesiten d
 
 \parametroclave{\porrellenar}
 
+% =====================================================================
+\section{De la norma a los datos}
+\label{sec:norma-datos}
+% =====================================================================
+\estadobloque{pendiente}{Realizar análisis exploratorio de los datos de Albacete y Algeciras.}
+
+\porrellenar

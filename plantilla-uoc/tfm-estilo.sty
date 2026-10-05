@@ -203,6 +203,56 @@
    \fcolorbox{tinta-suave}{papel}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\raggedright\sffamily\scriptsize
      {\footnotesize\bfseries #1}\par\smallskip\estado{#2}\ifx\relax#3\relax\else\par\smallskip{\color{tinta-suave}#3}\fi}}}\par\vspace{4pt}}
 
+% ---------------------------------------------------------------- Tablas de requisitos (cap. 02-02)
+% Tabla de requisitos con formato: parámetro | requisito | artículo
+%   \begin{tablarequisitos}{Requisitos del IPA}{tab:req-ipa}
+%     Parámetro 1 & Requisito & art. 5 \\
+%     ...
+%   \end{tablarequisitos}
+\newenvironment{tablarequisitos}[2]{%
+  \begin{table}[htbp]\centering\small
+  \caption{#1}\label{#2}%
+  \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.24\linewidth-2\tabcolsep\relax}
+                  >{\raggedright\arraybackslash}p{\dimexpr0.62\linewidth-2\tabcolsep\relax}
+                  >{\raggedright\arraybackslash}p{\dimexpr0.14\linewidth-2\tabcolsep\relax}}
+  \toprule
+  \cabeceratabla \textbf{Parámetro} & \textbf{Requisito} & \textbf{Artículo} \\
+  \midrule}
+ {\bottomrule
+  \end{tabular}
+  \fuente{Orden TMA/851/2021.}%
+  \end{table}}
+
+% Marcador visual para contenido por rellenar: \porrellenar[etiqueta]
+\providecommand{\porrellenar}[1][por rellenar]{{\sffamily\footnotesize\color{tinta-suave}[#1]}}
+
+% Comparativa de parámetros entre municipios: \datosplanes{Albacete: ...}{Algeciras: ...}
+\newcommand{\datosplanes}[2]{%
+  \begin{recuadro}[nota]{Cómo aparece en los datos}
+    \textbf{Albacete.} #1\par\smallskip
+    \textbf{Algeciras.} #2
+  \end{recuadro}}
+
+% Parámetro determinante para accesibilidad: \parametroclave{nombre}
+\newcommand{\parametroclave}[1]{\aclaracion[Parámetro determinante]{#1}}
+
+% Patrones de pavimento táctil en diagramas TikZ (cap. 02-02)
+% Franja de advertencia con patrón de botones: \advertencia{x1}{y1}{x2}{y2}
+\providecommand{\advertencia}[4]{%
+  \fill[papel] (#1,#2) rectangle (#3,#4);
+  \begin{scope}\clip (#1,#2) rectangle (#3,#4);
+    \foreach \i in {0,...,20}{\foreach \j in {0,...,5}{
+      \fill[tinta] ({#1+\i*0.25+0.125},{#2+\j*0.25+0.125}) circle (0.42pt);}}
+  \end{scope}
+  \draw[tinta, line width=0.3pt] (#1,#2) rectangle (#3,#4);}
+% Franja direccional con patrón de acanaladuras: \direccional{x1}{y1}{x2}{y2}
+\providecommand{\direccional}[4]{%
+  \fill[papel] (#1,#2) rectangle (#3,#4);
+  \begin{scope}\clip (#1,#2) rectangle (#3,#4);
+    \foreach \i in {0,...,8}{\draw[tinta, line width=0.45pt] ({#1+\i*0.2+0.1},#2) -- ({#1+\i*0.2+0.1},#4);}
+  \end{scope}
+  \draw[tinta, line width=0.3pt] (#1,#2) rectangle (#3,#4);}
+
 % ---------------------------------------------------------------- Recuadros
 % \begin{recuadro}[nota|definicion|hipotesis|atencion]{Título} ... \end{recuadro}
 \def\tfm@rec@nota{Nota}\def\tfm@rec@definicion{Definición}\def\tfm@rec@hipotesis{Hipótesis}\def\tfm@rec@atencion{Atención}

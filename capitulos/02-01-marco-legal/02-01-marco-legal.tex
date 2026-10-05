@@ -62,88 +62,7 @@ La Convención de discapacidad de la ONU fue ratificada el 23 de noviembre de 20
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[tfm,
-    every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}},
-                              execute at end node={\end{hyphenrules}}},
-    norma/.style={draw=filete, fill=papel, line width=\trazofino, rounded corners=1pt,
-                  text width=33mm, align=left, inner sep=4pt,
-                  font=\sffamily\scriptsize, text=tinta},
-    normaref/.style={norma, draw=uoc-azul, fill=uoc-cian-suave, line width=\trazo},
-    normaderogada/.style={norma, dashed, draw=tinta-suave, fill=superficie, text=tinta-suave},
-    hito/.style={uoc-azul, line width=\trazofino},
-  ]
-  % --- Escala ------------------------------------------------------
-  \def\ini{2006}\def\fin{2023}
-  \pgfmathsetmacro\ltano{14.4/(\fin-\ini)} % cm por año
-  \def\rango{\tiny\bfseries\color{uoc-azul}}
-
-  % --- Eje ---------------------------------------------------------
-  \draw[tinta-suave, line width=\trazo, -{Stealth[length=5pt]}] (0,0) -- ({(\fin-\ini)*\ltano+0.4},0);
-  \foreach \a in {2006,2008,...,2022}{
-    \draw[tinta-suave, line width=\trazofino] ({(\a-\ini)*\ltano},-0.1) -- ({(\a-\ini)*\ltano},0.1);}
-
-  % Contexto: Convención de la ONU · BOE 21-04-2008
-  \draw[tinta-suave, line width=\trazofino] ({(2008.30-\ini)*\ltano},0) -- ({(2008.30-\ini)*\ltano},-0.62);
-  \fill[tinta-suave] ({(2008.30-\ini)*\ltano},0) circle (0.9mm);
-  \node[anchor=north, align=center, font=\sffamily\tiny, text=tinta-suave, inner sep=1pt]
-    (onu) at ({(2008.30-\ini)*\ltano},-0.62) {\textbf{Convención de la ONU}\\BOE, 21 de abril de 2008};
-
-  % --- Hitos (fecha de publicación en el BOE) -----------------------
-  % RD 505/2007 · 20-04-2007
-  \draw[hito] ({(2007.30-\ini)*\ltano},0) -- ({(2007.30-\ini)*\ltano},1.0);
-  \fill[uoc-azul] ({(2007.30-\ini)*\ltano},0) circle (1.1mm);
-  \node[norma, anchor=south west] (rd) at ({(2007.30-\ini)*\ltano-0.15},1.0) {%
-    {\rango Real Decreto}\\
-    \textbf{RD 505/2007}, de 20 de abril\\
-    {\color{tinta-suave}Condiciones básicas en espacios públicos urbanizados y edificaciones}};
-
-  % Orden VIV/561/2010 · 01-02-2010 (derogada)
-  \draw[tinta-suave, line width=\trazofino, dashed] ({(2010.08-\ini)*\ltano},0) -- ({(2010.08-\ini)*\ltano},-1.05);
-  \draw[tinta-suave, fill=papel, line width=\trazo] ({(2010.08-\ini)*\ltano},0) circle (1.0mm);
-  \node[normaderogada, anchor=north west, text width=27mm] (viv) at ({(2010.08-\ini)*\ltano-0.15},-1.05) {%
-    {\rango\color{tinta-suave}Orden · derogada}\\
-    \textbf{Orden VIV/561/2010}\\
-    Documento técnico anterior; derogada por la Orden TMA/851/2021};
-
-  % Ley 26/2011 · 01-08-2011
-  \draw[hito] ({(2011.58-\ini)*\ltano},0) -- ({(2011.58-\ini)*\ltano},2.55);
-  \fill[uoc-azul] ({(2011.58-\ini)*\ltano},0) circle (1.1mm);
-  \node[norma, anchor=south west] (ley) at ({(2011.58-\ini)*\ltano-0.15},2.55) {%
-    {\rango Ley}\\
-    \textbf{Ley 26/2011}, de 1 de agosto\\
-    {\color{tinta-suave}Primera adaptación normativa a la Convención de la ONU}};
-
-  % RDL 1/2013 · 29-11-2013
-  \draw[hito] ({(2013.91-\ini)*\ltano},0) -- ({(2013.91-\ini)*\ltano},-1.05);
-  \fill[uoc-azul] ({(2013.91-\ini)*\ltano},0) circle (1.1mm);
-  \node[norma, anchor=north west, text width=36mm] (rdl) at ({(2013.91-\ini)*\ltano-0.15},-1.05) {%
-    {\rango Real Decreto Legislativo}\\
-    \textbf{RDL 1/2013}, de 29 de noviembre\\
-    {\color{tinta-suave}Texto refundido de la Ley General de derechos de las personas con discapacidad: legislación base}};
-
-  % Orden TMA/851/2021 · 23-07-2021 (referencia del trabajo)
-  \draw[uoc-azul, line width=\trazo] ({(2021.56-\ini)*\ltano},0) -- ({(2021.56-\ini)*\ltano},1.0);
-  \fill[uoc-azul] ({(2021.56-\ini)*\ltano},0) circle (1.4mm);
-  \node[normaref, anchor=south east, text width=37mm] (tma) at ({(2021.56-\ini)*\ltano+0.15},1.0) {%
-    {\rango Referencia técnica de este trabajo}\\
-    \textbf{Orden TMA/851/2021}, de 23 de julio\\
-    Documento técnico de condiciones básicas de accesibilidad en espacios públicos urbanizados};
-
-  % Entrada en vigor · 02-01-2022
-  \draw[hito, densely dotted] ({(2022.0-\ini)*\ltano},0) -- ({(2022.0-\ini)*\ltano},-1.05);
-  \draw[uoc-azul, fill=uoc-cian, line width=\trazofino] ({(2022.0-\ini)*\ltano},0) +(-1mm,-1mm) rectangle +(1mm,1mm);
-  \node[anchor=north east, align=right, font=\sffamily\scriptsize, text=tinta, inner sep=1pt]
-    (vigor) at ({(2022.0-\ini)*\ltano+0.12},-1.1) {\textbf{2 de enero de 2022}\\{\color{tinta-suave}entra en vigor}};
-
-  % --- Relaciones entre normas --------------------------------------
-  \draw[flecha, tinta-suave, line width=\trazofino, rounded corners=3pt]
-    (ley.east) -| node[pos=0.78, left, font=\sffamily\tiny, text=tinta-suave, align=right]{se integra en el\\texto refundido} ([xshift=6mm]rdl.north);
-
-  % --- Etiquetas de año (al final y con fondo: las líneas no las atraviesan)
-  \foreach \a in {2006,2008,...,2022}{
-    \node[font=\sansmath\sffamily\scriptsize, text=tinta-suave, fill=papel, inner sep=1pt, below=2pt]
-      at ({(\a-\ini)*\ltano},-0.1) {\a};}
-\end{tikzpicture}
+  \input{capitulos/02-01-marco-legal/figuras/normativa_estatal}
 \caption[Evolución de la normativa estatal de accesibilidad aplicable al entorno urbano]{Evolución de la normativa estatal de accesibilidad aplicable al entorno urbano.\fuente{elaboración propia con ayuda de Claude}}
 \label{fig:normativa_estatal}
 \end{figure}
@@ -179,12 +98,12 @@ Ambos ayuntamientos cuentan con visores GIS en los que se puede consultar la acc
 
 \begin{figure}[htbp]\centering
   \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[width=\linewidth, height=55mm, keepaspectratio]{visor_albacete.png}
+    \includegraphics[width=\linewidth, height=55mm, keepaspectratio]{../capitulos/02-01-marco-legal/figuras/visor_albacete.png}
     \caption{Capa «Accesibilidad calles» del visor de Albacete.}
     \label{fig:mapa_albacete}
   \end{subfigure}\hfill
   \begin{subfigure}[t]{0.49\textwidth}\centering
-    \includegraphics[width=\linewidth, height=55mm, keepaspectratio]{visor_algeciras.png}
+    \includegraphics[width=\linewidth, height=55mm, keepaspectratio]{../capitulos/02-01-marco-legal/figuras/visor_algeciras.png}
     \caption{Visor de accesibilidad de Algeciras.}
     \label{fig:mapa_algeciras}
   \end{subfigure}
@@ -198,7 +117,7 @@ En los ejemplos de visualización, cada municipio ha diseñado su propia escala 
 \subsection{Los planes de accesibilidad municipales}
 ¿Qué es un plan de accesibilidad universal (PAU), también conocido como plan de accesibilidad integral (PAI)?
 
-Se trata de un documento técnico estratégico que se debe encargar por los ayuntamientos\footnote{Jefatura del Estado (2013), Disposición Adicional Cuarta: Planes y programas de accesibilidad y para la no discriminación.}, y que permite auditar, planificar, priorizar y presupuestar la eliminación de cualquier barrera un obstáculo que afecte a la accesibilidad universal, en las vías urbanas, transporte y espacios públicos del municipio.
+Se trata de un documento técnico estratégico que se debe encargar por los ayuntamientos\footnote{RDL 1/2013, Disposición Adicional Cuarta.}, y que permite auditar, planificar, priorizar y presupuestar la eliminación de cualquier barrera un obstáculo que afecte a la accesibilidad universal, en las vías urbanas, transporte y espacios públicos del municipio.
 
 Habitualmente tiene 4 fases diferentes:
 \begin{enumerate}

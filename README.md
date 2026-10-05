@@ -64,10 +64,15 @@ latexmk -pdf TFM_Victor_Pariente_Gonzalez.tex
 
 **Nota**: La primera compilación puede tardar varios minutos mientras LaTeX descarga y procesa todas las dependencias.
 
-### Limpiar archivos temporales
+### Limpiar caché y archivos temporales
 
 ```bash
+# Opción 1: limpiar con latexmk
 latexmk -C
+
+# Opción 2: limpiar completamente el directorio build
+rm -rf build/
+mkdir -p build
 ```
 
 ---
@@ -76,22 +81,30 @@ latexmk -C
 
 ```
 .
-├── TFM_Victor_Pariente_Gonzalez.tex     # Documento principal LaTeX
-├── capitulos/                            # Capítulos de la memoria
-│   ├── 01-introduccion.tex              # Introducción y motivación
-│   ├── 02-marco-legal-caracteristicas.tex # Normativa y requisitos legales
-│   ├── 03-estado-del-arte.tex           # Revisión bibliográfica
-│   ├── 04-arquitectura-del-sistema.tex  # Diseño del sistema
-│   ├── 05-diseno-implementacion.tex     # Detalles algorítmicos
-│   ├── 06-resultados-evaluacion.tex     # Experimentos y análisis
-│   ├── 07-conclusiones-trabajos-futuros.tex
-│   ├── 08-glosario.tex                  # Términos y definiciones
-│   └── 09-bibliografia.tex              # Referencias bibliográficas
-├── figuras/                              # Imágenes, diagramas y gráficos
-├── plantilla-uoc/                        # Plantilla LaTeX de UOC
-├── build/                                # Directorio de salida (archivos compilados)
-├── referencias.bib                       # Base de datos bibliográfica
-└── .latexmkrc                            # Configuración de compilación
+├── TFM_Victor_Pariente_Gonzalez.tex         # Documento principal LaTeX
+├── capitulos/                               # Capítulos de la memoria
+│   ├── 01-introduccion/
+│   │   ├── 01-introduccion.tex             # Capítulo: Introducción y motivación
+│   │   └── figuras/                        # Figuras específicas de este capítulo
+│   ├── 02-01-marco-legal/
+│   │   ├── 02-01-marco-legal.tex           # Normativa y requisitos legales
+│   │   └── figuras/
+│   ├── 02-02-caracteristicas-accesibilidad/
+│   │   ├── 02-02-caracteristicas-accesibilidad.tex
+│   │   └── figuras/                        # vados.tex, obras.tex, etc.
+│   ├── 03-estado-del-arte/
+│   ├── 04-arquitectura-del-sistema/
+│   ├── 05-diseno-implementacion/
+│   ├── 06-resultados-evaluacion/
+│   ├── 07-conclusiones-trabajos-futuros/
+│   ├── 08-glosario/
+│   ├── 09-bibliografia/
+│   └── appendix-generative-ai/
+├── figuras/                                 # Imágenes globales (no específicas de capítulos)
+├── plantilla-uoc/                           # Plantilla LaTeX de UOC
+├── build/                                   # Directorio de salida (archivos compilados)
+├── referencias.bib                          # Base de datos bibliográfica
+└── .latexmkrc                               # Configuración de compilación
 
 ```
 

@@ -1,0 +1,55 @@
+\begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}},
+      cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
+      cotatxt/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
+      ref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
+      mobiliario/.style={fill=tinta-suave, draw=tinta},
+      rotulo/.style={font=\sffamily\scriptsize, text=tinta-suave},
+    ]
+    % =============== a) PLANTA (vista cenital, como en la ortofoto) ===============
+    \begin{scope}[x=1.15cm, y=1.15cm]
+      \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0,4.45) {Itinerario peatonal accesible: dimensiones mínimas};
+      % edificación
+      \fill[rejilla] (0,3.2) rectangle (12,4.2);
+      \draw[tinta-suave, line width=\trazo] (0,3.2) -- (12,3.2);
+      \node[rotulo] at (6,3.7) {Edificación · línea de fachada};
+      % acera
+      \fill[papel] (0,0) rectangle (12,3.2);
+      % IPA: banda libre junto a la fachada
+      \fill[uoc-cian-suave] (0,1.4) rectangle (12,3.2);
+      \draw[uoc-azul, dashed, line width=\trazo] (0,1.4) -- (12,1.4);
+      \node[font=\sffamily\small\bfseries, text=uoc-azul] at (5.2,2.5) {Itinerario peatonal accesible (IPA)};
+      \node[font=\sffamily\scriptsize, text=uoc-azul] at (5.2,2.05) {continuo y sin obstáculos};
+      % banda exterior (mobiliario)
+      \node[rotulo, anchor=west] at (9.35,0.7) {Banda exterior: mobiliario};
+      % bordillo y calzada
+      \fill[seg-calzada] (0,-1.8) rectangle (12,0);
+      \draw[tinta, line width=1.6pt] (0,0) -- (12,0);
+      \draw[papel, line width=1pt, dash pattern=on 10pt off 8pt] (0,-1.1) -- (12,-1.1);
+      \node[font=\sffamily\scriptsize, text=papel] at (1.3,-0.55) {Calzada};
+            % mobiliario a >= 0,40 m del bordillo
+      \fill[mobiliario] (2.4,0.7) circle (0.15);            \node[rotulo, below=1pt] at (2.4,0.55) {farola};
+      \filldraw[mobiliario] (3.7,0.5) rectangle (4.1,0.9);   \node[rotulo, below=1pt] at (3.9,0.5) {papelera};
+      \draw[tinta, fill=rejilla] (5.9,0.4) rectangle (6.9,1.2);
+      \fill[seg-vegetacion] (6.4,0.8) circle (0.28);         \node[rotulo, below=1pt] at (6.4,0.4) {alcorque};
+      \foreach \x in {8.2,8.8} \fill[mobiliario] (\x,0.55) circle (0.09);
+      \node[rotulo, below=1pt] at (8.5,0.45) {bolardos};
+      % cotas
+      \draw[ref] (11.2,1.4) -- (11.6,1.4);
+      \draw[cota] (11.4,1.4) -- (11.4,3.2) node[midway, cotatxt, rotate=90] {$\geq$\,1,80\,m};
+      \draw[ref] (2.4,0.55) -- (1.55,0.55);
+      \draw[cota] (1.65,0) -- (1.65,0.55) node[midway, cotatxt, left=1pt] {$\geq$\,0,40\,m};
+      \node[rotulo, anchor=north east] at (12,-0.02) {\textcolor{papel}{bordillo}};
+      % escala gráfica
+      \begin{scope}[shift={(9.6,-1.55)}]
+        \fill[papel] (0,0) rectangle (1,0.08); \fill[tinta-suave] (1,0) rectangle (2,0.08);
+        \draw[papel, line width=0.4pt] (0,0) rectangle (2,0.08);
+        \node[font=\sffamily\tiny, text=papel, above] at (0,0.08) {0};
+        \node[font=\sffamily\tiny, text=papel, above] at (2,0.08) {2\,m};
+      \end{scope}
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{Itinerario peatonal accesible: dimensiones mínimas en plano.}
+  \label{fig:ipa-plano}
+  \fuente{elaboración propia a partir de la Orden TMA/851/2021.}

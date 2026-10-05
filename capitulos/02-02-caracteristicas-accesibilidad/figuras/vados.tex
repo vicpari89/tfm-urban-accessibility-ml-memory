@@ -1,0 +1,153 @@
+\begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
+    every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}},
+                              execute at end node={\end{hyphenrules}}},
+    rotulo/.style={rotulomapa, fill=papel, draw=tinta-suave, line width=\trazofino, inner sep=1.5pt, align=left},
+    guia/.style={draw=tinta, line width=\trazofino},
+    vado/.style={fill=seg-acera, draw=tinta-suave, line width=\trazofino,
+               postaction={pattern=north east lines, pattern color=tinta-suave}},
+    semaforo/.style={circle, fill=seg-obstaculo, draw=papel, line width=0.6pt, inner sep=1.6pt},
+  ]
+ 
+% =============================== a) PLANTA ===============================
+\node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (-0.6,8.45) {a) Planta};
+\begin{scope}[x=0.34cm, y=0.34cm]
+  % Bandas: edificación, acera, calzada (dos sentidos), isleta, acera, edificación
+  \fill[seg-edificio] (0,0)    rectangle (22,0.6);
+  \fill[seg-acera]    (0,0.6)  rectangle (22,4.1);
+  \fill[seg-calzada]  (0,4.1)  rectangle (22,19.1);
+  \fill[seg-acera]    (0,19.1) rectangle (22,22.6);
+  \fill[seg-edificio] (0,22.6) rectangle (22,23.2);
+  \draw[tinta-suave, line width=\trazofino] (0,0) rectangle (22,23.2) (0,0.6) -- (22,0.6) (0,22.6) -- (22,22.6);
+  % Isleta elevada, con el paso rebajado a nivel de calzada
+  \fill[seg-acera] (0,10.6) rectangle (9,12.6);  \fill[seg-acera] (13,10.6) rectangle (22,12.6);
+  \draw[tinta, line width=\trazo] (0,10.6) -- (9,10.6) -- (9,12.6) -- (0,12.6)
+                                   (22,10.6) -- (13,10.6) -- (13,12.6) -- (22,12.6);
+  % Marcas viales de carril
+  \foreach \y in {7.35,15.85}{
+    \draw[papel, line width=0.7pt, dash pattern=on 5pt off 4pt] (0,\y) -- (8.2,\y) (13.8,\y) -- (22,\y);}
+  % Paso de peatones (bandas paralelas al bordillo)
+  \foreach \y in {4.6,5.6,...,9.6}   {\fill[seg-paso-peatones] (9,\y) rectangle (13,\y+0.5);}
+  \foreach \y in {13.1,14.1,...,18.1}{\fill[seg-paso-peatones] (9,\y) rectangle (13,\y+0.5);}
+  % Vados: plano inclinado principal + alas laterales
+  \filldraw[vado] (8,4.1) -- (14,4.1) -- (13,2.1) -- (9,2.1) -- cycle;
+  \filldraw[vado] (8,19.1) -- (14,19.1) -- (13,21.1) -- (9,21.1) -- cycle;
+  \draw[tinta-suave, line width=\trazofino, densely dashed] (9,2.1) -- (9,4.1) (13,2.1) -- (13,4.1)
+                                                            (9,21.1) -- (9,19.1) (13,21.1) -- (13,19.1);
+  % Bordillos
+  \draw[tinta, line width=1.2pt] (0,4.1) -- (22,4.1) (0,19.1) -- (22,19.1);
+  % Pavimento táctil: advertencia junto al bordillo y franja-guía desde la fachada
+  \advertencia{9}{3.1}{13}{3.9}    \direccional{10.5}{0.6}{11.5}{3.1}
+  \advertencia{9}{19.3}{13}{20.1}  \direccional{10.5}{20.1}{11.5}{22.6}
+  % Sentido de la pendiente del vado (baja hacia la calzada)
+  \draw[-{Stealth[length=4pt]}, tinta, line width=0.6pt] (12.3,2.25) -- (12.3,3.0);
+  \draw[-{Stealth[length=4pt]}, tinta, line width=0.6pt] (12.3,20.95) -- (12.3,20.2);
+  % Semáforos con pulsador
+  \node[semaforo] (s1) at (14.2,3.5) {};
+  \node[semaforo] (s2) at (7.8,19.7) {};
+ 
+  % ---- Rótulos (sobre las zonas libres de acera, isleta y calzada)
+  \node[rotulo, anchor=west] (r1) at (0.4,1.6) {Franja-guía\\direccional\\(acanaladura)};
+  \draw[guia] (r1.east) -- (10.6,1.6);
+  \node[rotulo, anchor=east] (r2) at (21.7,1.75) {Vado: plano\\inclinado y alas};
+  \draw[guia] (r2.west) -- (13.3,2.7);
+  \node[rotulo, anchor=west] (r3) at (0.4,20.85) {Semáforo con\\pulsador accesible};
+  \draw[guia] (r3.east) -- (s2.west);
+  \node[rotulo, anchor=east] (r4) at (21.7,20.85) {Franja de advertencia\\(botones)};
+  \draw[guia] (r4.west) -- (12.8,19.7);
+  \node[rotulo, anchor=west] at (0.4,11.6) {Isleta (cruce \textgreater\,14\,m)};
+  \node[rotulomapa, text=papel, anchor=west] at (0.4,5.6) {Calzada};
+  \node[rotulo, anchor=east] (r5) at (21.7,6.0) {Paso de peatones};
+  \draw[guia] (r5.west) -- (13,6.85);
+  \node[rotulo, anchor=east] (r6) at (21.7,14.6) {Isleta rebajada\\a nivel de calzada};
+  \draw[guia] (r6.west) -- (12.5,12.3);
+ 
+  % ---- Cotas
+  % Anchura del vado (abajo) y del paso (arriba)
+  \draw[cotaref] (9,2.1) -- (9,-1.1)  (13,2.1) -- (13,-1.1);
+  \draw[cota] (9,-0.8) -- (13,-0.8) node[midway, cotatexto, below=1pt] {Vado $\geq$\,1,80\,m};
+  \draw[cotaref] (9,21.1) -- (9,24.3)  (13,21.1) -- (13,24.3);
+  \draw[cota] (9,24.0) -- (13,24.0) node[midway, cotatexto, above=1pt] {Paso $\geq$ ancho de los vados};
+  % Anchura del paso en la isleta
+  \draw[cota] (9,11.6) -- (13,11.6) node[midway, cotatexto] {$\geq$ paso};
+  % Distancia del pulsador al límite exterior del paso
+  \draw[cotaref] (13,2.1) -- (13,0.75)  (14.2,3.25) -- (14.2,0.75);
+  \draw[cota] (13,0.95) -- (14.2,0.95);
+  \node[cotatexto, anchor=north, inner sep=0.8pt] at (13.6,0.8) {$\leq$\,1,50\,m};
+  % Longitud de cruce (isleta obligatoria por encima de 14 m)
+  \draw[cotaref] (0,4.1) -- (-1.4,4.1)  (0,19.1) -- (-1.4,19.1);
+  \draw[cota] (-1.0,4.1) -- (-1.0,19.1) node[midway, cotatexto, rotate=90]
+    {Cruce \textgreater\,14\,m $\Rightarrow$ isleta obligatoria};
+  % Escala gráfica
+  \begin{scope}[shift={(16.5,-1.25)}]
+    \escalagrafica{(0,0)}{5}{5\,m}
+  \end{scope}
+\end{scope}
+ 
+% ======================= b) SECCIÓN POR EL VADO ========================
+\begin{scope}[shift={(9.1,5.45)}, x=1.0cm, y=2.6cm]
+  \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (-0.3,1.1) {b) Sección por el vado};
+  % edificación, acera, plano inclinado y calzada
+  \filldraw[seg-edificio, draw=tinta-suave, line width=\trazofino] (-0.3,0.15) rectangle (0,0.95);
+  \filldraw[seg-acera, draw=tinta-suave, line width=\trazofino] (0,-0.12) -- (0,0.15) -- (1.5,0.15) -- (3.5,0.0) -- (3.5,-0.12) -- cycle;
+  \fill[seg-calzada] (3.5,-0.12) rectangle (4.3,0.0);
+  \draw[tinta, line width=\trazo] (0,0.15) -- (1.5,0.15) -- (3.5,0.0) -- (4.3,0.0);
+  % pavimento táctil sobre la superficie (trama, como en planta)
+  \fill[papel] (0,0.15) rectangle (1.5,0.19);
+  \foreach \x in {0.05,0.15,...,1.5}{\draw[tinta, line width=0.4pt] (\x,0.15) -- (\x,0.19);}
+  \fill[papel] (1.5,0.15) -- (2.5,0.075) -- (2.5,0.115) -- (1.5,0.19) -- cycle;
+  \foreach \t in {0.05,0.15,...,1.0}{\draw[tinta, line width=0.4pt] ({1.5+\t},{0.15-\t*0.075}) -- ++(0,0.04);}
+  \fill[papel] (2.5,0.075) -- (3.3,0.015) -- (3.3,0.055) -- (2.5,0.115) -- cycle;
+  \foreach \t in {0.06,0.18,...,0.8}{\fill[tinta] ({2.5+\t},{0.075-\t*0.075+0.02}) circle (0.6pt);}
+  % cotas
+  \draw[cotaref] (2.5,0.12) -- (2.5,0.5)  (3.3,0.06) -- (3.3,0.5);
+  \draw[cota] (2.5,0.44) -- (3.3,0.44) node[midway, cotatexto, above=1pt, fill=none] {Advertencia 0,60--1,20\,m};
+  \draw[cotaref] (3.5,0.0) -- (3.5,0.3);
+  \draw[cota] (3.3,0.26) -- (3.5,0.26);
+  \node[cotatexto, anchor=west, fill=none] at (3.55,0.26) {0,10--0,30\,m};
+  \node[rotulomapa, align=left, anchor=north west] at (-0.3,-0.17)
+    {Pendiente longitudinal $\leq$\,8\,\% (tramo $\leq$\,3\,m)\\
+     o $\leq$\,10\,\% (tramo $\leq$\,2\,m); transversal $\leq$\,2\,\%\\
+     Resalte con la calzada \textless\,4\,mm};
+  \node[rotulomapa, anchor=west] at (0.05,0.3) {franja-guía};
+  \node[rotulomapa, text=tinta-suave, anchor=south east, font=\sffamily\tiny] at (4.3,0.75) {escala vertical exagerada};
+\end{scope}
+ 
+% ======================= c) ALZADO DEL PULSADOR ========================
+\begin{scope}[shift={(10.0,-0.15)}, x=1.1cm, y=1.1cm]
+  \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (-1.0,2.95) {c) Pulsador};
+  \filldraw[seg-acera, draw=tinta-suave, line width=\trazofino] (-0.9,-0.12) rectangle (2.2,0);
+  \draw[tinta, line width=\trazo] (-0.9,0) -- (2.2,0);
+  % rango de altura admisible
+  \fill[uoc-cian-suave] (-0.3,0.8) rectangle (0.3,1.2);
+  \draw[uoc-azul, line width=0.6pt] (-0.3,0.8) -- (0.3,0.8) (-0.3,1.2) -- (0.3,1.2);
+  % báculo, semáforo peatonal y pulsador
+  \fill[seg-obstaculo] (-0.04,0) rectangle (0.04,2.6);
+  \fill[seg-obstaculo, rounded corners=1pt] (-0.12,2.0) rectangle (0.12,2.6);
+  \filldraw[papel, draw=tinta, line width=0.5pt, rounded corners=1pt] (0.04,0.92) rectangle (0.2,1.12);
+  % cotas de altura
+  \draw[cotaref] (-0.3,0.8) -- (-0.75,0.8)  (-0.3,1.2) -- (-0.75,1.2);
+  \draw[cota] (-0.65,0) -- (-0.65,0.8);
+  \draw[cota] (-0.65,0.8) -- (-0.65,1.2);
+  \node[cotatexto, anchor=east, fill=none] at (-0.7,0.8) {0,80\,m};
+  \node[cotatexto, anchor=east, fill=none] at (-0.7,1.2) {1,20\,m};
+  \node[rotulomapa, align=left, anchor=west] at (0.4,1.0)
+    {Pulsador accesible\\a 0,80--1,20\,m};
+  \node[rotulomapa, align=left, anchor=west] at (0.4,2.3)
+    {Avisador acústico\\homologado\\(a demanda)};
+\end{scope}
+ 
+% =============================== Leyenda ===============================
+\begin{scope}[shift={(-0.3,-1.15)}]
+  \foreach \c/\t/\x in {seg-edificio/Edificación/0, seg-acera/Acera e isleta/2.2,
+                        seg-calzada/Calzada/4.7, seg-paso-peatones/Paso de peatones/6.6} {
+    \node[muestra, fill=\c] at (\x+0.15,0) {};
+    \node[rotulomapa, anchor=west] at (\x+0.32,0) {\t};}
+  \node[muestra, fill=seg-acera, postaction={pattern=north east lines, pattern color=tinta-suave}] at (9.65,0) {};
+  \node[rotulomapa, anchor=west] at (9.82,0) {Vado};
+  \begin{scope}[shift={(0,-0.5)}, x=0.4cm, y=0.4cm]
+    \advertencia{0}{-0.35}{0.75}{0.4}   \node[rotulomapa, anchor=west] at (0.95,0) {Advertencia (botones)};
+    \direccional{9.5}{-0.35}{10.25}{0.4} \node[rotulomapa, anchor=west] at (10.45,0) {Direccional (acanaladura)};
+    \node[semaforo] at (20.6,0) {};     \node[rotulomapa, anchor=west] at (21.05,0) {Semáforo con pulsador};
+  \end{scope}
+\end{scope}
+\end{tikzpicture}

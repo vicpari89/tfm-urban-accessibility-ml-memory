@@ -1,0 +1,77 @@
+\begin{ganttchart}[
+      tfmgantt,                          % estilo del sistema (tfm-estilo.sty)
+      time slot format=isodate,
+      x unit=1.0mm,                      % 120 días en el ancho de página
+      y unit chart=0.42cm, y unit title=0.5cm,
+      vgrid={*6{draw=none}, *1{draw=rejilla, line width=\trazofino}},  % una línea por semana
+      hgrid={*1{draw=rejilla, line width=\trazofino}},
+      canvas/.append style={draw=filete, line width=\trazofino},
+      bar height=0.55, milestone height=0.6, group peaks height=0.2,
+      milestone left shift=-1.5, milestone right shift=1.5,  % rombo de ~4 mm
+      bar label font=\sffamily\scriptsize,
+      group label font=\sffamily\scriptsize\bfseries\color{uoc-azul},
+      milestone label font=\sffamily\scriptsize\itshape\color{tinta-suave},
+      title label font=\sffamily\scriptsize\bfseries\color{uoc-azul},
+      secundaria/.style={bar/.append style={fill=papel, draw=uoc-azul, dashed}},
+      descanso/.style={bar/.append style={fill=uoc-gris, draw=tinta-suave, line width=\trazofino,
+                        pattern=north east lines, pattern color=tinta-suave},
+                       bar label font=\sffamily\scriptsize\itshape\color{tinta-suave}},
+    ]{2026-09-24}{2027-01-21}
+
+    % Escala de tiempo (en castellano; los números son días de cada mes dentro del rango)
+    \gantttitle{2026}{99} \gantttitle{2027}{21} \\
+    \gantttitle{sep.}{7} \gantttitle{oct.}{31} \gantttitle{nov.}{30}
+    \gantttitle{dic.}{31} \gantttitle{ene.}{21} \\
+
+    % WP1
+    \ganttbar{WP1 Definición y objetivos}{2026-09-24}{2026-10-04} \\
+    \ganttmilestone{Entrega PEC1}{2026-10-04} \\
+
+    % WP2
+    \ganttgroup{WP2 Contexto}{2026-10-05}{2026-10-25} \\
+    \ganttbar{WP2.1 Análisis legal}{2026-10-05}{2026-10-12} \\
+    \ganttbar{WP2.2 Estado del arte}{2026-10-13}{2026-10-25} \\
+    \ganttmilestone{Entrega PEC2}{2026-10-25} \\
+
+    % WP3
+    \ganttgroup{WP3 Desarrollo}{2026-10-19}{2026-12-15} \\
+    \ganttbar{WP3.1 Preparación de datos}{2026-10-19}{2026-11-03} \\
+    \ganttbar{WP3.2 Métricas y características}{2026-10-26}{2026-11-10} \\
+    \ganttbar{WP3.3 Entrenamiento de modelos}{2026-11-03}{2026-11-24} \\
+    \ganttbar{WP3.4 Comparativa y ajuste}{2026-11-11}{2026-11-24} \\
+    \ganttbar{WP3.5 Validación e iteración}{2026-11-13}{2026-12-05} \\
+    \ganttbar{WP3.6 Interpretación de resultados}{2026-11-25}{2026-12-05} \\
+    \ganttbar[descanso]{Descanso}{2026-12-02}{2026-12-07} \\
+    \ganttbar[secundaria]{WP3.7 (OS1) Integración con el callejero}{2026-12-08}{2026-12-11} \\
+    \ganttbar[secundaria]{WP3.8 (OS1) Visor GIS e interfaz}{2026-12-10}{2026-12-14} \\
+    \ganttbar[secundaria]{WP3.9 (OS2) POC con imágenes}{2026-12-08}{2026-12-15} \\
+    \ganttmilestone{Entrega PEC3}{2026-12-15} \\
+
+    % WP4
+    \ganttbar{WP4 Redacción memoria}{2026-12-16}{2026-12-27} \\
+    \ganttmilestone{Entrega PEC4}{2026-12-27} \\
+
+    % WP5 y WP6
+    \ganttbar{WP5 Presentación vídeo}{2026-12-28}{2027-01-05} \\
+    \ganttmilestone{Entrega PEC5}{2027-01-05} \\
+    \ganttbar{WP6 Defensa oral}{2027-01-06}{2027-01-21} \\
+    \ganttmilestone{Entrega PEC6 / Final}{2027-01-21}
+  \end{ganttchart}
+
+  \vspace{3mm}
+  % Leyenda
+  \begin{tikzpicture}[font=\sffamily\scriptsize, text=tinta]
+    \draw[uoc-azul, fill=uoc-azul] (0,-0.06) rectangle (0.5,0.06);
+    \node[anchor=west] at (0.6,0) {Fase};
+    \draw[uoc-azul, fill=nn-conv, line width=\trazofino] (1.6,-0.1) rectangle (2.1,0.1);
+    \node[anchor=west] at (2.2,0) {Tarea};
+    \draw[uoc-azul, fill=papel, dashed, line width=\trazofino] (3.3,-0.1) rectangle (3.8,0.1);
+    \node[anchor=west] at (3.9,0) {Tarea secundaria};
+    \draw[tinta-suave, fill=uoc-gris, line width=\trazofino, pattern=north east lines, pattern color=tinta-suave] (6.3,-0.1) rectangle (6.8,0.1);
+    \node[anchor=west] at (6.9,0) {Descanso};
+    \draw[acc-no-accesible, fill=acc-deficiente] (8.35,0) -- ++(0.1,0.1) -- ++(0.1,-0.1) -- ++(-0.1,-0.1) -- cycle;
+    \node[anchor=west] at (8.6,0) {Hito (entrega de PEC)};
+  \end{tikzpicture}
+
+  \caption{Diagrama de Gantt del proyecto.}
+  \label{fig:gantt_tfm}
