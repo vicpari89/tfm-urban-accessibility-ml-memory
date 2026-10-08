@@ -153,9 +153,9 @@ Las figuras generadas durante el trabajo se encuentran en el directorio `figuras
 
 El código de los algoritmos estará en repositorios separados específicos:
 
-- **[Nombre del repositorio]**
-  - Link: `<ENLACE_REPOSITORIO_EN_GITHUB>`
-  - Descripción: `<DESCRIPCIÓN>`
+- **tfm-urban-accessibility-ml**
+  - Link: `https://github.com/vicpari89/tfm-urban-accessibility-ml`
+  - Descripción: `Repositorio con las transformaciones de datos y los modelos`
 
 *Nota: pendiente de actualizar*
 

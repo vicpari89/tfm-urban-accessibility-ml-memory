@@ -376,9 +376,145 @@ Se listan los incumplimientos y sus efectos:
 \parametroclave{\porrellenar}
 
 % =====================================================================
+\section{Análisis exploratorio de los datos}
+\label{sec:analisis-exploratorio}
+
+Para poder evaluar con qué datos se cuenta para la realización del trabajo, se realiza un análisis exploratorio de los conjuntos de datos aportados por el tutor, de las ciudades de Albacete y Algeciras.
+
+\medskip
+\noindent\textit{Origen de los datos.} Los conjuntos de datos han sido facilitados por el tutor, y son los resultados de los análisis de accesibilidad del viario urbano (y de los edificios públicos) realizados por los equipos técnicos contratados por los ayuntamientos.
+
+\medskip
+\noindent\textit{Observaciones del análisis.} Al realizar el análisis exploratorio, en ambas ciudades se observaron patrones similares en cuanto a las variables evaluadas, y las variables de resultados o clase. Por esta similitud, se ha inferido que:
+\begin{itemize}
+  \item o bien existe una metodología común para realizar estos análisis de accesibilidad,
+  \item o bien se han realizado por la misma empresa.
+\end{itemize}
+
+\medskip
+\noindent\textit{Verificación de la empresa adjudicataria.} Tras consultar la Plataforma de Contratación del Estado, se ha podido verificar que en ambas ciudades la empresa adjudicataria de los contratos fue la misma, ACCESIA~\cite{contrato_albacete_2021,contrato_algeciras_2025}. Los expedientes se recogen en la Tabla~\ref{tab:contratos}:
+
+\begin{table}[H]
+  \centering
+  \caption{Contratos de los análisis de accesibilidad de Albacete y Algeciras.}
+  \label{tab:contratos}
+  \small
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{l c >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla
+    \textbf{Ciudad} & \textbf{Año del contrato} & \textbf{Expediente} \\
+    \midrule
+    Albacete  & 2021 & \href{https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion\&idEvl=B\%2BdESdnRNPBvYnTkQN0\%2FZA\%3D\%3D}{Expediente de Albacete} \\
+    Algeciras & 2025 & \href{https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion\&idEvl=s4jpjymDFxh\%2FR5QFTlaM4A\%3D\%3D}{Expediente de Algeciras} \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{Plataforma de Contratación del Estado~\cite{contrato_albacete_2021,contrato_algeciras_2025}.}
+\end{table}
+
+\subsection{Resultados del análisis exploratorio}
+
+Los conjuntos de datos contienen una fila por cada calle o tramo de calle, con una puntuación de accesibilidad en cada \gls{dimension-accesibilidad} de la \gls{orden-tma-851-2021}~\cite{mitma_orden_tma851_2021}, incluyendo anchura, pendiente, iluminación, pavimento, cruces, señalización, mobiliario y transporte (únicamente Albacete); y en cada dimensión, evaluando diferentes tipos de \gls{diversidad-funcional}.
+
+\medskip
+\noindent\textit{Tipos de diversidad funcional.}
+\begin{itemize}
+  \item \textbf{Algeciras:} las tipologías de diversidad evaluadas incluyen 3 tipos diferentes: funcional, sensorial y cognitiva.
+  \item \textbf{Albacete:} hay 5 tipos diferentes: silla de ruedas, movilidad reducida, visión, hipoacusia y cognitiva.
+\end{itemize}
+
+\noindent\textit{Escala de puntuación.}
+\begin{itemize}
+  \item \textbf{Algeciras:} escala de 0 a 5, en orden ascendente, siendo 0 la peor accesibilidad y 5 la mejor.
+  \item \textbf{Albacete:} escala de 0 a 100, siguiendo un orden también ascendente.
+\end{itemize}
+En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcional son números enteros, por lo que se ha inferido que existe un algoritmo que ha utilizado la empresa para ir dando o restando puntuación según se cumple o no con los requisitos de la normativa legal.
+
+\medskip
+\noindent\textit{Unidad de cada fila.} En ambos conjuntos se incluye una variable con el nombre de la calle, aportando la puntuación por calle, con algunas calles separadas por tramos. Algeciras también incluye el nombre de la barriada, y algunas calles están separadas por barriadas.
+
+\medskip
+\noindent\textit{Tipología de la vía.} Cada calle cuenta con una columna que indica la tipología de la vía, es decir, si se trata de:
+\begin{itemize}
+  \item una calle peatonal,
+  \item de \gls{plataforma-unica},
+  \item o de tráfico diferenciado (Algeciras distingue entre calles con un carril, o con más, pero no Albacete),
+  \item así como otros tipos como plaza, bulevar, o en obras.
+\end{itemize}
+
+\medskip
+\noindent\textit{Presupuesto y propuesta de actuación.} En ambos casos se indica en una variable el presupuesto en euros asignado a cada calle tras la evaluación de accesibilidad; y una propuesta de actuación, en la que se distingue entre:
+\begin{itemize}
+  \item mejoras en la vía existente,
+  \item cambio de tipología,
+  \item o no realizar ninguna actuación.
+\end{itemize}
+
+
+
+Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único conjunto de datos, cuya correspondencia se muestra en la Tabla~\ref{tab:columnas-unificadas}.
+
+\begin{table}[H]
+  \centering
+  \caption{Columnas del conjunto de datos unificado de Albacete y Algeciras.}
+  \label{tab:columnas-unificadas}
+  \small
+  \renewcommand{\arraystretch}{1.1}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla
+    \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Identificación y localización} \\
+    Ciudad (nueva, para unir los datos) & \texttt{ciudad} & -- & -- \\
+    \cmidrule(lr){1-4}
+    Nombre de la calle & \texttt{nombre\_calle} & \texttt{NOMBRE} & \texttt{NOMBRE} \\
+    \cmidrule(lr){1-4}
+    Nombre de la calle sin la marca de tramo & \texttt{nombre\_calle\_base} & \texttt{NOMBRE} sin la marca de tramo & \texttt{NOMBRE} sin la marca de tramo \\
+    \cmidrule(lr){1-4}
+    Tramo de la calle (número) & \texttt{tramo} & Letra final de \texttt{REFERENCIA} o marca del nombre & Número del final de \texttt{NOMBRE} \\
+    \cmidrule(lr){1-4}
+    Barrio & \texttt{barrio} & \texttt{Barriada} & -- (pendiente de cruzar con el callejero) \\
+    \cmidrule(lr){1-4}
+    Zona & \texttt{zona} & -- & Letras de \texttt{REFER} \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Tipología y actuación} \\
+    Tipología de la vía & \texttt{tipologia\_via} & \texttt{TIPOLOGÍA} & \texttt{TIPOLACT} \\
+    \cmidrule(lr){1-4}
+    Propuesta de actuación & \texttt{propuesta\_actuacion} & \texttt{PROPUESTA} & \texttt{PROPACT} \\
+    \cmidrule(lr){1-4}
+    Presupuesto & \texttt{presupuesto\_euros} & \texttt{PRESUPUESTO} & \texttt{PRESUP} \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Puntuaciones y clase} \\
+    Puntuación total & \texttt{puntuacion\_total} & \texttt{PUNT\_TOTAL} & \texttt{ACCGLOBAL} \\
+    \cmidrule(lr){1-4}
+    Puntuación total de un tipo de diversidad & \texttt{puntuacion\_total\_*} & \texttt{PUNT\_TOTAL\_FU} & Media de \texttt{GLOBALSR} y \texttt{GLOBALMR} \\
+    \cmidrule(lr){1-4}
+    Puntuación global de una dimensión & \texttt{puntuacion\_*\_global} & \texttt{PUNT\_PEND\_GB} & \texttt{GLOBALPEND} \\
+    \cmidrule(lr){1-4}
+    Puntuación de una dimensión y un tipo de diversidad & \texttt{puntuacion\_*\_*} & \texttt{PUNT\_PEND\_FU} & Media de \texttt{PENDIENTESR} y \texttt{PENDIENTEMR} \\
+    \cmidrule(lr){1-4}
+    \gls{clase-accesibilidad} total & \texttt{clase\_total} & \texttt{PIC\_TOTAL} & Calculada a partir de \texttt{ACCGLOBAL} \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia a partir de los conjuntos de datos de Albacete y Algeciras.}
+\end{table}
+
+\medskip
+\noindent\textit{Cómo leer la tabla.}
+\begin{itemize}
+  \item \textbf{Columnas \texttt{puntuacion\_*\_*}:} el primer comodín es una de las dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación, mobiliario y transporte, esta última solo en Albacete) y el segundo uno de los tipos de diversidad (funcional, sensorial y cognitiva).
+  \item \textbf{Escala:} las puntuaciones están normalizadas a la escala de 0 a 1.
+  \item \textbf{Tipos de diversidad en Albacete:} para unificarlos, funcional es la media de silla de ruedas y movilidad reducida, sensorial la media de visión e hipoacusia, y cognitiva es la de diversidad cognitiva.
+  \item \textbf{Transporte:} los ceros de transporte, que indican que no hay datos, se sustituyen por valores nulos.
+  \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
+\end{itemize}
+
+% =====================================================================
 \section{De la norma a los datos}
 \label{sec:norma-datos}
 % =====================================================================
-\estadobloque{pendiente}{Realizar análisis exploratorio de los datos de Albacete y Algeciras.}
+\estadobloque{pendiente}{Buscar información del algoritmo que se usa para las dimensiones.}
 
 \porrellenar
