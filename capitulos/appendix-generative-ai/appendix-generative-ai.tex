@@ -156,3 +156,27 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
   \fichaajuste{Versión de menor tamaño, con las secciones b y c a la derecha y la planta en el espacio restante, como en la figura anterior; anchura del itinerario indicada como $\geq$\,1,80\,m; sin rótulo explicativo en la puerta de la obra.}
   \fichaajuste{Desplazar el rótulo del andamio a la derecha para que no quede debajo del título de la planta.}
 \end{fichaia}
+\begin{fichaia}{Tabla~\ref{tab:columnas-unificadas}. Columnas del conjunto de datos unificado de Albacete y Algeciras}
+  \fichadato{Fecha}{09/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2.1. Análisis legal}
+  \fichadato{Objetivo}{Generar la tabla de correspondencia entre las columnas originales de Albacete y Algeciras y las columnas del conjunto de datos unificado, a partir del análisis realizado en los notebook del proyecto, para ahorrar el trabajo de transcripción manual.}
+  \fichadato{Material aportado}{Resultado del cuaderno \texttt{0.03-comparison-algeciras-albacete.ipynb} del proyecto \texttt{tfm-urban-accessibility-ml}, con las reglas de nomenclatura y la tabla de columnas unificadas.}
+  \fichadato{Resultado}{Código \LaTeX{} (\texttt{tabularx}) de la tabla~\ref{tab:columnas-unificadas}: columnas agrupadas en identificación y localización, tipología y actuación, y puntuaciones y clase.}
+  \fichadato{Validación}{Nombres de las columnas y reglas de unificación comprobados por el autor frente al cuaderno y al conjunto de datos procesado; compilación con la plantilla TFUOC.}
+  \fichaprompt{A partir del resultado de los notebook del proyecto ../tfm-urban-accessibility-ml, genera la tabla en latex con las columnas del conjunto de datos unificado de Albacete y Algeciras, indicando cómo se llama la columna unificada y cuál era la columna en el dataset original.}
+  \fichaajuste{Agrupar por bloques, y añadir líneas intermedias entre las filas de la tabla, como en las otras tablas de la memoria.}
+\end{fichaia}
+
+\begin{fichaia}{Tabla~\ref{tab:viabilidad}. Viabilidad de obtención de puntuación a partir de las imágenes}
+  \fichadato{Fecha}{09/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2.1. Análisis legal}
+  \fichadato{Objetivo}{Maquetar la tabla de viabilidad de obtención de cada dimensión a partir de imágenes aéreas y a pie de calle, con el fin de facilitar la redacción de la memoria.}
+  \fichadato{Material aportado}{Tablas de requisitos de la sección~\ref{sec:caracteristicas}, redactadas por el autor, y porcentajes de viabilidad estimados por el autor.}
+  \fichadato{Resultado}{Código \LaTeX{} de la tabla~\ref{tab:viabilidad}: una fila por cada característica, agrupadas por dimensión, con el porcentaje para imágenes aéreas y a pie de calle y la razón.}
+  \fichadato{Validación}{Características y porcentajes revisados por el autor frente a la sección~\ref{sec:caracteristicas}; compilación con la plantilla TFUOC.}
+  \fichaprompt{Necesito que crees una tabla para mostrar la viabilidad de las carácterísticas del apartado 2.2, poniendo una fila por cada característica "medible" para imágenes aéreas, a pie de calle. Solo pon las carácterísticas de la sección, y añade un porcentaje para aérea y a pie de calle (haz una estimación, que luego cambiaré a mano), así como una columna con la razón del porcentaje, déjame esta columna sin rellenar.}
+  \fichaajuste{Quitar la columna de artículos, porque ya están en las tablas de características.}
+  \fichaajuste{Separar cada fila con una línea gris fina y centrar verticalmente el contenido.}
+\end{fichaia}

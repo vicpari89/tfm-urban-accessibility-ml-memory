@@ -65,10 +65,8 @@ A continuación se indican cuáles son los incumplimientos típicos de estas nor
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{Dimensiones de pendiente (\texttt{PENDIENTE*}) y anchura (\texttt{ANCHURA*}).}
+        {Dimensiones de pendiente (\texttt{PUNT\_PEND\_*}) y anchura (\texttt{PUNT\_ANCH\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Pavimentos y elementos táctiles indicadores}
@@ -104,10 +102,9 @@ En cuanto a los incumplimientos:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
+\datosplanes{Dimensión de pavimento (\texttt{PAVIMENTO*}).}
+        {Dimensión de pavimento (\texttt{PUNT\_PAVI\_*}).}
 
-\parametroclave{\porrellenar}
 
 % ---------------------------------------------------------------------
 \subsection{Vados peatonales, pasos de peatones e isletas de refugio}
@@ -160,10 +157,8 @@ Se detallan a continuación los efectos de no cumplir con los requisitos:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{Dimensión de cruces (\texttt{CRUCES*}) Hay además columnas \texttt{FCRSEMF*} y \texttt{FCRVADO*}, pero son enlaces a Google Drive (fotografías).}
+        {Dimensión de cruces (\texttt{PUNT\_CRUC\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Obras e intervenciones}
@@ -207,10 +202,8 @@ Los problemas que pueden ocasionar los incumplimientos son:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos (aquí: tratamiento en el análisis)
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{No existe una dimensión de obras. Solo aparece en algunas calles que están de obras en los campos \texttt{TIPOLACT} o \texttt{PROPACT}.}
+        {No existe una dimensión de obras. Solo hay una calle que se indica que está en obras (en el campo\texttt{PROPUESTA}).}
 
 % ---------------------------------------------------------------------
 \subsection{Mobiliario urbano y terrazas}
@@ -245,10 +238,8 @@ Se listan a continuación los incumplimientos y su efecto:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{Dimensión de mobiliario (\texttt{MOBILIAR*}). Las columnas \texttt{FMOB*} son enlaces a Google Drive de fotos o informes.}
+        {Dimensión de mobiliario (\texttt{PUNT\_MOBI\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Calles de plataforma única}
@@ -297,10 +288,8 @@ En cuanto a los incumplimientos típicos, se encuentran:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{No es una dimensión de puntuación, sino una categoría de \texttt{TIPOLACT} («Plataforma»).}
+        {Solo existe con el valor «Plataforma única» de \texttt{TIPOLOGÍA}.}
 
 % ---------------------------------------------------------------------
 \subsection{Señalización y elementos de información}
@@ -333,10 +322,8 @@ Se detallan los incumplimientos y su efecto en las personas:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{Dimensión de señalización (\texttt{SEÑALIZ*}).}
+        {Dimensión de señalización (\texttt{PUNT\_SEÑA\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Iluminación y visibilidad}
@@ -370,10 +357,8 @@ Se listan los incumplimientos y sus efectos:
 \end{inconvenientes}
 
 % (4) Cómo aparece en los datos
-\datosplanes{\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-        {\porrellenar[qué parámetros hay, cómo se han medido y qué escala se ha usado]}
-
-\parametroclave{\porrellenar}
+\datosplanes{Dimensión de iluminación (\texttt{ILUMIN*}).}
+        {Dimensión de iluminación (\texttt{PUNT\_ILUM\_*}).}
 
 % =====================================================================
 \section{Análisis exploratorio de los datos}
@@ -512,9 +497,119 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
 \end{itemize}
 
 % =====================================================================
-\section{De la norma a los datos}
-\label{sec:norma-datos}
+\section{Viabilidad de calcular las dimensiones a partir de imágenes}
+\label{sec:viabilidad}
 % =====================================================================
-\estadobloque{pendiente}{Buscar información del algoritmo que se usa para las dimensiones.}
+\estadobloque{pendiente}{Borrador para revisión. Conecta con OP3 y fundamenta H1, H2 y H5.}
 
-\porrellenar
+Para poder realizar la comprobación científica de las hipótesis de investigación, se necesita discernir cuáles de las dimensiones que tienen puntuación en el informe (pendiente, anchura, pavimento, cruces, mobiliario, señalización, iluminación; y transporte en Albacete) pueden obtenerse a partir de imágenes aéreas o a pie de calle, y cuáles necesitan un análisis \textit{in situ}.
+\\
+
+La tabla~\ref{tab:viabilidad} indica, para cada una de las dimensiones con puntuación en los datos de Albacete y Algeciras cuáles son los artículos de la Orden TMA/851/2021 \cite{mitma_orden_tma851_2021} que la regulan, y si pueden extraerse potencialmente a partir de las imágenes.
+\\
+
+El grado de potencialidad de extracción de imágenes se expresa como un porcentaje aproximado de lo que se podría obtener de cada dimensión, y es un valor subjetivo estimado por el autor de este trabajo. Este resultado permitirá el análisis de las hipótesis, obteniendo el conjunto de dimensiones que se utilizarán en caso de imágenes aéreas, a pie de calle o in situ.
+\\
+
+Idealmente, el grado se podrá calcular de manera empírica cuando se realicen los modelos de visión computacional de extracción de datos geométricos de las imágenes, que se deja como futura línea de investigación.
+\\
+
+\begingroup
+\footnotesize
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.05}
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}m{6.2cm} >{\raggedright\arraybackslash}m{1.5cm} >{\raggedright\arraybackslash}m{1.5cm} >{\raggedright\arraybackslash}m{\dimexpr\textwidth-9.2cm-8\tabcolsep\relax}}
+  \caption{Viabilidad de obtención de puntuación a partir de las imágenes de cada dimensión de accesibilidad.}\label{tab:viabilidad}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Qué hay que medir} & \textbf{Aérea} & \textbf{Calle} & \textbf{Razón} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Qué hay que medir} & \textbf{Aérea} & \textbf{Calle} & \textbf{Razón} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \multicolumn{4}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia.}}
+  \endlastfoot
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pendiente} & \textbf{0\,\%} & \textbf{40\,\%} & \\
+    \Gls{pendiente-longitudinal} ($\leq$~6\,\%) & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Desde el aire no se estima; a pie de calle, con varias fotografías podría hacerse una medición geométrica. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \Gls{pendiente-transversal} ($\leq$~2\,\%) & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Igual que la longitudinal: solo a pie de calle y con varias fotografías. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Pendiente del \glslink{vado-peatonal}{vado} (10\,\% hasta 2\,m, 8\,\% hasta 3\,m) & \cumple{no}\,0\,\% & \cumple{parcial}\,25\,\% & Más difícil de calcular, y algunos tramos pueden quedar tapado en la fotografía. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Anchura} & \textbf{45\,\%} & \textbf{95\,\%} & \\
+    \glslink{ancho-libre-paso}{Anchura libre de paso} ($\geq$~1,80\,m) & \cumple{si}\,90\,\% & \cumple{si}\,90\,\% & Es una medida con facilidad de obtención en ambos tipos de imagen, aunque árboles o toldos pueden taparla. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \Gls{altura-libre-paso} ($\geq$~2,20\,m) & \cumple{no}\,0\,\% & \cumple{si}\,100\,\% & Solo se aprecia a nivel de calle. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pavimento} & \textbf{40\,\%} & \textbf{30\,\%} & \\
+    Resbaladicidad (clase 3 del CTE) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & No es posible extraerla. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Continuidad y resaltes (hasta 4\,mm) & \cumple{no}\,0\,\% & \cumple{parcial}\,25\,\% & Solo se aprecia si la fotografía tiene una resolución extremadamente alta, porque 4\,mm es una medida muy precisa. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \glslink{pavimento-tactil}{Pavimento táctil} de encaminamiento (4\,mm de altura, relieve lineal) & \cumple{parcial}\,75\,\% & \cumple{parcial}\,50\,\% & Desde el aire se ve la forma, pero no los milímetros. A pie de calle, 4\,mm es una medida muy precisa y es difícil de distinguir todo si no hay varias imágenes. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Pavimento táctil de advertencia (4\,mm de altura, botones o franjas) & \cumple{parcial}\,75\,\% & \cumple{parcial}\,50\,\% & Desde el aire se ven potencialmente los botones y franjas, no los milímetros. A pie de calle, 4\,mm es una medida muy precisa. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}\glslink{cruce-peatonal}{Cruces}} & \textbf{70\,\%} & \textbf{50\,\%} & \\
+    Dimensiones del vado (anchura mínima de 1,80\,m, resalte inferior a 4\,mm) & \cumple{parcial}\,75\,\% & \cumple{parcial}\,25\,\% & Desde el aire se ve la anchura, pero no el resalte; a pie de calle se ve el resalte, pero puede quedar tapado fácilmente. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Dimensiones del cruce (anchura igual o mayor que los vados, mínimo 1,80\,m) & \cumple{si}\,100\,\% & \cumple{parcial}\,25\,\% & Desde el aire se ve la anchura completa; a pie de calle haría falta una imagen lateral o un cálculo más complicado. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Semaforización accesible (pulsador entre 0,80 y 1,20\,m, avisador acústico) & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & A pie de calle solo se podría estimar la altura del pulsador, no el avisador acústico. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \glslink{isleta-refugio}{Isletas de refugio} (obligatorias si el cruce supera 14\,m) & \cumple{si}\,100\,\% & \cumple{si}\,100\,\% & Se ven desde ambos tipos de imagen. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}\glslink{mobiliario-urbano}{Mobiliario}} & \textbf{65\,\%} & \textbf{80\,\%} & \\
+    Ubicación del mobiliario (alineado, fuera del itinerario peatonal accesible) & \cumple{si}\,90\,\% & \cumple{si}\,80\,\% & Se ve en planta; los árboles pueden taparlo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Dimensiones y alturas (elementos elevados con altura libre $\geq$~2,20\,m) & \cumple{no}\,0\,\% & \cumple{parcial}\,75\,\% & A pie de calle se podría calcular, pero con dificultades. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Franja libre de paso (anchura mínima del itinerario, 1,80\,m) & \cumple{si}\,90\,\% & \cumple{si}\,80\,\% & Se ve en planta, aunque los árboles pueden taparlo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Ocupación por terrazas (sin invadir el itinerario ni ocultar la señalización) & \cumple{si}\,90\,\% & \cumple{si}\,80\,\% & Se ve en planta, aunque los árboles pueden taparlo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Bolardos (alineados, altura entre 0,75 y 1,00\,m, color contrastado) & \cumple{parcial}\,50\,\% & \cumple{parcial}\,75\,\% & Desde el aire se puede calcular su alineación. A pie de calle se aprecia la altura, pero es más difícil calcular la alineación. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}\glslink{senalizacion}{Señalización}} & \textbf{10\,\%} & \textbf{50\,\%} & \\
+    Legibilidad, contraste y tamaño según la distancia (0,7 a 7,0\,cm) & \cumple{no}\,0\,\% & \cumple{parcial}\,75\,\% & A pie de calle, se podría llegar a estimar si la fotografía tiene resolución suficiente. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Altura de los paneles (entre 0,90 y 1,20\,m) & \cumple{no}\,0\,\% & \cumple{si}\,100\,\% & A pie de calle se puede si la fotografía tiene resolución suficiente. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Información escrita (lectura fácil, pictogramas, nombres de las vías en los cruces) & \cumple{no}\,0\,\% & \cumple{parcial}\,75\,\% & Necesita fotografías de alta resolución. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Señalización táctil (braille y alto relieve) & \cumple{no}\,0\,\% & \cumple{parcial}\,10\,\% & El relieve apenas es visible en una imagen. Se necesita inspección in situ. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Información sonora (señalización acústica en cruces) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & No es observable en una imagen. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Elementos transparentes (bandas opacas de 5 a 10\,cm) & \cumple{parcial}\,50\,\% & \cumple{parcial}\,50\,\% & Potencialmente posible, pero difícil. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Iluminación} & \textbf{15\,\%} & \textbf{30\,\%} & \\
+    Niveles de iluminación (RD 1890/2008) & \cumple{parcial}\,25\,\% & \cumple{parcial}\,50\,\% & Los fija el RD 1890/2008 \cite{rd_1890_2008,guia_mitma_2021}; solo serían estimables con imágenes nocturnas. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Uniformidad luminosa & \cumple{parcial}\,25\,\% & \cumple{parcial}\,25\,\% & Solo estimable con imágenes nocturnas. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Detección de obstáculos & \cumple{no}\,0\,\% & \cumple{parcial}\,10\,\% & Potencialmente, con imágenes de día y de noche. \\
+\end{longtable}
+\endgroup
+
+Los artículos legales de cada requisito se encuentran en las tablas de la sección~\ref{sec:caracteristicas}, de la que solo se incluyen las características que se corresponden con las dimensiones puntuadas en los datos. Transporte, que solo existe en Albacete, no se incluye porque no se describe en esa sección. En la fila de cada dimensión se indica el porcentaje medio de sus requisitos, redondeado a múltiplos de 5. El símbolo resume el porcentaje: \cumple{no}~0\,\%, \cumple{parcial}~10--75\,\% y \cumple{si}~80--100\,\%.
+\\
+
+Según esta estimación, \textbf{ninguna dimensión se puede obtener por completo} a partir de imágenes, aunque algunas se quedan bastante cerca. Ningún requisito llega al 100\,\% desde ambos tipos de imagen, salvo las isletas de refugio, por los problemas que pueden presentar las imágenes, como la vegetación u otros obstáculos que oculten la escena (tabla~\ref{tab:viabilidad}).
+\\
+
+La dimensión más viable es la \textbf{anchura}, sobre todo a pie de calle (95\,\%; desde el aire, 45\,\%). El porcentaje aéreo es bajo porque incluye la altura libre de paso, que solo se aprecia a nivel de calle; la anchura libre de paso, por sí sola, alcanza el 90\,\% en ambos casos. Desde el aire, lo más alto son los cruces (70\,\%), el mobiliario (65\,\%) y la anchura (45\,\%). A pie de calle, tras la anchura, destacan el mobiliario (80\,\%), la señalización (50\,\%) y los cruces (50\,\%).
+\\
+
+Las dimensiones de menor viabilidad son la \textbf{iluminación} (15\,\% desde el aire y 30\,\% a pie de calle, y suponiendo que se dispone de imágenes nocturnas), la \textbf{pendiente} (0\,\% y 40\,\%) y el \textbf{pavimento} (40\,\% y 30\,\%). En el pavimento, la resbaladicidad no se puede extraer de ninguna manera, y los resaltes de 4\,mm solo en parte (25\,\% a pie de calle). La señalización se queda en el 10\,\% desde el aire y en el 50\,\% a pie de calle.
+\\
+
+Esta información servirá para determinar qué dimensiones se utilizan en las hipótesis de investigación (H1, H2, H3 y H5), comprobando la precisión del modelo usando dimensiones que se pueden capturar desde imágenes aéreas, a pie de calle o forzosamente in situ por el equipo técnico.
+\\
