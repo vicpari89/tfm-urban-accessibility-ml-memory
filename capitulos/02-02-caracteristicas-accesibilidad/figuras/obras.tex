@@ -1,0 +1,144 @@
+\begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
+    every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}},
+                              execute at end node={\end{hyphenrules}}},
+    rotulo/.style={rotulomapa, fill=papel, draw=tinta-suave, line width=\trazofino, inner sep=1.5pt, align=left},
+    guia/.style={draw=tinta, line width=\trazofino},
+    obra/.style={fill=superficie, draw=tinta-suave, line width=\trazofino,
+                 postaction={pattern=north west lines, pattern color=tinta-suave}},
+    % valla o protección en alto contraste (bandas tinta / papel)
+    valla/.style={draw=tinta, line width=2.4pt,
+                  postaction={draw=papel, line width=1.4pt, dash pattern=on 3pt off 3pt}},
+    luz/.style={star, star points=6, star point ratio=2, fill=papel, draw=tinta,
+                line width=0.5pt, inner sep=0.9pt},
+    pasamanos/.style={draw=tinta, line width=0.9pt},
+  ]
+
+% =============================== a) PLANTA ===============================
+\node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (-0.1,5.15) {a) Planta};
+\begin{scope}[x=0.4cm, y=0.4cm]
+  % Superficies
+  \fill[seg-calzada]  (0,0)  rectangle (22,6);
+  \fill[seg-acera]    (0,6)  rectangle (22,10);
+  \fill[seg-edificio] (0,10) rectangle (22,11);
+  \draw[tinta-suave, line width=\trazofino] (0,6) rectangle (22,11) (0,10) -- (22,10);
+  \draw[papel, line width=0.7pt, dash pattern=on 5pt off 4pt] (0,0.9) -- (22,0.9);
+  \draw[tinta, line width=1.2pt] (0,6) -- (22,6);
+
+  % 39.1 · IPA mantenido junto al andamio y tras la obra
+  \draw[zonaipa] (0.25,6.45) rectangle (6.75,8.45);
+  \draw[zonaipa] (17.25,6.45) rectangle (21.75,8.45);
+  % 39.2 · Andamio: proyección y pies protegidos en alto contraste
+  \draw[tinta-suave, line width=\trazofino, densely dashed] (0.4,8.65) rectangle (6.6,10);
+  \foreach \x in {0.6,2.5,4.4,6.3}{
+    \fill[seg-obstaculo] (\x-0.15,8.75) rectangle (\x+0.15,9.05);
+    \draw[valla, line width=1.6pt, dash pattern=on 1.5pt off 1.5pt,
+          postaction={draw=papel, line width=0.8pt, dash pattern=on 1.5pt off 1.5pt}]
+          (\x-0.25,8.65) rectangle (\x+0.25,9.15);}
+  % Zona de obras ocupando toda la acera
+  \fill[obra] (7,6) rectangle (17,10);
+  \node[rotulo] at (12.6,8.6) {Zona de obras};
+  % 39.4 · Delimitación de la zona de obras (vallas en alto contraste)
+  \draw[valla] (7,9.75) -- (7,10) (7,8.0) -- (7,6) -- (17,6) -- (17,10);
+  % 39.5 · Puerta de acceso: abre hacia el interior, no invade el IPA
+  \draw[tinta, line width=0.8pt] (7,8.0) -- (8.75,8.0);
+  \draw[tinta, line width=\trazofino, densely dashed] (8.75,8.0) arc[start angle=0, end angle=90, radius=1.75];
+  % 39.3 · Itinerario alternativo exterior sobre la calzada
+  \draw[zonaipa] (4.6,3.75) rectangle (19.4,5.85);
+  \node[rotulo] at (12,4.8) {Itinerario alternativo exterior};
+  \draw[valla] (4.6,3.5) -- (19.4,3.5);
+  \draw[pasamanos] (4.6,3.72) -- (19.4,3.72);
+  % Señalización luminosa
+  \foreach \x in {4.6,12,19.4} {\node[luz] at (\x,3.15) {};}
+
+  % ---- Cotas
+  \draw[cotaref] (4.6,3.5) -- (4.6,-0.6)  (19.4,3.5) -- (19.4,-0.6);
+  \draw[cota] (4.6,-0.35) -- (19.4,-0.35) node[midway, cotatexto] {luces cada $\leq$\,50\,m (fuera de escala)};
+  \begin{scope}[shift={(16.5,-1.6)}]
+    \escalagrafica{(0,0)}{5}{5\,m}
+  \end{scope}
+  % ---- Rótulos
+  \node[rotulo, anchor=west] (r1) at (0.4,7.45) {IPA mantenido};
+  \node[rotulo, anchor=west] (r2) at (0.4,1.95) {Vallas estables y detectables\\con pasamanos continuo};
+  \draw[guia] (r2.east) -- (9.5,3.45);
+  \node[rotulo, anchor=east] (r3) at (21.7,1.95) {Señalización\\luminosa};
+  \draw[guia] (r3.north) -- (19.4,2.95);
+  \node[rotulo, anchor=south west] (r4) at (5.6,11.4) {Andamio: elementos cubiertos\\y en alto contraste};
+  \draw[guia] (2.5,9.15) |- (r4.west);
+
+\end{scope}
+
+% =================== b) SECCIÓN POR EL ITINERARIO ALTERNATIVO ===================
+\begin{scope}[shift={(9.5,3.45)}, x=0.5cm, y=0.7cm]
+  \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0.7,2.65) {b) Sección del itinerario alternativo};
+  % calzada, acera ocupada por la obra y edificación
+  \filldraw[seg-calzada, draw=tinta-suave, line width=\trazofino] (2.4,-0.15) rectangle (6,0);
+  \filldraw[seg-acera, draw=tinta-suave, line width=\trazofino] (6,-0.15) rectangle (10,0.15);
+  \filldraw[seg-edificio, draw=tinta-suave, line width=\trazofino] (10,-0.15) rectangle (10.5,2.6);
+  \fill[obra] (6.15,0.15) rectangle (10,2.0);
+  % valla de la obra (borde de acera) y valla del lado del tráfico
+  \draw[valla] (6.1,0.15) -- (6.1,2.0);
+  \draw[valla] (3.55,0) -- (3.55,1.05);
+  \node[luz] at (3.3,1.12) {};
+  % pasamanos a 0,90 m y guía inferior
+  \fill[tinta] (3.8,0.9) circle (1.4pt);
+  \draw[pasamanos] (3.55,0.9) -- (3.8,0.9);
+  \fill[tinta] (3.62,0.05) rectangle (3.95,0.2);
+  % itinerario y persona
+  \draw[zonaipa] (3.75,0) rectangle (5.95,2.2);
+  \fill[uoc-azul] (4.95,1.62) circle (0.11);
+  \fill[uoc-azul, rounded corners=2pt] (4.8,0.02) rectangle (5.1,1.45);
+  % cotas
+  \draw[cotaref] (3.8,0.9) -- (3.15,0.9);
+  \draw[cota] (3.3,0) -- (3.3,0.9);
+  \node[cotatexto, anchor=east, fill=none, align=right] at (3.2,0.45) {pasamanos\\0,90\,m};
+  \node[rotulomapa, anchor=south east, align=right, inner sep=1pt] at (3.3,1.3) {valla $\geq$\,0,90\,m\\con luz exterior};
+  \draw[cotaref] (3.75,0) -- (3.75,-0.55)  (5.95,0) -- (5.95,-0.55);
+  \draw[cota] (3.75,-0.45) -- (5.95,-0.45) node[cotatexto, anchor=west, at end, xshift=2pt, fill=none] {$\geq$\,1,80\,m};
+  % rótulos
+  \node[rotulo] at (8.05,1.1) {Zona de obras};
+  \draw[guia] (3.95,0.12) -- (3.2,-0.45) node[rotulomapa, anchor=east, inner sep=1pt] {guía inferior};
+\end{scope}
+
+% ======================== c) SECCIÓN POR EL ANDAMIO ========================
+\begin{scope}[shift={(9.5,0.35)}, x=0.5cm, y=0.7cm]
+  \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0.7,2.65) {c) Sección por el andamio};
+  \filldraw[seg-calzada, draw=tinta-suave, line width=\trazofino] (2.4,-0.15) rectangle (6,0);
+  \filldraw[seg-acera, draw=tinta-suave, line width=\trazofino] (6,-0.15) rectangle (10,0.15);
+  \filldraw[seg-edificio, draw=tinta-suave, line width=\trazofino] (10,-0.15) rectangle (10.5,2.75);
+  % andamio: pies, plataforma y marquesina sobre el itinerario
+  \fill[seg-obstaculo] (8.65,0.15) rectangle (8.8,2.6);
+  \fill[seg-obstaculo] (9.85,0.15) rectangle (10,2.6);
+  \fill[seg-obstaculo] (6.6,2.45) rectangle (10,2.55);
+  \draw[seg-obstaculo, line width=0.8pt] (8.72,2.5) -- (9.92,1.4);
+  % protección en alto contraste hasta 2,20 m
+  \draw[valla, line width=2.8pt, postaction={draw=papel, line width=1.6pt, dash pattern=on 3pt off 3pt}]
+       (8.72,0.15) -- (8.72,2.2);
+  % IPA bajo la marquesina
+  \draw[zonaipa] (6.45,0.15) rectangle (8.5,2.2);
+  \fill[uoc-azul] (7.5,1.77) circle (0.11);
+  \fill[uoc-azul, rounded corners=2pt] (7.35,0.17) rectangle (7.65,1.6);
+  % cotas
+  \draw[cotaref] (6.45,2.2) -- (5.7,2.2);
+  \draw[cota] (5.85,0.15) -- (5.85,2.2) node[midway, cotatexto, rotate=90] {$\geq$\,2,20\,m};
+  \draw[guia] (8.72,1.3) -- (7.1,-0.55) node[rotulomapa, anchor=north, align=center, inner sep=1pt]
+    {pie protegido en alto contraste\\hasta 2,20\,m};
+\end{scope}
+
+% =============================== Leyenda ===============================
+\begin{scope}[shift={(0.1,-1.45)}]
+  \foreach \c/\t/\x in {seg-edificio/Edificación/0, seg-acera/Acera/2.2, seg-calzada/Calzada/3.8,
+                        seg-obstaculo/Andamio/5.7} {
+    \node[muestra, fill=\c] at (\x+0.15,0) {};
+    \node[rotulomapa, anchor=west] at (\x+0.32,0) {\t};}
+  \node[muestra, obra] at (7.65,0) {};  \node[rotulomapa, anchor=west] at (7.82,0) {Zona de obras};
+  \draw[zonaipa] (10.0,-0.12) rectangle (10.3,0.12); \node[rotulomapa, anchor=west] at (10.4,0) {Itinerario accesible};
+  \begin{scope}[shift={(0,-0.5)}]
+    \draw[valla] (0,0) -- (0.5,0);           \node[rotulomapa, anchor=west] at (0.6,0) {Valla o protección en alto contraste};
+    \draw[pasamanos] (5.6,0) -- (6.1,0);     \node[rotulomapa, anchor=west] at (6.2,0) {Pasamanos};
+    \node[luz] at (8.25,0) {};               \node[rotulomapa, anchor=west] at (8.45,0) {Señalización luminosa};
+    \draw[tinta, line width=0.8pt] (11.6,-0.12) -- (11.9,-0.12);
+    \draw[tinta, line width=\trazofino, densely dashed] (11.9,-0.12) arc[start angle=0, end angle=90, radius=0.3];
+    \node[rotulomapa, anchor=west] at (12.0,0) {Puerta};
+  \end{scope}
+\end{scope}
+\end{tikzpicture}

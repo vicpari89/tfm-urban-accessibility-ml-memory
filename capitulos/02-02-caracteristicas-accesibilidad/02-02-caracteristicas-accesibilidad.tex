@@ -1,0 +1,773 @@
+% =====================================================================
+\section{Características del entorno urbano accesible}
+\label{sec:caracteristicas}
+% =====================================================================
+
+Una vez identificada la norma Orden TMA/851/2021 como la normativa legal de referencia, en esta sección se va a realizar la extracción de los requisitos técnicos específicos para considerar una vía como accesible: itinerarios peatonales accesibles, obras, mobiliario o vados y pasos peatonales.
+\\
+
+En cada una de las categorías de características, se describen los parámetros mínimos establecidos, cuáles son los incumplimientos habituales y de qué manera afectan a la diversidad funcional, y finalmente cómo aparecen en los conjuntos de datos de Albacete y Algeciras.
+\\
+
+Se identifican también los parámetros que se pueden extraer automáticamente desde imágenes aéreas o transversales, sirviendo de base para las hipótesis de investigación.
+\\
+
+% ---------------------------------------------------------------------
+\subsection{Itinerario peatonal accesible (IPA)}
+\label{subsec:ipa}
+
+El itinerario peatonal accesible (IPA) es la parte de uso peatonal de la vía urbana que garantiza la movilidad segura y circulación, de manera autónoma por parte de todas las personas, independientemente de su diversidad funcional.
+\\
+
+\textbf{La anchura libre de paso} es el ancho del área de itinerario peatonal que permite la circulación de peatones totalmente libre de obstáculos, tanto permanentes como temporales.
+\\
+
+\textbf{La altura libre de paso} es el alto del trayecto peatonal durante el que las personas pueden circular sin riesgo de impacto contra elementos situados superiormente.
+\\
+
+\textbf{La pendiente longitudinal} es la inclinación del itinerario, en porcentaje, en dirección de la marcha.
+\\
+
+Mientras que \textbf{la pendiente transversal} es la inclinación del itinerario, en porcentaje, perpendicular a la dirección de la marcha.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos del itinerario peatonal accesible.}{tab:req-ipa}
+  Anchura libre de paso    & Anchura mínima de 1,80 metros. & art. 5.2.a y 5.2.b \\
+  \cmidrule(lr){1-3}
+  Altura libre de paso     & Altura mínima de 2,20 metros. & art. 5.2.c \\
+  \cmidrule(lr){1-3}
+  Pendiente longitudinal   & Máxima del 6\%. & art. 5.2.g \\
+  \cmidrule(lr){1-3}
+  Pendiente transversal    & Máxima del 2\%. & art. 5.2.f \\
+  \cmidrule(lr){1-3}
+  Resaltes y desniveles    & Sin escalones aislados & art. 5.2.d \\
+  \cmidrule(lr){1-3}
+  Continuidad              & Sin interrupciones ni obstáculos en todo el recorrido. Uniforme horizontal y vertical. & art. 5.2.a \\
+  \cmidrule(lr){1-3}
+  Ubicación                & Preferentemente junto a la línea de fachada. En caso de no poder cumplirse, instalar una franja guía de pavimento táctil. & art. 5.2.a, 45 y 46 \\
+  \cmidrule(lr){1-3}
+  Plataforma única         & Incorporar señalización adecuada para separar la zona peatonal de la zona de circulación. & art. 5.3 \\
+\end{tablarequisitos}
+
+\autoref{fig:ipa-plano} ilustra gráficamente cómo se miden y aplican estos parámetros en el itinerario peatonal accesible.
+\\
+
+A continuación se indican cuáles son los incumplimientos típicos de estas normas, y su efecto:
+% (3) Incumplimientos típicos y su efecto
+\begin{inconvenientes}
+  \item \textbf{Anchura libre inferior a la exigida:} hace inviable la circulación de personas con movilidad reducida, en silla de ruedas o con carritos de bebé o de la compra.
+  \item \textbf{Altura libre insuficiente:} riesgo de impacto en las personas altas, y personas con discapacidad visual.
+  \item \textbf{Pendiente longitudinal superior al 6\%:} complicación de la circulación para personas usuarias de silla de ruedas, personas mayores y aquellas con problemas del corazón o esfuerzo físico.
+  \item \textbf{Pendiente transversal excesiva:} hace que las personas usuarias de silla de ruedas o diferentes tipos de carrito no sigan una línea recta, desviándose involuntariamente hacia la pendiente, dificultando el tránsito de peatones.
+  \item \textbf{Falta de continuidad:} interrumpe la circulación de peatones, dificultando el movimiento de personas ciegas o con diversidad cognitiva.
+  \item \textbf{Falta de señalización en plataformas únicas:} incrementa el riesgo de atropello para todo tipo de peatones, con mayor incidencia en las personas ciegas o con problemas cognitivos.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{Dimensiones de pendiente (\texttt{PENDIENTE*}) y anchura (\texttt{ANCHURA*}).}
+        {Dimensiones de pendiente (\texttt{PUNT\_PEND\_*}) y anchura (\texttt{PUNT\_ANCH\_*}).}
+
+% ---------------------------------------------------------------------
+\subsection{Pavimentos y elementos táctiles indicadores}
+\label{subsec:pavimentos}
+
+% (1) Qué es y por qué importa
+La elección del pavimento, así como su calidad y estado, son vitales para garantizar la seguridad en la accesibilidad de vías urbanas. Se deben optar por superficies uniformes, que no resbalen y que ofrezcan una estabilidad para todas las personas, independientemente de su diversidad funcional.
+\\
+
+Se regulan los tipos de pavimento táctil según su finalidad, distinguiento entre advertencia y encaminamiento. En cuanto a los pavimentos de advertencia, son necesarios para indicar la cercanía a un peligro, desnivel u obstáculo; o fin de una zona de riesgo, alertando a las personas ciegas o con baja visión.
+\\
+
+Por otro lado, los pavimentos de encaminamiento se utilizan para orientar y dirigir a las personas, utilizando franjas de inicio y acabado.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de pavimentos y elementos táctiles indicadores.}{tab:req-pavimentos}
+  Resbaladicidad                     & El material debe cumplir con los requisitos de accesibilidad Clase 3 (resistencia al deslizamiento mayor a 45) del Código Técnico de la Edificación. & art. 11.1, Real Decreto 314/2006, de 17 de marzo \\
+  \cmidrule(lr){1-3}
+  Continuidad y resaltes             & Superficie dura y estable y sin resaltes superiores a 4 mm. & art. 11.1, 12.1 \\
+  \cmidrule(lr){1-3}
+  Pavimento táctil de encaminamiento & Piezas de 4 mm de altura y 40 cm de anchura, de relieve lineal. & art. 45.2.a \\
+  \cmidrule(lr){1-3}
+  Pavimento táctil de advertencia    & Piezas de 4 mm de altura y 40 cm de anchura, de relieve de botones o franjas. & art. 45.2.b \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+En cuanto a los incumplimientos:
+\begin{inconvenientes}
+  \item \textbf{Pavimentos resbaladizos:} aumento de riesgo de caídas, disminución de la movilidad, afectando a personas mayores, gente usuaria de sillas de ruedas o muletas, incluso a toda la población.
+  \item \textbf{Resaltes elevados (alcantarillas, baldosines):} riesgo de tropiezos y caídas, afectando principalmente a personas mayores o con problemas de movilidad, también a toda la población - por ejemplo, personas mirando el móvil.
+  \item \textbf{Ausencia de pavimento táctil:} en el caso de advertencias, dificultad para detectar peligros, especialmente para personas ciegas; o en el caso de encaminamiento, posibilidad de pérdida de la trayectoria en línea recta, con riesgo de invasión de calzada o cruces con otras personas.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{Dimensión de pavimento (\texttt{PAVIMENTO*}).}
+        {Dimensión de pavimento (\texttt{PUNT\_PAVI\_*}).}
+
+
+% ---------------------------------------------------------------------
+\subsection{Vados peatonales, pasos de peatones e isletas de refugio}
+\label{subsec:vados}
+
+% (1) Qué es y por qué importa
+Los vados, pasos o isletas constituyen los cruces peatonales con el tráfico rodante, y constituyen puntos críticos con alta siniestralidad y mayor riesgo para los peatones si no se diseñan de manera correcta.
+\\
+
+En primer lugar, un \textbf{vado peatonal} es el área de la acera destinada al inicio del cruce peatonal, habilitando un acceso seguro a la calzada, generalmente utilizando una inclinación suave para salvar el habitual desnivel entre la acera y la calzada.
+\\
+
+El siguiente elemento que se encuentran las personas es el \textbf{paso de peatones}, siendo el área de la calzada destinada al cruce seguro de peatones, suficientemente señalizada y delimitada para garantizar la visibilidad, y en ocasiones ayudada por semaforización.
+\\
+
+Por último, las \textbf{isletas de refugio} son áreas intermedias situadas en la calzada habilitadas para permitir a la ciudadanía cruzar la calzada en los tiempos necesarios, sirviendo de lugar seguro de espera, especialmente para calzadas anchas y avenidas.
+\\
+
+\begin{figure}[htbp]
+\centering
+\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/vados}
+\caption{Vados, pasos de peatones e isletas de refugio: disposición en planta y parámetros
+  mínimos (tabla~\ref{tab:req-vados}).}
+\label{fig:vados}
+\fuente{elaboración propia a partir de la Orden TMA/851/2021, con asistencia de Claude (Anthropic) mediante instrucciones del autor~\cite{claude}.}
+\end{figure}
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de vados, pasos de peatones e isletas.}{tab:req-vados}
+  Dimensiones del vado         & Anchura mínima de 1,80 m, con resalte inferior a 4 mm. & art. 20.2 \\
+  \cmidrule(lr){1-3}
+  Pendiente del vado           & Pendiente longitudinal máxima del 8\% (tramos hasta 3 m), o 10\% (tramos hasta 2 m) en el plano inclinado y transversal máxima del 2\%. & art. 20.6 \\
+  \cmidrule(lr){1-3}
+  Dimensiones del cruce        & Anchura igual o mayor que los vados que lo inician y finalizan (mínimo 1,80 m). & art. 21.3 \\
+  \cmidrule(lr){1-3}
+  Pavimento táctil en el cruce & Franja táctil indicador de advertencia (60 a 120 cm) separada de calzada 10 a 30 cm. Franja-guía direccional (80 a 120 cm) desde fachada al centro de advertencia, perpendicular al tráfico y alineada con el lado opuesto. & art. 20 y 21.4 \\
+  \cmidrule(lr){1-3}
+  Semaforización accesible     & Pulsador accesible (altura entre 0,80 y 1,20 m) a menos de 1,50 m del límite externo y avisador acústico homologado (activado por demanda o mando). & art. 23 \\
+  \cmidrule(lr){1-3}
+  Isletas de refugio           & Anchura mínima igual al paso de peatones (mínimo 1,80 m) y nivelada con la calzada o con vados. Son obligatorios para distancias de cruce mayores a 14 m. & art. 22 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+Se detallan a continuación los efectos de no cumplir con los requisitos:
+\begin{inconvenientes}
+  \item \textbf{Desnivel entre calzada y vado peatonal elevado:} riesgo de vuelco para personas usuarias de silla de ruedas, o dificultad (incluso imposibilidad) de acceso a la calzada.
+  \item \textbf{Pendiente del vado excesiva:} peligro para las personas usuarias de silla de ruedas, con movilidad reducida o mayores, dificultando o impidiendo el acceso al cruce.
+  \item \textbf{Falta o inoperatividad del aviso acústico en semáforos:} hace más difícil el cruce seguro para personas ciegas o con discapacidad visual.
+  \item \textbf{Isleta de refugio con ancho insuficiente:} echa atrás a las personas con problemas de movilidad o agilidad, por no poder utilizar las isletas como refugio seguro para cruzar.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{Dimensión de cruces (\texttt{CRUCES*}) Hay además columnas \texttt{FCRSEMF*} y \texttt{FCRVADO*}, pero son enlaces a Google Drive (fotografías).}
+        {Dimensión de cruces (\texttt{PUNT\_CRUC\_*}).}
+
+% ---------------------------------------------------------------------
+\subsection{Obras e intervenciones}
+\label{subsec:obras}
+
+% (1) Qué es y por qué importa
+Las obras constituyen, según la \textit{Guía para una política integral de promoción y gestión} del IMSERSO \cite{sala_alonso_2012}, el mayor obstáculo para la accesibilidad peatonal en la vía pública. Además, dada su circustancia temporal, impide a las administraciones a determinar la accesibilidad real de la vía pública en todo momento.
+\\
+
+Por este motivo fundamental, se incluye en la normativa un capítulo exclusivo a obras e intervenciones (capítulo X).
+\\
+
+\begin{figure}[htbp]
+\centering
+\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/obras}
+\caption{Obras e intervenciones en la vía pública: continuidad del itinerario peatonal
+  accesible, itinerario alternativo, delimitación y protección (tabla~\ref{tab:req-obras}).}
+\label{fig:obras}
+\fuente{elaboración propia a partir de la Orden TMA/851/2021, con asistencia de Claude (Anthropic) mediante instrucciones del autor~\cite{claude}.}
+\end{figure}
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de las obras e intervenciones en la vía pública.}{tab:req-obras}
+  Itinerario peatonal accesible   & O mantenerlo accesible o demarcar uno alternativo señalizado según lo indicado en art. 5. & art. 39.1 \\
+  \cmidrule(lr){1-3}
+  Andamios y estructuras provisionales & Elementos externos cubiertos frente a golpes, garantizando accesibildad con colores alto contraste. & art. 39.2 \\
+  \cmidrule(lr){1-3}
+  Itinerario alternativo exterior  & Pasamanos continuo a 90 cm altura y guía inferior; o franja-guía de pavimento táctil indicador. & art. 39.3 \\
+  \cmidrule(lr){1-3}
+  Delimitación de zonas de obras   & Vallas estables y detectables, altura mín. 90 cm. Señalización luminosa cada 50 m, con color contrastado. & art. 39.4 \\
+  \cmidrule(lr){1-3}
+  Puertas, portones y accesos      & No invadirán el itinerario peatonal accesible. Elementos sobresalientes protegidos con color contrastado hasta 2,20 m de altura. & art. 39.5 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+Los problemas que pueden ocasionar los incumplimientos son:
+\begin{inconvenientes}
+  \item \textbf{Ancho del itinerario provisional (provisional) insuficiente:} mismos problemas que en un IPA de menos de 1,80 m.
+  \item \textbf{Falta de elementos táctiles indicadores:} pueden provocar caídas o desorientación en personas con discapacidad visual o con problemas cognitivos.
+  \item \textbf{Elementos de protección mal cubiertos:} pueden provocar accidentes o caídas de elementos que impacten en peatones, de todo tipo de diversidad.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos (aquí: tratamiento en el análisis)
+\datosplanes{No existe una dimensión de obras. Solo aparece en algunas calles que están de obras en los campos \texttt{TIPOLACT} o \texttt{PROPACT}.}
+        {No existe una dimensión de obras. Solo hay una calle que se indica que está en obras (en el campo\texttt{PROPUESTA}).}
+
+% ---------------------------------------------------------------------
+\subsection{Mobiliario urbano y terrazas}
+\label{subsec:mobiliario}
+
+% (1) Qué es y por qué importa
+El mobiliario urbano y las terrazas de hostelería consituyen un punto crítico en la accesibilidad de las calles, al ubicarse en el ancho de las aceras.
+\\
+
+Por lo que su disposición y delimitaciones se deben regular cuidadosamente para no obstaculizar las trayectorias peatonales accesibles.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos del mobiliario urbano y las terrazas.}{tab:req-mobiliario}
+  Ubicación del mobiliario & Alineado en una banda específica fuera del itinerario peatonal accesible, preferentemente colindante al bordillo. & art. 25.1 \\
+  \cmidrule(lr){1-3}
+  Dimensiones y alturas    & Elementos elevados deben tener una altura libre $\ge$ 2,20 m o estar protegidos hasta el suelo detectables con bastón. & art. 25.2 \\
+  \cmidrule(lr){1-3}
+  Franja libre de paso     & Se debe mantener la anchura mínima del IPA (1,80 m), respetando la línea de fachada. & art. 25.1 y art. 5 \\
+  \cmidrule(lr){1-3}
+  Ocupación por terrazas   & Terrazas, mamparas o puestos temporales no podrán invadir el IPA, ni ocultar la señalización. & art. 25.3 \\
+  \cmidrule(lr){1-3}
+  Bolardos                 & Alineados, con altura entre 0,75 y 1,00 m y color contrastado diferenciador. & art. 29 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+Se listan a continuación los incumplimientos y su efecto:
+\begin{inconvenientes}
+  \item \textbf{Mobiliario no alineado:} elimina previsibilidad en el trayecto, y dificulta la movilidad a personas con baja visión o con diversidad cognitiva.
+  \item \textbf{Invasión de la franja peatonal por terrazas:} reduce la anchura libre establecida en el artículo 5, con los mismos problemas indicados anteriormente.
+  \item \textbf{Elementos elevados invadiendo la franja peatonal:} peligro de impacto con los peatones, especialmente en las personas altas y con discapacidad visual.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{Dimensión de mobiliario (\texttt{MOBILIAR*}). Las columnas \texttt{FMOB*} son enlaces a Google Drive de fotos o informes.}
+        {Dimensión de mobiliario (\texttt{PUNT\_MOBI\_*}).}
+
+% ---------------------------------------------------------------------
+\subsection{Calles de plataforma única}
+\label{subsec:plataforma}
+
+% (1) Qué es y por qué importa
+Las plataformas únicas son una solución para las calles estrechas cuyo ancho impida la construcción de un itinerario peatonal accesible con bordillos, en base a los mínimos requisitos de la normativa.
+\\
+
+Necesitan combinar la integración de la accesibilidad de las calles con la convivencia entre peatones y vehículos. Tienen prioridad peatonal, y la acera y la calzada se encuentran al mismo nivel, para evitar barreras físicas que penalicen al tránsito peatonal.
+\\
+
+La guía de la ONCE distingue dos tipos \cite{once_2024}: \textbf{tránsito compartido}, donde toda la superficie es de prioridad peatonal con una zona delimitada para los vehículos; y \textbf{tránsito diferenciado}, donde acera y calzada se dividen utilizando pavimentos diferentes, con franjas de aviso o mobiliario separador.
+\\
+
+% (2) Parámetros que exige la Orden
+
+\textbf{Plataforma única de tránsito compartido}
+
+\begin{tablarequisitos}{Requisitos de plataforma única de tránsito compartido.}{tab:req-plataforma-compartido}
+  Velocidad máxima                & Como mucho 20 km/h. & art. 5.3, ONCE 2024 \\
+  \cmidrule(lr){1-3}
+  Prioridad peatonal y organización & Las personas pueden caminar y trasladarse por toda la zona. Solo se autoriza el paso de un grupo restringido de vehículos (residentes, carga y descarga o emergencias; pero nunca transporte urbano). & ONCE 2024, 5.1--5.4 \\
+  \cmidrule(lr){1-3}
+  Pavimento homogéneo             & Se usa el mismo pavimento en toda la plataforma; el mobiliario debe estar alineado uniformemente. & ONCE 2024, 5.5 \\
+  \cmidrule(lr){1-3}
+  Zona de entrada y salida        & Es la zona que necesita más seguridad. Anchura mínima de 1,80 m desde fachada a ambos lados. Banda tacto-visual de advertencia de 40 a 60 cm o banda de encaminamiento. & ONCE 2024, 5.6 \\
+\end{tablarequisitos}
+
+\medskip
+\textbf{Plataforma única de tránsito diferenciado}
+
+\begin{tablarequisitos}{Requisitos de plataforma única de tránsito diferenciado.}{tab:req-plataforma-diferenciado}
+  Pavimento                 & Acera y calzada diferenciadas por pavimento distinto (color y textura). & ONCE 2024, 6.1 \\
+  \cmidrule(lr){1-3}
+  Bandas delimitación       & Banda tacto-visual de advertencia de 40 a 60 cm. Mobiliario alineado con separación máxima 120 cm. & art. 46, ONCE 2024, 6.2 \\
+  \cmidrule(lr){1-3}
+  Señalización normalizada  & Señalización vertical y horizontal indicando velocidad máxima, estacionamiento autorizado y delimitación peatón-vehículo. & art. 5.3, ONCE 2024, 6.4 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+En cuanto a los incumplimientos típicos, se encuentran:
+\begin{inconvenientes}
+  \item \textbf{Vehículos no respetan la prioridad:} hace añicos la plataforma única, y transmite inseguridad y un elevado riesgo de accidentes a todas las personas, afectando especialmente a las personas ciegas.
+  \item \textbf{Ausencia de bandas de delimitación en tránsito diferenciado:} potencial invasión de la zona delimitada a los vehículos por parte de peatones, con riesgo de atropello, afectando principalmente a las personas con baja visión.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{No es una dimensión de puntuación, sino una categoría de \texttt{TIPOLACT} («Plataforma»).}
+        {Solo existe con el valor «Plataforma única» de \texttt{TIPOLOGÍA}.}
+
+% ---------------------------------------------------------------------
+\subsection{Señalización y elementos de información}
+\label{subsec:senalizacion}
+
+% (1) Qué es y por qué importa
+La normativa estatal establece requisitos específicos para la señalización y los carteles informativos, para que puedan ser detectados y leídos por todas las personas, independientemente de su diversidad. Cabe recordar que la accesibilidad universal necesita tener en cuenta no solo los problemas de movilidad, sino aspectos auditivos, para las personas ciegas y con baja audición o aspectos de adaptación de la lectura, para personas ciegas.
+\\
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de señalización y elementos de información.}{tab:req-senalizacion}
+  Señalización visual & Fuentes legibles, tamaño según distancia (0,7 a 7,0 cm), altura entre 0,90 y 1,20 m, con mínimo contraste cromático, evitando reflejos o sombras. & art. 41 \\
+  \cmidrule(lr){1-3}
+  Información escrita & Priorizar lectura fácil, con textos concisos con pictogramas. Uniformidad de los paneles en el municipio. Nombres de las vías obligatorios en todos los cruces. & art. 40, 41, 42 \\
+  \cmidrule(lr){1-3}
+  Señalización táctil & Información en Braille y alto relieve en todos los carteles. & art. 44 \\
+  \cmidrule(lr){1-3}
+  Información sonora & Señalización acústica audible en cruces, acompañada de señalización visual equivalente. & art. 41 \\
+  \cmidrule(lr){1-3}
+  Elementos transparentes & Obligación de señalizar con bandas opacas de 5 a 10 cm a alturas: entre 0,85 y 1,10 m la primera y de 1,50a 1,70 m la segunda. & art. 42 \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+Se detallan los incumplimientos y su efecto en las personas:
+\begin{inconvenientes}
+  \item \textbf{Falta de paneles informativos o a mala altura:} genera problemas de orientación a todas las personas. Una mala colocación impide que personas en silla de ruedas o con problemas visuales alcancen la información.
+  \item \textbf{Falta de contraste cromático y visual:} hace difícil o imposible la lectura a personas con baja visión o daltónicas, por no poder distinguir los textos o pictogramas.
+  \item \textbf{Ausencia de información en Braille o altorrelieve:} provoca problemas de orientación a personas ciegas o de baja visión, al no poder leer la información de los paneles.
+  \item \textbf{Falta de señalización acústica en cruces:} dificulta el cruce seguro a personas con discapacidad visual, al no saber directamente cuándo es posible iniciar el cruce.
+  \item \textbf{Cristales sin señalización táctil:} aumenta el riesgo de colisión contra la superficie transparente para todas las personas, pero especialmente para personas ciegas o con problemas de visión.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{Dimensión de señalización (\texttt{SEÑALIZ*}).}
+        {Dimensión de señalización (\texttt{PUNT\_SEÑA\_*}).}
+
+% ---------------------------------------------------------------------
+\subsection{Iluminación y visibilidad}
+\label{subsec:iluminacion}
+
+% (1) Qué es y por qué importa
+La iluminación influye de manera notable en la seguridad de las personas cuando se desplazan por la vía pública en horas de baja visibilidad natural, como las horas nocturnas o los días con niebla, lluvia o cielos cubiertos.
+\\
+
+Aunque la orden de referencia TMA/851/2021 establece ciertos requisitos de iluminación para las vías accesibles, las características específicas de los niveles de iluminación están regulados por el Real Decreto 1890/2008 sobre eficiencia energética.
+\\
+
+La mayoría de estos parámetros necesitan que los equipos técnicos necesiten desplazarse in situ, para el uso de luxómetros; por lo que son complicados de obtener mediante el uso de imágenes aéreas o a pie de calle.
+\\
+
+% (2) Parámetros que exige la Orden
+\begin{tablarequisitos}{Requisitos de iluminación en itinerarios peatonales accesibles.}{tab:req-iluminacion}
+  Niveles de iluminación & Ajustados a los especificados en \cite{rd_1890_2008} sobre eficiencia energética en alumbrado exterior. & art. 5.2.h \\
+  \cmidrule(lr){1-3}
+  Uniformidad luminosa & Distribución homogénea de luz sin zonas oscuras, sombras o deslumbramientos que dificulten la visibilidad. & \cite{rd_1890_2008} \\
+  \cmidrule(lr){1-3}
+  Detección de obstáculos & Iluminación suficiente que permita detectar posibles obstáculos como mobiliario, rejillas, marquesinas o cambios de nivel. & art. 5.2.h \\
+\end{tablarequisitos}
+
+% (3) Incumplimientos típicos y su efecto
+Se listan los incumplimientos y sus efectos:
+\begin{inconvenientes}
+  \item \textbf{Niveles de iluminación insuficientes o irregulares:} afecta a todas las personas, cuando los niveles de luz natural no permiten la visión, pudiendo provocar accidentes o caídas.
+  \item \textbf{Deslumbramientos o reflejos:} pueden ocasionar molestias así como posibles caídas, especialmente en aquellas personas con baja visión.
+  \item \textbf{Falta de iluminación en cruces u obstáculos:} ocasiona dificultad, miedo o impedimento de cruzar las calzadas, así como posible riesgo de accidente o impacto, en todas las personas, pero especialmente en las que tienen problemas de visión.
+\end{inconvenientes}
+
+% (4) Cómo aparece en los datos
+\datosplanes{Dimensión de iluminación (\texttt{ILUMIN*}).}
+        {Dimensión de iluminación (\texttt{PUNT\_ILUM\_*}).}
+
+% =====================================================================
+\section{Análisis exploratorio de los datos}
+\label{sec:analisis-exploratorio}
+
+Para poder evaluar con qué datos se cuenta para la realización del trabajo, se realiza un análisis exploratorio de los conjuntos de datos aportados por el tutor, de las ciudades de Albacete y Algeciras.
+
+\medskip
+\noindent\textit{Origen de los datos.} Los conjuntos de datos han sido facilitados por el tutor, y son los resultados de los análisis de accesibilidad del viario urbano (y de los edificios públicos) realizados por los equipos técnicos contratados por los ayuntamientos.
+
+\medskip
+\noindent\textit{Observaciones del análisis.} Al realizar el análisis exploratorio, en ambas ciudades se observaron patrones similares en cuanto a las variables evaluadas, y las variables de resultados o clase. Por esta similitud, se ha inferido que:
+\begin{itemize}
+  \item o bien existe una metodología común para realizar estos análisis de accesibilidad,
+  \item o bien se han realizado por la misma empresa.
+\end{itemize}
+
+\medskip
+\noindent\textit{Verificación de la empresa adjudicataria.} Tras consultar la Plataforma de Contratación del Estado, se ha podido verificar que en ambas ciudades la empresa adjudicataria de los contratos fue la misma, ACCESIA~\cite{contrato_albacete_2021,contrato_algeciras_2025}. Los expedientes se recogen en la Tabla~\ref{tab:contratos}:
+
+\begin{table}[H]
+  \centering
+  \caption{Contratos de los análisis de accesibilidad de Albacete y Algeciras.}
+  \label{tab:contratos}
+  \small
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{l c >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla
+    \textbf{Ciudad} & \textbf{Año del contrato} & \textbf{Expediente} \\
+    \midrule
+    Albacete  & 2021 & \href{https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion\&idEvl=B\%2BdESdnRNPBvYnTkQN0\%2FZA\%3D\%3D}{Expediente de Albacete} \\
+    Algeciras & 2025 & \href{https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion\&idEvl=s4jpjymDFxh\%2FR5QFTlaM4A\%3D\%3D}{Expediente de Algeciras} \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{Plataforma de Contratación del Estado~\cite{contrato_albacete_2021,contrato_algeciras_2025}.}
+\end{table}
+
+\subsection{Resultados del análisis exploratorio}
+
+Los conjuntos de datos contienen una fila por cada calle o tramo de calle, con una puntuación de accesibilidad en cada \gls{dimension-accesibilidad} de la \gls{orden-tma-851-2021}~\cite{mitma_orden_tma851_2021}, incluyendo anchura, pendiente, iluminación, pavimento, cruces, señalización, mobiliario y transporte (únicamente Albacete); y en cada dimensión, evaluando diferentes tipos de \gls{diversidad-funcional}.
+
+\medskip
+\noindent\textit{Tipos de diversidad funcional.}
+\begin{itemize}
+  \item \textbf{Algeciras:} las tipologías de diversidad evaluadas incluyen 3 tipos diferentes: funcional, sensorial y cognitiva.
+  \item \textbf{Albacete:} hay 5 tipos diferentes: silla de ruedas, movilidad reducida, visión, hipoacusia y cognitiva.
+\end{itemize}
+
+\noindent\textit{Escala de puntuación.}
+\begin{itemize}
+  \item \textbf{Algeciras:} escala de 0 a 5, en orden ascendente, siendo 0 la peor accesibilidad y 5 la mejor.
+  \item \textbf{Albacete:} escala de 0 a 100, siguiendo un orden también ascendente.
+\end{itemize}
+En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcional son números enteros, lo que sugiere que la empresa ha usado un algoritmo de cálculo por suma o resta de puntos según se cumplan o no los requisitos de la normativa, aunque no hay forma de comprobarlo (véase la subsección~\ref{sec:limitaciones-datos}).
+
+\medskip
+\noindent\textit{Unidad de cada fila.} En ambos conjuntos se incluye una variable con el nombre de la calle, aportando la puntuación por calle, con algunas calles separadas por tramos. Algeciras también incluye el nombre de la barriada, y algunas calles están separadas por barriadas.
+
+\medskip
+\noindent\textit{Tipología de la vía.} Cada calle cuenta con una columna que indica la tipología de la vía, es decir, si se trata de:
+\begin{itemize}
+  \item una calle peatonal,
+  \item de \gls{plataforma-unica},
+  \item o de tráfico diferenciado (Algeciras distingue entre calles con un carril, o con más, pero no Albacete),
+  \item así como otros tipos como plaza, bulevar, o en obras.
+\end{itemize}
+
+\medskip
+\noindent\textit{Presupuesto y propuesta de actuación.} En ambos casos se indica en una variable el presupuesto en euros asignado a cada calle tras la evaluación de accesibilidad; y una propuesta de actuación, en la que se distingue entre:
+\begin{itemize}
+  \item mejoras en la vía existente,
+  \item cambio de tipología,
+  \item o no realizar ninguna actuación.
+\end{itemize}
+
+
+
+Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único conjunto de datos, cuya correspondencia se muestra en la Tabla~\ref{tab:columnas-unificadas}.
+
+\begin{table}[H]
+  \centering
+  \caption{Columnas del conjunto de datos unificado de Albacete y Algeciras.}
+  \label{tab:columnas-unificadas}
+  \small
+  \renewcommand{\arraystretch}{1.1}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla
+    \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Identificación y localización} \\
+    Ciudad (nueva, para unir los datos) & \texttt{ciudad} & -- & -- \\
+    \cmidrule(lr){1-4}
+    Nombre de la calle & \texttt{nombre\_calle} & \texttt{NOMBRE} & \texttt{NOMBRE} \\
+    \cmidrule(lr){1-4}
+    Nombre de la calle sin la marca de tramo & \texttt{nombre\_calle\_base} & \texttt{NOMBRE} sin la marca de tramo & \texttt{NOMBRE} sin la marca de tramo \\
+    \cmidrule(lr){1-4}
+    Tramo de la calle (número) & \texttt{tramo} & Letra final de \texttt{REFERENCIA} o marca del nombre & Número del final de \texttt{NOMBRE} \\
+    \cmidrule(lr){1-4}
+    Barrio & \texttt{barrio} & \texttt{Barriada} & -- (pendiente de cruzar con el callejero) \\
+    \cmidrule(lr){1-4}
+    Zona & \texttt{zona} & -- & Letras de \texttt{REFER} \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Tipología y actuación} \\
+    Tipología de la vía & \texttt{tipologia\_via} & \texttt{TIPOLOGÍA} & \texttt{TIPOLACT} \\
+    \cmidrule(lr){1-4}
+    Propuesta de actuación & \texttt{propuesta\_actuacion} & \texttt{PROPUESTA} & \texttt{PROPACT} \\
+    \cmidrule(lr){1-4}
+    Presupuesto & \texttt{presupuesto\_euros} & \texttt{PRESUPUESTO} & \texttt{PRESUP} \\
+    \midrule
+    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Puntuaciones y clase} \\
+    Puntuación total & \texttt{puntuacion\_total} & \texttt{PUNT\_TOTAL} & \texttt{ACCGLOBAL} \\
+    \cmidrule(lr){1-4}
+    Puntuación total de un tipo de diversidad & \texttt{puntuacion\_total\_*} & \texttt{PUNT\_TOTAL\_FU} & Media de \texttt{GLOBALSR} y \texttt{GLOBALMR} \\
+    \cmidrule(lr){1-4}
+    Puntuación global de una dimensión & \texttt{puntuacion\_*\_global} & \texttt{PUNT\_PEND\_GB} & \texttt{GLOBALPEND} \\
+    \cmidrule(lr){1-4}
+    Puntuación de una dimensión y un tipo de diversidad & \texttt{puntuacion\_*\_*} & \texttt{PUNT\_PEND\_FU} & Media de \texttt{PENDIENTESR} y \texttt{PENDIENTEMR} \\
+    \cmidrule(lr){1-4}
+    \gls{clase-accesibilidad} total & \texttt{clase\_total} & \texttt{PIC\_TOTAL} & Calculada a partir de \texttt{ACCGLOBAL} \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia a partir de los conjuntos de datos de Albacete y Algeciras.}
+\end{table}
+
+\medskip
+\noindent\textit{Cómo leer la tabla.}
+\begin{itemize}
+  \item \textbf{Columnas \texttt{puntuacion\_*\_*}:} el primer comodín es una de las dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación, mobiliario y transporte, esta última solo en Albacete) y el segundo uno de los tipos de diversidad (funcional, sensorial y cognitiva).
+  \item \textbf{Escala:} las puntuaciones están normalizadas a la escala de 0 a 1.
+  \item \textbf{Tipos de diversidad en Albacete:} para unificarlos, funcional es la media de silla de ruedas y movilidad reducida, sensorial la media de visión e hipoacusia, y cognitiva es la de diversidad cognitiva.
+  \item \textbf{Transporte:} los ceros de transporte, que indican que no hay datos, se sustituyen por valores nulos.
+  \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
+\end{itemize}
+
+\subsection{Limitaciones de los datos}
+\label{sec:limitaciones-datos}
+
+En ambos conjuntos de datos (Albacete y Algeciras) solo se dispone de las puntuaciones por cada dimensión, así como las totales. Pero se desconoce el algoritmo que ha utilizado la empresa para otorgar las puntuaciones, así como el procedimiento seguido para recopilar todos los datos (cómo se han realizado las medidas), y no ha sido posible deducirlos en el análisis exploratorio.
+\\
+
+No se dispone, por lo tanto, de las medidas específicas de los anchos de los itinerarios peatonales, los resaltes, las alturas, ni otras medidas estipuladas en la normativa.
+\\
+
+Los conjuntos tampoco distinguen el sexo ni el género de las personas, por lo que no es posible analizar posibles sesgos de género en las puntuaciones.
+\\
+
+Como posible mejora, se plantea realizar una solicitud a los ayuntamientos de los criterios seguidos por la empresa adjudicataria de los contratos para calcular las puntuaciones.
+\\
+
+\section{Perfiles de diversidad funcional y dimensiones de accesibilidad}
+\label{sec:perfiles-dalco}
+
+\subsection{El marco DALCO}
+
+Para poder distinguir de qué manera diferente afecta cada dimensión a cada tipo de diversidad, se va a utilizar el marco \gls{DALCO}, definido en la norma UNE 170001-1.
+\\
+DALCO son las siglas de deambulación, aprehensión, localización y comunicación, y contiene los requisitos que se deben cumplir en cada acción para completar la accesibilidad universal en el entorno.
+\\
+
+\begin{table}[H]
+  \centering
+  \caption{Acciones del marco DALCO.}
+  \label{tab:dalco}
+  \small
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabularx}{\textwidth}{l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla
+    \textbf{Acción} & \textbf{Definición} & \textbf{Ejemplos de requisitos} \\
+    \midrule
+    Deambulación & Acción de desplazarse de un sitio a otro. & Horizontal y vertical, prestando atención a los pavimentos, los cambios de nivel (escaleras, rampas), iluminación por la noche, espacio mínimo para el movimiento. \\
+    Aprehensión & Acción de coger o asir alguna cosa. & Los elementos tienen que estar al alcance de todas las personas, para que puedan utilizarlos (botones de semáforos, vallas...). \\
+    Localización & Acción de averiguar el lugar preciso en el que está algo o alguien. & Para poder localizar un objeto o persona, se debe prestar atención a la ilumnación, la señalización, la ausencia de obstáculos. \\
+    Comunicación & Acción de intercambio de la información necesaria para el desarrollo de una actividad. & Prestar atención a todas las formas de recepción de información (visual, auditiva), en todo tipo de señalización o indicaciones. \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia a partir de~\cite{une_170001_1_2007}.}
+\end{table}
+
+\subsection{Qué se espera que pese más en cada dimensión}
+
+Teniendo en cuenta los requisitos DALCO, se puede inferir qué características de cada dimensión tienen más importancia, o hay que tener en cuenta, para cada perfil. Por ejemplo, el \glslink{avisador-acustico}{avisador acústico} de los semáforos es más importante para una persona ciega que para otro tipo de perfiles de diversidad.
+\\
+Se indican a continuación cuáles son por cada dimensión las tipologías de diversidad funcional más afectadas.
+\\
+
+
+\newcommand{\pesoalto}{\tikz[baseline=-0.6ex]\fill[black] (0,0) circle (0.9mm);}
+\newcommand{\pesomedio}{\tikz[baseline=-0.6ex]{\draw[line width=0.4pt] (0,0) circle (0.9mm);\fill (0,0.9mm) arc (90:-90:0.9mm) -- cycle;}}
+\newcommand{\pesonulo}{\tikz[baseline=-0.6ex]\draw[line width=0.4pt] (0,0) circle (0.9mm);}
+
+\subsection{Qué se espera que pese más en cada requisito}
+
+Con las acciones DALCO se puede intuir qué requisitos de cada dimensión importan más a cada perfil. Por ejemplo, el avisador acústico de un semáforo importa más a una persona con discapacidad visual que a una con movilidad reducida, mientras que la pendiente de un vado importa más a una persona en silla de ruedas.
+\\
+
+Se ha realizado una tabla que muestra, por cada característica definida en la sección 2.2 a partir de la Orden TMA/851/2021~\cite{mitma_orden_tma851_2021}, se indica el grado de importancia que tiene en cada una de las diversidades funcionales.
+\\
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{>{\raggedright\arraybackslash}p{\dimexpr\textwidth-9.5cm-12\tabcolsep\relax} *{5}{>{\centering\arraybackslash}p{1.9cm}}}
+  \caption{Importancia esperada de cada requisito según el perfil de diversidad funcional.}\label{tab:peso-requisitos}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Requisito} & \textbf{Silla de ruedas} & \textbf{Movilidad reducida} & \textbf{Visual} & \textbf{\glslink{hipoacusia}{Hipoacusia}} & \textbf{Cognitiva} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Requisito} & \textbf{Silla de ruedas} & \textbf{Movilidad reducida} & \textbf{Visual} & \textbf{Hipoacusia} & \textbf{Cognitiva} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pendiente} \\
+    Pendiente longitudinal ($\leq 6$\,\%) & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    Pendiente transversal ($\leq 2$\,\%) & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    Pendiente del vado & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Anchura} \\
+    Anchura libre de paso ($\geq 1{,}80$\,m) & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{si} \\
+    Altura libre de paso ($\geq 2{,}20$\,m) & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pavimento} \\
+    Resbaladicidad & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Continuidad y resaltes (hasta 4\,mm) & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Pavimento táctil de encaminamiento & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    Pavimento táctil de advertencia & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Cruces} \\
+    Dimensiones del vado / cruce & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{parcial} \\
+    Semaforización: pulsador (altura y accionamiento) & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    Semaforización: avisador acústico / óptico & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{parcial} \\
+    Isletas de refugio & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{si} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Mobiliario} \\
+    Ubicación (alineado, fuera del itinerario) & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{si} \\
+    Dimensiones y alturas (elementos elevados) & \cumple{si} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Franja libre de paso / terrazas & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{si} \\
+    Bolardos (alineación, altura y contraste) & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Señalización} \\
+    Legibilidad, contraste y tamaño & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{si} & \cumple{si} \\
+    Altura de los paneles de información & \cumple{si} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Información escrita (lectura fácil, pictogramas) & \cumple{no} & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{si} \\
+    Señalización táctil (braille y alto relieve) & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    Información sonora / bucle magnético & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{parcial} \\
+    Elementos transparentes (bandas opacas de contraste) & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Iluminación} \\
+    Niveles de iluminación & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{si} & \cumple{si} \\
+    Uniformidad luminosa & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{si} & \cumple{si} \\
+    Detección de obstáculos & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{si} \\
+\end{longtable}
+\endgroup
+\fuente{elaboración propia a partir de~\cite{une_170001_1_2007} y~\cite{mitma_orden_tma851_2021}. \cumple{si} mucho peso esperado, \cumple{parcial} algo, \cumple{no} poco o ninguno.}
+
+Se trata de una clasificación propia, intuyendo el grado de importancia de cada característica, por lo que podría ser recomendable que fuera revisada por una persona especialista en accesibilidad.
+\\
+
+% =====================================================================
+\section{Viabilidad de calcular las dimensiones a partir de imágenes}
+\label{sec:viabilidad}
+% =====================================================================
+
+Para poder realizar la comprobación científica de las hipótesis de investigación, se necesita discernir cuáles de las dimensiones que tienen puntuación en el informe (pendiente, anchura, pavimento, cruces, mobiliario, señalización, iluminación; y transporte en Albacete) pueden obtenerse a partir de imágenes aéreas o a pie de calle, y cuáles necesitan un análisis \glslink{inspeccion-in-situ}{\emph{in situ}}.
+\\
+
+La tabla~\ref{tab:viabilidad} indica, para cada una de las dimensiones con puntuación en los datos de Albacete y Algeciras cuáles son los artículos de la Orden TMA/851/2021 \cite{mitma_orden_tma851_2021} que la regulan, y si pueden extraerse potencialmente a partir de las imágenes.
+\\
+
+El grado de potencialidad de extracción de imágenes se expresa como un porcentaje aproximado de lo que se podría obtener de cada dimensión, y es un valor subjetivo estimado por el autor de este trabajo. Este resultado permitirá el análisis de las hipótesis, obteniendo el conjunto de dimensiones que se utilizarán en caso de imágenes aéreas, a pie de calle o in situ.
+\\
+
+Idealmente, el grado se podrá calcular de manera empírica cuando se realicen los modelos de visión computacional de extracción de datos geométricos de las imágenes, que se deja como futura línea de investigación.
+\\
+
+\begingroup
+\footnotesize
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.05}
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}m{6.2cm} >{\raggedright\arraybackslash}m{1.5cm} >{\raggedright\arraybackslash}m{1.5cm} >{\raggedright\arraybackslash}m{\dimexpr\textwidth-9.2cm-8\tabcolsep\relax}}
+  \caption{Viabilidad de obtención de puntuación a partir de las imágenes de cada dimensión de accesibilidad.}\label{tab:viabilidad}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Qué hay que medir} & \textbf{Aérea} & \textbf{Calle} & \textbf{Razón} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Qué hay que medir} & \textbf{Aérea} & \textbf{Calle} & \textbf{Razón} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \multicolumn{4}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia.}}
+  \endlastfoot
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pendiente} & \textbf{0\,\%} & \textbf{40\,\%} & \\
+    \Gls{pendiente-longitudinal} ($\leq$~6\,\%) & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Desde el aire no se estima; a pie de calle, con varias fotografías podría hacerse una medición geométrica. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \Gls{pendiente-transversal} ($\leq$~2\,\%) & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Igual que la longitudinal: solo a pie de calle y con varias fotografías. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Pendiente del \glslink{vado-peatonal}{vado} (10\,\% hasta 2\,m, 8\,\% hasta 3\,m) & \cumple{no}\,0\,\% & \cumple{parcial}\,25\,\% & Más difícil de calcular, y algunos tramos pueden quedar tapado en la fotografía. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Anchura} & \textbf{45\,\%} & \textbf{95\,\%} & \\
+    \glslink{ancho-libre-paso}{Anchura libre de paso} ($\geq$~1,80\,m) & \cumple{si}\,90\,\% & \cumple{si}\,90\,\% & Es una medida con facilidad de obtención en ambos tipos de imagen, aunque árboles o toldos pueden taparla. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \Gls{altura-libre-paso} ($\geq$~2,20\,m) & \cumple{no}\,0\,\% & \cumple{si}\,100\,\% & Solo se aprecia a nivel de calle. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pavimento} & \textbf{40\,\%} & \textbf{30\,\%} & \\
+    Resbaladicidad (clase 3 del CTE) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & No es posible extraerla. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Continuidad y resaltes (hasta 4\,mm) & \cumple{no}\,0\,\% & \cumple{parcial}\,25\,\% & Solo se aprecia si la fotografía tiene una resolución extremadamente alta, porque 4\,mm es una medida muy precisa. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \glslink{pavimento-tactil}{Pavimento táctil} de encaminamiento (4\,mm de altura, relieve lineal) & \cumple{parcial}\,75\,\% & \cumple{parcial}\,50\,\% & Desde el aire se ve la forma, pero no los milímetros. A pie de calle, 4\,mm es una medida muy precisa y es difícil de distinguir todo si no hay varias imágenes. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Pavimento táctil de advertencia (4\,mm de altura, botones o franjas) & \cumple{parcial}\,75\,\% & \cumple{parcial}\,50\,\% & Desde el aire se ven potencialmente los botones y franjas, no los milímetros. A pie de calle, 4\,mm es una medida muy precisa. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}\glslink{cruce-peatonal}{Cruces}} & \textbf{70\,\%} & \textbf{50\,\%} & \\
+    Dimensiones del vado (anchura mínima de 1,80\,m, resalte inferior a 4\,mm) & \cumple{parcial}\,75\,\% & \cumple{parcial}\,25\,\% & Desde el aire se ve la anchura, pero no el resalte; a pie de calle se ve el resalte, pero puede quedar tapado fácilmente. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Dimensiones del cruce (anchura igual o mayor que los vados, mínimo 1,80\,m) & \cumple{si}\,100\,\% & \cumple{parcial}\,25\,\% & Desde el aire se ve la anchura completa; a pie de calle haría falta una imagen lateral o un cálculo más complicado. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Semaforización accesible (pulsador entre 0,80 y 1,20\,m, avisador acústico) & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & A pie de calle solo se podría estimar la altura del pulsador, no el avisador acústico. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    \glslink{isleta-refugio}{Isletas de refugio} (obligatorias si el cruce supera 14\,m) & \cumple{si}\,100\,\% & \cumple{si}\,100\,\% & Se ven desde ambos tipos de imagen. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}\glslink{mobiliario-urbano}{Mobiliario}} & \textbf{65\,\%} & \textbf{80\,\%} & \\
+    Ubicación del mobiliario (alineado, fuera del itinerario peatonal accesible) & \cumple{si}\,90\,\% & \cumple{si}\,80\,\% & Se ve en planta; los árboles pueden taparlo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Dimensiones y alturas (elementos elevados con altura libre $\geq$~2,20\,m) & \cumple{no}\,0\,\% & \cumple{parcial}\,75\,\% & A pie de calle se podría calcular, pero con dificultades. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Franja libre de paso (anchura mínima del itinerario, 1,80\,m) & \cumple{si}\,90\,\% & \cumple{si}\,80\,\% & Se ve en planta, aunque los árboles pueden taparlo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Ocupación por terrazas (sin invadir el itinerario ni ocultar la señalización) & \cumple{si}\,90\,\% & \cumple{si}\,80\,\% & Se ve en planta, aunque los árboles pueden taparlo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Bolardos (alineados, altura entre 0,75 y 1,00\,m, color contrastado) & \cumple{parcial}\,50\,\% & \cumple{parcial}\,75\,\% & Desde el aire se puede calcular su alineación. A pie de calle se aprecia la altura, pero es más difícil calcular la alineación. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}\glslink{senalizacion}{Señalización}} & \textbf{10\,\%} & \textbf{50\,\%} & \\
+    Legibilidad, contraste y tamaño según la distancia (0,7 a 7,0\,cm) & \cumple{no}\,0\,\% & \cumple{parcial}\,75\,\% & A pie de calle, se podría llegar a estimar si la fotografía tiene resolución suficiente. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Altura de los paneles (entre 0,90 y 1,20\,m) & \cumple{no}\,0\,\% & \cumple{si}\,100\,\% & A pie de calle se puede si la fotografía tiene resolución suficiente. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Información escrita (lectura fácil, pictogramas, nombres de las vías en los cruces) & \cumple{no}\,0\,\% & \cumple{parcial}\,75\,\% & Necesita fotografías de alta resolución. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Señalización táctil (braille y alto relieve) & \cumple{no}\,0\,\% & \cumple{parcial}\,10\,\% & El relieve apenas es visible en una imagen. Se necesita inspección in situ. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Información sonora (señalización acústica en cruces) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & No es observable en una imagen. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Elementos transparentes (bandas opacas de 5 a 10\,cm) & \cumple{parcial}\,50\,\% & \cumple{parcial}\,50\,\% & Potencialmente posible, pero difícil. \\
+    \midrule
+    \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Iluminación} & \textbf{15\,\%} & \textbf{30\,\%} & \\
+    Niveles de iluminación (RD 1890/2008) & \cumple{parcial}\,25\,\% & \cumple{parcial}\,50\,\% & Los fija el RD 1890/2008 \cite{rd_1890_2008,guia_mitma_2021}; solo serían estimables con imágenes nocturnas. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Uniformidad luminosa & \cumple{parcial}\,25\,\% & \cumple{parcial}\,25\,\% & Solo estimable con imágenes nocturnas. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+    Detección de obstáculos & \cumple{no}\,0\,\% & \cumple{parcial}\,10\,\% & Potencialmente, con imágenes de día y de noche. \\
+\end{longtable}
+\endgroup
+
+Los artículos legales de cada requisito se encuentran en las tablas de la sección~\ref{sec:caracteristicas}, de la que solo se incluyen las características que se corresponden con las dimensiones puntuadas en los datos. Transporte, que solo existe en Albacete, no se incluye porque no se describe en esa sección. En la fila de cada dimensión se indica el porcentaje medio de sus requisitos, redondeado a múltiplos de 5. El símbolo resume el porcentaje: \cumple{no}~0\,\%, \cumple{parcial}~10--75\,\% y \cumple{si}~80--100\,\%.
+\\
+
+Según esta estimación, \textbf{ninguna dimensión se puede obtener por completo} a partir de imágenes, aunque algunas se quedan bastante cerca. Ningún requisito llega al 100\,\% desde ambos tipos de imagen, salvo las isletas de refugio, por los problemas que pueden presentar las imágenes, como la vegetación u otros obstáculos que oculten la escena (tabla~\ref{tab:viabilidad}).
+\\
+
+La dimensión más viable es la anchura, sobre todo a pie de calle (95\,\%; desde el aire, 45\,\%). El porcentaje aéreo es bajo porque incluye la altura libre de paso, que solo se aprecia a nivel de calle; la anchura libre de paso, por sí sola, alcanza el 90\,\% en ambos casos. Desde el aire, lo más alto son los cruces (70\,\%), el mobiliario (65\,\%) y la anchura (45\,\%). A pie de calle, tras la anchura, destacan el mobiliario (80\,\%), la señalización (50\,\%) y los cruces (50\,\%).
+\\
+
+Las dimensiones de menor viabilidad son la iluminación (15\,\% desde el aire y 30\,\% a pie de calle, y suponiendo que se dispone de imágenes nocturnas), la pendiente (0\,\% y 40\,\%) y el pavimento (40\,\% y 30\,\%). En el pavimento, la resbaladicidad no se puede extraer de ninguna manera, y los resaltes de 4\,mm solo en parte (25\,\% a pie de calle). La señalización se queda en el 10\,\% desde el aire y en el 50\,\% a pie de calle.
+\\
+
+Esta información servirá para determinar qué dimensiones se utilizan en las hipótesis de investigación (H1, H2, H3 y H5), comprobando la precisión del modelo usando dimensiones que se pueden capturar desde imágenes aéreas, a pie de calle o forzosamente in situ por el equipo técnico.
+\\
+
+% =====================================================================
+\section{Síntesis del capítulo}
+\label{sec:sintesis-marco}
+% =====================================================================
+
+En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías urbanas y los tipos de diversidad funcional, un análisis exploratorio de los conjuntos de datos de Albacete y Algeciras, así como qué variables o medidas se podrían extraer a partir de imágenes de las calles.
+\\
+
+\textit{Normativa y perfiles de accesibilidad.} (secciones~\ref{sec:caracteristicas} y~\ref{sec:perfiles-dalco}) Se ha basado el análisis en la Orden TMA/851/2021, en la que se fijan todos los requisitos medibles y sus umbrales en varias dimensiones (anchura, pendiente, pavimento, cruces, señalización, iluminación o mobiliario urbano); y se ha usado el marco DALCO para inferir la importancia de cada característica para cada tipo de diversidad funcional.
+\\
+
+\textit{Análisis y unificación de datos.} (sección~\ref{sec:analisis-exploratorio}) Se ha realizado un análisis exploratorio de los datos de Albacete y Algeciras. Los datos provienen de la misma empresa, aunque tienen escalas y perfiles de accesibilidad diferentes, y contienen las puntuaciones otorgadas en cada calle, por cada dimensión y tipo de diversidad. Se desconocen tanto la forma de recopilar los datos, como el algoritmo usado para las puntuaciones, así como las medidas realizadas. Se ha realizado una propuesta de unificación de los conjutos de datos.
+\\
+
+\textit{Viabilidad de extracción de información en imágenes.} (sección~\ref{sec:viabilidad}) Se ha realizado una estimación del grado de obtención de datos a partir de imágenes aéreas o a pie de calle, y se ha determinado que la captura es desigual: mientras que las anchuras y cruces son más fáciles de obtener, otras dimensiones como el pavimento o la iluminación necesitan en mayor parte inspección in situ.
+\\
+
+\noindent\textbf{Qué se investigará en el estado del arte.} Para poder responder a las hipótesis de investigación, se va a revisar en la literatura científica:
+\begin{itemize}
+  \item \textbf{¿Cómo se mide la accesibilidad de una calle?} Qué indicadores usan otros estudios, cómo categorizan las puntuaciones y qué métricas utilizar para la evaluación de los modelos (OP3).
+  \item \textbf{¿Qué se puede medir con imágenes?} Qué trabajos han obtenido ya la anchura de las aceras, o la identificación de mobiliario urbano u obstáculos a partir de fotografías aéreas o de la calle, con qué precisión y de qué manera lo han hecho (OS2, H1--H3).
+  \item \textbf{¿Qué modelos usar y cómo saber qué variables importan?} Qué modelos se emplean a partir de datos tabulares y cómo medir la importancia de cada variable, para comprobar si las medidas tomadas in situ se pueden eliminar sin perder precisión (OP4, OP6, H1--H3, H5).
+  \item \textbf{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?} Cómo se trata en otros estudios el análisis de los distintos perfiles de diversidad funcional (si se realizan ponderaciones por pesos, o incluso si se modela cada perfil por separado), para decidir cómo interpretar los resultados por perfil (OP1, OP6).
+  \item \textbf{¿Cómo comprobar que un modelo funciona en otra ciudad?} Evaluar la transferencia de un modelo de una ciudad a otra, comprobando cómo se realiza en otros estudios el entrenamiento y evaluación de los modelos; si entrenando en una ciudad, o mezclando datos de ambas. (OP5, H4).
+\end{itemize}
+
+
+

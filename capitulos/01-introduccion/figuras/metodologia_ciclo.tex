@@ -1,0 +1,39 @@
+\begin{tikzpicture}[tfm,
+      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
+      fase/.style={arqbase, fill=arq-datos, draw=uoc-azul, text width=46mm, minimum height=22mm,
+                   inner sep=4pt, font=\sffamily\scriptsize, align=left, text=tinta},
+      fasealg/.style={fase, fill=nn-conv, double=nn-conv, double distance=1.2pt},
+      num/.style={circle, fill=uoc-azul, text=white, font=\sffamily\scriptsize\bfseries,
+                  inner sep=0pt, minimum size=5mm},
+    ]
+    % ---------- Etapas dispuestas en círculo (sentido horario)
+    \node[fase]    (f1) at (0, 3.7)   {\textbf{Identificación del problema}\\[1pt]
+      Descubrir el objetivo del proyecto a partir de la lentitud de los planes de accesibilidad, que exigen inspecciones \emph{in situ}.};
+    \node[fase]    (f2) at (5.3, 1.2) {\textbf{Diseño}\\[1pt]
+      Análisis de las leyes y del estado del arte para elegir las características de medida de la accesibilidad, y análisis de los datos de Albacete y Algeciras.};
+    \node[fase] (f3) at (3.3,-3.1) {\textbf{Desarrollo}\\[1pt]
+      Implementación de los modelos y de los sistemas.};
+    \node[fase]    (f4) at (-3.3,-3.1) {\textbf{Evaluación}\\[1pt]
+      Validación de la precisión de los modelos y comparativa entre modelos y entre ciudades.};
+    \node[fase]    (f5) at (-5.3, 1.2) {\textbf{Conclusión}\\[1pt]
+      Respuesta a las preguntas de investigación, documentación de los resultados y líneas futuras.};
+
+    % ---------- Números de etapa
+    \foreach \i in {1,...,5}
+      \node[num] at (f\i.north west) {\i};
+
+    % ---------- Flechas del ciclo
+    \draw[flecha] (f1.east)  to[bend left=22] (f2.north);
+    \draw[flecha] (f2.south) to[bend left=18] (f3.north);
+    \draw[flecha] (f3.west)  -- (f4.east);
+    \draw[flecha] (f4.north) to[bend left=18] (f5.south);
+    \draw[flecha, dashed] (f5.north) to[bend left=22] node[pos=0.5, above left, etiqueta] {nuevo ciclo} (f1.west);
+
+    % ---------- Centro
+    \node[align=center, font=\sffamily\scriptsize, text=uoc-azul] at (0,0.1)
+      {\textbf{Investigación}\\\textbf{basada en diseño}\\[1pt]\textcolor{tinta-suave}{(\emph{Design Research})}};
+  \end{tikzpicture}
+
+  \caption{Ciclo de vida de la metodología de desarrollo del trabajo.}
+  \label{fig:metodologia_ciclo}
+  \fuente{elaboración propia, con ayuda de Claude.}

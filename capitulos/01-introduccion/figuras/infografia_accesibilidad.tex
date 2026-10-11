@@ -1,0 +1,36 @@
+\begin{tikzpicture}[font=\sffamily, x=1cm, y=1cm]
+    % --- Bloque de identidad con el titular
+    \fill[uoc-cian] (0,0) rectangle (3.8,5.2);
+    \node[anchor=north west, text width=3.3cm, align=left, text=uoc-azul,
+          font=\sffamily\large\bfseries] at (0.3,4.8)
+      {\begin{hyphenrules}{nohyphenation}¿A quién beneficia la accesibilidad?\end{hyphenrules}};
+    \node[anchor=south west, text width=3.1cm, align=left, text=tinta,
+          font=\sffamily\scriptsize] at (0.3,0.3) {España};
+ 
+    % --- Filetes del panel (como la cabecera UOC)
+    \draw[uoc-cian-filete, line width=1mm] (3.8,5.15) -- (16.7,5.15);
+    \draw[uoc-cian-filete, line width=1mm] (3.8,0.05) -- (16.7,0.05);
+ 
+    % --- Tres cifras: \x = inicio de columna, \pct = % para la minibarra
+    \foreach \x/\cifra/\pct/\txt/\base in {
+        4.3/{9,5\,\%}/9.5/{de la población tiene una \textbf{discapacidad reconocida}: 4,38 millones de personas}/{Base: población total},
+        8.4/{\textgreater\,30\,\%}/30/{de la población es \textbf{beneficiaria real} de la accesibilidad universal}/{Base: población total},
+        12.5/{32,3\,\%}/32.3/{de las personas \textbf{mayores de 65 años} tiene alguna discapacidad}/{Base: mayores de 65 años}} {
+      % cifra
+      \node[anchor=north west, inner sep=0pt, text=uoc-azul, font=\sffamily\bfseries, scale=2.2]
+        at (\x,4.75) {\cifra};
+      % texto
+      \node[anchor=north west, inner sep=0pt, text width=3.6cm, align=left, text=tinta,
+            font=\sffamily\small] at (\x,3.5) {\begin{hyphenrules}{nohyphenation}\txt\end{hyphenrules}};
+      % minibarra sobre el 100 % de su base
+      \fill[rejilla] (\x,1.05) rectangle ++(3.6,0.3);
+      \fill[uoc-azul] (\x,1.05) rectangle ++(3.6*\pct/100,0.3);
+      \node[anchor=north west, inner sep=0pt, text=tinta-suave, font=\sffamily\scriptsize]
+        at (\x,0.85) {\base};
+    }
+    % separadores verticales finos
+    \foreach \x in {8.1,12.2} \draw[filete, line width=\trazofino] (\x,0.5) -- (\x,4.7);
+  \end{tikzpicture}
+  \caption{La accesibilidad en tres cifras.}
+  \label{fig:infografia_accesibilidad}
+  \fuente{INE, Encuesta de Discapacidad, Autonomía personal y situaciones de Dependencia (EDAD) 2020; Observatorio 2030 CSCAE y Fundación ONCE, \emph{Documenta 1.2}.}

@@ -324,27 +324,27 @@ Analizar e identificar las necesidades de movilidad y accesibilidad en el espaci
 
 \textbf{OP2. Identificar, analizar y preparar los datos}
 
-Recopilar los conjuntos de datos disponibles de las ciudades de Albacete y Algeciras, analizar los parámetros medidos, seleccionar y categorizar aquellos relevantes y preparar los datos para su uso en el entrenamiento y evaluación de los modelos de clasificación.
+Recopilar los conjuntos de datos disponibles de las ciudades de Albacete y Algeciras, analizar los parámetros medidos, seleccionar y categorizar aquellos relevantes según puedan obtenerse de imágenes aéreas, de imágenes a pie de calle o solo in situ, y preparar los datos para su uso en el entrenamiento y evaluación de los modelos de clasificación.
 \\
 
 \textbf{OP3. Identificar y definir las métricas e indicadores de evaluación de la accesibilidad}
 
-Analizar la normativa vigente (estatal, autonómica y local) para identificar el conjunto de indicadores cuantitativos y cualitativos (tales como la anchura libre de paso, o criterios necesarios para plataformas únicas) y establecer las fórmulas matemáticas de evaluación de la accesibilidad de las vías urbanas.
+Analizar la normativa vigente (estatal, autonómica y local) para identificar el conjunto de indicadores cuantitativos y cualitativos (tales como la anchura libre de paso, o criterios necesarios para plataformas únicas), definir la variable objetivo de la clasificación a partir de las puntuaciones de los datos y establecer las fórmulas matemáticas de las métricas con las que se evaluarán los modelos.
 \\
 
 \textbf{OP4. Entrenar modelos de aprendizaje automático de clasificación de accesibilidad}
 
-Modelar y entrenar diferentes modelos de machine learning, con diferentes conjuntos de características extraídas de los datos recopilados, diferenciando entre las que se puedan obtener potencialmente de imágenes aéreas o transversales, y las que se obtienen directamente de los datos de campo.
+Modelar y entrenar diferentes modelos de \textit{machine learning}, con diferentes conjuntos de características extraídas de los datos recopilados, diferenciando entre las que se puedan obtener potencialmente de imágenes aéreas o transversales, y las que se obtienen directamente de los datos de campo; comparando los conjuntos aéreo, a pie de calle, la combinación de ambos y el completo con un mismo modelo de referencia.
 \\
 
 \textbf{OP5. Validación de los modelos}
 
-Ejecutar el algoritmo sobre los conjuntos de datos de las  ciudades piloto, y evaluar de manera cuantitativa la precisión de las predicciones obtenidas por el modelo, cruzando los datos contra los registros previamente calculados sobre el terreno..
+Ejecutar el algoritmo sobre los conjuntos de datos de las ciudades piloto, y evaluar de manera cuantitativa la precisión de las predicciones obtenidas por el modelo, cruzando los datos contra los registros previamente calculados sobre el terreno, tanto dentro de cada ciudad como entrenando con una y evaluando en la otra.
 \\
 
 \textbf{OP6. Interpretación de los resultados}
 
-Responder a las preguntas de investigación planteadas, interpretando los resultados obtenidos en términos de la accesibilidad de las vías urbanas y la efectividad de la selección de características para imágenes aéreas, transversales y datos de campo.
+Responder a las preguntas de investigación planteadas, interpretando los resultados obtenidos en términos de la accesibilidad de las vías urbanas y la efectividad de la selección de características para imágenes aéreas, transversales y datos de campo, e identificando qué dimensiones medidas in situ son prescindibles.
 \\
 
 \begin{figure}[htbp]
@@ -418,15 +418,15 @@ Se plantean las siguientes hipótesis de investigación:
 \cabeceratabla
 & \textbf{Hipótesis} & \textbf{Se refuta si…} \\
 \midrule
-\textbf{H1} & Utilizar únicamente variables que se puedan obtener potencialmente a partir de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
+\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
-\textbf{H2} & Utilizar únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de la calle, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
+\textbf{H2} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de calle, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
-\textbf{H3} & Combinar las variables de las dos ambos tipos de imagen (aéreas y a pie de calle) mejora el rendimiento de los modelos que utilizan únicamente uno de los dos subconjuntos & No se aprecia mejora suficiente \\
+\textbf{H3} & Combinar las variables de ambos tipos de imagen (aéreas y a pie de calle) mejora el rendimiento de los modelos que utilizan únicamente uno de los dos subconjuntos & No se aprecia mejora suficiente \\
 \midrule
 \textbf{H4} & El entrenamiento del modelo con los datos de una ciudad es transferible a otra ciudad (es decir, tiene un rendimiento similar) & Hay bastante diferencia de precisión \\
 \midrule
-\textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Si al excluir las características se detecta un claro descenso en la precisión \\
+\textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Al excluir las características se detecta un claro descenso en la precisión \\
 \bottomrule
 \end{tabularx}
 \end{table}
