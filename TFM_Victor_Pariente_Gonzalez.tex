@@ -1,7 +1,8 @@
 \documentclass[IB]{TFUOC}%IB: CASTELLANO, CAT: CATALÁN, ENG: ANGLÈS
-\graphicspath{{../capitulos/01-introduccion/figuras/}{../capitulos/02-01-marco-legal/figuras/}{../capitulos/02-02-caracteristicas-accesibilidad/figuras/}{../figuras/}{../plantilla-uoc/}{../sistema-diseno/}}
 
 \usepackage[bibliografia]{tfm-estilo}
+% after tfm-estilo, which resets \graphicspath
+\graphicspath{{capitulos/01-introduccion/figuras/}{capitulos/02-01-marco-legal/figuras/}{capitulos/02-02-caracteristicas-accesibilidad/figuras/}{figuras/}{plantilla-uoc/}{sistema-diseno/}{../capitulos/01-introduccion/figuras/}{../capitulos/02-01-marco-legal/figuras/}{../capitulos/02-02-caracteristicas-accesibilidad/figuras/}{../figuras/}{../plantilla-uoc/}{../sistema-diseno/}}
 \addbibresource{referencias.bib}
 \usepackage{multicol}
 \usepackage{booktabs}
@@ -15,7 +16,7 @@
 \usepackage{hyperref}
 
 % Glossary configuration with glossaries-extra and bib2gls
-\usepackage[record,toc,nomain,style=altlist,abbreviations]{glossaries-extra}
+\usepackage[record,toc,style=altlist,abbreviations]{glossaries-extra}
 \setabbreviationstyle[abbreviation]{long-short}
 \GlsXtrLoadResources[src=glosario,sort=es,selection=all]
 
