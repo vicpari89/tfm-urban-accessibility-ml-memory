@@ -496,11 +496,125 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
   \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
 \end{itemize}
 
+\section{Perfiles de diversidad funcional y dimensiones de accesibilidad}
+\label{sec:perfiles-dalco}
+
+\subsection{El marco DALCO}
+
+Para poder distinguir de qué manera diferente afecta cada dimensión a cada tipo de diversidad, se va a utilizar el marco DALCO, definido en la norma UNE 170001-1.
+\\
+DALCO son las siglas de deambulación, aprehensión, localización y comunicación, y contiene los requisitos que se deben cumplir en cada acción para completar la accesibilidad universal en el entorno.
+\\
+
+\begin{table}[H]
+  \centering
+  \caption{Acciones del marco DALCO.}
+  \label{tab:dalco}
+  \small
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabularx}{\textwidth}{l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla
+    \textbf{Acción} & \textbf{Definición} & \textbf{Ejemplos de requisitos} \\
+    \midrule
+    Deambulación & Acción de desplazarse de un sitio a otro. & Horizontal y vertical, prestando atención a los pavimentos, los cambios de nivel (escaleras, rampas), iluminación por la noche, espacio mínimo para el movimiento. \\
+    Aprehensión & Acción de coger o asir alguna cosa. & Los elementos tienen que estar al alcance de todas las personas, para que puedan utilizarlos (botones de semáforos, vallas...). \\
+    Localización & Acción de averiguar el lugar preciso en el que está algo o alguien. & Para poder localizar un objeto o persona, se debe prestar atención a la ilumnación, la señalización, la ausencia de obstáculos. \\
+    Comunicación & Acción de intercambio de la información necesaria para el desarrollo de una actividad. & Prestar atención a todas las formas de recepción de información (visual, auditiva), en todo tipo de señalización o indicaciones. \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia a partir de~\cite{une170001}.}
+\end{table}
+
+\subsection{Qué se espera que pese más en cada dimensión}
+
+Teniendo en cuenta los requisitos DALCO, se puede inferir qué características de cada dimensión tienen más importancia, o hay que tener en cuenta, para cada perfil. Por ejemplo, el avisador acústico de los semáforos es más importante para una persona ciega que para otro tipo de perfiles de diversidad.
+\\
+Se indican a continuación cuáles son por cada dimensión las tipologías de diversidad funcional más afectadas.
+\\
+
+
+\newcommand{\pesoalto}{\tikz[baseline=-0.6ex]\fill[black] (0,0) circle (0.9mm);}
+\newcommand{\pesomedio}{\tikz[baseline=-0.6ex]{\draw[line width=0.4pt] (0,0) circle (0.9mm);\fill (0,0.9mm) arc (90:-90:0.9mm) -- cycle;}}
+\newcommand{\pesonulo}{\tikz[baseline=-0.6ex]\draw[line width=0.4pt] (0,0) circle (0.9mm);}
+
+\subsection{Qué se espera que pese más en cada requisito}
+
+Con las acciones DALCO se puede intuir qué requisitos de cada dimensión importan más a cada perfil. Por ejemplo, el avisador acústico de un semáforo importa más a una persona con discapacidad visual que a una con movilidad reducida, mientras que la pendiente de un vado importa más a una persona en silla de ruedas.
+\\
+
+Se ha realizado una tabla que muestra, por cada característica definida en la sección 2.2 a partir de la Orden TMA/851/2021~\cite{orden}, se indica el grado de importancia que tiene en cada una de las diversidades funcionales.
+\\
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{>{\raggedright\arraybackslash}p{\dimexpr\textwidth-9.5cm-12\tabcolsep\relax} *{5}{>{\centering\arraybackslash}p{1.9cm}}}
+  \caption{Importancia esperada de cada requisito según el perfil de diversidad funcional.}\label{tab:peso-requisitos}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Requisito} & \textbf{Silla de ruedas} & \textbf{Movilidad reducida} & \textbf{Visual} & \textbf{Hipoacusia} & \textbf{Cognitiva} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Requisito} & \textbf{Silla de ruedas} & \textbf{Movilidad reducida} & \textbf{Visual} & \textbf{Hipoacusia} & \textbf{Cognitiva} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pendiente} \\
+    Pendiente longitudinal ($\leq 6$\,\%) & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    Pendiente transversal ($\leq 2$\,\%) & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    Pendiente del vado & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Anchura} \\
+    Anchura libre de paso ($\geq 1{,}80$\,m) & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{si} \\
+    Altura libre de paso ($\geq 2{,}20$\,m) & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pavimento} \\
+    Resbaladicidad & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Continuidad y resaltes (hasta 4\,mm) & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Pavimento táctil de encaminamiento & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    Pavimento táctil de advertencia & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Cruces} \\
+    Dimensiones del vado / cruce & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{parcial} \\
+    Semaforización: pulsador (altura y accionamiento) & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{no} & \cumple{parcial} \\
+    Semaforización: avisador acústico / óptico & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{parcial} \\
+    Isletas de refugio & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{parcial} & \cumple{si} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Mobiliario} \\
+    Ubicación (alineado, fuera del itinerario) & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{si} \\
+    Dimensiones y alturas (elementos elevados) & \cumple{si} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Franja libre de paso / terrazas & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{si} \\
+    Bolardos (alineación, altura y contraste) & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Señalización} \\
+    Legibilidad, contraste y tamaño & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{si} & \cumple{si} \\
+    Altura de los paneles de información & \cumple{si} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    Información escrita (lectura fácil, pictogramas) & \cumple{no} & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{si} \\
+    Señalización táctil (braille y alto relieve) & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    Información sonora / bucle magnético & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{parcial} \\
+    Elementos transparentes (bandas opacas de contraste) & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{parcial} & \cumple{parcial} \\
+    \midrule
+    \multicolumn{6}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Iluminación} \\
+    Niveles de iluminación & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{si} & \cumple{si} \\
+    Uniformidad luminosa & \cumple{parcial} & \cumple{parcial} & \cumple{si} & \cumple{si} & \cumple{si} \\
+    Detección de obstáculos & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{parcial} & \cumple{si} \\
+\end{longtable}
+\endgroup
+\fuente{elaboración propia a partir de~\cite{une170001} y~\cite{orden}. \cumple{si} mucho peso esperado, \cumple{parcial} algo, \cumple{no} poco o ninguno.}
+
+Se trata de una clasificación propia, intuyendo el grado de importancia de cada característica, por lo que podría ser recomendable que fuera revisada por una persona especialista en accesibilidad.
+\\
+
 % =====================================================================
 \section{Viabilidad de calcular las dimensiones a partir de imágenes}
 \label{sec:viabilidad}
 % =====================================================================
-\estadobloque{pendiente}{Borrador para revisión. Conecta con OP3 y fundamenta H1, H2 y H5.}
 
 Para poder realizar la comprobación científica de las hipótesis de investigación, se necesita discernir cuáles de las dimensiones que tienen puntuación en el informe (pendiente, anchura, pavimento, cruces, mobiliario, señalización, iluminación; y transporte en Albacete) pueden obtenerse a partir de imágenes aéreas o a pie de calle, y cuáles necesitan un análisis \textit{in situ}.
 \\
