@@ -413,7 +413,7 @@ Los conjuntos de datos contienen una fila por cada calle o tramo de calle, con u
   \item \textbf{Algeciras:} escala de 0 a 5, en orden ascendente, siendo 0 la peor accesibilidad y 5 la mejor.
   \item \textbf{Albacete:} escala de 0 a 100, siguiendo un orden también ascendente.
 \end{itemize}
-En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcional son números enteros, por lo que se ha inferido que existe un algoritmo que ha utilizado la empresa para ir dando o restando puntuación según se cumple o no con los requisitos de la normativa legal.
+En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcional son números enteros, lo que sugiere que la empresa ha usado un algoritmo de cálculo por suma o resta de puntos según se cumplan o no los requisitos de la normativa, aunque no hay forma de comprobarlo (véase la subsección~\ref{sec:limitaciones-datos}).
 
 \medskip
 \noindent\textit{Unidad de cada fila.} En ambos conjuntos se incluye una variable con el nombre de la calle, aportando la puntuación por calle, con algunas calles separadas por tramos. Algeciras también incluye el nombre de la barriada, y algunas calles están separadas por barriadas.
@@ -495,6 +495,18 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
   \item \textbf{Transporte:} los ceros de transporte, que indican que no hay datos, se sustituyen por valores nulos.
   \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
 \end{itemize}
+
+\subsection{Limitaciones de los datos}
+\label{sec:limitaciones-datos}
+
+En ambos conjuntos de datos (Albacete y Algeciras) solo se dispone de las puntuaciones por cada dimensión, así como las totales. Pero se desconoce el algoritmo que ha utilizado la empresa para otorgar las puntuaciones, así como el procedimiento seguido para recopilar todos los datos (cómo se han realizado las medidas), y no ha sido posible deducirlos en el análisis exploratorio.
+\\
+
+No se dispone, por lo tanto, de las medidas específicas de los anchos de los itinerarios peatonales, los resaltes, las alturas, ni otras medidas estipuladas en la normativa.
+\\
+
+Como posible mejora, se plantea realizar una solicitud a los ayuntamientos de los criterios seguidos por la empresa adjudicataria de los contratos para calcular las puntuaciones.
+\\
 
 \section{Perfiles de diversidad funcional y dimensiones de accesibilidad}
 \label{sec:perfiles-dalco}
@@ -727,3 +739,32 @@ Las dimensiones de menor viabilidad son la \textbf{iluminación} (15\,\% desde e
 
 Esta información servirá para determinar qué dimensiones se utilizan en las hipótesis de investigación (H1, H2, H3 y H5), comprobando la precisión del modelo usando dimensiones que se pueden capturar desde imágenes aéreas, a pie de calle o forzosamente in situ por el equipo técnico.
 \\
+
+% =====================================================================
+\section{Síntesis del capítulo}
+\label{sec:sintesis-marco}
+% =====================================================================
+
+En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías urbanas y los tipos de diversidad funcional, un análisis exploratorio de los conjuntos de datos de Albacete y Algeciras, así como qué variables o medidas se podrían extraer a partir de imágenes de las calles.
+\\
+
+\textit{Normativa y perfiles de accesibilidad.} (secciones~\ref{sec:caracteristicas} y~\ref{sec:perfiles-dalco}) Se ha basado el análisis en la Orden TMA/851/2021, en la que se fijan todos los requisitos medibles y sus umbrales en varias dimensiones (anchura, pendiente, pavimento, cruces, señalización, iluminación o mobiliario urbano); y se ha usado el marco DALCO para inferir la importancia de cada característica para cada tipo de diversidad funcional.
+\\
+
+\textit{Análisis y unificación de datos.} (sección~\ref{sec:analisis-exploratorio}) Se ha realizado un análisis exploratorio de los datos de Albacete y Algeciras. Los datos provienen de la misma empresa, aunque tienen escalas y perfiles de accesibilidad diferentes, y contienen las puntuaciones otorgadas en cada calle, por cada dimensión y tipo de diversidad. Se desconocen tanto la forma de recopilar los datos, como el algoritmo usado para las puntuaciones, así como las medidas realizadas. Se ha realizado una propuesta de unificación de los conjutos de datos.
+\\
+
+\textit{Viabilidad de extracción de información en imágenes.} (sección~\ref{sec:viabilidad}) Se ha realizado una estimación del grado de obtención de datos a partir de imágenes aéreas o a pie de calle, y se ha determinado que la captura es desigual: mientras que las anchuras y cruces son más fáciles de obtener, otras dimensiones como el pavimento o la iluminación necesitan en mayor parte inspección in situ.
+\\
+
+\noindent\textbf{Qué se investigará en el estado del arte.} Para poder responder a las hipótesis de investigación, se va a revisar en la literatura científica:
+\begin{itemize}
+  \item \textbf{¿Cómo se mide la accesibilidad de una calle?} Qué indicadores usan otros estudios, cómo categorizan las puntuaciones y qué métricas utilizar para la evaluación de los modelos (OP3).
+  \item \textbf{¿Qué se puede medir con imágenes?} Qué trabajos han obtenido ya la anchura de las aceras, o la identificación de mobiliario urbano u obstáculos a partir de fotografías aéreas o de la calle, con qué precisión y de qué manera lo han hecho (OS2, H1--H3).
+  \item \textbf{¿Qué modelos usar y cómo saber qué variables importan?} Qué modelos se emplean a partir de datos tabulares y cómo medir la importancia de cada variable, para comprobar si las medidas tomadas in situ se pueden eliminar sin perder precisión (OP4, OP6, H1--H3, H5).
+  \item \textbf{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?} Cómo se trata en otros estudios el análisis de los distintos perfiles de diversidad funcional (si se realizan ponderaciones por pesos, o incluso si se modela cada perfil por separado), para decidir cómo interpretar los resultados por perfil (OP1, OP6).
+  \item \textbf{¿Cómo comprobar que un modelo funciona en otra ciudad?} Evaluar la transferencia de un modelo de una ciudad a otra, comprobando cómo se realiza en otros estudios el entrenamiento y evaluación de los modelos; si entrenando en una ciudad, o mezclando datos de ambas. (OP5, H4).
+\end{itemize}
+
+
+
