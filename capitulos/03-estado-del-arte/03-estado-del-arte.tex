@@ -64,7 +64,7 @@ Finalmente, por cada subsección, se realizará una conclusión.
 \section{Evaluación de la accesibilidad urbana}
 \label{sec:eval-accesibilidad}
 
-Antes de entrar de lleno en la generación de los modelos de machine learning, se va a realizar un estudio de varios papers, conociendo cómo se ha medido la accesibilidad de calles en otros trabajos publicados. Se agruparán según la forma de obtención de los datos y cómo indican la accesibilidad:
+Antes de entrar de lleno en la generación de los modelos de \textit{machine learning}, se va a realizar un estudio de varios artículos para conocer cómo se ha medido la accesibilidad de calles en otros trabajos publicados. Se agruparán según la forma de obtención de los datos y cómo indican la accesibilidad:
 
 \subsection{Auditorías de campo}
 \label{subsec:eval-campo}
@@ -81,7 +81,7 @@ Una vez obtenidas las métricas, se calculaba un \textbf{índice de calidad de a
 \\
 
 \subsection{Auditorías virtuales a partir de imágenes}
-\label{sec:eval-virtual}
+\label{subsec:eval-virtual}
 
 La herramienta Project Sidewalk~\cite{saha2019} también utiliza \textbf{Google Street View} para la toma de datos, pero de una manera participativa. Una serie de voluntarios y voluntarias acceden a un conjunto de imágenes, y valoran diferentes variables de accesibilidad mediante etiquetas de severidad.
 \\
@@ -95,14 +95,14 @@ Es interesante para este trabajo, puesto que valida que sería potencialmente po
 \subsection{Índices ponderados por perfil}
 \label{subsec:eval-ponderados}
 
-El trabajo más cercano a los conjuntos de datos de Albacete y Algeciras es el de Moura~\cite{moura2017}, sobre la ciudad de Lisboa. Contiene una herramienta denominada IAAPE, que evalúa cómo de fácil es que la ciudadanía se desplace por sus calles, con 17 indicadores diferentes, agrupados en 7 dimensiones.
+El trabajo más cercano a los conjuntos de datos de Albacete y Algeciras es el de Moura \textit{et al.}~\cite{moura2017}, sobre la ciudad de Lisboa. Contiene una herramienta denominada IAAPE, que evalúa cómo de fácil es que la ciudadanía se desplace por sus calles, con 17 indicadores diferentes, agrupados en 7 dimensiones.
 \\
 
 Realiza el estudio a partir de \textbf{inspecciones de campo in situ}; así como análisis geográfico, digitalizando la red peatonal completa junto con \textbf{Google Street View}, realizando mediciones geométricas.
 También se realizaron encuestas a la población.
 \\
 
-Utilizaron una métrica denominada Walkability Score, del 0 al 100, siendo una suma ponderada por pesos. Las categorías finales son 5 (de la A a la E), y se dividen los grupos de 20 en 20 puntos).
+Utilizaron una métrica denominada \textit{Walkability Score}, del 0 al 100, siendo una suma ponderada por pesos. Las categorías finales son 5 (de la A a la E), divididas en grupos de 20 en 20 puntos.
 En el caso de que alguna de las características medidas haga inviable el uso de la calle para un grupo determinado, la puntuación pasa a ser 0 directamente. Consideran accesibles tramos con puntuación mayor a 60 y deficiente menor que 20.
 \\
 
@@ -110,18 +110,21 @@ Entre las conclusiones de las y los autores, para medir la accesibilidad se nece
 \\
 
 \subsection{Métodos difusos multicriterio}
-\label{sec:eval-difusos}
+\label{subsec:eval-difusos}
 
-En el estudio de Soares Müller~\cite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
+En el estudio de Soares Müller \textit{et al.}~\cite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
 \\
 
-Se aplicó la técnica de \textbf{números difusos triangulares (fuzzy models)}, agregándolas mediante la media geométrica difusa, generando mapas de gradiente continuo en SIG; demostrando que la continuidad es muy importante (cualquier obstáculo penaliza).
+Se aplicó la técnica de \textbf{números difusos triangulares (\textit{fuzzy models})}, agregándolas mediante la media geométrica difusa, generando mapas de gradiente continuo en SIG; demostrando que la continuidad es muy importante (cualquier obstáculo penaliza).
 \\
 
-El estudio de Jahromi~\cite{jahromi2024}, centrado en personas en silla de ruedas, se tomaron \textbf{datos in situ} y a partir de \textbf{imágenes aéreas} de anchos, pendientes, pavimento o longitud, así como entrevistas personales; en Teherán y en la app MobiliSIG de Quebec.
+En el estudio de Naghdizadegan Jahromi \textit{et al.}~\cite{jahromi2024}, centrado en personas en silla de ruedas, se tomaron \textbf{datos in situ} y a partir de \textbf{imágenes aéreas} de anchos, pendientes, pavimento o longitud, así como entrevistas personales; en Teherán y en la app MobiliSIG de Quebec.
 \\
 
 Se aplicó un método \textbf{Fuzzy-TOPSIS adaptativo}, en el que entra en juego la fatiga, mayor cuanta mayor longitud en pendiente. El resultado es un índice de accesibilidad de cuatro niveles.
+\\
+
+La Tabla~\ref{tab:enfoques-evaluacion} resume los enfoques revisados.
 \\
 
 \begin{table}[H]
@@ -133,19 +136,31 @@ Se aplicó un método \textbf{Fuzzy-TOPSIS adaptativo}, en el que entra en juego
     \toprule
     \cabeceratabla Trabajo & Origen de los datos & Qué se mide & Agregación & Escala \\
     \midrule
-    Axelson~\cite{axelson1999} & In situ & Pendientes longitudinal y transversal frente a la normativa de EEUU (ADA) & Ninguna (cumplimiento) & No consta \\
-    Frackelton~\cite{frackelton2013, guensler2015} & In situ & Existencia, condición, seguridad & Índice SQI & No consta \\
-    Saha~\cite{saha2019} & Calle & Vados, obstáculos, superficie, falta de aceras & Votación por mayoría & Severidad por barrera \\
-    Moura~\cite{moura2017} & In situ, calle & 17 indicadores en 7 dimensiones (anchura, pavimento, conectividad, seguridad) & Suma ponderada participativa & 0--100, clases A--E \\
-    Soares Müller~\cite{soaresmuller2024} & In situ & 46 microvariables (pavimento, vados, obstáculos, pendiente) & Lógica difusa, media geométrica & Sin escala global \\
-    Jahromi~\cite{jahromi2024} & In situ, aérea & Anchura, pendiente, desniveles, longitud & Fuzzy-TOPSIS adaptativo & 4 niveles \\
+    Axelson \textit{et al.}~\cite{axelson1999} & In situ & Pendientes longitudinal y transversal frente a la normativa de EEUU (ADA) & Ninguna (cumplimiento) & No consta \\
+    Frackelton \textit{et al.}~\cite{frackelton2013, guensler2015} & In situ & Existencia, condición, seguridad & Índice SQI & No consta \\
+    Saha \textit{et al.}~\cite{saha2019} & Calle & Vados, obstáculos, superficie, falta de aceras & Votación por mayoría & Severidad por barrera \\
+    Moura \textit{et al.}~\cite{moura2017} & In situ, calle & 17 indicadores en 7 dimensiones (anchura, pavimento, conectividad, seguridad) & Suma ponderada participativa & 0--100, clases A--E \\
+    Soares Müller \textit{et al.}~\cite{soaresmuller2024} & In situ & 46 microvariables (pavimento, vados, obstáculos, pendiente) & Lógica difusa, media geométrica & Sin escala global \\
+    Naghdizadegan Jahromi \textit{et al.}~\cite{jahromi2024} & In situ, aérea & Anchura, pendiente, desniveles, longitud & Fuzzy-TOPSIS adaptativo & 4 niveles \\
     \filapropia Albacete y Algeciras & In situ & Puntuación por dimensión y perfil & Media (inferida) & Puntuación con diferentes escalas (0--100, 0--5) o clases (A--C) \\
     \bottomrule
   \end{tabularx}
 \end{table}
 
-\section{Extracción de variables desde imagen}
-\label{sec:vision}
+\subsection{Conclusiones}
+\label{subsec:eval-conclusiones}
+
+Los trabajos que se han revisado utilizan características y medidas similares, como la pendiente, el ancho, los desniveles, falta de aceras, vados u obstáculos; lo que es similar a las dimensiones de Albacete y Algeciras.
+\\
+
+Pero no hay una forma concreta de cómo clasificar la accesibilidad, cada trabajo realiza una agregación de datos diferente, y con una escala distinta. Considerando el conjunto de datos de este trabajo, incluso las escalas son diferentes en cada ciudad.
+\\
+
+En cuanto al origen de los datos, la mayoría se basan en datos de auditorías in situ, aunque algunos utilizan imágenes de calle (Google Street View) o imágenes aéreas; aunque no comprueban si usando solo imágenes de calle o aéreas se podría inferir la accesibilidad.
+\\
+
+Los trabajos analizados no entrenan modelos de clasificación. Se revisan los modelos y métricas de otros trabajos en la siguiente sección~\ref{sec:ml}.
+\\
 
 \section{Aprendizaje automático para clasificar la accesibilidad}
 \label{sec:ml}
@@ -155,3 +170,6 @@ Se aplicó un método \textbf{Fuzzy-TOPSIS adaptativo}, en el que entra en juego
 
 \section{Validación con datos espaciales y entre ciudades}
 \label{sec:validacion-espacial}
+
+\section{Extracción de variables desde imagen}
+\label{sec:vision}
