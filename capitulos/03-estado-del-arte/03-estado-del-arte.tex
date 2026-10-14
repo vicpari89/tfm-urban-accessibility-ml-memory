@@ -1,0 +1,157 @@
+\label{cap:estado-arte}
+
+% ---------------------------------------------------------------------
+\section{Metodología de la revisión}
+\label{sec:metodo-revision}
+En las siguientes secciones se responderán las preguntas planteadas al final del capítulo anterior~\ref{cap:normativa} (sección~2.6).
+\\
+
+Para cada pregunta se ha definido una o varias cadenas de búsqueda, que se detallan en cada una de las secciones y se ha consultado en tres fuentes, que se usan de forma complementaria.
+\\
+
+\subsection{Fuentes de información}
+\label{subsec:fuentes-revision}
+
+\begin{description}
+  \item[Google Scholar.] Tiene una cobertura muy amplia, y permite realizar búsquedas de manera sencilla en textos científicos universitarios.
+  Es además útil en encontrar trabajos similares a los artículos seleccionados.
+  \item[Web of Science.] Con acceso privado, utilizando la cuenta de la universidad, permite realizar búsquedas en artículos verificados, con revisión por pares.
+  \item[Biblioteca de la UOC.] Se usa para localizar trabajos académicos similares al planteado, y tomar como referencia otras memorias.
+\end{description}
+
+\subsection{Estrategia de búsqueda}
+\label{subsec:estrategia-busqueda}
+
+Las búsquedas se realizan en inglés, por ser el idioma más común en los artículos de literatura científica; y también en español, sobre todo en la biblioteca de la UOC como complemento.
+En Web of Science, cada cadena de búsqueda de la tabla~\ref{tab:cadenas-busqueda} se introduce en el campo \textit{Topic} (\texttt{TS=}), mientras que en Google Scholar se usan variantes de búsqueda más sencillas.
+
+\begin{table}[H]
+  \centering
+  \shorthandoff{"}
+  \caption{Cadenas de búsqueda por sección y fuente.}
+  \label{tab:cadenas-busqueda}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla Sección & Web of Science (\texttt{TS=}) & Google Scholar \\
+    \midrule
+    Evaluación de la accesibilidad (\ref{sec:eval-accesibilidad}) & \texttt{("sidewalk" OR "pedestrian") AND "accessibility" AND ("index" OR "assessment")} & \texttt{"sidewalk accessibility" assessment index} \\ \addlinespace
+    Variables desde imagen (\ref{sec:vision}) & \texttt{("sidewalk" OR "crosswalk") AND ("aerial" OR "street view") AND ("segmentation" OR "detection")} & \texttt{"sidewalk extraction" aerial imagery}\par\vspace{3pt}\texttt{"street view" sidewalk accessibility} \\ \addlinespace
+    Aprendizaje automático (\ref{sec:ml}) & \texttt{"machine learning" AND ("sidewalk" OR "walkability") AND "accessibility"} & \texttt{"machine learning" "sidewalk accessibility"}\par\vspace{3pt}\texttt{"tabular data" tree-based benchmark} \\ \addlinespace
+    Perfiles de diversidad funcional (\ref{sec:perfiles-arte}) & \texttt{"pedestrian accessibility" AND ("wheelchair" OR "visually impaired" OR "disability type")} & \texttt{"pedestrian accessibility" wheelchair "visually impaired"} \\ \addlinespace
+    Validación espacial (\ref{sec:validacion-espacial}) & \texttt{("spatial cross-validation" OR "spatial autocorrelation") AND "machine learning"} & \texttt{"spatial cross-validation" machine learning}\par\vspace{3pt}\texttt{"cross-city" transfer urban model} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Criterios de selección}
+\label{subsec:criterios-seleccion}
+
+Una vez leídos los títulos y resúmenes de los trabajos, se seleccionarán aquellos que:
+\begin{itemize}
+  \item Tienen relación con alguna de las 5 preguntas de investigación, aunque se hayan localizado por una cadena de otra categoría.
+  \item Son artículos científicos, trabajos universitarios, o incluso preprints que sean relevantes.
+  \item Describen el método científico seguido y sus conclusiones.
+\end{itemize}
+
+Todos los seleccionados (entre 2 y 6 por pregunta), se leerán más en profundidad, con ayuda de NotebookLLM, y se realizará una ficha resumen con la aportación a cada pregunta de investigación.
+\\
+
+Finalmente, por cada subsección, se realizará una conclusión.
+\\
+
+% ---------------------------------------------------------------------
+\section{Evaluación de la accesibilidad urbana}
+\label{sec:eval-accesibilidad}
+
+Antes de entrar de lleno en la generación de los modelos de machine learning, se va a realizar un estudio de varios papers, conociendo cómo se ha medido la accesibilidad de calles en otros trabajos publicados. Se agruparán según la forma de obtención de los datos y cómo indican la accesibilidad:
+
+\subsection{Auditorías de campo}
+\label{subsec:eval-campo}
+En primer lugar, el protocolo \textit{Sidewalk Assessment Process}~\cite{axelson1999} realiza el trabajo base de inspección in situ de todas las características de las vías (pendiente longitudinal o transversal) y las compara con los requisitos de la legislación de Estados Unidos (denominada ADA).
+\\
+
+Tras los datos obtenidos, se realiza un diagnóstico de cumplimiento por cada una de las características, y se indica cuáles son las medidas que se deben tomar.
+\\
+
+Los estudios de Georgia Tech~\cite{frackelton2013, guensler2015} indican el desarrollo de la aplicación de Android SideWalk Sentry para la toma de datos de parámetros de accesibilidad de las calles (existencia de acera, estado, seguridad peatonal), en la ciudad de Atlanta.
+\\
+
+Una vez obtenidas las métricas, se calculaba un \textbf{índice de calidad de aceras (SQI)}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos.
+\\
+
+\subsection{Auditorías virtuales a partir de imágenes}
+\label{sec:eval-virtual}
+
+La herramienta Project Sidewalk~\cite{saha2019} también utiliza \textbf{Google Street View} para la toma de datos, pero de una manera participativa. Una serie de voluntarios y voluntarias acceden a un conjunto de imágenes, y valoran diferentes variables de accesibilidad mediante etiquetas de severidad.
+\\
+
+El resultado de accesibilidad se calcula a partir de la votación por mayoría a partir de las etiquetas.
+\\
+
+Es interesante para este trabajo, puesto que valida que sería potencialmente posible extraer información de imágenes a pie de calle para valorar la accesibilidad.
+\\
+
+\subsection{Índices ponderados por perfil}
+\label{subsec:eval-ponderados}
+
+El trabajo más cercano a los conjuntos de datos de Albacete y Algeciras es el de Moura~\cite{moura2017}, sobre la ciudad de Lisboa. Contiene una herramienta denominada IAAPE, que evalúa cómo de fácil es que la ciudadanía se desplace por sus calles, con 17 indicadores diferentes, agrupados en 7 dimensiones.
+\\
+
+Realiza el estudio a partir de \textbf{inspecciones de campo in situ}; así como análisis geográfico, digitalizando la red peatonal completa junto con \textbf{Google Street View}, realizando mediciones geométricas.
+También se realizaron encuestas a la población.
+\\
+
+Utilizaron una métrica denominada Walkability Score, del 0 al 100, siendo una suma ponderada por pesos. Las categorías finales son 5 (de la A a la E), y se dividen los grupos de 20 en 20 puntos).
+En el caso de que alguna de las características medidas haga inviable el uso de la calle para un grupo determinado, la puntuación pasa a ser 0 directamente. Consideran accesibles tramos con puntuación mayor a 60 y deficiente menor que 20.
+\\
+
+Entre las conclusiones de las y los autores, para medir la accesibilidad se necesita diferenciar por perfiles, y hay diferencias entre los diferentes grupos funcionales. Además, cada grupo tiene unas prioridades diferentes.
+\\
+
+\subsection{Métodos difusos multicriterio}
+\label{sec:eval-difusos}
+
+En el estudio de Soares Müller~\cite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
+\\
+
+Se aplicó la técnica de \textbf{números difusos triangulares (fuzzy models)}, agregándolas mediante la media geométrica difusa, generando mapas de gradiente continuo en SIG; demostrando que la continuidad es muy importante (cualquier obstáculo penaliza).
+\\
+
+El estudio de Jahromi~\cite{jahromi2024}, centrado en personas en silla de ruedas, se tomaron \textbf{datos in situ} y a partir de \textbf{imágenes aéreas} de anchos, pendientes, pavimento o longitud, así como entrevistas personales; en Teherán y en la app MobiliSIG de Quebec.
+\\
+
+Se aplicó un método \textbf{Fuzzy-TOPSIS adaptativo}, en el que entra en juego la fatiga, mayor cuanta mayor longitud en pendiente. El resultado es un índice de accesibilidad de cuatro niveles.
+\\
+
+\begin{table}[H]
+  \centering
+  \caption{Enfoques de evaluación de la accesibilidad urbana.}
+  \label{tab:enfoques-evaluacion}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla Trabajo & Origen de los datos & Qué se mide & Agregación & Escala \\
+    \midrule
+    Axelson~\cite{axelson1999} & In situ & Pendientes longitudinal y transversal frente a la normativa de EEUU (ADA) & Ninguna (cumplimiento) & No consta \\
+    Frackelton~\cite{frackelton2013, guensler2015} & In situ & Existencia, condición, seguridad & Índice SQI & No consta \\
+    Saha~\cite{saha2019} & Calle & Vados, obstáculos, superficie, falta de aceras & Votación por mayoría & Severidad por barrera \\
+    Moura~\cite{moura2017} & In situ, calle & 17 indicadores en 7 dimensiones (anchura, pavimento, conectividad, seguridad) & Suma ponderada participativa & 0--100, clases A--E \\
+    Soares Müller~\cite{soaresmuller2024} & In situ & 46 microvariables (pavimento, vados, obstáculos, pendiente) & Lógica difusa, media geométrica & Sin escala global \\
+    Jahromi~\cite{jahromi2024} & In situ, aérea & Anchura, pendiente, desniveles, longitud & Fuzzy-TOPSIS adaptativo & 4 niveles \\
+    \filapropia Albacete y Algeciras & In situ & Puntuación por dimensión y perfil & Media (inferida) & Puntuación con diferentes escalas (0--100, 0--5) o clases (A--C) \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{Extracción de variables desde imagen}
+\label{sec:vision}
+
+\section{Aprendizaje automático para clasificar la accesibilidad}
+\label{sec:ml}
+
+\section{Perfiles de diversidad funcional en la evaluación}
+\label{sec:perfiles-arte}
+
+\section{Validación con datos espaciales y entre ciudades}
+\label{sec:validacion-espacial}
