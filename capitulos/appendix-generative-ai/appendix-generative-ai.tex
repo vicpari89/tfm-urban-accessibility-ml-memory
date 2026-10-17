@@ -180,3 +180,26 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
   \fichaajuste{Quitar la columna de artículos, porque ya están en las tablas de características.}
   \fichaajuste{Separar cada fila con una línea gris fina y centrar verticalmente el contenido.}
 \end{fichaia}
+
+\begin{fichaia}{Figura~\ref{fig:distribucion-clases}. Distribución de las clases de accesibilidad en Albacete y Algeciras}
+  \fichadato{Fecha}{17/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2.2. Estado del arte}
+  \fichadato{Resultado}{Código pgfplots de la figura~\ref{fig:distribucion-clases}, con los estilos de \texttt{tfm-estilo.sty}.}
+  \fichadato{Validación}{Los porcentajes de la figura se comprobaron con la tabla de distribución de clases obtenida en el análisis exploratorio de los datos de Albacete y Algeciras.}
+  \fichaprompt{Crea un diagrama de barras que muestre la distribución de clases de accesibilidad de Algeciras y Albacete, siguiendo el design system, a partir de los siguientes datos [tabla con el número de tramos y el número y porcentaje de tramos de clase A, B y C en Albacete, Algeciras y el total]}
+  \fichaajuste{Pero no quiero que me des el total}
+  \fichaajuste{Creo que prefiero los datos agrupados, en una sola columna (o fila)}
+\end{fichaia}
+
+\begin{fichaia}{Tabla~\ref{tab:ml-revisados}. Estudios de aprendizaje automático revisados}
+  \fichadato{Fecha}{17/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2.2. Estado del arte}
+  \fichadato{Objetivo}{Resumir en una tabla los estudios del apartado de aprendizaje automático, para facilitar su comparación.}
+  \fichadato{Material aportado}{Texto del apartado~\ref{sec:ml}, redactado por el autor.}
+  \fichadato{Resultado}{Código \LaTeX{} (\texttt{longtable}) de la tabla~\ref{tab:ml-revisados}: estudios agrupados por subsección, con el modelo, las métricas y las columnas de clase ordinal, desbalanceo, importancia, coste y fiabilidad.}
+  \fichadato{Validación}{Cada celda se revisó por el autor frente al texto del apartado~\ref{sec:ml}; compilación con la plantilla TFUOC.}
+  \fichaprompt{Crea una tabla con label ml-revisados que liste todos los trabajos, agrupados por las subsecciones, y que tenga por columnas: modelo, métricas, y que tenga como columnas: ordinal, desbalanceo, importancia, coste y fiabilidad. Utiliza únicamente los datos que están en el apartado 3.3 para llenar la tabla.}
+  \fichaajuste{Necesito que de alguna manera las columnas de ordinal, desbalanceo... no se corten}
+\end{fichaia}

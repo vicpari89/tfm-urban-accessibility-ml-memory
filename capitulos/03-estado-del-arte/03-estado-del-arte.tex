@@ -177,85 +177,135 @@ En general, se revisan trabajos y artículos sobre: modelos que trabajan sobre d
 
 \subsection{Trabajos previos en accesibilidad}
 \label{subsec:ml-accesibilidad}
-En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las imágenes para medir la accesibilidad de las aceras. Smith et al.\cite{smith2013} utilizan imágenes de Google Street View en un modelo \textit{random forest} con atributos como color, posición y contexto.
-\\
-Liu et al.~\cite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT; mientras que Weld et al.~\cite{weld2019} usan deep learning, con un modelo RestNet, sobre el Project Sidewalk indicado en la sección anterior de la memoria, sobre imágenes de Street View.
+En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. Smith et al.~\cite{smith2013} utilizan imágenes de Google Street View en un modelo \textit{random forest} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
 \\
 
-Los trabajos sobre datos tabulares se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan Dong et al.\cite{dong2019} con árboles de decisión con \textit{gradient boosting} que predicen la satisfacción general del peatón sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o Li et al.~\cite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
+Liu et al.~\cite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT; mientras que Weld et al.~\cite{weld2019} usan \textit{deep learning}, con un modelo ResNet, sobre el \textit{Project Sidewalk} indicado en la sección anterior de la memoria, sobre imágenes de Street View. En ambos casos, los modelos se evalúan por la precisión.
 \\
 
-Otro trabajo similar es el de Wang, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, Regresión Logística, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para un 2305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también.
+Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan Dong et al.~\cite{dong2019} con árboles de decisión con \textit{gradient boosting} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o Li et al.~\cite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
+\\
+
+Otro trabajo similar es el de Wang et al.~\cite{wang2026}, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, Regresión Logística, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para 2.305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también, evaluado con F1, precisión y recall.
 
 \subsection{Modelos para datos tabulares}
 \label{subsec:ml-tabular}
 
-Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto, en los que destacan los modelos de aŕboles de decisión, obteniendo los mejores resultados. En primer lugar, en Knights et al.~\cite{knights2026} se realiza una comparación entre regresión logística, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico sobre 600 observaciones; donde el modelo de \textit{random forest}, obtuvo la mejor exactitud.
+Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto, en los que destacan los modelos de \textbf{árboles de decisión}, obteniendo los mejores resultados. En primer lugar, en Knights et al.~\cite{knights2026} se realiza una comparación entre regresión logística, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico sobre 600 observaciones; donde el modelo de \textit{random forest}, obtuvo la mejor exactitud y F1.
 \\
 
 Y en general, en el estudio Grinsztajn et al.~\cite{grinsztajn2022} se realizó un estudio intensivo sobre 45 conjuntos de datos tabulares, y se determinó que los árboles de decisión eran más adecuados para este tipo de datos que el \textit{deep learning}.
 \\
 
-En los modelos de árboles de decisión, destacan los que están basados en \textit{gradient boosting}, como XGBoost y LightGBM. En Wu et al.~\cite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5060 observaciones); así como en Jean et al.~\cite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en Agal~\cite{agal2026}, sobre 100.000 registros sobre estudiantes.
+En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. En Wu et al.~\cite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5.060 observaciones), con métricas $R^2$ y RMSE (raíz del error cuadrático medio); así como en Jean et al.~\cite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en Agal~\cite{agal2026}, sobre 100.000 registros sobre estudiantes.
 \\
 
 \subsection{Clases ordinales y desbalanceadas}
-\label{sec:ml-ordinal}
+\label{subsec:ml-ordinal}
 
-En los conjuntos de datos del proyecto, existen una clase de accesibilidad (A, B y C), que se trata de una clase ordinal, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C es incumplimiento); además, las clases están desbalanceadas en ambos conjuntos de datos: solo el 2,6\% tiene clase A en Albacete, o el 5,5\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\% en Albacete y 56,1\% en Algeciras.
+En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{clase ordinal}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C es incumplimiento); además, las clases están \textbf{desbalanceadas} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
 
-Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en Jean et al.~\cite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 4). Mientras que en Agal et al.~\cite{agal2026} se utilizan redes neuronales acumulativas en un dataset de estudiantes, para evitar tratar las clases ordinales como inconexas; se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
-\\
+\input{capitulos/03-estado-del-arte/figuras/desbalanceo-clases-alb-alg}
 
-En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en Jean et al.~~\\cite{jean2025}) o la kappa ponderada cuadrática en Agal et al.~\cite{agal2026}.
-\\
+Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en Jean et al.~\cite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 4). Mientras que en Agal~\cite{agal2026} se utilizan redes neuronales acumulativas en un \textit{dataset} de estudiantes, para evitar tratar las clases ordinales como inconexas; se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
 
-Los estudios sobre desbalanceo de clases, utilizan la ponderación de clases y el aprendizaje sensible al coste~\cite{wang2026, agal2026}, o el submuestreo~\cite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, F1-macro y exactitud balanceada~\cite{jean2025, naseri2022}.
-\\
+En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en Jean et al.~\cite{jean2025}) o el error absoluto medio ordinal y la kappa ponderada cuadrática en Agal~\cite{agal2026}.
 
-En el aprendizaje sensible al coste se modifica la función de pérdida de manera que penalice más cuando se comete un error de predicción en una de las clases menos frecuentes; mientras que en el submuestreo lo que se hace es reducir el número de observaciones de las clases dominantes, para lograr un balanceo mejor de los datos.
-\\
+Los estudios sobre \textbf{desbalanceo de clases}, utilizan la ponderación de clases y el aprendizaje sensible al coste~\cite{wang2026, agal2026}, o el submuestreo~\cite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, F1-macro y exactitud balanceada~\cite{jean2025, naseri2022}.
 
-Para el desbalanceo, los trabajos revisados emplean tres estrategias: dar más peso a las clases poco frecuentes durante el entrenamiento~\cite{agal2026, wang2026}, entrenar con el mismo número de ejemplos de cada clase~\cite{smith2013} y ajustar los umbrales de decisión~\cite{jean2025}. En todos los casos se usan métricas que dan el mismo peso a cada clase, como el F1 macro o la exactitud balanceada~\cite{agal2026, jean2025, naseri2022}, en lugar de la exactitud global.
-\\
+En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida de manera que penalice más cuando se comete un error de predicción en una de las clases menos frecuentes; mientras que en el \textbf{submuestreo} lo que se hace es reducir el número de observaciones de las clases dominantes, para lograr un balanceo mejor de los datos.
 
 \subsection{Importancia de las variables}
 \label{subsec:ml-importancia}
 
-Es parte de este proyecto identificar qué variables tienen más peso a la hora de clasificar la accesibilidad de las calles, por lo que se ha realizado un estudio de cómo comprobar cuáles son las variables que pesan más en los modelos. Se han analizado tres técnicas:
+Es parte de este proyecto identificar qué variables tienen más peso a la hora de clasificar la accesibilidad de las calles, por lo que se ha realizado un estudio de cómo comprobar cuáles son las variables que pesan más en los modelos. Se han analizado cuatro técnicas:
 
 \begin{itemize}
-  \item Importancia interna de los árboles de decisión (índice de Gini), en los artículos~\cite{smith2013, dong2019}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
-  \item Importancia por valores de permutación, en los estudios~\cite{agal2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
-  \item Valores SHAP, en ~\cite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
-  \item Permutación en un indicador de consenso (con SHAP), en Knights et al.~\cite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score (CIS)} combinando SHAP, la importancia por permutación y la sensibilidad local.
+  \item \textbf{Importancia interna de los árboles de decisión (índice de Gini)}, en los artículos~\cite{smith2013, dong2019, li2024gsv}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
+  \item \textbf{Importancia por valores de permutación}, en los estudios~\cite{agal2026, wu2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
+  \item \textbf{Valores SHAP}, en~\cite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
+  \item \textbf{Permutación en un indicador de consenso (con SHAP)}, en Knights et al.~\cite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score (CIS)} combinando SHAP, la importancia por permutación y la sensibilidad local.
 \end{itemize}
 
 \subsection{Variables con fiabilidad o coste desigual}
 \label{subsec:ml-fiabilidad}
 
 En este apartado se listan los estudios sobre el tratamiento de variables con mayor o menor coste, debido a que una de las ideas de este proyecto se intenta utilizar los menores desplazamientos in situ, mucho más costosa; así como el tratamiento de variables tomadas con mayor o menor fiabilidad, porque en el tratamiento de imágenes se podría obtener alguna variable con alguna imprecisión, como en el caso de calles con vegetación, o calidad menor de las imágenes.
-\\
 
-En cuanto al coste desigual:
+\noindent\textbf{En cuanto al coste desigual:}
 \begin{itemize}
-  \item En Nan et al.~\cite{nan2014} se usa la técnica FMCC (Fast Margin-based Cost-sensitive classification) en el que se empieza seleccionando una característica, y se van eligiendo las siguientes, seleccionando aquella que maximice la probabilidad de acierto balanceando con el coste de adquisición hasta que la probabilidad de acierto llega a un umbral de confianza.
-  \item En Chen al.~\cite{chen2024cost} y Liu et al.~\cite{liu2024haff}, se obtiene un subconjunto de variables que se ajustan a un presupuesto máximo de manera más eficiente posible. Liu~\cite{liu2024haff} utiliza mecanismos de atención jerárquica (HAFF), mientras que Chen~\cite{chen2024cost} usa como inspiración la computación cuántica para seleccionar las variables.
-  \item Otros estudios tratan de calcular cuánta precisión se pierde cuando se reduce el número de variables, como Mohite et al.~\cite{mohite2024}, que evalúa la importancia de cada variable en el modelo; o Wu et al.~\cite{wu2026}, que realiza un análisis de sensibilidad sobre subconjuntos de variables.
+  \item En Nan et al.~\cite{nan2014} se usa la técnica \textbf{FMCC} (\textit{Fast Margin-based Cost-sensitive classification}) en el que se empieza seleccionando una característica, y se van eligiendo las siguientes, seleccionando aquella que maximice la probabilidad de acierto balanceando con el coste de adquisición hasta que la probabilidad de acierto llega a un umbral de confianza.
+  \item En Chen et al.~\cite{chen2024cost} y Liu et al.~\cite{liu2024haff}, se obtiene un subconjunto de variables que se ajustan a un presupuesto máximo de manera más eficiente posible. Liu~\cite{liu2024haff} utiliza mecanismos de atención jerárquica (\textbf{HAFF}), mientras que Chen et al.~\cite{chen2024cost} usa como inspiración la computación cuántica para seleccionar las variables. Métricas: AUC (área bajo la curva), exactitud, KS, H-Measure y G-Mean.
+  \item Otros estudios tratan de calcular cuánta precisión se pierde cuando se reduce el número de variables, como Mohite et al.~\cite{mohite2024}, que evalúa la importancia de cada variable en un modelo \textit{random forest} (métrica $R^2$); o Wu et al.~\cite{wu2026}, que realiza un análisis de sensibilidad sobre subconjuntos de variables.
 \end{itemize}
 
-En cuanto a la fiabilidad:
+\noindent\textbf{En cuanto a la fiabilidad:}
 \begin{itemize}
   \item En los estudios de Duan et al. y Liu et al.~\cite{duan2022, liu2024acc}, se comparan los conjuntos de datos validados sin ruido con conjuntos reales (con ruido), y se ha determinado que cuantos más datos sucios se utilicen, peor será para el modelo.
   \item En Wang et al.~\cite{wang2026}, se indica que es mejor no utilizar técnicas de aumento sintético de los datos (sobremuestreo), por la misma razón.
-  \item En Agal et al.~\cite{agal2026} se sugiere utilizar índices compuestos para atenuar el ruido de las variables.
-  \item Mientras que en Knights et al.~\cite{knights2026} se utiliza la varianza del rango (\textit{VarRank}), cuanto más alta sea, menos peso se le otorga en el modelo. También evalúa la sensibilidad del modelo, introduciendo pequeñas perturbaciones locales.
+  \item En Agal~\cite{agal2026} se sugiere utilizar índices compuestos para atenuar el ruido de las variables.
+  \item Mientras que en Knights et al.~\cite{knights2026} se utiliza la varianza del rango (\textbf{\textit{VarRank}}), cuanto más alta sea, menos peso se le otorga en el modelo. También evalúa la sensibilidad del modelo, introduciendo pequeñas perturbaciones locales.
 \end{itemize}
 
-La tabla ~\ref{tab:ml-revisados} resume los estudios revisados.
+La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
+\\
 
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.14\textwidth} >{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.16\textwidth} *{5}{>{\centering\arraybackslash}p{0.085\textwidth}}}
+  \caption{Estudios de aprendizaje automático revisados.}\label{tab:ml-revisados}\\
+  \toprule
+  \cabeceratabla \textbf{Trabajo} & \textbf{Modelo} & \textbf{Métricas} & \textbf{Ordinal} & \textbf{Desbal.} & \textbf{Import.} & \textbf{Coste} & \textbf{Fiabil.} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla \textbf{Trabajo} & \textbf{Modelo} & \textbf{Métricas} & \textbf{Ordinal} & \textbf{Desbal.} & \textbf{Import.} & \textbf{Coste} & \textbf{Fiabil.} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \multicolumn{8}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia.}} \\
+  \endlastfoot
+  \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Trabajos previos en accesibilidad} \\
+  Smith et al.~\cite{smith2013} & \textit{Random forest} & Precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} \\
+  Liu et al.~\cite{liu2024acc} & DINOv2, CLIP-ViT & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
+  Weld et al.~\cite{weld2019} & ResNet & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  Dong et al.~\cite{dong2019} & \textit{Gradient boosting} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
+  Li et al.~\cite{li2024gsv} & \textit{Random forest} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
+  Wang et al.~\cite{wang2026} & \textit{Random forest} (mejor de 11) & F1, precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
+  \midrule
+  \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Modelos para datos tabulares} \\
+  Knights et al.~\cite{knights2026} & \textit{Random forest} (mejor de 4) & Exactitud, F1 & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{si} \\
+  Grinsztajn et al.~\cite{grinsztajn2022} & Árboles de decisión frente a \textit{deep learning} & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  Wu et al.~\cite{wu2026} & XGBoost & $R^2$, RMSE & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
+  \midrule
+  \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Clases ordinales y desbalanceadas} \\
+  Jean et al.~\cite{jean2025} & XGBoost ordinal & MAMAE, F1 macro, exactitud balanceada & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  Agal~\cite{agal2026} & LightGBM, redes neuronales acumulativas & Error absoluto medio ordinal, kappa ponderada cuadrática, F1 macro, exactitud balanceada & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
+  Naseri et al.~\cite{naseri2022} & — & F1 macro, exactitud balanceada & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  \midrule
+  \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Variables con fiabilidad o coste desigual} \\
+  Nan et al.~\cite{nan2014} & FMCC & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  Chen et al.~\cite{chen2024cost} & Selección inspirada en computación cuántica & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  Liu et al.~\cite{liu2024haff} & HAFF & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  Mohite et al.~\cite{mohite2024} & \textit{Random forest} & $R^2$ & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
+  Duan et al.~\cite{duan2022} & — & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
+\end{longtable}
+\endgroup
 
+\subsection{Conclusiones}
+\label{subsec:ml-conclusiones}
 
+En cuanto a los trabajos que aplican machine learning a la clasificación en datos tabulares, los modelos más adecuados son los árboles de decisión, especialmente \textit{random forest} y los modelos de \textit{gradient boosting}, puesto que son los que obtienen mejores resultados en el estado del arte analizado.
+\\
+
+Observando las métricas, varían según el tipo de modelo (ver tabla~\ref{tab:ml-revisados}).Para la regresión se usa $R^2$ y RMSE; para la clasificación el AUC, la precisión y el recall. En clases desbalanceadas se sustituye el recall por métricas que dan el mismo peso a cada clase, como F1-macro o la exactitud balanceada; así como los que trabajan con clases ordinales, el error absoluto medio ordinal o la kappa ponderada cuadrática. En cuanto a la importancia de las bariables, combinan permutación y SHAP.
+\\
+
+En algunos trabajos se ha podido comprobar cómo seleccionar las variables según su coste, o qué precisión se pierde al reducirlas.
+\\
 
 \section{Perfiles de diversidad funcional en la evaluación}
 \label{sec:perfiles-arte}
