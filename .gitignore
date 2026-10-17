@@ -25,8 +25,7 @@
 .idea/
 .DS_Store
 *.swp
-/build/*
-!/build/TFM_Victor_Pariente_Gonzalez.pdf
+/build
 __pycache__/
 *-draft.*
 /package.json
