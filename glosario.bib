@@ -291,3 +291,87 @@
   text = {auditoría virtual},
   description = {Evaluación de la accesibilidad de una vía a partir de imágenes a pie de calle, sin necesidad de desplazarse al lugar, en contraposición a la inspección \emph{in situ}}
 }
+
+@entry{arbol-decision,
+  name = {Árbol de decisión},
+  text = {árbol de decisión},
+  description = {Modelo que clasifica un tramo respondiendo a una serie de preguntas encadenadas sobre sus variables (por ejemplo, «¿El ancho es mayor a 1,80m?»), de modo que cada rama termina en una clase}
+}
+
+@entry{random-forest,
+  name = {Random forest},
+  text = {random forest},
+  description = {Modelo formado por muchos árboles de decisión entrenados con distintas muestras de los datos, cuya clasificación final se obtiene por votación}
+}
+
+@entry{gradient-boosting,
+  name = {Gradient boosting},
+  text = {gradient boosting},
+  description = {Técnica que construye los árboles de decisión uno tras otro, de manera que cada árbol corrige los errores del anterior. Ejemplos de implementación: XGBoost y LightGBM}
+}
+
+@entry{regresion-logistica,
+  name = {Regresión logística},
+  text = {regresión logística},
+  description = {Modelo lineal que calcula la probabilidad de que un tramo pertenezca a una clase a partir de una combinación ponderada de sus variables}
+}
+
+@entry{clase-ordinal,
+  name = {Clase ordinal},
+  text = {clase ordinal},
+  description = {Variable objetivo cuyas categorías siguen un orden (en este trabajo A, B y C), de modo que confundir A con C es un error más grave que confundir A con B}
+}
+
+@entry{desbalanceo-clases,
+  name = {Desbalanceo de clases},
+  text = {desbalanceo de clases},
+  description = {Situación en la que unas clases tienen muchos menos ejemplos que otras, lo que lleva al modelo a favorecer a la clase mayoritaria}
+}
+
+@entry{ponderacion-clases,
+  name = {Ponderación de clases},
+  text = {ponderación de clases},
+  description = {Técnica para tratar el desbalanceo que da más peso en el entrenamiento a los errores cometidos en las clases poco frecuentes. Es la base del aprendizaje sensible al coste}
+}
+
+@entry{submuestreo,
+  name = {Submuestreo},
+  text = {submuestreo},
+  description = {Técnica para tratar el desbalanceo que reduce el número de ejemplos de las clases mayoritarias hasta equilibrarlas con las minoritarias. Su opuesto es el sobremuestreo, que genera ejemplos sintéticos de las clases minoritarias}
+}
+
+@entry{f1-macro,
+  name = {F1 macro},
+  text = {F1 macro},
+  description = {Métrica que calcula el F1 de cada clase (media armónica de la precisión y el \textit{recall}) y promedia los resultados, de modo que todas las clases pesan igual con independencia de su tamaño}
+}
+
+@entry{exactitud-balanceada,
+  name = {Exactitud balanceada},
+  text = {exactitud balanceada},
+  description = {Media de la proporción de aciertos de cada clase, que evita que la clase mayoritaria domine el resultado, a diferencia de la exactitud global}
+}
+
+@entry{kappa-ponderada,
+  name = {Kappa ponderada cuadrática},
+  text = {kappa ponderada cuadrática},
+  description = {Métrica de concordancia entre la clase real y la predicha para clases ordinales, que penaliza los errores en proporción al cuadrado de la distancia entre clases}
+}
+
+@entry{importancia-permutacion,
+  name = {Importancia por permutación},
+  text = {importancia por permutación},
+  description = {Medida de la importancia de una variable que consiste en desordenar sus valores y observar cuánto empeora la métrica del modelo}
+}
+
+@entry{shap,
+  name = {SHAP},
+  text = {SHAP},
+  description = {\textit{SHapley Additive exPlanations}: método basado en la teoría de juegos que reparte la predicción del modelo entre las variables, calculando la contribución media de cada una}
+}
+
+@entry{indice-gini,
+  name = {Índice de Gini},
+  text = {índice de Gini},
+  description = {Medida de la homogeneidad de las clases dentro de un grupo. En los árboles de decisión sirve para medir la importancia de una variable según cuánto reduce esa impureza al dividir los datos}
+}
