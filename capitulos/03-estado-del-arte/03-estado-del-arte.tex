@@ -177,16 +177,16 @@ En general, se revisan trabajos y artículos sobre: modelos que trabajan sobre d
 
 \subsection{Trabajos previos en accesibilidad}
 \label{subsec:ml-accesibilidad}
-En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. Smith et al.~\cite{smith2013} utilizan imágenes de Google Street View en un modelo \textit{random forest} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
+En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. Smith et al.~\cite{smith2013} utilizan imágenes de Google Street View en un modelo \glslink{random-forest}{\textit{random forest}} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
 \\
 
 Liu et al.~\cite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT; mientras que Weld et al.~\cite{weld2019} usan \textit{deep learning}, con un modelo ResNet, sobre el \textit{Project Sidewalk} indicado en la sección anterior de la memoria, sobre imágenes de Street View. En ambos casos, los modelos se evalúan por la precisión.
 \\
 
-Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan Dong et al.~\cite{dong2019} con árboles de decisión con \textit{gradient boosting} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o Li et al.~\cite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
+Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan Dong et al.~\cite{dong2019} con \glslink{arbol-decision}{árboles de decisión} con \glslink{gradient-boosting}{\textit{gradient boosting}} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o Li et al.~\cite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
 \\
 
-Otro trabajo similar es el de Wang et al.~\cite{wang2026}, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, Regresión Logística, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para 2.305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también, evaluado con F1, precisión y recall.
+Otro trabajo similar es el de Wang et al.~\cite{wang2026}, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, \glslink{regresion-logistica}{Regresión Logística}, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para 2.305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también, evaluado con F1, precisión y recall.
 
 \subsection{Modelos para datos tabulares}
 \label{subsec:ml-tabular}
@@ -203,15 +203,15 @@ En los modelos de árboles de decisión, destacan los que están basados en \tex
 \subsection{Clases ordinales y desbalanceadas}
 \label{subsec:ml-ordinal}
 
-En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{clase ordinal}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C es incumplimiento); además, las clases están \textbf{desbalanceadas} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
+En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{\glslink{clase-ordinal}{clase ordinal}}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C es incumplimiento); además, las clases están \textbf{\glslink{desbalanceo-clases}{desbalanceadas}} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
 
 \input{capitulos/03-estado-del-arte/figuras/desbalanceo-clases-alb-alg}
 
 Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en Jean et al.~\cite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 4). Mientras que en Agal~\cite{agal2026} se utilizan redes neuronales acumulativas en un \textit{dataset} de estudiantes, para evitar tratar las clases ordinales como inconexas; se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
 
-En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en Jean et al.~\cite{jean2025}) o el error absoluto medio ordinal y la kappa ponderada cuadrática en Agal~\cite{agal2026}.
+En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en Jean et al.~\cite{jean2025}) o el error absoluto medio ordinal y la \glslink{kappa-ponderada}{kappa ponderada cuadrática} en Agal~\cite{agal2026}.
 
-Los estudios sobre \textbf{desbalanceo de clases}, utilizan la ponderación de clases y el aprendizaje sensible al coste~\cite{wang2026, agal2026}, o el submuestreo~\cite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, F1-macro y exactitud balanceada~\cite{jean2025, naseri2022}.
+Los estudios sobre \textbf{desbalanceo de clases}, utilizan la \glslink{ponderacion-clases}{ponderación de clases} y el aprendizaje sensible al coste~\cite{wang2026, agal2026}, o el \glslink{submuestreo}{submuestreo}~\cite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, \glslink{f1-macro}{F1-macro} y \glslink{exactitud-balanceada}{exactitud balanceada}~\cite{jean2025, naseri2022}.
 
 En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida de manera que penalice más cuando se comete un error de predicción en una de las clases menos frecuentes; mientras que en el \textbf{submuestreo} lo que se hace es reducir el número de observaciones de las clases dominantes, para lograr un balanceo mejor de los datos.
 
@@ -221,9 +221,9 @@ En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida
 Es parte de este proyecto identificar qué variables tienen más peso a la hora de clasificar la accesibilidad de las calles, por lo que se ha realizado un estudio de cómo comprobar cuáles son las variables que pesan más en los modelos. Se han analizado cuatro técnicas:
 
 \begin{itemize}
-  \item \textbf{Importancia interna de los árboles de decisión (índice de Gini)}, en los artículos~\cite{smith2013, dong2019, li2024gsv}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
-  \item \textbf{Importancia por valores de permutación}, en los estudios~\cite{agal2026, wu2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
-  \item \textbf{Valores SHAP}, en~\cite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
+  \item \textbf{Importancia interna de los árboles de decisión (\glslink{indice-gini}{índice de Gini})}, en los artículos~\cite{smith2013, dong2019, li2024gsv}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
+  \item \textbf{\glslink{importancia-permutacion}{Importancia por valores de permutación}}, en los estudios~\cite{agal2026, wu2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
+  \item \textbf{Valores \gls{shap}}, en~\cite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
   \item \textbf{Permutación en un indicador de consenso (con SHAP)}, en Knights et al.~\cite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score (CIS)} combinando SHAP, la importancia por permutación y la sensibilidad local.
 \end{itemize}
 
