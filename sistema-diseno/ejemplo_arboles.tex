@@ -1,0 +1,68 @@
+\documentclass[IB]{TFUOC}
+\usepackage[tabla]{tfm-estilo}
+\usepackage{tabularx}
+\title{T}\titcrt{T}\author{A}\date{2026}\nomPDC{X}\nomPRA{Y}\titulac{M}\area{A}\idioma{Castellano}\credits{15}\parcla{a}\licenc{ccBy}
+\abstractidioma{a}\abstractenglish{b}
+\begin{document}
+\chapter{Árboles de decisión y XGBoost}
+Ejemplo de los componentes \emph{ArbolDecision} y \emph{XGBoost} (datos de ejemplo). Los árboles pueden generarse con \texttt{python/arboles.py}.
+\begin{figure}[htbp]\centering
+\begin{forest} tfmarbol
+[{anchura libre $\leq$ 1,80\,m}\arbolinfo{n = 4\,812}, camino
+  [{pendiente long. \textgreater\ 8\,\%}\arbolinfo{n = 1\,930}, camino
+    [{No accesible}\arbolinfo{n = 640}, hojaclase=no-accesible, camino]
+    [{Deficiente}\arbolinfo{n = 1\,290}, hojaclase=deficiente]]
+  [{obstáculos $\leq$ 1}\arbolinfo{n = 2\,882}, ausente
+    [{Accesible}\arbolinfo{n = 2\,104}, hojaclase=accesible]
+    [{Practicable}\arbolinfo{n = 778}, hojaclase=practicable]]]
+\end{forest}
+\caption{Árbol de decisión para clasificar la accesibilidad de un tramo; se resalta el camino de una observación (datos de ejemplo).}\label{fig:arbol}
+\end{figure}
+
+\begin{figure}[htbp]\centering
+\etiquetasramas{sí}{no}
+\begin{forest} tfmarbol
+[{f12 \textless\ 0,35}
+  [{f3 \textless\ 1,2}, ausente [{+0,214}] [{$-$0,087}]]
+  [{$-$0,152}]]
+\end{forest}
+\caption{Primer árbol del ensamblado XGBoost; la rama marcada «ausente» recibe los valores nulos (datos de ejemplo).}\label{fig:arbol-xgb}
+\end{figure}
+
+\begin{figure}[htbp]\centering
+\esquemaboosting[arboles=4, eta={\eta = 0{,}1}]
+\caption{Esquema de boosting: cada árbol aprende el residuo de los anteriores y las salidas se suman ponderadas por $\eta$.}\label{fig:boosting}
+\end{figure}
+
+\begin{table}[htbp]\centering\small
+\caption{Configuración del modelo XGBoost (datos de ejemplo).}\label{tab:config-xgb}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}Xll@{}}
+\toprule
+\cabeceratabla \textbf{Hiperparámetro} & \textbf{Descripción} & \textbf{Rango explorado} & \textbf{Valor} \\
+\midrule
+\filagrupo{4}{Estructura del árbol}
+\hiperparam{max_depth} & Profundidad máxima & 3--10 & \mejor{6} \\
+\hiperparam{min_child_weight} & Peso mínimo por hoja & 1--10 & 3 \\
+\filagrupo{4}{Aprendizaje}
+\hiperparam{learning_rate} ($\eta$) & Tasa de aprendizaje & 0,01--0,3 & 0,05 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}
+\begin{axis}[tfmimportancia, width=0.8\linewidth, height=5cm, symbolic y coords={Anchura,Pendiente,Obstáculos,Pavimento}]
+\addplot coordinates {(0.42,Anchura) (0.27,Pendiente) (0.18,Obstáculos) (0.09,Pavimento)};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[tfmaprendizaje, width=0.8\linewidth, height=5cm, ylabel={log-loss}]
+\addplot+[mark=none] coordinates {(0,1.1) (100,0.6) (200,0.45) (300,0.40) (400,0.41) (500,0.43)};
+\addplot+[mark=none] coordinates {(0,1.1) (100,0.5) (200,0.30) (300,0.20) (400,0.14) (500,0.10)};
+\legend{Validación, Entrenamiento}
+\paradatemprana{312}{parada temprana\\(mejor iteración: 312)}
+\end{axis}
+\end{tikzpicture}
+\caption{Importancia de variables por ganancia y curva de aprendizaje con parada temprana (datos de ejemplo).}\label{fig:xgb-resultados}
+\end{figure}
+\end{document}

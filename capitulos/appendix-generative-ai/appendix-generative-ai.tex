@@ -203,3 +203,14 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
   \fichaprompt{Crea una tabla con label ml-revisados que liste todos los trabajos, agrupados por las subsecciones, y que tenga por columnas: modelo, métricas, y que tenga como columnas: ordinal, desbalanceo, importancia, coste y fiabilidad. Utiliza únicamente los datos que están en el apartado 3.3 para llenar la tabla.}
   \fichaajuste{Necesito que de alguna manera las columnas de ordinal, desbalanceo... no se corten}
 \end{fichaia}
+
+\begin{fichaia}{Sistema de diseño: componentes de árboles de decisión y XGBoost}
+  \fichadato{Fecha}{18/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos}
+  \fichadato{Objetivo}{Ampliar el sistema de diseño de la memoria con componentes para representar árboles de decisión y la configuración y los resultados de modelos XGBoost, manteniendo la paleta, la tipografía y los criterios de accesibilidad del sistema.}
+  \fichadato{Material aportado}{Sistema de diseño existente (\texttt{tfm-estilo.sty} v1.7 y guía de estilo); ningún dato de los modelos.}
+  \fichadato{Resultado}{\texttt{tfm-estilo.sty} v1.8 con el estilo \texttt{forest} \texttt{tfmarbol} (divisiones, hojas con valor o clase de accesibilidad, rama de valores ausentes y camino de una predicción), \texttt{\textbackslash esquemaboosting}, comandos para la tabla de configuración de hiperparámetros y estilos pgfplots de importancia de variables y curva de aprendizaje; módulo \texttt{arboles.py} que genera ese código a partir de modelos de scikit-learn y XGBoost; componentes \emph{ArbolDecision} y \emph{XGBoost} en la guía de estilo.}
+  \fichadato{Validación}{Compilación con la plantilla TFUOC; prueba de \texttt{arboles.py} con modelos de scikit-learn y XGBoost entrenados sobre datos sintéticos; colores tomados de tokens ya verificados (WCAG 2.1 y simulación de daltonismo); revisión visual del autor.}
+  \fichaprompt{Necesito que actualices el system design para incluir un componente que permita pintar árboles de decisión, así cómo configuraciones de XG Boosting}
+\end{fichaia}

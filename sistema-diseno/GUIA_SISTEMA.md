@@ -31,6 +31,7 @@ Sistema visual del Trabajo Final de Máster (Máster en Ciencia de Datos, UOC) s
 - **Estados** (tareas, objetivos, secciones en borrador): `estado-pendiente`, `estado-en-curso`, `estado-revision`, `estado-completado`, `estado-bloqueado`, cada uno con su `-fondo`. Siempre como etiqueta completa: glifo de progreso (○ ◑ ◕ ● ⊗) + texto + color, con texto `tinta` sobre el fondo. Solo para estados: nunca en gráficos.
 - **Real frente a predicho:** `error-sobreestima` (naranja, ▲: la predicción excede lo real, falso positivo), `error-subestima` (azul, ▼ o discontinuo: se queda corta, falso negativo), `error-acierto` (gris) y `error-tolerancia` (banda). Misma convención en gráficos, tablas, mapas y máscaras de error; nunca mezclados con `acc-*` o `seg-*` en la misma figura.
 - **Diagramas de flujo:** mismas formas que la arquitectura más `flujo-decision` para el rombo de decisión; los algoritmos o modelos van con doble borde sobre `nn-conv`.
+- **Árboles de decisión y XGBoost:** divisiones en `arbol-division` (= `papel`) con borde `uoc-azul`; hojas con valor en `arbol-hoja` (= `superficie`) con borde `tinta-suave`; hojas de clase con la escala `acc-*` y su nombre escrito; el camino de una predicción en `arbol-camino` (= `uoc-azul`) con `trazo-grueso`. En el esquema de boosting, el residuo entre árboles va en `nn-skip` discontinuo y la salida en `nn-salida`; la importancia de variables en `serie-1` y la curva de aprendizaje con validación en `serie-1` y entrenamiento en `serie-2`.
 - **Diagramas de arquitectura y código:** `arq-modulo` para procesos, módulos y clases; `arq-datos` para datasets, ficheros y modelos entrenados; `arq-externo` (borde `acc-deficiente`) para sistemas externos como PNOA, catastro o el SIG municipal. Flechas en `tinta-suave`.
 
 ## Accesibilidad del color
@@ -48,11 +49,12 @@ Todas las parejas se han comprobado con el contraste WCAG 2.1 y con simulación 
 
 ## Qué componente usar
 
-- **Explicar el sistema:** *Pipeline* (arquitectura de bloques), *DiagramaFlujo* (orden de algoritmos y decisiones), *DiagramaSecuencia* (llamadas entre componentes en una ejecución), *RedNeuronal* (capas del modelo), *DiagramaClases* (diseño del código).
+- **Explicar el sistema:** *Pipeline* (arquitectura de bloques), *DiagramaFlujo* (orden de algoritmos y decisiones), *DiagramaSecuencia* (llamadas entre componentes en una ejecución), *RedNeuronal* (capas del modelo), *ArbolDecision* (un árbol de clasificación o de un ensamblado, con el camino de una predicción), *XGBoost* (esquema de boosting y tabla de configuración de hiperparámetros), *DiagramaClases* (diseño del código).
 - **Marco teórico y estado del arte:** *EsquemaConceptual*, *Recuadros* (definiciones e hipótesis), *Citas*, *MatrizLiteratura*, *LineaTemporal*, *DiagramaPRISMA*, *GraficoDispersion*.
-- **Resultados:** *Tabla*, *GraficoBarras* (comparar modelos o clases; vertical u horizontal, agrupado o apilado), *GraficoLineas* (evolución o perfiles), *GraficoCircular* (composición de un único total), *MatrizConfusion*, *LeyendaSegmentacion*, *EscalaAccesibilidad*, *MapaTramos*.
+- **Resultados:** *Tabla*, *GraficoBarras* (comparar modelos o clases; vertical u horizontal, agrupado o apilado), *GraficoLineas* (evolución o perfiles), *XGBoost* (importancia de variables y curva de aprendizaje con parada temprana), *GraficoCircular* (composición de un único total), *MatrizConfusion*, *LeyendaSegmentacion*, *EscalaAccesibilidad*, *MapaTramos*.
 - **Validación (real frente a predicho):** *ComparacionRealPredicho*, *TablaRealPredicho*, *MapaError*, *MatrizConfusion*.
 - **Listas:** *Listas* (viñetas ■ – ▪, numeradas 1. a) i., objetivos e hipótesis codificados O1/H1, pasos, ventajas e inconvenientes, comprobación).
+- **Uso de IA generativa:** *FichaIA* (una ficha por uso en el anexo, citada desde la figura y el capítulo de declaración).
 - **Notas y aclaraciones:** *Notas* (post-it de borrador, aclaraciones, notas al pie y de tabla).
 - **Planificación y seguimiento:** *Cronograma* (Gantt), *TableroKanban*, *Estados*.
 - **Difusión:** *Infografia*, *Diapositiva*.
@@ -119,3 +121,4 @@ Recomendaciones de forma (no de contenido) para analizar artículos científicos
 - Con `babel` en castellano, escribe superíndices en modo matemático (`$512^2$`) en lugar de `²`: `utf8x` de la plantilla los compone mal dentro de TikZ.
 - `assets/LaTeX/beamerthemeUOCTFM.sty` es el tema Beamer para la defensa.
 - `assets/Python/tfm.mplstyle` replica colores y tipografía en matplotlib para figuras generadas desde los notebooks (máscaras, curvas de entrenamiento): `plt.style.use('tfm.mplstyle')`.
+- `assets/Python/arboles.py` convierte un árbol de scikit-learn o de XGBoost en código `forest` con los estilos del sistema (`sklearn_a_forest`, `xgb_a_forest`), genera las filas de la tabla de configuración (`tabla_configuracion`) y la importancia en pgfplots (`importancia_pgfplots`), y dibuja importancia y curva de aprendizaje en matplotlib (`importancia`, `curva_aprendizaje`). Los árboles necesitan el paquete `forest`, que `tfm-estilo.sty` carga desde la versión 1.8.
