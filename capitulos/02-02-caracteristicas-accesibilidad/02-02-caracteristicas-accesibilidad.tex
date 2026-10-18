@@ -3,13 +3,51 @@
 \label{sec:caracteristicas}
 % =====================================================================
 
-Una vez identificada la norma Orden TMA/851/2021 como la normativa legal de referencia, en esta sección se va a realizar la extracción de los requisitos técnicos específicos para considerar una vía como accesible: itinerarios peatonales accesibles, obras, mobiliario o vados y pasos peatonales.
+Una vez identificada la Orden TMA/851/2021 como la normativa legal de referencia, en esta sección se explican los conceptos de cada categoría de características del entorno urbano accesible (itinerarios peatonales accesibles, pavimentos, vados y pasos de peatones, obras, mobiliario, plataformas únicas, señalización e iluminación) y su correspondencia con las columnas de los conjuntos de datos de Albacete y Algeciras (tabla~\ref{tab:correspondencia-columnas}).
 \\
 
-En cada una de las categorías de características, se describen los parámetros mínimos establecidos, cuáles son los incumplimientos habituales y de qué manera afectan a la diversidad funcional, y finalmente cómo aparecen en los conjuntos de datos de Albacete y Algeciras. Las tablas de requisitos y los incumplimientos habituales de cada categoría se recogen en el anexo «Requisitos de accesibilidad e incumplimientos habituales» del documento de anexos.
+El detalle de los requisitos y de los incumplimientos habituales de cada categoría se recoge en el anexo «Requisitos de accesibilidad e incumplimientos habituales» del documento de anexos. La viabilidad de obtener estos parámetros a partir de imágenes se analiza en la sección~\ref{sec:viabilidad}.
 \\
 
-Se identifican también los parámetros que se pueden extraer automáticamente desde imágenes aéreas o transversales, sirviendo de base para las hipótesis de investigación.
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{\dimexpr0.5\textwidth-1.7cm-2\tabcolsep\relax} >{\raggedright\arraybackslash}p{\dimexpr0.5\textwidth-1.7cm-2\tabcolsep\relax}}
+  \caption{Correspondencia entre las categorías de características y las columnas de los conjuntos de datos.}\label{tab:correspondencia-columnas}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Categoría} & \textbf{Albacete} & \textbf{Algeciras} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Categoría} & \textbf{Albacete} & \textbf{Algeciras} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \multicolumn{3}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia a partir de los conjuntos de datos de Albacete y Algeciras.}}
+  \endlastfoot
+    Itinerario peatonal accesible & Dimensiones de pendiente (\texttt{PENDIENTE*}) y anchura (\texttt{ANCHURA*}). & Dimensiones de pendiente (\texttt{PUNT\_PEND\_*}) y anchura (\texttt{PUNT\_ANCH\_*}). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Pavimentos y elementos táctiles & Dimensión de pavimento (\texttt{PAVIMENTO*}). & Dimensión de pavimento (\texttt{PUNT\_PAVI\_*}). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Vados, pasos de peatones e isletas & Dimensión de cruces (\texttt{CRUCES*}). Las columnas \texttt{FCRSEMF*} y \texttt{FCRVADO*} son enlaces a Google Drive (fotografías). & Dimensión de cruces (\texttt{PUNT\_CRUC\_*}). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Obras e intervenciones & No existe una dimensión de obras. Solo aparece en algunas calles que están de obras en los campos \texttt{TIPOLACT} o \texttt{PROPACT}. & No existe una dimensión de obras. Solo hay una calle que se indica que está en obras (en el campo \texttt{PROPUESTA}). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Mobiliario urbano y terrazas & Dimensión de mobiliario (\texttt{MOBILIAR*}). Las columnas \texttt{FMOB*} son enlaces a Google Drive de fotos o informes. & Dimensión de mobiliario (\texttt{PUNT\_MOBI\_*}). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Plataforma única & No es una dimensión de puntuación, sino una categoría de \texttt{TIPOLACT} («Plataforma»). & Solo existe con el valor «Plataforma única» de \texttt{TIPOLOGÍA}. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Señalización e información & Dimensión de señalización (\texttt{SEÑALIZ*}). & Dimensión de señalización (\texttt{PUNT\_SEÑA\_*}). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
+    Iluminación y visibilidad & Dimensión de iluminación (\texttt{ILUMIN*}). & Dimensión de iluminación (\texttt{PUNT\_ILUM\_*}). \\
+\end{longtable}
+\endgroup
+
+De las ocho categorías analizadas, seis se corresponden con dimensiones puntuadas en ambas ciudades (siete dimensiones, ya que el itinerario peatonal accesible incluye pendiente y anchura): itinerario peatonal accesible, pavimentos, cruces, mobiliario, señalización e iluminación. Obras y plataforma única no están puntuadas, y solo aparecen como categoría o como comentario en algún campo. Se deja fuera el transporte, que solo está puntuado en Albacete, y no se incluye en el análisis de viabilidad de la sección~\ref{sec:viabilidad}.
 \\
 
 % ---------------------------------------------------------------------
@@ -28,23 +66,19 @@ El itinerario peatonal accesible (IPA) es la parte de uso peatonal de la vía ur
 \textbf{La pendiente longitudinal} es la inclinación del itinerario, en porcentaje, en dirección de la marcha.
 \\
 
-Mientras que \textbf{la pendiente transversal} es la inclinación del itinerario, en porcentaje, perpendicular a la dirección de la marcha.
+\textbf{La pendiente transversal} es la inclinación del itinerario, en porcentaje, perpendicular a la dirección de la marcha.
 \\
 
 
 La \autoref{fig:ipa-plano} ilustra gráficamente cómo se miden y aplican estos parámetros en el itinerario peatonal accesible (véase la tabla de requisitos en el anexo «Requisitos de accesibilidad e incumplimientos habituales»).
 \\
 
-% (4) Cómo aparece en los datos
-\datosplanes{Dimensiones de pendiente (\texttt{PENDIENTE*}) y anchura (\texttt{ANCHURA*}).}
-        {Dimensiones de pendiente (\texttt{PUNT\_PEND\_*}) y anchura (\texttt{PUNT\_ANCH\_*}).}
-
 % ---------------------------------------------------------------------
 \subsection{Pavimentos y elementos táctiles indicadores}
 \label{subsec:pavimentos}
 
 % (1) Qué es y por qué importa
-La elección del pavimento, así como su calidad y estado, son vitales para garantizar la seguridad en la accesibilidad de vías urbanas. Se deben optar por superficies uniformes, que no resbalen y que ofrezcan una estabilidad para todas las personas, independientemente de su diversidad funcional.
+La elección del pavimento, así como su calidad y estado, son vitales para garantizar la seguridad en la accesibilidad de vías urbanas. Se debe optar por superficies uniformes, que no resbalen y que ofrezcan una estabilidad para todas las personas, independientemente de su diversidad funcional.
 \\
 
 Se regulan los tipos de pavimento táctil según su finalidad, distinguiendo entre advertencia y encaminamiento. En cuanto a los pavimentos de advertencia, son necesarios para indicar la cercanía a un peligro, desnivel u obstáculo; o fin de una zona de riesgo, alertando a las personas ciegas o con baja visión.
@@ -53,79 +87,42 @@ Se regulan los tipos de pavimento táctil según su finalidad, distinguiendo ent
 Por otro lado, los pavimentos de encaminamiento se utilizan para orientar y dirigir a las personas, utilizando franjas de inicio y acabado.
 \\
 
-% (4) Cómo aparece en los datos
-\datosplanes{Dimensión de pavimento (\texttt{PAVIMENTO*}).}
-        {Dimensión de pavimento (\texttt{PUNT\_PAVI\_*}).}
-
 
 % ---------------------------------------------------------------------
 \subsection{Vados peatonales, pasos de peatones e isletas de refugio}
 \label{subsec:vados}
 
 % (1) Qué es y por qué importa
-Los vados, pasos o isletas constituyen los cruces peatonales con el tráfico rodante, y constituyen puntos críticos con alta siniestralidad y mayor riesgo para los peatones si no se diseñan de manera correcta.
+Los vados, pasos o isletas son los cruces peatonales con el tráfico rodante, y constituyen puntos críticos con alta siniestralidad y mayor riesgo para los peatones si no se diseñan de manera correcta.
 \\
 
 En primer lugar, un \textbf{vado peatonal} es el área de la acera destinada al inicio del cruce peatonal, habilitando un acceso seguro a la calzada, generalmente utilizando una inclinación suave para salvar el habitual desnivel entre la acera y la calzada.
 \\
 
-El siguiente elemento que se encuentran las personas es el \textbf{paso de peatones}, siendo el área de la calzada destinada al cruce seguro de peatones, suficientemente señalizada y delimitada para garantizar la visibilidad, y en ocasiones ayudada por semaforización.
+El siguiente elemento que encuentran las personas es el \textbf{paso de peatones}, siendo el área de la calzada destinada al cruce seguro de peatones, suficientemente señalizada y delimitada para garantizar la visibilidad, y en ocasiones ayudada por semaforización.
 \\
 
 Por último, las \textbf{isletas de refugio} son áreas intermedias situadas en la calzada habilitadas para permitir a la ciudadanía cruzar la calzada en los tiempos necesarios, sirviendo de lugar seguro de espera, especialmente para calzadas anchas y avenidas.
 \\
-
-\begin{figure}[htbp]
-\centering
-\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/vados}
-\caption{Vados, pasos de peatones e isletas de refugio: disposición en planta y parámetros
-  mínimos (véase el anexo «Requisitos de accesibilidad e incumplimientos habituales»).}
-\label{fig:vados}
-\fuente{elaboración propia a partir de la Orden TMA/851/2021, con asistencia de Claude (Anthropic) mediante instrucciones del autor~\cite{claude}.}
-\end{figure}
-
-% (4) Cómo aparece en los datos
-\datosplanes{Dimensión de cruces (\texttt{CRUCES*}) Hay además columnas \texttt{FCRSEMF*} y \texttt{FCRVADO*}, pero son enlaces a Google Drive (fotografías).}
-        {Dimensión de cruces (\texttt{PUNT\_CRUC\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Obras e intervenciones}
 \label{subsec:obras}
 
 % (1) Qué es y por qué importa
-Las obras constituyen, según la \textit{Guía para una política integral de promoción y gestión} del IMSERSO \cite{sala_alonso_2012}, el mayor obstáculo para la accesibilidad peatonal en la vía pública. Además, dada su circunstancia temporal, impide a las administraciones determinar la accesibilidad real de la vía pública en todo momento.
+Las obras constituyen, según la \textit{Guía para una política integral de promoción y gestión} del IMSERSO \cite{sala_alonso_2012}, el mayor obstáculo para la accesibilidad peatonal en la vía pública. Además, dada su circunstancia temporal, impiden a las administraciones determinar la accesibilidad real de la vía pública en todo momento.
 \\
 
-Por este motivo fundamental, se incluye en la normativa un artículo exclusivo a obras e intervenciones en la vía pública (art. 39 de la Orden TMA/851/2021).
+Por este motivo fundamental, se incluye en la normativa un artículo dedicado a obras e intervenciones en la vía pública (art. 39 de la Orden TMA/851/2021).
 \\
-
-\begin{figure}[htbp]
-\centering
-\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/obras}
-\caption{Obras e intervenciones en la vía pública: continuidad del itinerario peatonal
-  accesible, itinerario alternativo, delimitación y protección (véase el anexo «Requisitos de accesibilidad e incumplimientos habituales»).}
-\label{fig:obras}
-\fuente{elaboración propia a partir de la Orden TMA/851/2021, con asistencia de Claude (Anthropic) mediante instrucciones del autor~\cite{claude}.}
-\end{figure}
-
-% (4) Cómo aparece en los datos (aquí: tratamiento en el análisis)
-\datosplanes{No existe una dimensión de obras. Solo aparece en algunas calles que están de obras en los campos \texttt{TIPOLACT} o \texttt{PROPACT}.}
-        {No existe una dimensión de obras. Solo hay una calle que se indica que está en obras (en el campo \texttt{PROPUESTA}).}
 
 % ---------------------------------------------------------------------
 \subsection{Mobiliario urbano y terrazas}
 \label{subsec:mobiliario}
 
 % (1) Qué es y por qué importa
-El mobiliario urbano y las terrazas de hostelería constituyen un punto crítico en la accesibilidad de las calles, al ubicarse en el ancho de las aceras.
+El mobiliario urbano y las terrazas de hostelería constituyen un punto crítico en la accesibilidad de las calles, al ubicarse en el ancho de las aceras, por lo que su disposición y delimitaciones se deben regular cuidadosamente para no obstaculizar las trayectorias peatonales accesibles.
 \\
-
-Por lo que su disposición y delimitaciones se deben regular cuidadosamente para no obstaculizar las trayectorias peatonales accesibles.
-\\
-
-% (4) Cómo aparece en los datos
-\datosplanes{Dimensión de mobiliario (\texttt{MOBILIAR*}). Las columnas \texttt{FMOB*} son enlaces a Google Drive de fotos o informes.}
-        {Dimensión de mobiliario (\texttt{PUNT\_MOBI\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Calles de plataforma única}
@@ -141,21 +138,13 @@ Necesitan combinar la integración de la accesibilidad de las calles con la conv
 La guía de la ONCE distingue dos tipos \cite{once_2024}: \textbf{tránsito compartido}, donde toda la superficie es de prioridad peatonal con una zona delimitada para los vehículos; y \textbf{tránsito diferenciado}, donde acera y calzada se dividen utilizando pavimentos diferentes, con franjas de aviso o mobiliario separador.
 \\
 
-% (4) Cómo aparece en los datos
-\datosplanes{No es una dimensión de puntuación, sino una categoría de \texttt{TIPOLACT} («Plataforma»).}
-        {Solo existe con el valor «Plataforma única» de \texttt{TIPOLOGÍA}.}
-
 % ---------------------------------------------------------------------
 \subsection{Señalización y elementos de información}
 \label{subsec:senalizacion}
 
 % (1) Qué es y por qué importa
-La normativa estatal establece requisitos específicos para la señalización y los carteles informativos, para que puedan ser detectados y leídos por todas las personas, independientemente de su diversidad. Cabe recordar que la accesibilidad universal necesita tener en cuenta no solo los problemas de movilidad, sino aspectos auditivos, para las personas ciegas y con baja audición o aspectos de adaptación de la lectura, para personas ciegas.
+La normativa estatal establece requisitos específicos para la señalización y los carteles informativos, para que puedan ser detectados y leídos por todas las personas, independientemente de su diversidad. Cabe recordar que la accesibilidad universal necesita tener en cuenta no solo los problemas de movilidad, sino aspectos visuales (personas ciegas y con baja visión), auditivos (baja audición) y de comprensión de la lectura.
 \\
-
-% (4) Cómo aparece en los datos
-\datosplanes{Dimensión de señalización (\texttt{SEÑALIZ*}).}
-        {Dimensión de señalización (\texttt{PUNT\_SEÑA\_*}).}
 
 % ---------------------------------------------------------------------
 \subsection{Iluminación y visibilidad}
@@ -168,12 +157,10 @@ La iluminación influye de manera notable en la seguridad de las personas cuando
 Aunque la orden de referencia TMA/851/2021 establece ciertos requisitos de iluminación para las vías accesibles, las características específicas de los niveles de iluminación están regulados por el Real Decreto 1890/2008 sobre eficiencia energética.
 \\
 
-La mayoría de estos parámetros necesitan que los equipos técnicos necesiten desplazarse in situ, para el uso de luxómetros; por lo que son complicados de obtener mediante el uso de imágenes aéreas o a pie de calle.
+La mayoría de estos parámetros requieren que los equipos técnicos se desplacen in situ, para el uso de luxómetros; por lo que son complicados de obtener mediante el uso de imágenes aéreas o a pie de calle.
 \\
 
-% (4) Cómo aparece en los datos
-\datosplanes{Dimensión de iluminación (\texttt{ILUMIN*}).}
-        {Dimensión de iluminación (\texttt{PUNT\_ILUM\_*}).}
+
 
 % =====================================================================
 \section{Análisis exploratorio de los datos}
@@ -252,18 +239,26 @@ En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcio
 
 Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único conjunto de datos, cuya correspondencia se muestra en la Tabla~\ref{tab:columnas-unificadas}.
 
-\begin{table}[H]
-  \centering
-  \caption{Columnas del conjunto de datos unificado de Albacete y Algeciras.}
-  \label{tab:columnas-unificadas}
-  \small
-  \renewcommand{\arraystretch}{1.1}
-  \setlength{\extrarowheight}{0pt}
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
-    \toprule
-    \cabeceratabla
-    \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
-    \midrule
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.1}
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-7.5cm-8\tabcolsep)/2\relax} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-7.5cm-8\tabcolsep)/2\relax}}
+  \caption{Columnas del conjunto de datos unificado de Albacete y Algeciras.}\label{tab:columnas-unificadas}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \multicolumn{4}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia a partir de los conjuntos de datos de Albacete y Algeciras.}}
+  \endlastfoot
     \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Identificación y localización} \\
     Ciudad (nueva, para unir los datos) & \texttt{ciudad} & -- & -- \\
     \cmidrule(lr){1-4}
@@ -294,10 +289,8 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
     Puntuación de una dimensión y un tipo de diversidad & \texttt{puntuacion\_*\_*} & \texttt{PUNT\_PEND\_FU} & Media de \texttt{PENDIENTESR} y \texttt{PENDIENTEMR} \\
     \cmidrule(lr){1-4}
     \gls{clase-accesibilidad} total & \texttt{clase\_total} & \texttt{PIC\_TOTAL} & Calculada a partir de \texttt{ACCGLOBAL} \\
-    \bottomrule
-  \end{tabularx}
-  \fuente{elaboración propia a partir de los conjuntos de datos de Albacete y Algeciras.}
-\end{table}
+\end{longtable}
+\endgroup
 
 \medskip
 \noindent\textit{Cómo leer la tabla.}

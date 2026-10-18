@@ -135,19 +135,26 @@ Calcular, para los tramos de Albacete, las variables que según la estimación d
 \subsection{Hipótesis de investigación}
 Se plantean las siguientes hipótesis de investigación:
 
-\begin{table}[H]
-  \centering
-\caption{Hipótesis}
-\label{tab:hipotesis}
+\begingroup
 \small
 \renewcommand{\arraystretch}{1.15}
 \setlength{\extrarowheight}{1pt}
-
-\begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash\hsize=1.3\hsize}X >{\raggedright\arraybackslash\hsize=0.7\hsize}X}
-\toprule
-\cabeceratabla
-& \textbf{Hipótesis} & \textbf{Se refuta si…} \\
-\midrule
+\begin{longtable}{>{\centering\arraybackslash}p{1cm} >{\raggedright\arraybackslash}p{0.58\textwidth} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-0.58\textwidth-1cm-6\tabcolsep\relax}}
+  \caption{Hipótesis}\label{tab:hipotesis}\\
+  \toprule
+  \cabeceratabla
+  & \textbf{Hipótesis} & \textbf{Se refuta si…} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  & \textbf{Hipótesis} & \textbf{Se refuta si…} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
 \textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de fuentes cartográficas públicas o de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
 \textbf{H2} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de calle, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
@@ -159,9 +166,8 @@ Se plantean las siguientes hipótesis de investigación:
 \textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Al excluir las características se detecta un claro descenso en la precisión \\
 \midrule
 \textbf{H6} & (Secundaria, OS2) Las variables obtenidas de fuentes cartográficas públicas confirman que son viables para sustituir a las medidas in situ sin una pérdida significativa de rendimiento & Los valores reales no confirman la estimación o el rendimiento desciende de forma significativa \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\end{longtable}
+\endgroup
 
 
 \section{Impacto en sostenibilidad, ético-social y de diversidad}
@@ -277,24 +283,27 @@ Además, se han incluido paquetes de trabajo para los \textbf{objetivos secundar
 
 \subsection{Calendario del trabajo}
 
-En primer lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que las entregas secundarias se indican con barras discontinuas.
+En primer lugar, se muestra en la siguiente tabla la división de las tareas a realizar durante el trabajo, descompuestas en \textbf{6 paquetes de trabajo principales}, indicando el número de créditos ECTS y horas, y a qué entrega de evaluación continua se corresponden. Para el hito de implementación (WP3), se ha realizado una \textbf{división inicial en subfases}, que podría verse actualizada una vez se consolide la investigación del estado del arte (WP2).
 
-\input{capitulos/01-introduccion/figuras/gantt_tfm}
-
-En segundo lugar, se muestra en la siguiente tabla la división de las tareas a realizar durante el trabajo, descompuestas en \textbf{6 paquetes de trabajo principales}, indicando el número de créditos ECTS y horas, y a qué entrega de evaluación continua se corresponden. Para el hito de implementación (WP3), se ha realizado una \textbf{división inicial en subfases}, que podría verse actualizada una vez se consolide la investigación del estado del arte (WP2).
-
-\begin{table}[H]
-  \centering
-\caption{Planificación del proyecto y distribución de carga ECTS}
-\label{tab:planificacion_tfm}
+\begingroup
 \scriptsize
 \setlength{\extrarowheight}{1pt}
-
-\begin{tabularx}{\textwidth}{l X c c c}
+\begin{longtable}{>{\raggedright\arraybackslash}p{1.6cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-6.6cm-10\tabcolsep\relax} >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{2.4cm} >{\centering\arraybackslash}p{1.1cm}}
+\caption{Planificación del proyecto y distribución de carga ECTS}\label{tab:planificacion_tfm}\\
 \toprule
 \cabeceratabla
 \textbf{WP} & \textbf{Tarea y descripción detallada} & \textbf{Carga} & \textbf{Fechas} & \textbf{UOC} \\
 \midrule
+\endfirsthead
+\toprule
+\cabeceratabla
+\textbf{WP} & \textbf{Tarea y descripción detallada} & \textbf{Carga} & \textbf{Fechas} & \textbf{UOC} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
     WP1 & \textbf{Definición y objetivos:} planteamiento inicial, problemática, alineación de objetivos, metodología y planificación temporal. & \makecell{0.6 ECTS \\ (15 h)} & 24 sep - 04 oct & PEC1 \\
 \midrule
     WP2.1 & \textbf{Análisis legal:} estudio de legislación y normativa sobre accesibilidad e infraestructura urbana, extrayendo requisitos. & \makecell{0.6 ECTS \\ (15 h)} & 05 oct - 12 oct & PEC2 \\
@@ -321,9 +330,12 @@ En segundo lugar, se muestra en la siguiente tabla la división de las tareas a 
     WP6 & \textbf{Defensa oral:} ensayo, preparación de respuestas a posibles objeciones del tribunal y exposición oral final del proyecto. & \makecell{1.0 ECTS \\ (25 h)} & 06 ene - 21 ene & PEC6 \\
 \midrule
     & \textbf{Total} & \makecell{\textbf{12.0 ECTS} \\ \textbf{(300 h)}} & 24 sep - 21 ene & \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\end{longtable}
+\endgroup
+
+En segundo lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que las entregas secundarias se indican con barras discontinuas.
+
+\input{capitulos/01-introduccion/figuras/gantt_tfm}
 
 
 \subsection{Identificación de riesgos}
@@ -331,18 +343,25 @@ Con el fin de asegurar el cumplimiento de la planificación, así como la consec
 
 Los principales riesgos identificados han estado centrados en la incertidumbre de la calidad de entrenamiento y predicción de los modelos de aprendizaje profundo, así como la priorización de objetivos principales frente a los secundarios.
 
-\begin{table}[H]
-  \centering
-  \caption{Matriz de identificación de riesgos y planes de contingencia}
-  \label{tab:identificacion_riesgos}
-  \scriptsize
-  \setlength{\extrarowheight}{3pt}
-  
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm} c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
-    \toprule
-    \cabeceratabla
-    \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
-    \midrule
+\begingroup
+\footnotesize
+\setlength{\extrarowheight}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.8cm} >{\centering\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-4.9cm-8\tabcolsep)/2\relax} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-4.9cm-8\tabcolsep)/2\relax}}
+  \caption{Matriz de identificación de riesgos y planes de contingencia}\label{tab:identificacion_riesgos}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
     
     \textbf{Dificultad en el análisis de los conjuntos de datos de Albacete o Algeciras} & 
     Media/Alto & 
@@ -374,26 +393,35 @@ Los principales riesgos identificados han estado centrados en la incertidumbre d
     Se ha incluido en el calendario un período de descanso de una semana (del 2 al 7 de diciembre) por un período vacacional planificado, lo que puede afectar al tiempo disponible para la realización del proyecto. & 
     Adelanto de la fase implementación (WP3) respecto a lo indicado por el calendario de entregas de la UOC. \\
     
-    \bottomrule
-  \end{tabularx}
-\end{table}
+    
+\end{longtable}
+\endgroup
 
 
 \section{Breve sumario de productos obtenidos}
 
 Los productos que se obtendrán tras la ejecución del proyecto se detallan a continuación, distinguiendo los entregables del MVP de los secundarios:
 
-\begin{table}[H]
-  \centering
-\caption{Productos del proyecto.}
-\label{tab:productos2}
+\begingroup
 \small
 \renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{\textwidth}{l >{\raggedright\arraybackslash}X l l}
+\begin{longtable}{>{\raggedright\arraybackslash}p{1.3cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-6.6cm-8\tabcolsep\relax} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.5cm}}
+\caption{Productos del proyecto.}\label{tab:productos2}\\
 \toprule
 \cabeceratabla
     Código & Producto & Formato & WP \\
 \midrule
+\endfirsthead
+\toprule
+\cabeceratabla
+    Código & Producto & Formato & WP \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\multicolumn{4}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{\textsuperscript{*}\,Productos secundarios: se desarrollarán si el calendario lo permite.}}
+\endlastfoot
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Producto mínimo viable (MVP)} \\
     P1 & Conjunto de datos limpio y preparado de las vías urbanas de Albacete y Algeciras, con su diccionario de datos. & Dataset & WP3.1 \\
     P2 & Repositorio en GitHub con el código de preparación de datos, selección de características y entrenamiento de los modelos de clasificación de accesibilidad. & Código & WP3.2--3.3 \\
@@ -408,10 +436,8 @@ Los productos que se obtendrán tras la ejecución del proyecto se detallan a co
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Entregables académicos} \\
     P8  & Memoria del TFM. & PDF & WP4 \\
     P9  & Presentación en vídeo. & Vídeo & WP5 \\
-\bottomrule
-\end{tabularx}
-\notatabla{\textsuperscript{*}\,Productos secundarios: se desarrollarán si el calendario lo permite.}
-\end{table}
+\end{longtable}
+\endgroup
 
 \section{Breve descripción de los otros capítulos de la memoria}
 
@@ -429,13 +455,13 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
 
 \section{Declaración sobre el uso de inteligencia artificial generativa}
 
-En primer lugar, se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
+A continuación se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
 
 \begin{itemize}
     \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generar artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas; así como para poder filtrar los artículos de literatura científica con base en los requisitos del autor..
     \item \textbf{Recursos gráficos para la memoria:} con herramientas de inteligencia artificial generativa para incluir imágenes o esquemas que faciliten la lectura de la memoria y la enriquezcan.
     \begin{itemize}
-        \item En primer lugar, se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas\ldots) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
+        \item Se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas\ldots) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
     \end{itemize}
     \item \textbf{Asistencia en formateo de textos en LaTeX:} como apoyo técnico para poder transformar textos escritos en textos formateados para LaTeX, o maquetación de tablas o diagramas.
     \item \textbf{Asistencia en programación y refactorización de código:} se utilizarán asistentes de código como Claude o Copilot como ayuda en la escritura de \textit{scripts} en Python.
