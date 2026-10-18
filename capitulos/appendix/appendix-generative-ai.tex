@@ -2,7 +2,7 @@
 
 \label{anx:ia}
 
-En este anexo se indican todos los usos de inteligencia artificial generativa realizados durante la elaboración de este trabajo, indicando la herramienta usada, el objetivo de su uso, el prompt empleado junto con los parámetros de entrada y el resultado obtenido, en caso de que sea necesario.
+En este anexo se indican ejemplos agrupados de los usos de inteligencia artificial generativa realizados durante la elaboración de este trabajo, indicando la herramienta usada, el objetivo de su uso, el prompt empleado junto con los parámetros de entrada y el resultado obtenido, en caso de que sea necesario.
 No se incluyen como resultados obtenidos aquellos que ya están incluidos en la memoria, sino que se hace una referencia a la sección de la memoria correspondiente.
  
 \begin{fichaia}{FichaIA. Registro de trazabilidad y generación de metadatos de IA}
@@ -16,230 +16,110 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
 \end{fichaia}
 
 \begin{fichaia}{Sistema de diseño de la memoria}
-  \fichadato{Fecha}{29/09/2026 (con ajustes hasta el 30/09/2026)}
+  \fichadato{Fecha}{29/09/2026 -- 18/10/2026}
   \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
   \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Disponer de un sistema de diseño completo para la memoria, siguiendo los estilos base definidos por la universidad, aportando una visualización homogénea y atractiva, y facilitando al autor la generación de informes, gráficas, infografías, tablas o mapas.}
-  \fichadato{Resultado}{Guía de estilo y sistema de diseño para la memoria, junto con un listado de componentes de LaTeX.}
-  \fichadato{Validación}{Comprobación de la compilación con la plantilla base de la universidad; revisión visual del autor; comprobación a medida que se han ido incorporando los componentes a la memoria.}
+  \fichadato{Objetivo}{Disponer de un sistema de diseño para la memoria, a partir de los estilos de la universidad, que dé una visualización homogénea y facilite generar informes, gráficas, infografías, tablas, mapas y, después, árboles de decisión y configuraciones de XGBoost.}
+  \fichadato{Resultado}{Guía de estilo, \texttt{tfm-estilo.sty} (v1.8) y listado de componentes de \LaTeX{}: colores accesibles, castellano, dos columnas, diagramas, Kanban, gráficos, citas, notas, comparación real frente a predicho, estilo \texttt{tfmarbol}, \texttt{\textbackslash esquemaboosting} y módulo \texttt{arboles.py}, que genera árboles a partir de modelos de scikit-learn y XGBoost.}
+  \fichadato{Validación}{Compilación con la plantilla base de la universidad; colores tomados de tokens verificados (WCAG 2.1 y simulación de daltonismo); prueba de \texttt{arboles.py} con modelos de scikit-learn y XGBoost entrenados sobre datos sintéticos; revisión visual del autor y comprobación a medida que se incorporaban los componentes a la memoria.}
   \fichaprompt{Estoy haciendo un trabajo fin de master del máster de ciencia de datos de la UOC, necesito un sistema de diseño para poder generar informes, gráficos, infografías, presentación de resultados, diagramas de arquitectura de redes neuronales, arquitectura y diseño de código. La temática del proyecto es la utilización de imágenes aéreas de alta resolución para extraer información de las calles mediante deep learning, segmentación semántica y visión por computador, para permitir clasificar las calles en base a su accesibilidad, para poder ayudar a generar los planes de accesibilidad con información sacda de fotos, y reducir el gasto y tiempo que lleva la inspección in situ. Te paso unas capturas del estilo definido por la universidad para la entrega de la memoria. Evidentemente el formato de la memoria es académico, pero podría llegar a tener algún cambio si así lo solicito. ¿Me puedes crear el sistema de diseño? Si tienes alguna pregunta previa, me dices}
-  \fichadato{Ajustes}{Solicitud de colores accessibles; cambio a idioma castellano; solicitud de texto a dos columnas; solicitud de nuevos componentes (diagramas de flujo, conceptual y de secuencia, Kanban, estados, gráficos de barras, líneas y circular); solicitud de creación de componentes para citas y estado del arte; solicitud de componentes para comparación real frente a predicho; solicitud de componentes para notas; mejora de estilos de listas; componente para citas destacadas.}
+  \fichaprompt{Necesito que actualices el system design para incluir un componente que permita pintar árboles de decisión, así cómo configuraciones de XG Boosting}
 \end{fichaia}
- 
-\begin{fichaia}{Figuras~\ref{fig:ipa-plano} y \ref{fig:ipa-seccion}. Itinerario peatonal accesible}
-  \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos, WP2.1. Análisis legal}
-  \fichadato{Objetivo}{Realizar una visualización del itinerario peatonal accesible atractiva para el lector, y comprensible, para mejorar la comprensión de términos técnicos relacionados con la ley.}
-  \fichadato{Resultado}{Código TikZ de las figuras~\ref{fig:ipa-plano} y \ref{fig:ipa-seccion}, en una sola figura (la división de la figura en dos fue realizada de manera manual).}
-  \fichadato{Validación}{Medidas contrastadas con el texto de la Orden TMA/851/2021.}
-  \fichaprompt{NEcesito que realices un mapa con medidas utilizando el componente de mapas, que defina qué es un itinerario peatona accesible según la Orden TMA/851/2021, incluyendo: ancho libre de paso (mínimo 1,80m de anchura), sin obstáculos. Altura libre de paso, mínimo 2,20m, ubicación de mobiliario en la banda exterior de la acera (con un mínimo de 40 cm de bordillo)}
-  \fichaajuste{Utiliza los componentes que tienes, ¿no podrías utilizarlos?}
-  \fichaajuste{ME gustaría indicar como fuente Claude, a partir de un prompt inicando qué necesito}
-\end{fichaia}
- 
-\begin{fichaia}{Figura~\ref{fig:infografia_accesibilidad}. La accesibilidad en tres cifras}
-  \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+
+\begin{fichaia}{Figuras y tablas de introducción y planificación}
+  \fichadato{Fecha}{30/09/2026 -- 03/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}; Gemini (Google)~\cite{gemini} para la figura~\ref{fig:proceso_actual_propuesto}}
   \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Resultado}{Código TikZ de la infografía (figura~\ref{fig:infografia_accesibilidad}).}
-  \fichadato{Validación}{Cifras aportadas por el autor a partir del INE (EDAD 2020) y del Observatorio 2030 CSCAE--Fundación ONCE (\emph{Documenta 1.2}).}
+  \fichadato{Objetivo}{Mejorar la comprensión de la introducción con visualizaciones, y adaptar al \emph{design system} el diagrama de Gantt y la tabla de planificación elaborados antes de forma manual por el autor, sin modificar su contenido.}
+  \fichadato{Resultado}{Código TikZ de la infografía de tres cifras (figura~\ref{fig:infografia_accesibilidad}), del proceso actual y propuesto (figura~\ref{fig:proceso_actual_propuesto}), del ciclo de la metodología (figura~\ref{fig:metodologia_ciclo}, con la etapa de desarrollo resaltada después por el autor) y de los objetivos MVP (figura~\ref{fig:objetivos_mvp}); código del Gantt (figura~\ref{fig:gantt_tfm}) y de la tabla de planificación (tabla~\ref{tab:planificacion_tfm}). Ajustes menores de redacción.}
+  \fichadato{Validación}{Infografía: cifras aportadas por el autor a partir del INE (EDAD 2020) y del Observatorio 2030 CSCAE--Fundación ONCE (\emph{Documenta 1.2}). Proceso actual y propuesto: comprobación manual al generar el PDF, con ajustes de maquetación. Gantt y planificación: fechas, tareas, hitos y cargas comprobados frente al original; suma total de ECTS y horas y descripciones revisadas por el autor. Metodología y objetivos: contenido, enunciados y orden de cada etapa comprobados frente a los textos del autor. Compilación con la plantilla TFUOC y revisión de la disposición por el autor.}
   \fichaprompt{Necesito diseñar un gráfico conceptual que muestre que en España, en el año 2020, según el Instituto Nacional de Estadística, había 4.38 millones de habitantes con algún tipo de diversidad funcional o discapacidad. Necesitaría que mostrases en una barra el número de personas y el porcentaje de personas con discapacidad reconocida (4.38 millones, el 9,5\% de la población). Y que ampliando el concepto, en otra barra, incluyendo aparte de las personas con discapacidad oficial, sumadas a las personas mayores de 65 años (un 7.5\% estimado) con problemas de movilidad y funcionales, personas con movilidad reducida temporal (un 2.5\%), y familias con carritos de bebé (un 10.5\%). Los datos de estos tres últimos son difíciles de estimar, pero representan un 30\% en total de la población (incluidas las personas con discapacidad reconocida). También quiero incluir que hay un porcentaje superior al 30\,\% en las personas mayores de 65 años (exactamente 32.3\%). Representa esto: primero en un gráfico conceptual los dos primeros valores, y como cifra de infografía el segundo valor}
   \fichaajuste{En lugar de dar el dato aproximado... me gustaría que mostrases todo en una columna para llegar al 30\% y así puedo poner la referencia a Barra 2 (\textgreater30\,\%): Población beneficiaria real de la accesibilidad universal * (Fuente: Observatorio 2030 CSCAE \& Fundación ONCE, Documenta 1.2)., en el gráfico conceptual}
   \fichaajuste{Lo mismo es mejor explorar la idea de hacer una infografía conl los tres valores}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:proceso_actual_propuesto}. Proceso actual e inspección automatizada de accesibilidad}
-  \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Gemini (Google)~\cite{gemini}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Maquetación de la infografía del proceso manual actual frente al proceso automático propuesto, para mejorar la visualización del elemento creado por elaboración propia a partir del design system.}
-  \fichadato{Validación}{Comprobación manual al generar el PDF con el resultado obtenido por Gemini, haciendo ajustes de maquetación.}
   \fichaprompt{Puedes mover un poco más abajo los términos positivos de lo propuesto y hacer que entre ACTUAL manual (in situ) bien?}
-  \fichaajuste{Prefiero que no reduzcas la letra, de actual manual, mejor amplía el alto.}
-  \fichaajuste{¿Me divides la infografía en 2?}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:gantt_tfm}. Diagrama de Gantt del proyecto}
-  \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Adaptar el diagrama de Gantt anteriormente elaborado de forma manual por el autor al design system de la memoria, sin modificar el contenido.}
-  \fichadato{Material aportado}{Código LaTeX original del diagrama (\texttt{pgfgantt}), con las tareas, fechas e hitos definidos por el autor.}
-  \fichadato{Resultado}{Código de la figura~\ref{fig:gantt_tfm}: estilo \texttt{tfmgantt}, meses en castellano, rejilla semanal, fases WP2 y WP3 agrupadas, tareas secundarias con borde discontinuo, descanso rayado y leyenda.}
-  \fichadato{Validación}{Fechas, tareas e hitos comprobados frente al original; nombres de las fases agrupadas revisados por el autor; compilación con la plantilla TFUOC.}
   \fichaprompt{Transforma este cronograma a tu estilo por favor, dame el código latex para copiar y pegar}
-\end{fichaia}
- 
-\begin{fichaia}{Tabla~\ref{tab:planificacion_tfm}. Planificación del proyecto y carga en ECTS}
-  \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Adaptar la tabla de planificación anteriormente elaborada de forma manual por el autor al design system de la memoria, manteniendo su contenido.}
-  \fichadato{Material aportado}{Código LaTeX original de la tabla (\texttt{tabularx}), con todos los datos definidos por el autor.}
-  \fichadato{Resultado}{Código de la tabla~\ref{tab:planificacion_tfm}: carga separada en ECTS y horas con coma decimal, fechas abreviadas, descanso diferenciado, tareas secundarias marcadas con \textsuperscript{\dag}, fila de total y nota de tabla. Ajustes menores de redacción en algunas descripciones.}
-  \fichadato{Validación}{Cargas, fechas y entregas comprobadas frente al original; suma total de ECTS y horas revisada por el autor; redacción de las descripciones revisada.}
   \fichaprompt{La tabla también}
-\end{fichaia}
-
-\begin{fichaia}{Bibliografía de la memoria}
-  \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Transformar la bibliografía manual de formato \texttt{thebibliography} a formato BibTeX estándar, de manera más rápida y eficiente para el autor.}
-  \fichadato{Material aportado}{Archivo original \texttt{09-bibliografia.tex} con entradas manuales en formato \texttt{thebibliography}.}
-  \fichadato{Resultado}{Archivo \texttt{referencias.bib} con 21 entradas bibliográficas en formato BibTeX; configuración de \texttt{\textbackslash usepackage[bibliografia]\{tfm-estilo\}} y \texttt{\textbackslash addbibresource\{referencias.bib\}} en el preámbulo; sustitución del capítulo de bibliografía por \texttt{\textbackslash printbibliography[heading=bibintoc]}.}
-  \fichadato{Validación}{Compilación con biber; verificación de citas en el documento; comprobación de que todas las referencias se generan correctamente en el PDF.}
-  \fichaprompt{Transforma la bibliografía en referencias.bib, y carga la bibliografía en la sección en la que está}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:metodologia_ciclo}. Ciclo de vida de la metodología de desarrollo del proyecto}
-  \fichadato{Fecha}{03/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Generar un diagrama de ciclo de vida circular, con el estilo de la memoria, que muestre las etapas de la metodología de investigación basada en diseño aplicada al proyecto.}
-  \fichadato{Material aportado}{Nombre y descripción de las cinco etapas (identificación del problema, diseño, desarrollo, evaluación y conclusión), redactadas por el autor, y el \emph{design system} del proyecto.}
-  \fichadato{Resultado}{Código \LaTeX{} (TikZ) de la figura~\ref{fig:metodologia_ciclo}: cinco etapas numeradas dispuestas en círculo en sentido horario, con el contenido aportado por el autor, la etapa de desarrollo resaltada (luego modificada manualmente por el autor) y una flecha discontinua de la conclusión a la identificación del problema que representa un nuevo ciclo. Ajustes menores de redacción en las descripciones para que quepan en los recuadros.}
-  \fichadato{Validación}{Contenido de cada etapa comprobado frente a la descripción aportada por el autor; compilación y disposición de la figura revisadas por el autor.}
   \fichaprompt{Genera un diagrama de ciclo de vida (circular), con los estilos del proyecto, para mostrar la metodología de desarrollo del proyecto: Etapas: identificación del problema (descubrir cuál es el objetivo del proyecto, basado en la lentitud de los planes de accesibilidad al tener que hacer las inspecciones in situ), diseño (análisis de las leyes, y del estado del arte a para uso de caráacterísticas de medida de accesibilidad, análisis de los datos de Albacete y Algeciras), desarrollo (implementación de los modelos y sistemas), evaluación (validacion de la precisión de los modelos, comparativa entre los modelos y las ciudades), conclusión (respuesta a las preguntas de investigación, documentación de los resultados obtenidos, líneas futuras)}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:objetivos_mvp}. Objetivos principales del proyecto (MVP)}
-  \fichadato{Fecha}{03/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Generar un diagrama que muestre los seis objetivos principales del proyecto, para mejorar la visualización en un apartado de la memoria con solo texto.}
-  \fichadato{Material aportado}{Enunciado de los objetivos principales (OP1 a OP6), redactado por el autor, e indicación de que se realizan en orden; \emph{design system} del proyecto.}
-  \fichadato{Resultado}{Código \LaTeX{} (TikZ) de la figura~\ref{fig:objetivos_mvp}: seis objetivos numerados, dispuestos en dos filas y unidos por flechas que indican el orden de ejecución, sobre un fondo rotulado como producto mínimo viable. El objetivo de entrenamiento de modelos (OP4) se resalta con el estilo de algoritmo.}
-  \fichadato{Validación}{Enunciados y orden de los objetivos comprobados frente a los textos del autor; compilación y disposición de la figura revisadas por el autor.}
   \fichaprompt{Genera un diagrama que contenga los 6 objetivos principales del proyecto, lo que forma el MVP del mismo. Objetivos: OP1. Identificar necesidades y requisitos de accesibilidad universal, OP2. Identificar, analizar y preparar los datos, OP3. Identificar y definir las métricas e indicadores de evaluación de la accesibilidad, OP4. Entrenar modelos de aprendizaje automático de clasificación de accesibilidad, OP5. Validación de los modelos, OP6. Interpretación de los resultados. Necesito que se muestre que los objetivos se realizan en orden, según lo que te he indicado.}
 \end{fichaia}
 
-\begin{fichaia}{Figura~\ref{fig:normativa_estatal}. Línea temporal de la normativa estatal de accesibilidad}
-  \fichadato{Fecha}{04/10/2026}
+\begin{fichaia}{Figuras del marco legal}
+  \fichadato{Fecha}{30/09/2026 -- 05/10/2026}
   \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Representar en una línea temporal la legislación nacional, otorgando mayor papel visual a la habitualmente densa sección de la normativa legal.}
-  \fichadato{Material aportado}{Relación de las cuatro normas, con su fecha y su papel, redactada por el autor (la misma que acompaña a la figura en el texto).}
-  \fichadato{Resultado}{Código TikZ de la figura~\ref{fig:normativa_estatal}: eje temporal proporcional (2006--2023), una tarjeta por norma con rango, fecha y función, Orden TMA/851/2021 resaltada, entrada en vigor el 2 de enero de 2022, Orden VIV/561/2010 marcada como derogada y relación entre la Ley~26/2011 y el RDL~1/2013.}
-  \fichadato{Validación}{Fechas y denominaciones comprobadas en el BOE por el autor, incluidas las añadidas por la herramienta (Orden VIV/561/2010, de 1 de febrero, y publicación de la Convención en el BOE el 21 de abril de 2008); compilación con la plantilla TFUOC.}
+  \fichadato{Fase}{WP1. Definición y objetivos, WP2.1. Análisis legal}
+  \fichadato{Objetivo}{Representar visualmente los requisitos de la normativa de accesibilidad (itinerario peatonal, vados, pasos de peatones, isletas, pavimento táctil, semáforos y obras) y su evolución, para hacer menos densa la sección legal.}
+  \fichadato{Material aportado}{Relación de normas redactada por el autor y tablas~\ref{tab:req-vados} y~\ref{tab:req-obras}, con los parámetros, valores y artículos seleccionados por el autor.}
+  \fichadato{Resultado}{Código TikZ de las figuras~\ref{fig:ipa-plano} y~\ref{fig:ipa-seccion} (itinerario peatonal accesible, dividido en dos figuras manualmente), de la línea temporal (figura~\ref{fig:normativa_estatal}), de vados (figura~\ref{fig:vados}) y de obras (figura~\ref{fig:obras}), con cotas y leyendas.}
+  \fichadato{Validación}{Itinerario peatonal: medidas contrastadas con el texto de la Orden TMA/851/2021. Línea temporal: fechas y denominaciones comprobadas en el BOE por el autor, incluidas las añadidas por la herramienta (Orden VIV/561/2010, de 1 de febrero, y publicación de la Convención en el BOE el 21 de abril de 2008). Vados y obras: valores y artículos de las cotas comprobados frente a las tablas~\ref{tab:req-vados} y~\ref{tab:req-obras} y la Orden TMA/851/2021; las dimensiones no acotadas (anchura del cruce y del vado) y la distancia entre luces son ilustrativas. Compilación con la plantilla TFUOC.}
+  \fichaprompt{NEcesito que realices un mapa con medidas utilizando el componente de mapas, que defina qué es un itinerario peatona accesible según la Orden TMA/851/2021, incluyendo: ancho libre de paso (mínimo 1,80m de anchura), sin obstáculos. Altura libre de paso, mínimo 2,20m, ubicación de mobiliario en la banda exterior de la acera (con un mínimo de 40 cm de bordillo)}
   \fichaprompt{Necesito una línea temporal de la normativa estatal española:
     Ley 26/2011, de 1 de agosto: fue la ley que legisló inicialmente la norma de la ONU, aunque posteriormente fue evolucionada en las siguientes leyes y decretos.
     Real Decreto Legislativo 1/2013, de 29 de noviembre: se trata del Texto Refundido de la Ley General de derechos de las personas con discapacidad y de su inclusión social y contiene las condiciones básicas de accesibilidad y no discriminación. Es la legislación base.
     Real Decreto 505/2007, de 20 de abril: contiene el reglamento que establece las condiciones básicas de accesibilidad y no discriminación para el acceso y disfrute de los espacios públicos urbanos y edificaciones.
     Orden TMA/851/2021, de 23 de julio: es el documento técnico de referencia para este trabajo, pues establece las características técnicas y condiciones precisas de accesibilidad en las vías públicas. Entró en vigor el 2 de enero de 2022, y deroga la Orden VIV/561/2010.}
   \fichaajuste{Tras revisar la figura en la memoria, el autor pidió algunos cambios de formato: dar fondo a las etiquetas de año para que no las crucen las líneas.}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:vados}. Vados, pasos de peatones e isletas de refugio}
-  \fichadato{Fecha}{05/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Representar visualmente los requisitos para vados, pasos de peatones, isletas de refugio, pavimento táctil y semaforización accesible, de manera que sea más sencillo para seguir el documento.}
-  \fichadato{Material aportado}{Tabla~\ref{tab:req-vados}, con los parámetros, valores y artículos seleccionados y redactados por el autor.}
-  \fichadato{Resultado}{Código TikZ de la figura~\ref{fig:vados}: planta de un cruce con isleta, vados, paso de peatones, franjas táctiles de advertencia y direccional (diferenciadas por trama) y semáforos con pulsador; sección por el vado con pendientes y franjas; alzado del pulsador; cotas con los valores mínimos y leyenda.}
-  \fichadato{Validación}{Valores y artículos de las cotas comprobados por el autor frente a la tabla~\ref{tab:req-vados} y la Orden TMA/851/2021; las dimensiones no acotadas (anchura del cruce y del vado) son ilustrativas; compilación con la plantilla TFUOC.}
   \fichaprompt{Necesito realizar una visualización de figuras para algunos de los apartados de mi memoria, como los que te pedí para el itinerario peatonal accesible. En primer lugar, quiero un diagrama de figuras (visualización de las calles), que visualice los vados, pasos de peatones e islas [se adjunta el código de la tabla~\ref{tab:req-vados}].}
-  \fichaajuste{Por favor, utiliza la guía de colores del sistema de diseño, respetando la homogeneidad de la memoria.}
-  \fichaajuste{Necesito que reduzcas un poco (no demasiado) el alto del gráfico de vados.}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:obras}. Obras e intervenciones en la vía pública}
-  \fichadato{Fecha}{05/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Representar gráficamente los requisitos de obras de manera más atractiva visualmente.}
-  \fichadato{Material aportado}{Tabla~\ref{tab:req-obras}, con los parámetros, requisitos y artículos (39.1 a 39.5) seleccionados y redactados por el autor.}
-  \fichadato{Resultado}{Código TikZ de la figura~\ref{fig:obras}: planta con el itinerario peatonal mantenido junto al andamio, zona de obras vallada, puerta de acceso e itinerario alternativo exterior con vallas, pasamanos y señalización luminosa; sección del itinerario alternativo (pasamanos a 0,90\,m, guía inferior y anchura $\geq$\,1,80\,m) y sección por el andamio (altura libre y protección hasta 2,20\,m); leyenda.}
-  \fichadato{Validación}{Requisitos y artículos comprobados por el autor frente a la tabla~\ref{tab:req-obras} y la Orden TMA/851/2021; la distancia entre luces se indica fuera de escala; compilación con la plantilla TFUOC.}
   \fichaprompt{Realiza un diagrama similar que recoja toda la normativa de obras especificado en estas normas [se adjunta el contenido de la tabla~\ref{tab:req-obras}].}
-  \fichaajuste{Versión de menor tamaño, con las secciones b y c a la derecha y la planta en el espacio restante, como en la figura anterior; anchura del itinerario indicada como $\geq$\,1,80\,m; sin rótulo explicativo en la puerta de la obra.}
-  \fichaajuste{Desplazar el rótulo del andamio a la derecha para que no quede debajo del título de la planta.}
+  \fichaajuste{Reducir el tamaño de las figuras, con las secciones a la derecha y la planta en el espacio restante.}
 \end{fichaia}
-\begin{fichaia}{Tabla~\ref{tab:columnas-unificadas}. Columnas del conjunto de datos unificado de Albacete y Algeciras}
-  \fichadato{Fecha}{09/10/2026}
+
+\begin{fichaia}{Tablas y figuras de datos y modelos}
+  \fichadato{Fecha}{09/10/2026 -- 17/10/2026}
   \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP2.1. Análisis legal}
-  \fichadato{Objetivo}{Generar la tabla de correspondencia entre las columnas originales de Albacete y Algeciras y las columnas del conjunto de datos unificado, a partir del análisis realizado en los notebook del proyecto, para ahorrar el trabajo de transcripción manual.}
-  \fichadato{Material aportado}{Resultado del cuaderno \texttt{0.03-comparison-algeciras-albacete.ipynb} del proyecto \texttt{tfm-urban-accessibility-ml}, con las reglas de nomenclatura y la tabla de columnas unificadas.}
-  \fichadato{Resultado}{Código \LaTeX{} (\texttt{tabularx}) de la tabla~\ref{tab:columnas-unificadas}: columnas agrupadas en identificación y localización, tipología y actuación, y puntuaciones y clase.}
-  \fichadato{Validación}{Nombres de las columnas y reglas de unificación comprobados por el autor frente al cuaderno y al conjunto de datos procesado; compilación con la plantilla TFUOC.}
+  \fichadato{Fase}{WP2.1. Análisis legal, WP2.2. Estado del arte}
+  \fichadato{Objetivo}{Maquetar tablas y gráficos a partir de datos y textos del autor, para ahorrar trabajo de transcripción y facilitar la comparación.}
+  \fichadato{Material aportado}{Resultados del cuaderno \texttt{0.03-comparison-algeciras-albacete.ipynb} y de la tabla de distribución de clases del proyecto \texttt{tfm-urban-accessibility-ml}; tablas de requisitos de la sección~\ref{sec:caracteristicas} y porcentajes de viabilidad estimados por el autor; texto del apartado~\ref{sec:ml}.}
+  \fichadato{Resultado}{Código \LaTeX{} de las tablas~\ref{tab:columnas-unificadas} (columnas unificadas de Albacete y Algeciras), \ref{tab:viabilidad} (viabilidad de obtención de cada característica en imágenes aéreas y a pie de calle) y~\ref{tab:ml-revisados} (estudios de aprendizaje automático revisados), y código pgfplots de la figura~\ref{fig:distribucion-clases} (distribución de clases).}
+  \fichadato{Validación}{Columnas unificadas: nombres y reglas de unificación comprobados por el autor frente al cuaderno y al conjunto de datos procesado. Viabilidad: características y porcentajes revisados frente a la sección~\ref{sec:caracteristicas}. Distribución de clases: porcentajes comprobados con la tabla obtenida en el análisis exploratorio de Albacete y Algeciras. Estudios revisados: cada celda revisada por el autor frente al texto del apartado~\ref{sec:ml}. Compilación con la plantilla TFUOC.}
   \fichaprompt{A partir del resultado de los notebook del proyecto ../tfm-urban-accessibility-ml, genera la tabla en latex con las columnas del conjunto de datos unificado de Albacete y Algeciras, indicando cómo se llama la columna unificada y cuál era la columna en el dataset original.}
-  \fichaajuste{Agrupar por bloques, y añadir líneas intermedias entre las filas de la tabla, como en las otras tablas de la memoria.}
-\end{fichaia}
-
-\begin{fichaia}{Tabla~\ref{tab:viabilidad}. Viabilidad de obtención de puntuación a partir de las imágenes}
-  \fichadato{Fecha}{09/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP2.1. Análisis legal}
-  \fichadato{Objetivo}{Maquetar la tabla de viabilidad de obtención de cada dimensión a partir de imágenes aéreas y a pie de calle, con el fin de facilitar la redacción de la memoria.}
-  \fichadato{Material aportado}{Tablas de requisitos de la sección~\ref{sec:caracteristicas}, redactadas por el autor, y porcentajes de viabilidad estimados por el autor.}
-  \fichadato{Resultado}{Código \LaTeX{} de la tabla~\ref{tab:viabilidad}: una fila por cada característica, agrupadas por dimensión, con el porcentaje para imágenes aéreas y a pie de calle y la razón.}
-  \fichadato{Validación}{Características y porcentajes revisados por el autor frente a la sección~\ref{sec:caracteristicas}; compilación con la plantilla TFUOC.}
   \fichaprompt{Necesito que crees una tabla para mostrar la viabilidad de las carácterísticas del apartado 2.2, poniendo una fila por cada característica "medible" para imágenes aéreas, a pie de calle. Solo pon las carácterísticas de la sección, y añade un porcentaje para aérea y a pie de calle (haz una estimación, que luego cambiaré a mano), así como una columna con la razón del porcentaje, déjame esta columna sin rellenar.}
-  \fichaajuste{Quitar la columna de artículos, porque ya están en las tablas de características.}
-  \fichaajuste{Separar cada fila con una línea gris fina y centrar verticalmente el contenido.}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:distribucion-clases}. Distribución de las clases de accesibilidad en Albacete y Algeciras}
-  \fichadato{Fecha}{17/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP2.2. Estado del arte}
-  \fichadato{Resultado}{Código pgfplots de la figura~\ref{fig:distribucion-clases}, con los estilos de \texttt{tfm-estilo.sty}.}
-  \fichadato{Validación}{Los porcentajes de la figura se comprobaron con la tabla de distribución de clases obtenida en el análisis exploratorio de los datos de Albacete y Algeciras.}
   \fichaprompt{Crea un diagrama de barras que muestre la distribución de clases de accesibilidad de Algeciras y Albacete, siguiendo el design system, a partir de los siguientes datos [tabla con el número de tramos y el número y porcentaje de tramos de clase A, B y C en Albacete, Algeciras y el total]}
-  \fichaajuste{Pero no quiero que me des el total}
   \fichaajuste{Creo que prefiero los datos agrupados, en una sola columna (o fila)}
-\end{fichaia}
-
-\begin{fichaia}{Tabla~\ref{tab:ml-revisados}. Estudios de aprendizaje automático revisados}
-  \fichadato{Fecha}{17/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP2.2. Estado del arte}
-  \fichadato{Objetivo}{Resumir en una tabla los estudios del apartado de aprendizaje automático, para facilitar su comparación.}
-  \fichadato{Material aportado}{Texto del apartado~\ref{sec:ml}, redactado por el autor.}
-  \fichadato{Resultado}{Código \LaTeX{} (\texttt{longtable}) de la tabla~\ref{tab:ml-revisados}: estudios agrupados por subsección, con el modelo, las métricas y las columnas de clase ordinal, desbalanceo, importancia, coste y fiabilidad.}
-  \fichadato{Validación}{Cada celda se revisó por el autor frente al texto del apartado~\ref{sec:ml}; compilación con la plantilla TFUOC.}
   \fichaprompt{Crea una tabla con label ml-revisados que liste todos los trabajos, agrupados por las subsecciones, y que tenga por columnas: modelo, métricas, y que tenga como columnas: ordinal, desbalanceo, importancia, coste y fiabilidad. Utiliza únicamente los datos que están en el apartado 3.3 para llenar la tabla.}
   \fichaajuste{Necesito que de alguna manera las columnas de ordinal, desbalanceo... no se corten}
 \end{fichaia}
 
-\begin{fichaia}{Sistema de diseño: componentes de árboles de decisión y XGBoost}
-  \fichadato{Fecha}{18/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP1. Definición y objetivos}
-  \fichadato{Objetivo}{Ampliar el sistema de diseño de la memoria con componentes para representar árboles de decisión y la configuración y los resultados de modelos XGBoost, manteniendo la paleta, la tipografía y los criterios de accesibilidad del sistema.}
-  \fichadato{Material aportado}{Sistema de diseño existente (\texttt{tfm-estilo.sty} v1.7 y guía de estilo); ningún dato de los modelos.}
-  \fichadato{Resultado}{\texttt{tfm-estilo.sty} v1.8 con el estilo \texttt{forest} \texttt{tfmarbol} (divisiones, hojas con valor o clase de accesibilidad, rama de valores ausentes y camino de una predicción), \texttt{\textbackslash esquemaboosting}, comandos para la tabla de configuración de hiperparámetros y estilos pgfplots de importancia de variables y curva de aprendizaje; módulo \texttt{arboles.py} que genera ese código a partir de modelos de scikit-learn y XGBoost; componentes \emph{ArbolDecision} y \emph{XGBoost} en la guía de estilo.}
-  \fichadato{Validación}{Compilación con la plantilla TFUOC; prueba de \texttt{arboles.py} con modelos de scikit-learn y XGBoost entrenados sobre datos sintéticos; colores tomados de tokens ya verificados (WCAG 2.1 y simulación de daltonismo); revisión visual del autor.}
-  \fichaprompt{Necesito que actualices el system design para incluir un componente que permita pintar árboles de decisión, así cómo configuraciones de XG Boosting}
-\end{fichaia}
-
-\begin{fichaia}{Figuras~\ref{fig:perfiles-pesos}, \ref{fig:perfiles-modelos} y~\ref{fig:perfiles-multisalida}. Formas de incorporar los grupos de usuarios}
+\begin{fichaia}{Figuras~\ref{fig:perfiles-pesos}, \ref{fig:perfiles-modelos}, \ref{fig:perfiles-multisalida} y~\ref{fig:tipos-particion}. Diagramas del estado del arte}
   \fichadato{Fecha}{18/10/2026}
   \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
   \fichadato{Fase}{WP2.2 -- Estado del arte}
-  \fichadato{Uso}{Generación del código TikZ de tres diagramas, siguiendo el sistema de diseño de la memoria.}
-  \fichadato{Revisión}{El autor ha comprobado que cada diagrama corresponde al método descrito en los trabajos citados y ha ajustado su posición junto a los párrafos.}
+  \fichadato{Uso}{Generación del código TikZ de cuatro diagramas, siguiendo el sistema de diseño de la memoria: tres formas de incorporar los grupos de usuarios y tres estrategias de partición entre entrenamiento y prueba (sección~\ref{sec:transferencia-ciudades}).}
+  \fichadato{Revisión}{El autor ha comprobado que cada diagrama corresponde al método descrito en los trabajos citados y a las estrategias de la sección~\ref{sec:transferencia-ciudades}, y ha ajustado su posición junto a los párrafos.}
   \fichaprompt{Crea un diagrama que muestre tres opciones diferentes (tres diagramas distintos), diferenciando entre el cálculo de pesos por grupo (Moura et al.), con indicadores de la calle como variable, en ese caso se aplican pesos distintos w\_i para cada clase de grupo. En el caso de un modelo por grupo (Dong et al.), crea un diagrama que muestre que para cada grupo hay un modelo (M\_i), y la salida del modelo es una clase de grupo, y finalmente otro de un modelo con varias salidas por grupo, quiero que indiques que a partir de las variables se asignan varias salidas por grupo, en este caso continuas. Necesito que el diagrama no ocupe demasiado, para poder mostrarse junto con los párrafos.}
-\end{fichaia}
-
-\begin{fichaia}{Figura~\ref{fig:tipos-particion}. Estrategias de partición entre entrenamiento y prueba}
-  \fichadato{Fecha}{18/10/2026}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP2.2 -- Estado del arte}
-  \fichadato{Uso}{Generación del código TikZ de un diagrama, siguiendo el sistema de diseño de la memoria.}
-  \fichadato{Revisión}{El autor ha comprobado que el diagrama corresponde a las tres estrategias descritas en la sección~\ref{sec:transferencia-ciudades} y ha ajustado su posición junto al párrafo.}
   \fichaprompt{Crea un diagrama que muestre cómo se dividen los tramos de calles en: partición aleatoria agrupada por calle o barrio o entre ciudades, en los conjuntos de entrenamiento o test, que tenga un tamaño pequeño para ponerlo al lado de un párrafo y que sea más visual). En partición aleatoria, los tramos de una misma calle pueden caer en test o entrenamiento; en la agrupada todos los tramos de una calle caen en entrenamiento o test, pero nunca separadas; mientras que entre ciudades, se entrenan todas las calles en una ciudad, y se prueban en otra. Puedes poner cuadritos con dos colores (entrenamiento y prueba) o algo similar. Sigue el design system.}
 \end{fichaia}
 
-\begin{fichaia}{Tabla~\ref{tab:cadenas-busqueda}. Cadenas de búsqueda del estado del arte}
+\begin{fichaia}{Consultas y análisis de la literatura}
   \fichadato{Fecha}{Octubre de 2026 (varias sesiones)}
-  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
-  \fichadato{Fase}{WP2.2 -- Estado del arte}
-  \fichadato{Material aportado}{Estructura del estado del arte (secciones y preguntas de investigación de la sección~\ref{sec:sintesis-marco}).}
-  \fichadato{Uso}{Ayuda para proponer cadenas de búsqueda para Web of Science y Google Scholar en cada sección del estado del arte.}
-  \fichadato{Ajustes}{Varias peticiones posteriores para obtener más cadenas por sección, adaptarlas a Google Scholar y simplificarlas en Web of Science.}
-  \fichadato{Revisión}{El autor ha ejecutado las cadenas en ambas fuentes, ha simplificado o descartado las que devolvían resultados poco relevantes y ha seleccionado los estudios según los criterios de la sección~\ref{subsec:criterios-seleccion}.}
+  \fichadato{Herramienta}{Gemini (Google)~\cite{gemini} y Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2 -- Contexto y estado del arte}
+  \fichadato{Uso}{Propuesta de cadenas de búsqueda para Web of Science y Google Scholar (tabla~\ref{tab:cadenas-busqueda}); análisis de la literatura seleccionada (algoritmos multiobjetivo, métricas y estrategias de partición espacial y transferencia entre ciudades); y resolución de dudas puntuales sobre las fuentes de datos, el preprocesado y la validación.}
+  \fichadato{Revisión}{El autor ejecutó las cadenas en ambas fuentes, descartó las que devolvían resultados poco relevantes y seleccionó los estudios según los criterios de la sección~\ref{subsec:criterios-seleccion}.}
   \fichaprompt{Recomiéndame palabras y frases de búsqueda, varias diferentes por cada uno de los análisis a realizar, que sea un listado de cadenas de al menos 5 por cada uno.}
+  \fichaprompt{¿Puedes resumir las 3 fases del algoritmo MTBR de Lin et al. (2019) y cómo se compara con MOTC?}
+  \fichaprompt{¿Qué métricas se utilizan en las fuentes seleccionadas para evaluar modelos de \emph{machine learning} multiobjetivo y la evaluación de la caminabilidad?}
+  \fichaprompt{Identifica qué fuentes evalúan modelos entre distintas ciudades o zonas geográficas, indicando la estrategia espacial, las métricas y los resultados.}
+  \fichaprompt{¿Cuáles fueron los conjuntos de datos, la estrategia de generalización entre ciudades y las métricas utilizadas en el estudio de Weld et al. (2019)?}
+  \fichaprompt{En el estudio de Wu et al. (2026), ¿qué estrategia se sigue y cuál fue el resultado de la validación agrupada por calle frente a la división aleatoria?}
+  \fichaprompt{¿Qué estrategia sigue Li et al. (2024) para escalar la predicción de la caminabilidad desde un distrito muestra hasta la escala de toda la ciudad?}
+  \fichaprompt{¿Qué ocurre con el rendimiento de un modelo cuando se entrena en una ciudad y se prueba en otra con infraestructura urbana diferente (por ejemplo, en Duan et al., 2022)?}
+  \fichaprompt{¿Crees que es posible que los datos de pendiente transversal se puedan obtener por fuentes cartográficas públicas?}
+  \fichaprompt{¿Qué diferencia hay entre una foto aérea y una foto satelital?}
+  \fichaprompt{¿Qué me puedo descargar de aquí? https://pnoa.ign.es/web/portal/pnoa-lidar/productos-a-descarga}
+  \fichaprompt{Pensaba que los parámetros de entrada de un modelo tenían que quedarse siempre en la misma escala. ¿Es así?}
+  \fichaprompt{¿Qué importancia tiene en mi trabajo la fiabilidad? ¿Quizás cuando no se puedan tener datos por la vegetación?}
+  \fichaprompt{¿Y si busco un mapa de barriadas de Algeciras, para poder identificar las calles separadas por barriada?}
+\end{fichaia}
+
+\begin{fichaia}{Bibliografía de la memoria}
+  \fichadato{Fecha}{30/09/2026 -- Octubre de 2026}
+  \fichadato{Herramienta}{Gemini (Google)~\cite{gemini} y Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP1. Definición y objetivos, WP2 -- Redacción de la memoria}
+  \fichadato{Objetivo}{Convertir la bibliografía manual (\texttt{thebibliography}) a BibTeX y validar las referencias y el formato de las citas.}
+  \fichadato{Resultado}{Archivo \texttt{referencias.bib}, configuración de \texttt{biblatex} en el preámbulo y \texttt{\textbackslash printbibliography[heading=bibintoc]}; correcciones de entradas y de citas secundarias.}
+  \fichadato{Validación}{Compilación con biber; verificación de citas en el documento y de que todas las referencias se generan correctamente en el PDF; revisión por el autor de las entradas y del año de publicación de cada una.}
+  \fichaprompt{Transforma la bibliografía en referencias.bib, y carga la bibliografía en la sección en la que está}
+  \fichaprompt{Comprueba si estas entradas BibTeX para mastelini2019 y lin2019 son correctas y contienen todos los campos de la publicación.}
+  \fichaprompt{Revisa si esta entrada BibTeX de Duan et al. (2022) en ACM SIGACCESS contiene la sintaxis correcta para actas de congreso (\texttt{booktitle}, \texttt{doi}, \texttt{pages}).}
+  \fichaprompt{Comprueba si el año de publicación asignado al artículo de Lin et al. en TKDE corresponde a la versión preliminar (2019) o al volumen definitivo de la revista (2021).}
 \end{fichaia}
