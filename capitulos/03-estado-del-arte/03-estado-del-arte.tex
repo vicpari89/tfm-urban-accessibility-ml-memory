@@ -25,21 +25,42 @@ Para cada pregunta se ha definido una o varias cadenas de búsqueda, que se deta
 Las búsquedas se realizan en inglés, por ser el idioma más común en los artículos de literatura científica; y también en español, sobre todo en la biblioteca de la UOC como complemento.
 En Web of Science, cada cadena de búsqueda de la tabla~\ref{tab:cadenas-busqueda} se introduce en el campo \textit{Topic} (\texttt{TS=}), mientras que en Google Scholar se usan variantes de búsqueda más sencillas.
 
-\begin{table}[H]
+\begin{table}[htbp]
   \centering
   \shorthandoff{"}
   \caption{Cadenas de búsqueda por sección y fuente.}
   \label{tab:cadenas-busqueda}
-  \small
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
     \toprule
     \cabeceratabla Sección & Web of Science (\texttt{TS=}) & Google Scholar \\
     \midrule
-    Evaluación de la accesibilidad (\ref{sec:eval-accesibilidad}) & \texttt{("sidewalk" OR "pedestrian") AND "accessibility" AND ("index" OR "assessment")} & \texttt{"sidewalk accessibility" assessment index} \\ \addlinespace
-    Variables desde imagen (\ref{sec:vision}) & \texttt{("sidewalk" OR "crosswalk") AND ("aerial" OR "street view") AND ("segmentation" OR "detection")} & \texttt{"sidewalk extraction" aerial imagery}\par\vspace{3pt}\texttt{"street view" sidewalk accessibility} \\ \addlinespace
-    Aprendizaje automático (\ref{sec:ml}) & \texttt{"machine learning" AND ("sidewalk" OR "walkability") AND "accessibility"} & \texttt{"machine learning" "sidewalk accessibility"}\par\vspace{3pt}\texttt{"tabular data" tree-based benchmark} \\ \addlinespace
-    Perfiles de diversidad funcional (\ref{sec:perfiles-arte}) & \texttt{"pedestrian accessibility" AND ("wheelchair" OR "visually impaired" OR "disability type")} & \texttt{"pedestrian accessibility" wheelchair "visually impaired"} \\ \addlinespace
-    Validación espacial (\ref{sec:transferencia-ciudades}) & \texttt{("spatial cross-validation" OR "spatial autocorrelation") AND "machine learning"} & \texttt{"spatial cross-validation" machine learning}\par\vspace{3pt}\texttt{"cross-city" transfer urban model} \\
+    Evaluación de la accesibilidad (\ref{sec:eval-accesibilidad})
+      & \texttt{("sidewalk" OR "pedestrian") AND "accessibility" AND ("index" OR "assessment")}
+      \par\vspace{3pt}\texttt{"walkability" AND "audit" AND ("street view" OR "field")}
+      & \texttt{"sidewalk accessibility" assessment index}
+      \par\vspace{3pt}\texttt{"walkability index" pedestrian groups} \\ \addlinespace
+    Aprendizaje automático (\ref{sec:ml})
+      & \texttt{"machine learning" AND ("sidewalk" OR "walkability") AND "accessibility"}
+      \par\vspace{3pt}\texttt{("ordinal classification" OR "imbalanced") AND ("gradient boosting" OR "random forest")}
+      \par\vspace{3pt}\texttt{"cost-sensitive" AND "feature selection"}
+      & \texttt{"machine learning" "sidewalk accessibility"}
+      \par\vspace{3pt}\texttt{"tabular data" tree-based benchmark}
+      \par\vspace{3pt}\texttt{"attribute noise" classification robustness} \\ \addlinespace
+    Perfiles de usuario (\ref{sec:perfiles-arte})
+      & \texttt{"pedestrian accessibility" AND ("wheelchair" OR "visually impaired" OR "disability type")}
+      \par\vspace{3pt}\texttt{walkability AND "user groups"}
+      \par\vspace{3pt}\texttt{"multi-output" OR "multi-target"}
+      & \texttt{"pedestrian accessibility" wheelchair "visually impaired"}
+      \par\vspace{3pt}\texttt{"multi-target regression" "single-target"} \\ \addlinespace
+    Transferencia entre ciudades (\ref{sec:transferencia-ciudades})
+      & \texttt{("spatial cross-validation" OR "spatial autocorrelation") AND "machine learning"}
+      \par\vspace{3pt}\texttt{"cross-city" AND ("sidewalk" OR "street view")}
+      & \texttt{"spatial cross-validation" machine learning}
+      \par\vspace{3pt}\texttt{"cross-city" transfer urban model}
+      \par\vspace{3pt}\texttt{"grouped" holdout street segments} \\
     \bottomrule
   \end{tabularx}
 \end{table}

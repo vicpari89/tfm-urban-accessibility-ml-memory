@@ -92,7 +92,7 @@ Analizar e identificar las necesidades de movilidad y accesibilidad en el espaci
 
 \textbf{OP2. Identificar, analizar y preparar los datos}
 
-Recopilar los conjuntos de datos disponibles de las ciudades de Albacete y Algeciras, analizar los parámetros medidos, seleccionar y categorizar aquellos relevantes según puedan obtenerse de imágenes aéreas y cartografía pública, de imágenes a pie de calle o solo in situ, y preparar los datos para su uso en el entrenamiento y evaluación de los modelos de clasificación.
+Recopilar los conjuntos de datos disponibles de las ciudades de Albacete y Algeciras, analizar los parámetros medidos, seleccionar y categorizar aquellos relevantes según puedan obtenerse de fuentes cartográficas públicas, de imágenes aéreas, de imágenes a pie de calle o solo in situ, y preparar los datos para su uso en el entrenamiento y evaluación de los modelos de clasificación.
 \\
 
 \textbf{OP3. Identificar y definir las métricas e indicadores de evaluación de la accesibilidad}
@@ -102,7 +102,7 @@ Analizar la normativa vigente (estatal, autonómica y local) para identificar el
 
 \textbf{OP4. Entrenar modelos de aprendizaje automático de clasificación de accesibilidad}
 
-Modelar y entrenar diferentes modelos de \textit{machine learning}, con diferentes conjuntos de características extraídas de los datos recopilados, diferenciando entre las que se puedan obtener potencialmente de imágenes aéreas o transversales, y las que se obtienen directamente de los datos de campo; comparando los conjuntos aéreo, a pie de calle, la combinación de ambos y el completo, así como un conjunto con variables obtenidas a partir de fuentes cartográficas públicas, con un mismo modelo de referencia.
+Modelar y entrenar diferentes modelos de \textit{machine learning}, con diferentes conjuntos de características extraídas de los datos recopilados, diferenciando entre las que se puedan obtener potencialmente de fuentes cartográficas públicas o imágenes aéreas, de imágenes a pie de calle, y las que se obtienen directamente de los datos de campo; comparando los conjuntos cartográfico y aéreo, a pie de calle, la combinación de ambos y el completo, con un mismo modelo de referencia.
 \\
 
 \textbf{OP5. Validación de los modelos}
@@ -112,7 +112,7 @@ Ejecutar el algoritmo sobre los conjuntos de datos de las ciudades piloto, y eva
 
 \textbf{OP6. Interpretación de los resultados}
 
-Responder a las preguntas de investigación planteadas, interpretando los resultados obtenidos en términos de la accesibilidad de las vías urbanas y la efectividad de la selección de características para imágenes aéreas y cartografía pública, transversales y datos de campo, e identificando qué dimensiones medidas in situ son prescindibles.
+Responder a las preguntas de investigación planteadas, interpretando los resultados obtenidos en términos de la accesibilidad de las vías urbanas y la efectividad de la selección de características para fuentes cartográficas públicas e imágenes aéreas, imágenes a pie de calle y datos de campo, e identificando qué dimensiones medidas in situ son prescindibles.
 \\
 
 \input{capitulos/01-introduccion/figuras/objetivos_mvp}
@@ -127,9 +127,9 @@ Representan las metas adicionales o de extensión al trabajo principal del proye
 Visualizar en un mapa las predicciones de accesibilidad generadas por los modelos entrenados, permitiendo a los usuarios explorar la información obtenida de manera visual e interactiva.
 \\
 
-\textbf{OS2. Prueba de concepto con datos remotos reales}
+\textbf{OS2. Obtención de variables a partir de cartografía pública}
 
-Obtener variables a partir de fuentes públicas (pendientes, anchuras, cruces del callejero) y comprobar si pueden sustituir a la toma de variables in situ.
+Calcular, para los tramos de Albacete, las variables que según la estimación de viabilidad pueden obtenerse de fuentes cartográficas públicas (pendiente del modelo digital del terreno, anchura de la vía del catastro e intersecciones del callejero), y comprobar si los valores reales confirman esa estimación y pueden sustituir a las variables medidas in situ.
 \\
 
 \subsection{Hipótesis de investigación}
@@ -148,15 +148,17 @@ Se plantean las siguientes hipótesis de investigación:
 \cabeceratabla
 & \textbf{Hipótesis} & \textbf{Se refuta si…} \\
 \midrule
-\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente de forma remota (imágenes aéreas y cartografía pública), se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
+\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de fuentes cartográficas públicas o de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
 \textbf{H2} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de calle, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
-\textbf{H3} & Combinar las variables de ambos tipos de imagen (aéreas y cartografía pública, y a pie de calle) mejora el rendimiento de los modelos que utilizan únicamente uno de los dos subconjuntos & No se aprecia mejora suficiente \\
+\textbf{H3} & Combinar las variables cartográficas y aéreas con las de imágenes a pie de calle mejora el rendimiento de los modelos que utilizan únicamente uno de los dos conjuntos & No se aprecia mejora suficiente \\
 \midrule
 \textbf{H4} & El entrenamiento del modelo con los datos de una ciudad es transferible a otra ciudad (es decir, tiene un rendimiento similar) & Hay bastante diferencia de precisión \\
 \midrule
 \textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Al excluir las características se detecta un claro descenso en la precisión \\
+\midrule
+\textbf{H6} & (Secundaria, OS2) Las variables obtenidas de fuentes cartográficas públicas confirman que son viables para sustituir a las medidas in situ sin una pérdida significativa de rendimiento & Los valores reales no confirman la estimación o el rendimiento desciende de forma significativa \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -174,7 +176,7 @@ Los ODS a los que más se contribuye en el proyecto son: \textbf{ODS 11 (\textit
 
 En cuanto a los \textbf{impactos positivos}, se establecen:
 \begin{itemize}
-    \item \textbf{Sustitución de trabajos in situ}: el mecanismo tradicional de auditoría de accesibilidad incluye un desplazamiento continuo de vehículos, para que el personal técnico vaya a cada calle, así como material técnico para poder realizar las mediciones. La utilización de variables extraídas de imágenes reduce de manera significativa los desplazamientos, permitiendo una reducción de las emisiones indirectas CO2.
+    \item \textbf{Sustitución de trabajos in situ}: el mecanismo tradicional de auditoría de accesibilidad incluye un desplazamiento continuo de vehículos, para que el personal técnico vaya a cada calle, así como material técnico para poder realizar las mediciones. La utilización de variables obtenidas de cartografía pública y de imágenes reduce de manera significativa los desplazamientos, permitiendo una reducción de las emisiones indirectas CO2.
     \item \textbf{Optimización de los recursos públicos}: además de la reducción de costes de gasolina por los desplazamientos, la posibilidad de ordenar los tramos de calles menos accesibles permite a los ayuntamientos la priorización de obras de reparación en los tramos más críticos, optimizando las intervenciones en los puntos más necesarios.
 \end{itemize}
 
@@ -275,7 +277,7 @@ Además, se han incluido paquetes de trabajo para los \textbf{objetivos secundar
 
 \subsection{Calendario del trabajo}
 
-En primer lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que en color verde se indican las entregas secundarias.
+En primer lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que las entregas secundarias se indican con barras discontinuas.
 
 \input{capitulos/01-introduccion/figuras/gantt_tfm}
 
@@ -298,8 +300,8 @@ En segundo lugar, se muestra en la siguiente tabla la división de las tareas a 
     WP2.1 & \textbf{Análisis legal:} estudio de legislación y normativa sobre accesibilidad e infraestructura urbana, extrayendo requisitos. & \makecell{0.6 ECTS \\ (15 h)} & 05 oct - 12 oct & PEC2 \\
     WP2.2 & \textbf{Estado del arte:} revisión de literatura sobre evaluación de la accesibilidad urbana, aprendizaje automático con datos tabulares, validación con datos espaciales y visión por computador. & \makecell{1.0 ECTS \\ (25 h)} & 13 oct - 25 oct & PEC2 \\
 \midrule
-    WP3.1 & \textbf{Preparación de datos:} recopilación de los datos de Albacete y Algeciras, análisis de los parámetros medidos, selección y categorización de los relevantes, limpieza y preparación para el entrenamiento y la evaluación de los modelos. & \makecell{0.8 ECTS \\ (20 h)} & 19 oct - 03 nov & PEC3 \\
-    WP3.2 & \textbf{Métricas y características:} definición de los indicadores y fórmulas de evaluación a partir de la normativa, y construcción de los conjuntos de características (aéreas, transversales y de campo). & \makecell{0.6 ECTS \\ (15 h)} & 26 oct - 10 nov & PEC3 \\
+    WP3.1 & \textbf{Preparación de datos:} recopilación de los datos de Albacete y Algeciras, análisis de los parámetros medidos, selección y categorización de los relevantes según puedan obtenerse potencialmente de fuentes cartográficas públicas, de imágenes aéreas, de imágenes a pie de calle o solo in situ, limpieza y preparación para el entrenamiento y la evaluación de los modelos. & \makecell{0.8 ECTS \\ (20 h)} & 19 oct - 03 nov & PEC3 \\
+    WP3.2 & \textbf{Métricas y características:} definición de los indicadores y fórmulas de evaluación a partir de la normativa, y construcción de los conjuntos de características (cartográficas y aéreas, a pie de calle y de campo). & \makecell{0.6 ECTS \\ (15 h)} & 26 oct - 10 nov & PEC3 \\
     WP3.3 & \textbf{Entrenamiento de modelos:} entrenamiento de modelos de aprendizaje automático de clasificación de accesibilidad con los distintos conjuntos de características. & \makecell{1.2 ECTS \\ (30 h)} & 03 nov - 24 nov & PEC3 \\
     WP3.4 & \textbf{Comparativa y ajuste:} comparación de los modelos entre sí y entre los distintos conjuntos de características, y ajuste de hiperparámetros. & \makecell{0.8 ECTS \\ (20 h)} & 11 nov - 24 nov & PEC3 \\
     WP3.5 & \textbf{Validación e iteración:} evaluación frente al conjunto de prueba, análisis de errores y ajuste continuo de hiperparámetros. & \makecell{0.6 ECTS \\ (15 h)} & 13 nov - 05 dic & PEC3 \\
@@ -310,13 +312,15 @@ En segundo lugar, se muestra en la siguiente tabla la división de las tareas a 
     \multicolumn{5}{l}{\textit{Objetivos secundarios (de valor añadido, condicionados al tiempo disponible y a la evolución del proyecto)}} \\
     WP3.7 (OS1) & \textbf{Integración con el callejero:} realización de la integración del modelo con los datos geográficos del callejero de una ciudad, para poder incorporar los resultados del análisis al visor. & \makecell{0.4 ECTS \\ (10 h)} & 08 dic - 11 dic & PEC3 \\
     WP3.8 (OS1) & \textbf{Visor GIS e interfaz:} desarrollo de un visor geográfico interactivo para la representación gráfica sobre mapas de la red urbana. & \makecell{0.4 ECTS \\ (10 h)} & 10 dic - 14 dic & PEC3 \\
-    WP3.9 (OS2) & \textbf{Prueba de concepto con datos remotos reales:} extracción de información de fuentes cartográficas públicas y evaluación de la posibilidad de obtener los datos necesarios para las predicciones del modelo de clasificación. & \makecell{0.8 ECTS \\ (20 h)} & 08 dic - 15 dic & PEC3 \\
+    WP3.9 (OS2) & \textbf{Variables a partir de cartografía pública:} cálculo, para los tramos de Albacete, de variables a partir de fuentes cartográficas públicas (pendiente del MDT, anchura de la vía del catastro e intersecciones del callejero) y comprobación de si los valores reales confirman la estimación de viabilidad y pueden sustituir a las variables medidas in situ en el modelo. & \makecell{0.8 ECTS \\ (20 h)} & 08 dic - 15 dic & PEC3 \\
 \midrule
     WP4 & \textbf{Redacción memoria:} consolidación y redacción de la memoria final del TFM, estructurando metodología y resultados. & \makecell{1.6 ECTS \\ (40 h)} & 16 dic - 27 dic & PEC4 \\
 \midrule
     WP5 & \textbf{Presentación vídeo:} elaboración del guion, soporte visual y grabación del recurso audiovisual requerido para la defensa. & \makecell{1.0 ECTS \\ (25 h)} & 28 dic - 05 ene & PEC5 \\
 \midrule
     WP6 & \textbf{Defensa oral:} ensayo, preparación de respuestas a posibles objeciones del tribunal y exposición oral final del proyecto. & \makecell{1.0 ECTS \\ (25 h)} & 06 ene - 21 ene & PEC6 \\
+\midrule
+    & \textbf{Total} & \makecell{\textbf{12.0 ECTS} \\ \textbf{(300 h)}} & 24 sep - 21 ene & \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -360,10 +364,11 @@ Los principales riesgos identificados han estado centrados en la incentidumbre d
     \midrule
 
     \textbf{Dificultad en obtener datos de cartografía pública} &
-    Alta/Medio &
+    Alta/Bajo &
     La obtención de datos de cartografía pública que sean útiles para los modelos, así como la precisión de los datos es un riesgo que puede darse, así como enlazar los datos extraídos con las variables disponibles. &
-    No añadir todas las fuentes cartográficas a la vez, y realizar previamente un análisis de viabilidad. \\
-    
+    No añadir todas las fuentes cartográficas a la vez, y realizar previamente un análisis de viabilidad. Al ser OS2 un objetivo secundario, las hipótesis principales se evalúan con la estimación de viabilidad. \\
+    \midrule
+
     \textbf{Indisponibilidad personal por vacaciones planificadas} & 
     Alta/Medio & 
     Se ha incluido en el calendario un período de descanso de una semana (del 2 al 7 de diciembre) por un período vacacional planificado, lo que puede afectar al tiempo disponible para la realización del proyecto. & 
@@ -392,13 +397,13 @@ Los productos que se obtendrán tras la ejecución del proyecto se detallan a co
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Producto mínimo viable (MVP)} \\
     P1 & Conjunto de datos limpio y preparado de las vías urbanas de Albacete y Algeciras, con su diccionario de datos. & Dataset & WP3.1 \\
     P2 & Repositorio en GitHub con el código de preparación de datos, selección de características y entrenamiento de los modelos de clasificación de accesibilidad. & Código & WP3.2--3.3 \\
-    P3 & Comparativa de modelos y de conjuntos de variables (aéreas, a pie de calle y de campo), con evaluación de los mismos y rendimiento entre ciudades. & Resultados y código & WP3.4--3.5 \\
+    P3 & Comparativa de modelos y de conjuntos de variables (cartográficas y aéreas, a pie de calle y de campo), con evaluación de los mismos y rendimiento entre ciudades. & Resultados y código & WP3.4--3.5 \\
     P4 & Análisis e interpretación de los resultados frente a las hipótesis, indicando qué variables sirven para poder clasificar la accesibilidad. & Informe & WP3.6 \\
 \midrule
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Productos secundarios\textsuperscript{*}} \\
     P5 & Capa de calles clasificadas integrada en el callejero municipal. & Capa GIS & WP3.7 \\
     P6 & Visor GIS interactivo con los resultados. & Aplicación web & WP3.8 \\
-    P7 & Prueba de concepto de extracción de variables a partir de datos cartográficos. & Código e informe & WP3.9 \\
+    P7 & Variables reales obtenidas de cartografía pública en Albacete y su comparación con la estimación. & Código e informe & WP3.9 \\
 \midrule
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Entregables académicos} \\
     P8  & Memoria del TFM. & PDF & WP4 \\
@@ -427,14 +432,19 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
 En primer lugar, se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
 
 \begin{itemize}
-    \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generando artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas.
+    \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generar artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas; así como para poder filtrar los artículos de literatura científica con base en los requisitos del autor..
     \item \textbf{Recursos gráficos para la memoria:} con herramientas de inteligencia artificial generativa para incluir imágenes o esquemas que faciliten la lectura de la memoria y la enriquezcan.
     \begin{itemize}
-        \item En primer lugar, se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas...) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
+        \item En primer lugar, se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas\ldots) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
     \end{itemize}
     \item \textbf{Asistencia en formateo de textos en LaTeX:} como apoyo técnico para poder transformar textos escritos en textos formateados para LaTeX, o maquetación de tablas o diagramas.
-    \item \textbf{Asistencia programación y refactorización de código:} se utilizarán asistentes de código como Claude o Copilot como ayuda en la escritura de \textit{scripts} en Python.
+    \item \textbf{Asistencia en programación y refactorización de código:} se utilizarán asistentes de código como Claude o Copilot como ayuda en la escritura de \textit{scripts} en Python.
     \item \textbf{Diseño UI/UX y estilos del portal web:} con el fin de ofrecer una página web más atractiva para el usuario, se emplearán herramientas de inteligencia artificial que den soporte con el diseño y estilos de la web.
+    \item \textbf{Apoyo en la búsqueda bibliográfica:} propuesta de palabras clave y cadenas de búsqueda para Web of Science y Google Scholar, que el autor ha ejecutado, ajustado y filtrado según los criterios de selección del estado del arte.
+    \item \textbf{Consulta y contraste de alternativas metodológicas:} como interlocutor para plantear dudas y comparar opciones (como métricas de evaluación o estrategias de validación), siendo el autor el que ha tomado las decisiones necesarias.
+    \item \textbf{Revisión de la redacción:} se ha utilizado una \textit{skill} en Claude a partir de las fuentes de formato de la memoria de la UOC, que se ha aplicado al final de cada capítulo, para corroborar el formato del texto. Se puede encontrar en el anexo <<Skill de auditoría de la memoria>> del documento de anexos, que se entrega por separado.
 \end{itemize}
 
-Para ver detalles de los prompt específicos usados, se puede consultar el \nameref{anx:ia}.
+Para ver detalles de los prompt específicos usados, se puede consultar el anexo <<Registro de uso de inteligencia artificial generativa>> del documento de anexos, que se entrega por separado.
+
+En todos los casos, el planteamiento del problema, el análisis de los datos, la selección y lectura de las fuentes, la verificación de datos y citas, la redacción de la memoria, así como las decisiones de diseño del trabajo han sido realizados por el autor.
