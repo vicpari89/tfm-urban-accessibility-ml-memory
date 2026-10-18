@@ -15,11 +15,19 @@
 \usepackage{pgfgantt}
 \usepackage[spanish]{babel}
 \usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=acc-accesible, citecolor=uoc-azul, urlcolor=uoc-azul}
 
 % Glossary configuration with glossaries-extra and bib2gls
 \usepackage[record,toc,style=altlist,abbreviations]{glossaries-extra}
 \setabbreviationstyle[abbreviation]{long-short}
 \GlsXtrLoadResources[src=glosario,sort=es,selection=all]
+% Abreviaturas: como altlist, pero con el significado de las siglas antes de la descripción
+\newglossarystyle{abreviaturas}{%
+  \setglossarystyle{altlist}%
+  \renewcommand*{\glossentry}[2]{%
+    \item[\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}]\mbox{}\par\nopagebreak
+    \glsxtrlong[noindex,hyper=false]{##1}. \glossentrydesc{##1}\glspostdescription\space ##2}%
+}
 
 %Introducción de datos del trabajo
 \title{Modelo de clasificación de la accesibilidad de las vías urbanas a partir de parámetros extraíbles de imágenes}
@@ -78,11 +86,11 @@ The goal is to determine whether it is possible to predict the accessibility of 
 
 \estructura
 
-\tableofcontents
+{\hypersetup{linkcolor=black}\tableofcontents}
 
-\listoffigures
+{\hypersetup{linkcolor=black}\listoffigures}
 
-\listoftables
+{\hypersetup{linkcolor=black}\listoftables}
 
 
 
