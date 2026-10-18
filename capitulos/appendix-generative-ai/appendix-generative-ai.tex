@@ -214,3 +214,12 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
   \fichadato{Validación}{Compilación con la plantilla TFUOC; prueba de \texttt{arboles.py} con modelos de scikit-learn y XGBoost entrenados sobre datos sintéticos; colores tomados de tokens ya verificados (WCAG 2.1 y simulación de daltonismo); revisión visual del autor.}
   \fichaprompt{Necesito que actualices el system design para incluir un componente que permita pintar árboles de decisión, así cómo configuraciones de XG Boosting}
 \end{fichaia}
+
+\begin{fichaia}{Figuras~\ref{fig:perfiles-pesos}, \ref{fig:perfiles-modelos} y~\ref{fig:perfiles-multisalida}. Formas de incorporar los grupos de usuarios}
+  \fichadato{Fecha}{18/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2.2 -- Estado del arte}
+  \fichadato{Uso}{Generación del código TikZ de tres diagramas, siguiendo el sistema de diseño de la memoria.}
+  \fichadato{Revisión}{El autor ha comprobado que cada diagrama corresponde al método descrito en los trabajos citados y ha ajustado su posición junto a los párrafos.}
+  \fichaprompt{Crea un diagrama que muestre tres opciones diferentes (tres diagramas distintos), diferenciando entre el cálculo de pesos por grupo (Moura et al.), con indicadores de la calle como variable, en ese caso se aplican pesos distintos w\_i para cada clase de grupo. En el caso de un modelo por grupo (Dong et al.), crea un diagrama que muestre que para cada grupo hay un modelo (M\_i), y la salida del modelo es una clase de grupo, y finalmente otro de un modelo con varias salidas por grupo, quiero que indiques que a partir de las variables se asignan varias salidas por grupo, en este caso continuas. Necesito que el diagrama no ocupe demasiado, para poder mostrarse junto con los párrafos.}
+\end{fichaia}

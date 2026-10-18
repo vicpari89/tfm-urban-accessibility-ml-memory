@@ -1,0 +1,19 @@
+\begin{wrapfigure}{r}{0.36\textwidth}
+  \centering
+  \vspace{-8pt}
+  \begin{tikzpicture}[node distance=2mm]
+    \node[perfent] (e) {Variables de la calle};
+    \node[perfmod, below=6mm of e] (m2) {M$_2$};
+    \node[perfmod, left=of m2] (m1) {M$_1$};
+    \node[perfmod, right=of m2] (m3) {M$_3$};
+    \node[perfclase, below=5mm of m1] (c1) {G$_1$};
+    \node[perfclase, below=5mm of m2] (c2) {G$_2$};
+    \node[perfclase, below=5mm of m3] (c3) {G$_3$};
+    \foreach \i in {1,2,3} {\draw[relacion] (e.south) -- (m\i.north); \draw[relacion] (m\i) -- (c\i);}
+    \node[perfnota, right=1mm of m3] {modelos};
+    \node[perfnota, right=1mm of c3] {clase};
+  \end{tikzpicture}
+  \caption{Un modelo M$_i$ para cada grupo.}
+  \label{fig:perfiles-modelos}
+  \vspace{-10pt}
+\end{wrapfigure}

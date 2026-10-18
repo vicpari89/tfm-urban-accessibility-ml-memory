@@ -319,16 +319,18 @@ Se han identificado tres formas diferentes de hacerlo: \textbf{otorgar diferente
 \subsection{Diferentes pesos por grupo}
 \label{subsec:perfiles-pesos}
 
+\input{capitulos/03-estado-del-arte/figuras/perf-diferentes-pesos-por-grupo}
+
 En Moura et al.~\cite{moura2017} se computa un índice denominado IAAPE, que evalúa la accesibilidad (específicamente la caminabilidad) en cuatro grupos de personas (personas adultas, niñas y niños, personas mayores y personas con movilidad reducida).
 \\
 
-Para cada grupo de personas, se establece un peso para cada una de las variables utilizadas en el entrenamiento. Esto se hace de manera participativa, combinando un panel de personal experto en movilidad y urbanismo, que identifica las variables y rangos que pueden resultar de interés para el estudio; así como un panel de personas pertenecientes a cada uno de los grupos, que pondera cada una de las variables de interés elegidas.
+Para cada grupo de personas, se establece \textbf{un peso para cada variable} utilizada en el entrenamiento. Esto se hace de forma participativa, combinando un panel de personal experto en movilidad y urbanismo, que identifica las variables y rangos que pueden resultar de interés para el estudio; así como un panel de personas pertenecientes a cada uno de los grupos, que pondera cada una de las variables de interés elegidas.
 \\
 
 La comparación se hace por pares, mostrando a las personas dos opciones de combinación de variables para que elijan su preferencia. Por ejemplo, en la primera opción, una variable x tiene una puntuación elevada, pero la y la tiene baja; mientras que en la segunda opción es al revés. Una vez se computan todos los datos, se realiza el cálculo de los pesos.
 \\
 
-En el estudio, se identificó que cada grupo de personas otorgaba una importancia más elevada a diferentes variables, como la seguridad vial en los cruces para las personas adultas, o la calidad del pavimento para las personas mayores. Por lo tanto, cada calle recibe una puntuación y clase diferente según el grupo.
+En el estudio, se identificó que \textbf{cada grupo de personas otorgaba una importancia más elevada a diferentes variables}, como la seguridad vial en los cruces para las personas adultas, o la calidad del pavimento para las personas mayores. Por lo tanto, cada calle recibe una puntuación y clase diferente según el grupo.
 \\
 
 Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con la diferencia de que en este proyecto no se conocen los pesos para cada una de las variables.
@@ -337,10 +339,12 @@ Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con l
 \subsection{Un modelo diferente para cada grupo}
 \label{subsec:perfiles-modelo-por-grupo}
 
+\input{capitulos/03-estado-del-arte/figuras/perf-modelo-diferente-por-grupo}
+
 En Dong et al.~\cite{dong2019} se analiza cuál es la percepción de la infraestructura de las y los peatones en la ciudad de Harbin (China) con 400 personas encuestadas por grupo, distinguiendo entre comunidades cerradas (aquellas que viven en urbanizaciones), y comunidades abiertas (cuyos hogares están en vías públicas), en 27 atributos diferentes.
 \\
 
-La idea de este estudio es entrenar dos modelos independientes de \textit{gradient boosting} (\gls{GBDT}), comparando la importancia relativa de cada atributo en cada modelo. Una vez se obtiene la importancia de cada uno, se realiza un análisis de simetría de impacto (\gls{IAA}), que realiza una clasificación en tres clases ordinales según cómo afecta a la percepción de las personas de cada grupo.
+La idea de este estudio es entrenar \textbf{dos modelos independientes} de \textit{gradient boosting} (\gls{GBDT}), comparando la importancia relativa de cada atributo en cada modelo. Una vez se obtiene la importancia de cada uno, se realiza un análisis de simetría de impacto (\gls{IAA}), que realiza una clasificación en tres clases ordinales según cómo afecta a la percepción de las personas de cada grupo.
 \\
 
 En el artículo se pudo comprobar que la importancia de las variables cambia según el grupo encuestado, teniendo como más importantes:
@@ -355,7 +359,9 @@ El procedimiento permite conocer cuáles son las variables que hacen que la clas
 \subsection{Modelo único con varias salidas por grupo}
 \label{subsec:perfiles-multisalida}
 
-Otra alternativa es la utilizada por Mastelini et al.~\cite{mastelini2019}, en el que se propone utilizar un único modelo que permita realizar la predicción de la clase, distinguiendo por cada tipo de grupo a la vez (denominado \textbf{\textit{multi-target}} o \textbf{\textit{multi-output}}).
+\input{capitulos/03-estado-del-arte/figuras/perf-modelo-unico}
+
+Otra alternativa es la utilizada por Mastelini et al.~\cite{mastelini2019}, en el que se propone utilizar un \textbf{único modelo} que permita realizar la predicción de la clase, distinguiendo por cada tipo de grupo a la vez (denominado \textit{multi-target} o \textit{multi-output}).
 \\
 
 En este estudio se utilizó el método \gls{MOTC} (\textit{Multi-Output Tree Chaining}), que utiliza árboles de cadenas (\textit{chaining trees}) en dos fases:
@@ -411,7 +417,7 @@ Los trabajos revisados coinciden en que \textbf{cada grupo de usuarios valora la
 Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pesos a cada variable, varios modelos diferentes por cada grupo, así como entrenar un único modelo con varias salidas (únicamente comprobado en regresión, pero no clasificación). En el caso del proyecto elaborado en esta memoria, se podría aplicar alguna de estas técnicas para poder clasificar a los diferentes perfiles funcionales existentes en los conjuntos de datos.
 \\
 
-\section{Validación con datos espaciales y entre ciudades}
+\section{Validación espacial y transferencia entre ciudades}
 \label{sec:validacion-espacial}
 
 \section{Extracción de variables desde imagen}
