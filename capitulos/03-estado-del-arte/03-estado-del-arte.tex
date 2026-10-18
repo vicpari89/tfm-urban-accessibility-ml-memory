@@ -39,7 +39,7 @@ En Web of Science, cada cadena de búsqueda de la tabla~\ref{tab:cadenas-busqued
     Variables desde imagen (\ref{sec:vision}) & \texttt{("sidewalk" OR "crosswalk") AND ("aerial" OR "street view") AND ("segmentation" OR "detection")} & \texttt{"sidewalk extraction" aerial imagery}\par\vspace{3pt}\texttt{"street view" sidewalk accessibility} \\ \addlinespace
     Aprendizaje automático (\ref{sec:ml}) & \texttt{"machine learning" AND ("sidewalk" OR "walkability") AND "accessibility"} & \texttt{"machine learning" "sidewalk accessibility"}\par\vspace{3pt}\texttt{"tabular data" tree-based benchmark} \\ \addlinespace
     Perfiles de diversidad funcional (\ref{sec:perfiles-arte}) & \texttt{"pedestrian accessibility" AND ("wheelchair" OR "visually impaired" OR "disability type")} & \texttt{"pedestrian accessibility" wheelchair "visually impaired"} \\ \addlinespace
-    Validación espacial (\ref{sec:validacion-espacial}) & \texttt{("spatial cross-validation" OR "spatial autocorrelation") AND "machine learning"} & \texttt{"spatial cross-validation" machine learning}\par\vspace{3pt}\texttt{"cross-city" transfer urban model} \\
+    Validación espacial (\ref{sec:transferencia-ciudades}) & \texttt{("spatial cross-validation" OR "spatial autocorrelation") AND "machine learning"} & \texttt{"spatial cross-validation" machine learning}\par\vspace{3pt}\texttt{"cross-city" transfer urban model} \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -197,7 +197,7 @@ Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto,
 Y en general, en el estudio Grinsztajn et al.~\cite{grinsztajn2022} se realizó un estudio intensivo sobre 45 conjuntos de datos tabulares, y se determinó que los árboles de decisión eran más adecuados para este tipo de datos que el \textit{deep learning}.
 \\
 
-En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. En Wu et al.~\cite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5.060 observaciones), con métricas $R^2$ y RMSE (raíz del error cuadrático medio); así como en Jean et al.~\cite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en Agal~\cite{agal2026}, sobre 100.000 registros sobre estudiantes.
+En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. En Wu et al.~\cite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5.060 observaciones), con métricas $R^2$ y \gls{RMSE}; así como en Jean et al.~\cite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en Agal~\cite{agal2026}, sobre 100.000 registros sobre estudiantes.
 \\
 
 \subsection{Clases ordinales y desbalanceadas}
@@ -395,7 +395,7 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
 
 \begin{table}[htbp]
   \centering
-  \caption{Tratamiento de los grupos de usuarios en los trabajos revisados.}
+  \caption{Tratamiento de los perfiles en los trabajos revisados.}
   \label{tab:perfiles-previos}
   \small
   \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.17\textwidth} *{4}{>{\centering\arraybackslash}p{0.075\textwidth}}}
@@ -417,8 +417,96 @@ Los trabajos revisados coinciden en que \textbf{cada grupo de usuarios valora la
 Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pesos a cada variable, varios modelos diferentes por cada grupo, así como entrenar un único modelo con varias salidas (únicamente comprobado en regresión, pero no clasificación). En el caso del proyecto elaborado en esta memoria, se podría aplicar alguna de estas técnicas para poder clasificar a los diferentes perfiles funcionales existentes en los conjuntos de datos.
 \\
 
-\section{Validación espacial y transferencia entre ciudades}
-\label{sec:validacion-espacial}
+\section{Transferencia de modelos entre ciudades}
+\label{sec:transferencia-ciudades}
+
+Esta sección responde a la pregunta de investigación de <<¿Cómo comprobar que un modelo funciona en otra ciudad?>>. Se ha considerado no solo evaluar la transferencia \textbf{entre ciudades}, sino también \textbf{dentro de una misma ciudad} (de tramo a calle, de calle a barrio o de calle a ciudad).
+\\
+
+Entre los estudios analizados se han encontrado tres estrategias principales: la \textbf{\glslink{particion-aleatoria}{partición aleatoria}}, consistente en dividir al azar qué datos son de entrenamiento o validación; una \textbf{\glslink{validacion-agrupada}{validación agrupada}}, donde se utilizan y agrupan unas calles o áreas para el entrenamiento o test; o la \textbf{\glslink{validacion-entre-ciudades}{validación entre ciudades}}, que consiste en entrenar en una ciudad y probar en otra diferente.
+\\
+
+\subsection{Validación dentro de una ciudad}
+\label{subsec:validacion-dentro}
+
+En primer lugar, Wu et al.~\cite{wu2026} realizan una comparación entre división aleatoria de entrenamiento (80\,\%) y test (20\,\%), y una división de los tramos agrupados por calle (denominada \textit{Road-name-based grouped holdout}). Se utilizaron varios algoritmos, uno base, con una regresión lineal; y después varias técnicas no lineales: \gls{SVR}, XGBoost y \textit{random forest}.
+\\
+
+La conclusión del estudio fue que las técnicas no lineales superaron a la estrategia base, siendo XGBoost y \textit{random forest} los que tuvieron la mayor precisión. Además, la utilización de particiones aleatorias tuvo más éxito que la agrupada por calle. Las métricas utilizadas fueron $R^2$, \gls{RMSE} y \gls{MAE}.
+Según los autores, este éxito de la aleatoriedad es debido a que tramos de la misma calle están divididos en entrenamiento y test, y habitualmente son tramos con puntuaciones similares.
+\\
+
+Otro estudio, el de Mohite et al.~\cite{mohite2024}, sigue una estrategia similar con las calles de Nagpur (India), que utiliza el algoritmo \gls{RFR} sobre un conjunto de datos de calles agrupadas por orientación (norte-sur y este-oeste) para predecir el confort térmico peatonal.
+\\
+
+La división en entrenamiento y test es aleatoria, y además se garantiza que al menos una calle de cada grupo quede en el conjunto de test. Se obtuvo una precisión adecuada en el conjunto de test. Las métricas utilizadas fueron $R^2$ y \gls{MSE}.
+\\
+
+Por último, se ha localizado un estudio, Li et al.~\cite{li2024gsv}, en el que se realiza el entrenamiento en un único distrito de Taipei, y luego se predice en el resto de distritos. Se utilizó un modelo de regresión con \textit{random forest} para determinar la caminabilidad de las calles.
+\\
+
+\subsection{Validación entre ciudades}
+\label{subsec:validacion-ciudades}
+
+Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a este tipo de validación, y además clasifican problemas de accesibilidad en aceras, en varias ciudades de EE. UU..
+\\
+
+En Duan et al.~\cite{duan2022} se realiza un análisis a partir de imágenes a pie de calle, que han sido etiquetadas por personas voluntarias. Utiliza una estrategia denominada \textit{cross-city training}, de validación entre ciudades.
+\\
+
+En concreto, se realizaron dos experimentos, uno combinando los datos de cuatro ciudades (Seattle, Columbus y Washington en EE. UU., y San Pedro Garza García en México); y otro excluyendo Columbus. Las métricas utilizadas fueron la \glslink{precision}{precisión}, el \glslink{recall}{\textit{recall}} y el \glslink{accuracy}{\textit{accuracy}}. Se determinó que el primer experimento bajó la precisión de las predicciones, mientras que el segundo experimento mejoró la precisión incluso de Columbus.
+\\
+
+Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que los autores atribuyen a diferencias urbanas entre esta ciudad y las estadounidenses.
+\\
+
+Mientras que en Weld et al.~\cite{weld2019} se aplicó una técnica denominada \textit{cross-city generalizability}, con un modelo a partir de ResNet18, en el que se realizaron cuatro estrategias:
+\begin{itemize}
+  \item Modelo base: entrenando el modelo con los datos de Washington, y prediciendo en el resto de ciudades.
+  \item Modelo combinado: entrenando datos de Washington y otra ciudad.
+  \item Modelo de otra ciudad: entrenando datos de otra ciudad.
+  \item Modelo preentrenado: se aplica \glslink{fine-tuning}{\textit{fine tuning}} en los datos de otra ciudad, sobre el modelo obtenido en el modelo base.
+\end{itemize}
+
+Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisión y \glslink{matriz-confusion}{matriz de confusión}. Se determinó que el mejor modelo fue el modelo preentrenado, y que funcionó mejor la transferencia desde ciudades más grandes.
+\\
+
+\subsection{Conclusiones}
+\label{subsec:validacion-conclusiones}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Estrategias de validación y métricas en los trabajos revisados.}
+  \label{tab:validacion-previos}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.19\textwidth} *{3}{>{\centering\arraybackslash}p{0.105\textwidth}} >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla Trabajo & Modelo & Partición aleatoria & Validación agrupada & Entre ciudades & Métricas \\
+    \midrule
+    Wu et al.~\cite{wu2026} & Regresión lineal, SVR, XGBoost y \textit{random forest} & \cumple{si} & \cumple{si} & \cumple{no} & $R^2$, RMSE y MAE \\
+    Mohite et al.~\cite{mohite2024} & \textit{Random forest regressor} & \cumple{si} & \cumple{parcial} & \cumple{no} & $R^2$ y MSE \\
+    Li et al.~\cite{li2024gsv} & \textit{Random forest} (regresión) & \cumple{no} & \cumple{si} & \cumple{no} & --- \\
+    Duan et al.~\cite{duan2022} & Clasificación de imágenes a pie de calle & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall} y \textit{accuracy} \\
+    Weld et al.~\cite{weld2019} & ResNet18 & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall}, curvas de precisión y matriz de confusión \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia.}
+\end{table}
+
+La tabla~\ref{tab:validacion-previos} resume qué estrategia de validación usa cada trabajo y con qué métricas.
+\\
+
+En primer lugar, hay varios métodos de particionar los datos en entrenamiento y test, como la partición aleatoria o la validación agrupada (por calles o barrios). Aunque en Wu et al.~\cite{wu2026} el modelo obtiene mejores resultados con partición aleatoria, esto es debido a la división por tramos de la calle, por lo que la validación agrupada parece la más adecuada para construir los modelos.
+\\
+
+Hay varias formas de realizar la transferencia entre ciudades, dando resultados diferentes según la similitud entre ciudades. Aunque en algunas ocasiones realizar el entrenamiento combinando datos de varias ciudades ayuda, en otros casos empeora los resultados, sobre todo si las ciudades tienen diferencias en su morfología urbana.
+\\
+
+Es preciso utilizar las mismas métricas para evaluar las diferentes estrategias utilizadas en los modelos, para poder garantizar la elección del modelo con base en criterios empíricos comparables.
+\\
+
+Se podrá utilizar una combinación de estas técnicas como estrategias para entrenar los modelos de los conjuntos de datos de Albacete y Algeciras.
+\\
 
 \section{Extracción de variables desde imagen}
 \label{sec:vision}
