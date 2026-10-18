@@ -24,13 +24,15 @@ jobs:
 
     - name: Build PDF
       run: |
-        latexmk -pdf -interaction=nonstopmode TFM_Victor_Pariente_Gonzalez.tex
+        latexmk -pdf -interaction=nonstopmode TFM_Victor_Pariente_Gonzalez.tex TFM_Anexos.tex
 
     - name: Upload PDF as Release Asset
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
       with:
-        files: build/TFM_Victor_Pariente_Gonzalez.pdf
+        files: |
+          build/TFM_Victor_Pariente_Gonzalez.pdf
+          build/TFM_Anexos.pdf
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -38,7 +40,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: TFM-PDF
-        path: build/TFM_Victor_Pariente_Gonzalez.pdf
+        path: |
+          build/TFM_Victor_Pariente_Gonzalez.pdf
+          build/TFM_Anexos.pdf
         retention-days: 30
 
     - name: Publish PDF in the "latest" release
@@ -47,6 +51,6 @@ jobs:
         gh release view latest >/dev/null 2>&1 || gh release create latest \
           --prerelease --target main --title "PDF más reciente" \
           --notes "PDF compilado automáticamente a partir de la última versión de main."
-        gh release upload latest build/TFM_Victor_Pariente_Gonzalez.pdf --clobber
+        gh release upload latest build/TFM_Victor_Pariente_Gonzalez.pdf build/TFM_Anexos.pdf --clobber
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

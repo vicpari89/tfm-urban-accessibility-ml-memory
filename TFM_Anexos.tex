@@ -1,0 +1,43 @@
+\documentclass[IB]{TFUOC}
+
+\usepackage[bibliografia,tabla]{tfm-estilo}
+\addbibresource{referencias.bib}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage[spanish]{babel}
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=acc-accesible, citecolor=uoc-azul, urlcolor=uoc-azul}
+\externaldocument{build/TFM_Victor_Pariente_Gonzalez}[TFM_Victor_Pariente_Gonzalez.pdf]
+
+\title{Anexos del trabajo: Modelo de clasificación de la accesibilidad de las vías urbanas a partir de parámetros extraíbles de imágenes}
+\titcrt{Anexos}
+\author{Víctor Pariente González}
+\date{24 de septiembre de 2026}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{3cm}
+  {\Large\color{uoc-azul}\bfseries Anexos\par}
+  \vspace{1cm}
+  {\large Modelo de clasificación de la accesibilidad de las vías urbanas a partir de parámetros extraíbles de imágenes\par}
+  \vspace{1.5cm}
+  Víctor Pariente González\par
+  Máster en Ciencia de Datos, UOC\par
+  \vspace{1cm}
+  \small Documento complementario de la memoria del Trabajo Final de Máster. Las referencias a figuras, tablas y secciones se corresponden con las de la memoria.
+\end{titlepage}
+
+{\hypersetup{linkcolor=black}\tableofcontents}
+
+\appendix
+\input{capitulos/appendix/appendix-generative-ai}
+\input{capitulos/appendix/appendix-skill-format}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

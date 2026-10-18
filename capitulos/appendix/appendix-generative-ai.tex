@@ -7,7 +7,7 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
  
 \begin{fichaia}{FichaIA. Registro de trazabilidad y generación de metadatos de IA}
   \fichadato{Fecha}{30/09/2026}
-  \fichadato{Herramienta}{Gemini (Google)}
+  \fichadato{Herramienta}{Gemini (Google)~\cite{gemini}}
   \fichadato{Fase}{WP1. Definición y objetivos}
   \fichadato{Objetivo}{Ofrecer de forma transparente la infomación sobre el uso de inteligencia artificial generativa utilizada por el autor, incluyendo los prompts y ajustes realizados.}
   \fichadato{Resultado}{Código de ficha en LaTeX (\texttt{\textbackslash begin\{fichaia\}}) normalizado que compila los comandos, parámetros y modificaciones de la sesión.}
@@ -231,4 +231,15 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
   \fichadato{Uso}{Generación del código TikZ de un diagrama, siguiendo el sistema de diseño de la memoria.}
   \fichadato{Revisión}{El autor ha comprobado que el diagrama corresponde a las tres estrategias descritas en la sección~\ref{sec:transferencia-ciudades} y ha ajustado su posición junto al párrafo.}
   \fichaprompt{Crea un diagrama que muestre cómo se dividen los tramos de calles en: partición aleatoria agrupada por calle o barrio o entre ciudades, en los conjuntos de entrenamiento o test, que tenga un tamaño pequeño para ponerlo al lado de un párrafo y que sea más visual). En partición aleatoria, los tramos de una misma calle pueden caer en test o entrenamiento; en la agrupada todos los tramos de una calle caen en entrenamiento o test, pero nunca separadas; mientras que entre ciudades, se entrenan todas las calles en una ciudad, y se prueban en otra. Puedes poner cuadritos con dos colores (entrenamiento y prueba) o algo similar. Sigue el design system.}
+\end{fichaia}
+
+\begin{fichaia}{Tabla~\ref{tab:cadenas-busqueda}. Cadenas de búsqueda del estado del arte}
+  \fichadato{Fecha}{Octubre de 2026 (varias sesiones)}
+  \fichadato{Herramienta}{Claude (Anthropic)~\cite{claude}}
+  \fichadato{Fase}{WP2.2 -- Estado del arte}
+  \fichadato{Material aportado}{Estructura del estado del arte (secciones y preguntas de investigación de la sección~\ref{sec:sintesis-marco}).}
+  \fichadato{Uso}{Ayuda para proponer cadenas de búsqueda para Web of Science y Google Scholar en cada sección del estado del arte.}
+  \fichadato{Ajustes}{Varias peticiones posteriores para obtener más cadenas por sección, adaptarlas a Google Scholar y simplificarlas en Web of Science.}
+  \fichadato{Revisión}{El autor ha ejecutado las cadenas en ambas fuentes, ha simplificado o descartado las que devolvían resultados poco relevantes y ha seleccionado los estudios según los criterios de la sección~\ref{subsec:criterios-seleccion}.}
+  \fichaprompt{Recomiéndame palabras y frases de búsqueda, varias diferentes por cada uno de los análisis a realizar, que sea un listado de cadenas de al menos 5 por cada uno.}
 \end{fichaia}
