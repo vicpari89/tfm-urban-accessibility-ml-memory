@@ -420,10 +420,12 @@ Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pes
 \section{Transferencia de modelos entre ciudades}
 \label{sec:transferencia-ciudades}
 
+\input{capitulos/03-estado-del-arte/figuras/tipos-particion}
+
 Esta sección responde a la pregunta de investigación de <<¿Cómo comprobar que un modelo funciona en otra ciudad?>>. Se ha considerado no solo evaluar la transferencia \textbf{entre ciudades}, sino también \textbf{dentro de una misma ciudad} (de tramo a calle, de calle a barrio o de calle a ciudad).
 \\
 
-Entre los estudios analizados se han encontrado tres estrategias principales: la \textbf{\glslink{particion-aleatoria}{partición aleatoria}}, consistente en dividir al azar qué datos son de entrenamiento o validación; una \textbf{\glslink{validacion-agrupada}{validación agrupada}}, donde se utilizan y agrupan unas calles o áreas para el entrenamiento o test; o la \textbf{\glslink{validacion-entre-ciudades}{validación entre ciudades}}, que consiste en entrenar en una ciudad y probar en otra diferente.
+Entre los estudios analizados se han encontrado tres estrategias principales: la \textbf{\glslink{particion-aleatoria}{\mbox{partición} \mbox{aleatoria}}}, consistente en dividir al azar qué datos son de entrenamiento o validación; una \textbf{\glslink{validacion-agrupada}{\mbox{validación} \mbox{agrupada}}}, donde se utilizan y agrupan unas calles o áreas para el entrenamiento o test; o la \textbf{\glslink{validacion-entre-ciudades}{\mbox{validación} \mbox{entre} \mbox{ciudades}}}, que consiste en entrenar en una ciudad y probar en otra diferente (figura~\ref{fig:tipos-particion}).
 \\
 
 \subsection{Validación dentro de una ciudad}
