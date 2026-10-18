@@ -75,7 +75,7 @@ Una vez leídos los títulos y resúmenes de los trabajos, se seleccionarán aqu
   \item Describen el método científico seguido y sus conclusiones.
 \end{itemize}
 
-Todos los seleccionados (entre 2 y 6 por pregunta), se leerán más en profundidad, con ayuda de NotebookLLM, y se realizará una ficha resumen con la aportación a cada pregunta de investigación.
+Todos los seleccionados (entre 2 y 6 por pregunta), se leerán más en profundidad, con ayuda de NotebookLM, y se realizará una ficha resumen con la aportación a cada pregunta de investigación.
 \\
 
 Finalmente, por cada subsección, se realizará una conclusión.
@@ -322,7 +322,7 @@ La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
 En cuanto a los trabajos que aplican machine learning a la clasificación en datos tabulares, los modelos más adecuados son los árboles de decisión, especialmente \textit{random forest} y los modelos de \textit{gradient boosting}, puesto que son los que obtienen mejores resultados en el estado del arte analizado.
 \\
 
-Observando las métricas, varían según el tipo de modelo (ver tabla~\ref{tab:ml-revisados}).Para la regresión se usa $R^2$ y RMSE; para la clasificación el AUC, la precisión y el recall. En clases desbalanceadas se sustituye el recall por métricas que dan el mismo peso a cada clase, como F1-macro o la exactitud balanceada; así como los que trabajan con clases ordinales, el error absoluto medio ordinal o la kappa ponderada cuadrática. En cuanto a la importancia de las bariables, combinan permutación y SHAP.
+Observando las métricas, varían según el tipo de modelo (ver tabla~\ref{tab:ml-revisados}).Para la regresión se usa $R^2$ y RMSE; para la clasificación el AUC, la precisión y el recall. En clases desbalanceadas se sustituye el recall por métricas que dan el mismo peso a cada clase, como F1-macro o la exactitud balanceada; así como los que trabajan con clases ordinales, el error absoluto medio ordinal o la kappa ponderada cuadrática. En cuanto a la importancia de las variables, combinan permutación y SHAP.
 \\
 
 En algunos trabajos se ha podido comprobar cómo seleccionar las variables según su coste, o qué precisión se pierde al reducirlas.
@@ -443,7 +443,7 @@ Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pes
 
 \input{capitulos/03-estado-del-arte/figuras/tipos-particion}
 
-Esta sección responde a la pregunta de investigación de <<¿Cómo comprobar que un modelo funciona en otra ciudad?>>. Se ha considerado no solo evaluar la transferencia \textbf{entre ciudades}, sino también \textbf{dentro de una misma ciudad} (de tramo a calle, de calle a barrio o de calle a ciudad).
+Esta sección responde a la pregunta de investigación de «¿Cómo comprobar que un modelo funciona en otra ciudad?». Se ha considerado no solo evaluar la transferencia \textbf{entre ciudades}, sino también \textbf{dentro de una misma ciudad} (de tramo a calle, de calle a barrio o de calle a ciudad).
 \\
 
 Entre los estudios analizados se han encontrado tres estrategias principales: la \textbf{\glslink{particion-aleatoria}{\mbox{partición} \mbox{aleatoria}}}, consistente en dividir al azar qué datos son de entrenamiento o validación; una \textbf{\glslink{validacion-agrupada}{\mbox{validación} \mbox{agrupada}}}, donde se utilizan y agrupan unas calles o áreas para el entrenamiento o test; o la \textbf{\glslink{validacion-entre-ciudades}{\mbox{validación} \mbox{entre} \mbox{ciudades}}}, que consiste en entrenar en una ciudad y probar en otra diferente (figura~\ref{fig:tipos-particion}).
