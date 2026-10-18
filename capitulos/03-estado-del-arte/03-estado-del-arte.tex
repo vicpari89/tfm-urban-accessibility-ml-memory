@@ -307,8 +307,110 @@ Observando las métricas, varían según el tipo de modelo (ver tabla~\ref{tab:m
 En algunos trabajos se ha podido comprobar cómo seleccionar las variables según su coste, o qué precisión se pierde al reducirlas.
 \\
 
-\section{Perfiles de diversidad funcional en la evaluación}
+\section{Perfiles de usuario en la evaluación}
 \label{sec:perfiles-arte}
+
+Como se ha visto en el análisis exploratorio de Algeciras y Albacete, se ha puntuado de manera diferente por cada grupo de diversidad funcional, con 5 grupos para Albacete y tres para Algeciras. En esta sección se revisa cómo otras publicaciones científicas han tratado el entrenamiento de los modelos cuando una valoración depende de un grupo diferente de personas, intentando buscar específicamente sobre accesibilidad.
+\\
+
+Se han identificado tres formas diferentes de hacerlo: \textbf{otorgar diferentes pesos} a cada variable por cada grupo, \textbf{entrenar modelos diferentes} para cada grupo y comparar los resultados, o \textbf{entrenar un único modelo} que tenga una salida diferente por cada grupo.
+\\
+
+\subsection{Diferentes pesos por grupo}
+\label{subsec:perfiles-pesos}
+
+En Moura et al.~\cite{moura2017} se computa un índice denominado IAAPE, que evalúa la accesibilidad (específicamente la caminabilidad) en cuatro grupos de personas (personas adultas, niñas y niños, personas mayores y personas con movilidad reducida).
+\\
+
+Para cada grupo de personas, se establece un peso para cada una de las variables utilizadas en el entrenamiento. Esto se hace de manera participativa, combinando un panel de personal experto en movilidad y urbanismo, que identifica las variables y rangos que pueden resultar de interés para el estudio; así como un panel de personas pertenecientes a cada uno de los grupos, que pondera cada una de las variables de interés elegidas.
+\\
+
+La comparación se hace por pares, mostrando a las personas dos opciones de combinación de variables para que elijan su preferencia. Por ejemplo, en la primera opción, una variable x tiene una puntuación elevada, pero la y la tiene baja; mientras que en la segunda opción es al revés. Una vez se computan todos los datos, se realiza el cálculo de los pesos.
+\\
+
+En el estudio, se identificó que cada grupo de personas otorgaba una importancia más elevada a diferentes variables, como la seguridad vial en los cruces para las personas adultas, o la calidad del pavimento para las personas mayores. Por lo tanto, cada calle recibe una puntuación y clase diferente según el grupo.
+\\
+
+Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con la diferencia de que en este proyecto no se conocen los pesos para cada una de las variables.
+\\
+
+\subsection{Un modelo diferente para cada grupo}
+\label{subsec:perfiles-modelo-por-grupo}
+
+En Dong et al.~\cite{dong2019} se analiza cuál es la percepción de la infraestructura de las y los peatones en la ciudad de Harbin (China) con 400 personas encuestadas por grupo, distinguiendo entre comunidades cerradas (aquellas que viven en urbanizaciones), y comunidades abiertas (cuyos hogares están en vías públicas), en 27 atributos diferentes.
+\\
+
+La idea de este estudio es entrenar dos modelos independientes de \textit{gradient boosting (GBDT)}, comparando la importancia relativa de cada atributo en cada modelo. Una vez se obtiene la importancia de cada uno, se realiza un análisis de simetría de impacto (IAA), que realiza una clasificación en tres clases ordinales según cómo afecta a la percepción de las personas de cada grupo.
+\\
+
+En el artículo se pudo comprobar que la importancia de las variables cambia según el grupo encuestado, teniendo como más importantes:
+\begin{itemize}
+  \item \textbf{Comunidades cerradas:} las actividades de ocio del barrio, el espacio disponible y el mobiliario urbano.
+  \item \textbf{Comunidades abiertas:} la calidad de la acera, la seguridad del barrio y las actividades de ocio.
+\end{itemize}
+
+El procedimiento permite conocer cuáles son las variables que hacen que la clase tienda más a tener un valor u otro, y se puede trasladar a este proyecto, entrenando un modelo para cada perfil, y comparando qué variables tienen más peso en cada uno de los perfiles funcionales.
+\\
+
+\subsection{Modelo único con varias salidas por grupo}
+\label{subsec:perfiles-multisalida}
+
+Otra alternativa es la utilizada por Mastelini et al.~\cite{mastelini2019}, en el que se propone utilizar un único modelo que permita realizar la predicción de la clase, distinguiendo por cada tipo de grupo a la vez, denominado (\textbf{\textit{multi-target}} o \textbf{\textit{multi-output}}).
+\\
+
+En este estudio se utilizó el método MOTC (\textit{Multi-Output Tree Chaining}), que utiliza árboles de cadenas (\textit{chaining trees}) en dos fases:
+\begin{itemize}
+  \item Descubrir dependencias entre grupos:
+  \begin{itemize}
+    \item Se construye un árbol para determinar por cada clase qué otras clases de grupo la explican. Métrica utilizada: importancia de variables de \textit{random forest}.
+    \item Se realiza un filtro de las ramas, para ver cuáles aportan información o ruido, mediante el límite de Hoeffding.
+  \end{itemize}
+  \item Entrenamiento y predicción:
+  \begin{itemize}
+    \item Se entrenan modelos básicos con las variables que estiman la clase en las hojas del árbol.
+    \item Al subir de rama, se utilizan las variables, además de la información aportada por todas las hojas inferiores, hasta llegar a la raíz.
+  \end{itemize}
+\end{itemize}
+
+Este algoritmo se ha demostrado exitoso, puesto que se aprovecha de las dependencias que existen entre las clases, que habitualmente no son totalmente independientes. Además, también se ha demostrado eficiente, puesto que se reutilizan los modelos de las hojas ya entrenadas.
+\\
+
+Otro estudio con un enfoque similar es el de Lin et al.~\cite{lin2019}, en el que se presenta el método MTBR (\textit{Multi-Target Boosting for Regression}), una versión extendida de \textit{gradient boosting} con varias salidas.
+\\
+
+¿Cómo funciona? En cada iteración se evalúa si la estructura de árbol aprendida para un perfil permite predecir el error de predicción de otro perfil, mediante la partición del espacio de características y haciendo el recálculo de las estimaciones finales separado por grupo. Las métricas utilizadas han sido RRMSE ((\textit{error cuadrático medio relativo}) y CRRMSE (error cuadrático medio relativo comparado).
+\\
+
+En ambos estudios se resuelve un problema de regresión, por lo que las variables objetivo son continuas, a diferencia de las clases ordinales de este proyecto. Por lo que no se puede hacer una transferencia directa, pero sí tomarlo como idea.
+\\
+
+\subsection{Conclusiones}
+\label{subsec:perfiles-conclusiones}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tratamiento de los grupos de usuarios en los trabajos revisados.}
+  \label{tab:perfiles-previos}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.17\textwidth} *{4}{>{\centering\arraybackslash}p{0.075\textwidth}}}
+    \toprule
+    \cabeceratabla Trabajo & Grupos comparados & Modelo & Pesos por grupo & Modelo por grupo & Varias salidas & Puntúa calles \\
+    \midrule
+    Moura et al.~\cite{moura2017} & Adultos/as, niños/as, mayores y movilidad reducida & Índice multicriterio (IAAPE) & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{si} \\
+    Dong et al.~\cite{dong2019} & Comunidades cerradas y abiertas & GBDT e IAA & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
+    Mastelini et al.~\cite{mastelini2019} & Varias variables objetivo & MOTC (\textit{random forest}) & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{no} \\
+    Lin et al.~\cite{lin2019} & Varias variables objetivo & MTBR (\textit{gradient boosting}) & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{no} \\
+    \midrule
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia.}
+\end{table}
+
+En los trabajos que se han revisado, todos coinciden en que la variable objetivo tiene diferente resultado para cada tipo de grupo, puesto que hay carácterísticas más importantes que otras para cada perfil. Los trabajos revisados coinciden en que \textbf{cada grupo de usuarios valora la calle de forma distinta}: cambian tanto los criterios con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
+\\
+
+Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pesos a cada variable, varios modelos diferentes por cada grupo, así como entrenar un único modelo con varias salidas (únicamente comprobado en regresión, pero no clasificación). En el caso del proyecto elaborado en esta memoria, se podría aplicar alguna de estas técnicas para poder clasificar a los diferentes perfiles funcionales existentes en los conjuntos de datos.
+\\
 
 \section{Validación con datos espaciales y entre ciudades}
 \label{sec:validacion-espacial}
