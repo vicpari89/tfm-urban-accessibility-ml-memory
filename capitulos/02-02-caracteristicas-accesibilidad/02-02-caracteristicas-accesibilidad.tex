@@ -436,6 +436,53 @@ Se trata de una clasificación propia, intuyendo el grado de importancia de cada
 \\
 
 % =====================================================================
+\section{Datos cartográficos públicos}
+\label{sec:datos-cartograficos-publicos}
+% =====================================================================
+
+En esta sección se recogen las fuentes de datos públicas que contienen información cartográfica útil para este trabajo. En primer lugar, se va a examinar si los visores de Albacete y Algeciras cuentan con información geográfica en sus páginas, y a continuación se examinarán otras fuentes de datos públicas.
+
+\subsection{Geometrías en los visores de accesibilidad}
+\label{subsec:geometrias-visores}
+
+El visor de Albacete tiene la posibilidad de exportar los datos en formato GeoJSON, mientras que en el caso de Algeciras se ha podido extraer la información a partir del mapa de Google Maps, realizando la extracción del KML.
+\\
+
+Estas geometrías se han incorporado al análisis exploratorio de los datos. En el caso de Albacete, la mayoría de tramos y calles con las que se contaba en el conjunto de datos inicial tienen los datos de geometría disponibles (12 calles no lo tienen).
+\\
+
+En el caso de Algeciras, no todas las calles contienen geometría: solo 285 de las 506 calles (el 56\,\%) la tienen en el KML, y las 221 restantes no.
+Por lo tanto, se debe investigar de qué manera se puede completar la información geográfica de las calles.
+\\
+
+Además, el visor de Albacete no incluía la información de los barrios. Buscando directamente en la web del ayuntamiento, se ha encontrado en la cartoteca, dentro de las divisiones administrativas, el mapa general de barrios (\texttt{2016MapaGeneralBarrios.pdf}), aunque únicamente está disponible en formato PDF e imágenes \cite{cartoteca_barrios_albacete_2016}.
+
+\subsection{Fuentes cartográficas públicas}
+\label{subsec:fuentes-cartograficas}
+
+Respecto al callejero, la base de datos de referencia en España es CartoCiudad, del Instituto Geográfico Nacional (IGN). Contiene toda la red viaria urbana e interurbana, junto con la información geográfica. Se puede descargar en datos.gob.es \cite{cartociudad_datosgob}, así como en el centro de descargas del CNIG (Centro Nacional de Información Geográfica) \cite{cartociudad_cnig}.
+\\
+
+En cuanto a las pendientes de las calles, existen dos posibilidades: el PNOA-LiDAR y el modelo digital del terreno.
+
+La primera es la nube de puntos LiDAR del PNOA (Plan Nacional de Ortofotografía Aérea). Se trata de una base de datos recopilada con la tecnología LiDAR, que captura mediante vuelos con sensores la información de elevación del terreno \cite{pnoa_lidar}.
+
+Se han hecho tres ciclos de vuelos, mejorando cada vez más la densidad, de 0,5 puntos por m$^2$ a 5 puntos por m$^2$ en la tercera cobertura.
+\\
+
+En segundo lugar, el MDT (Modelo Digital del Terreno), también del PNOA, que filtra los datos del LiDAR (y el modelo digital de superficies) y permite obtener la pendiente de las calles, eliminando toda la capa de edificios, vegetación o mobiliario. El MDT02 tiene un paso de malla de 2 metros, y el MDT05 de 5 metros \cite{pnoa_mdt}.
+\\
+
+Para el ancho de las aceras, se podría contar con la Cartografía Vectorial del Catastro, que contiene información de líneas de fachada o bordillos \cite{catastro_descarga_datos}.
+
+También se dispone de la cartografía municipal a gran escala que se puede descargar de los ayuntamientos. En el caso de Albacete, existe una cartografía topográfica, con datos hasta 2021 \cite{cartografia_topografica_albacete}.
+
+En Algeciras no se ha encontrado una en el ayuntamiento, pero sí en el centro de descargas del IGN, el Mapa Topográfico Nacional 1:25.000 (MTN25) actualizado al año 2025 \cite{mtn25_cnig}.
+\\
+
+Otra fuente de datos muy útil para el trabajo es OpenStreetMap, que contiene información a partir de fuentes públicas, digitalización desde imágenes satelitales y mapeo de datos por parte de voluntarios \cite{openstreetmap}. Se pueden encontrar datos como cruces de las calles, incluso información de los barrios.
+
+% =====================================================================
 \section{Viabilidad de calcular las dimensiones a partir de imágenes}
 \label{sec:viabilidad}
 % =====================================================================
