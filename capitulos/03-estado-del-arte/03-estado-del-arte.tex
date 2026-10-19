@@ -97,13 +97,13 @@ Antes de entrar de lleno en la generación de los modelos de \textit{machine lea
 
 \subsection{Auditorías de campo}
 \label{subsec:eval-campo}
-En primer lugar, el protocolo \textit{Sidewalk Assessment Process}~\cite{axelson1999} realiza el trabajo base de inspección in situ de todas las características de las vías (pendiente longitudinal o transversal) y las compara con los requisitos de la legislación de Estados Unidos (denominada \gls{ADA}).
+En primer lugar, el protocolo \textit{Sidewalk Assessment Process}~\parencite{axelson1999} realiza el trabajo base de inspección in situ de todas las características de las vías (pendiente longitudinal o transversal) y las compara con los requisitos de la legislación de Estados Unidos (denominada \gls{ADA}).
 \\
 
 Tras los datos obtenidos, se realiza un diagnóstico de cumplimiento por cada una de las características, y se indica cuáles son las medidas que se deben tomar.
 \\
 
-Los estudios de Georgia Tech~\cite{frackelton2013, guensler2015} indican el desarrollo de la aplicación de Android SideWalk Sentry para la toma de datos de parámetros de accesibilidad de las calles (existencia de acera, estado, seguridad peatonal), en la ciudad de Atlanta.
+Los estudios de Georgia Tech~\parencite{frackelton2013, guensler2015} indican el desarrollo de la aplicación de Android SideWalk Sentry para la toma de datos de parámetros de accesibilidad de las calles (existencia de acera, estado, seguridad peatonal), en la ciudad de Atlanta.
 \\
 
 Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos.
@@ -112,7 +112,7 @@ Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se comb
 \subsection{Auditorías virtuales a partir de imágenes}
 \label{subsec:eval-virtual}
 
-La herramienta Project Sidewalk~\cite{saha2019} también utiliza \textbf{Google Street View} para la toma de datos mediante \gls{auditoria-virtual}, pero de una manera participativa. Una serie de voluntarios y voluntarias acceden a un conjunto de imágenes, y valoran diferentes variables de accesibilidad mediante etiquetas de severidad.
+La herramienta Project Sidewalk~\parencite{saha2019} también utiliza \textbf{Google Street View} para la toma de datos mediante \gls{auditoria-virtual}, pero de una manera participativa. Una serie de voluntarios y voluntarias acceden a un conjunto de imágenes, y valoran diferentes variables de accesibilidad mediante etiquetas de severidad.
 \\
 
 El resultado de accesibilidad se calcula a partir de la votación por mayoría a partir de las etiquetas.
@@ -124,7 +124,7 @@ Es interesante para este trabajo, puesto que valida que sería potencialmente po
 \subsection{Índices ponderados por perfil}
 \label{subsec:eval-ponderados}
 
-El trabajo más cercano a los conjuntos de datos de Albacete y Algeciras es el de Moura \textit{et al.}~\cite{moura2017}, sobre la ciudad de Lisboa. Contiene una herramienta denominada IAAPE, que evalúa cómo de fácil es que la ciudadanía se desplace por sus calles, con 17 indicadores diferentes, agrupados en 7 dimensiones.
+El trabajo más cercano a los conjuntos de datos de Albacete y Algeciras es el de \textcite{moura2017}, sobre la ciudad de Lisboa. Contiene una herramienta denominada IAAPE, que evalúa cómo de fácil es que la ciudadanía se desplace por sus calles, con 17 indicadores diferentes, agrupados en 7 dimensiones.
 \\
 
 Realiza el estudio a partir de \textbf{inspecciones de campo in situ}; así como análisis geográfico, digitalizando la red peatonal completa junto con \textbf{Google Street View}, realizando mediciones geométricas.
@@ -141,13 +141,13 @@ Entre las conclusiones de las y los autores, para medir la accesibilidad se nece
 \subsection{Métodos difusos multicriterio}
 \label{subsec:eval-difusos}
 
-En el estudio de Soares Müller \textit{et al.}~\cite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
+En el estudio de \textcite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
 \\
 
 Se aplicó la técnica de \textbf{números difusos triangulares (\glslink{logica-difusa}{\textit{fuzzy models}})}, agregándolas mediante la media geométrica difusa, generando mapas de gradiente continuo en SIG; demostrando que la continuidad es muy importante (cualquier obstáculo penaliza).
 \\
 
-En el estudio de Naghdizadegan Jahromi \textit{et al.}~\cite{jahromi2024}, centrado en personas en silla de ruedas, se tomaron \textbf{datos in situ} y a partir de \textbf{imágenes aéreas} de anchos, pendientes, pavimento o longitud, así como entrevistas personales; en Teherán y en la app MobiliSIG de Quebec.
+En el estudio de \textcite{jahromi2024}, centrado en personas en silla de ruedas, se tomaron \textbf{datos in situ} y a partir de \textbf{imágenes aéreas} de anchos, pendientes, pavimento o longitud, así como entrevistas personales; en Teherán y en la app MobiliSIG de Quebec.
 \\
 
 Se aplicó un método \textbf{\gls{fuzzy-topsis} adaptativo}, en el que entra en juego la fatiga, mayor cuanta mayor longitud en pendiente. El resultado es un índice de accesibilidad de cuatro niveles.
@@ -170,12 +170,12 @@ La Tabla~\ref{tab:enfoques-evaluacion} resume los enfoques revisados.
   \endhead
   \bottomrule
   \endfoot
-    Axelson \textit{et al.}~\cite{axelson1999} & In situ & Pendientes longitudinal y transversal frente a la normativa de EEUU (ADA) & Ninguna (cumplimiento) & No consta \\
-    Frackelton \textit{et al.}~\cite{frackelton2013, guensler2015} & In situ & Existencia, condición, seguridad & Índice SQI & No consta \\
-    Saha \textit{et al.}~\cite{saha2019} & Calle & Vados, obstáculos, superficie, falta de aceras & Votación por mayoría & Severidad por barrera \\
-    Moura \textit{et al.}~\cite{moura2017} & In situ, calle & 17 indicadores en 7 dimensiones (anchura, pavimento, conectividad, seguridad) & Suma ponderada participativa & 0--100, clases A--E \\
-    Soares Müller \textit{et al.}~\cite{soaresmuller2024} & In situ & 46 microvariables (pavimento, vados, obstáculos, pendiente) & Lógica difusa, media geométrica & Sin escala global \\
-    Naghdizadegan Jahromi \textit{et al.}~\cite{jahromi2024} & In situ, aérea & Anchura, pendiente, desniveles, longitud & Fuzzy-TOPSIS adaptativo & 4 niveles \\
+    \textcite{axelson1999} & In situ & Pendientes longitudinal y transversal frente a la normativa de EEUU (ADA) & Ninguna (cumplimiento) & No consta \\
+    \textcite{frackelton2013, guensler2015} & In situ & Existencia, condición, seguridad & Índice SQI & No consta \\
+    \textcite{saha2019} & Calle & Vados, obstáculos, superficie, falta de aceras & Votación por mayoría & Severidad por barrera \\
+    \textcite{moura2017} & In situ, calle & 17 indicadores en 7 dimensiones (anchura, pavimento, conectividad, seguridad) & Suma ponderada participativa & 0--100, clases A--E \\
+    \textcite{soaresmuller2024} & In situ & 46 microvariables (pavimento, vados, obstáculos, pendiente) & Lógica difusa, media geométrica & Sin escala global \\
+    \textcite{jahromi2024} & In situ, aérea & Anchura, pendiente, desniveles, longitud & Fuzzy-TOPSIS adaptativo & 4 niveles \\
     \filapropia Albacete y Algeciras & In situ & Puntuación por dimensión y perfil & Media (inferida) & Puntuación con diferentes escalas (0--100, 0--5) o clases (A--C) \\
 \end{longtable}
 \endgroup
@@ -206,27 +206,27 @@ En general, se revisan trabajos y artículos sobre: modelos que trabajan sobre d
 
 \subsection{Trabajos previos en accesibilidad}
 \label{subsec:ml-accesibilidad}
-En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. Smith et al.~\cite{smith2013} utilizan imágenes de Google Street View en un modelo \glslink{random-forest}{\textit{random forest}} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
+En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. \textcite{smith2013} utilizan imágenes de Google Street View en un modelo \glslink{random-forest}{\textit{random forest}} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
 \\
 
-Liu et al.~\cite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT; mientras que Weld et al.~\cite{weld2019} usan \textit{deep learning}, con un modelo ResNet, sobre el \textit{Project Sidewalk} indicado en la sección anterior de la memoria, sobre imágenes de Street View. En ambos casos, los modelos se evalúan por la precisión.
+\textcite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT; mientras que \textcite{weld2019} usan \textit{deep learning}, con un modelo ResNet, sobre el \textit{Project Sidewalk} indicado en la sección anterior de la memoria, sobre imágenes de Street View. En ambos casos, los modelos se evalúan por la precisión.
 \\
 
-Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan Dong et al.~\cite{dong2019} con \glslink{arbol-decision}{árboles de decisión} con \glslink{gradient-boosting}{\textit{gradient boosting}} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o Li et al.~\cite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
+Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan \textcite{dong2019} con \glslink{arbol-decision}{árboles de decisión} con \glslink{gradient-boosting}{\textit{gradient boosting}} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o \textcite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
 \\
 
-Otro trabajo similar es el de Wang et al.~\cite{wang2026}, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, \glslink{regresion-logistica}{Regresión Logística}, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para 2.305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también, evaluado con F1, precisión y recall.
+Otro trabajo similar es el de \textcite{wang2026}, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, \glslink{regresion-logistica}{Regresión Logística}, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para 2.305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también, evaluado con F1, precisión y recall.
 
 \subsection{Modelos para datos tabulares}
 \label{subsec:ml-tabular}
 
-Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto, en los que destacan los modelos de \textbf{árboles de decisión}, obteniendo los mejores resultados. En primer lugar, en Knights et al.~\cite{knights2026} se realiza una comparación entre regresión logística, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico sobre 600 observaciones; donde el modelo de \textit{random forest}, obtuvo la mejor exactitud y F1.
+Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto, en los que destacan los modelos de \textbf{árboles de decisión}, obteniendo los mejores resultados. En primer lugar, en \textcite{knights2026} se realiza una comparación entre regresión logística, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico sobre 600 observaciones; donde el modelo de \textit{random forest}, obtuvo la mejor exactitud y F1.
 \\
 
-Y en general, en el estudio Grinsztajn et al.~\cite{grinsztajn2022} se realizó un estudio intensivo sobre 45 conjuntos de datos tabulares, y se determinó que los árboles de decisión eran más adecuados para este tipo de datos que el \textit{deep learning}.
+Y en general, en el estudio \textcite{grinsztajn2022} se realizó un estudio intensivo sobre 45 conjuntos de datos tabulares, y se determinó que los árboles de decisión eran más adecuados para este tipo de datos que el \textit{deep learning}.
 \\
 
-En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. En Wu et al.~\cite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5.060 observaciones), con métricas $R^2$ y \gls{RMSE}; así como en Jean et al.~\cite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en Agal~\cite{agal2026}, sobre 100.000 registros sobre estudiantes.
+En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. \textcite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5.060 observaciones), con métricas $R^2$ y \gls{RMSE}; así como en \textcite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en \textcite{agal2026}, sobre 100.000 registros sobre estudiantes.
 \\
 
 \subsection{Clases ordinales y desbalanceadas}
@@ -236,11 +236,11 @@ En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B 
 
 \input{capitulos/03-estado-del-arte/figuras/desbalanceo-clases-alb-alg}
 
-Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en Jean et al.~\cite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 4). Mientras que en Agal~\cite{agal2026} se utilizan redes neuronales acumulativas en un \textit{dataset} de estudiantes, para evitar tratar las clases ordinales como inconexas; se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
+Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en \textcite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 4). Mientras que en \textcite{agal2026} se utilizan redes neuronales acumulativas en un \textit{dataset} de estudiantes, para evitar tratar las clases ordinales como inconexas; se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
 
-En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en Jean et al.~\cite{jean2025}) o el error absoluto medio ordinal y la \glslink{kappa-ponderada}{kappa ponderada cuadrática} en Agal~\cite{agal2026}.
+En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en \textcite{jean2025}) o el error absoluto medio ordinal y la \glslink{kappa-ponderada}{kappa ponderada cuadrática} en \textcite{agal2026}.
 
-Los estudios sobre \textbf{desbalanceo de clases}, utilizan la \glslink{ponderacion-clases}{ponderación de clases} y el aprendizaje sensible al coste~\cite{wang2026, agal2026}, o el \glslink{submuestreo}{submuestreo}~\cite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, \glslink{f1-macro}{F1-macro} y \glslink{exactitud-balanceada}{exactitud balanceada}~\cite{jean2025, naseri2022}.
+Los estudios sobre \textbf{desbalanceo de clases}, utilizan la \glslink{ponderacion-clases}{ponderación de clases} y el aprendizaje sensible al coste~\parencite{wang2026, agal2026}, o el \glslink{submuestreo}{submuestreo}~\parencite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, \glslink{f1-macro}{F1-macro} y \glslink{exactitud-balanceada}{exactitud balanceada}~\parencite{jean2025, naseri2022}.
 
 En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida de manera que penalice más cuando se comete un error de predicción en una de las clases menos frecuentes; mientras que en el \textbf{submuestreo} lo que se hace es reducir el número de observaciones de las clases dominantes, para lograr un balanceo mejor de los datos.
 
@@ -250,10 +250,10 @@ En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida
 Es parte de este proyecto identificar qué variables tienen más peso a la hora de clasificar la accesibilidad de las calles, por lo que se ha realizado un estudio de cómo comprobar cuáles son las variables que pesan más en los modelos. Se han analizado cuatro técnicas:
 
 \begin{itemize}
-  \item \textbf{Importancia interna de los árboles de decisión (\glslink{indice-gini}{índice de Gini})}, en los artículos~\cite{smith2013, dong2019, li2024gsv}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
-  \item \textbf{\glslink{importancia-permutacion}{Importancia por valores de permutación}}, en los estudios~\cite{agal2026, wu2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
-  \item \textbf{Valores \gls{shap}}, en~\cite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
-  \item \textbf{Permutación en un indicador de consenso (con SHAP)}, en Knights et al.~\cite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score (CIS)} combinando SHAP, la importancia por permutación y la sensibilidad local.
+  \item \textbf{Importancia interna de los árboles de decisión (\glslink{indice-gini}{índice de Gini})}, en los artículos~\parencite{smith2013, dong2019, li2024gsv}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
+  \item \textbf{\glslink{importancia-permutacion}{Importancia por valores de permutación}}, en los estudios~\parencite{agal2026, wu2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
+  \item \textbf{Valores \gls{shap}}, en~\parencite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
+  \item \textbf{Permutación en un indicador de consenso (con SHAP)}, en \textcite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score (CIS)} combinando SHAP, la importancia por permutación y la sensibilidad local.
 \end{itemize}
 
 \subsection{Variables con fiabilidad o coste desigual}
@@ -263,17 +263,17 @@ En este apartado se listan los estudios sobre el tratamiento de variables con ma
 
 \noindent\textbf{En cuanto al coste desigual:}
 \begin{itemize}
-  \item En Nan et al.~\cite{nan2014} se usa la técnica \textbf{FMCC} (\textit{Fast Margin-based Cost-sensitive classification}) en el que se empieza seleccionando una característica, y se van eligiendo las siguientes, seleccionando aquella que maximice la probabilidad de acierto balanceando con el coste de adquisición hasta que la probabilidad de acierto llega a un umbral de confianza.
-  \item En Chen et al.~\cite{chen2024cost} y Liu et al.~\cite{liu2024haff}, se obtiene un subconjunto de variables que se ajustan a un presupuesto máximo de manera más eficiente posible. Liu~\cite{liu2024haff} utiliza mecanismos de atención jerárquica (\textbf{HAFF}), mientras que Chen et al.~\cite{chen2024cost} usa como inspiración la computación cuántica para seleccionar las variables. Métricas: AUC (área bajo la curva), exactitud, KS, H-Measure y G-Mean.
-  \item Otros estudios tratan de calcular cuánta precisión se pierde cuando se reduce el número de variables, como Mohite et al.~\cite{mohite2024}, que evalúa la importancia de cada variable en un modelo \textit{random forest} (métrica $R^2$); o Wu et al.~\cite{wu2026}, que realiza un análisis de sensibilidad sobre subconjuntos de variables.
+  \item \textcite{nan2014} se usa la técnica \textbf{FMCC} (\textit{Fast Margin-based Cost-sensitive classification}) en el que se empieza seleccionando una característica, y se van eligiendo las siguientes, seleccionando aquella que maximice la probabilidad de acierto balanceando con el coste de adquisición hasta que la probabilidad de acierto llega a un umbral de confianza.
+  \item \textcite{chen2024cost} y \textcite{liu2024haff}, se obtiene un subconjunto de variables que se ajustan a un presupuesto máximo de manera más eficiente posible. \textcite{liu2024haff} utiliza mecanismos de atención jerárquica (\textbf{HAFF}), mientras que \textcite{chen2024cost} usa como inspiración la computación cuántica para seleccionar las variables. Métricas: AUC (área bajo la curva), exactitud, KS, H-Measure y G-Mean.
+  \item Otros estudios tratan de calcular cuánta precisión se pierde cuando se reduce el número de variables, como \textcite{mohite2024}, que evalúa la importancia de cada variable en un modelo \textit{random forest} (métrica $R^2$); o \textcite{wu2026}, que realiza un análisis de sensibilidad sobre subconjuntos de variables.
 \end{itemize}
 
 \noindent\textbf{En cuanto a la fiabilidad:}
 \begin{itemize}
-  \item En los estudios de Duan et al. y Liu et al.~\cite{duan2022, liu2024acc}, se comparan los conjuntos de datos validados sin ruido con conjuntos reales (con ruido), y se ha determinado que cuantos más datos sucios se utilicen, peor será para el modelo.
-  \item En Wang et al.~\cite{wang2026}, se indica que es mejor no utilizar técnicas de aumento sintético de los datos (sobremuestreo), por la misma razón.
-  \item En Agal~\cite{agal2026} se sugiere utilizar índices compuestos para atenuar el ruido de las variables.
-  \item Mientras que en Knights et al.~\cite{knights2026} se utiliza la varianza del rango (\textbf{\textit{VarRank}}), cuanto más alta sea, menos peso se le otorga en el modelo. También evalúa la sensibilidad del modelo, introduciendo pequeñas perturbaciones locales.
+  \item En los estudios de \textcite{duan2022, liu2024acc}, se comparan los conjuntos de datos validados sin ruido con conjuntos reales (con ruido), y se ha determinado que cuantos más datos sucios se utilicen, peor será para el modelo.
+  \item \textcite{wang2026}, se indica que es mejor no utilizar técnicas de aumento sintético de los datos (sobremuestreo), por la misma razón.
+  \item En \textcite{agal2026} se sugiere utilizar índices compuestos para atenuar el ruido de las variables.
+  \item Mientras que en \textcite{knights2026} se utiliza la varianza del rango (\textbf{\textit{VarRank}}), cuanto más alta sea, menos peso se le otorga en el modelo. También evalúa la sensibilidad del modelo, introduciendo pequeñas perturbaciones locales.
 \end{itemize}
 
 La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
@@ -298,29 +298,29 @@ La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
   \multicolumn{8}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia.}} \\
   \endlastfoot
   \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Trabajos previos en accesibilidad} \\
-  Smith et al.~\cite{smith2013} & \textit{Random forest} & Precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} \\
-  Liu et al.~\cite{liu2024acc} & DINOv2, CLIP-ViT & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
-  Weld et al.~\cite{weld2019} & ResNet & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
-  Dong et al.~\cite{dong2019} & \textit{Gradient boosting} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
-  Li et al.~\cite{li2024gsv} & \textit{Random forest} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
-  Wang et al.~\cite{wang2026} & \textit{Random forest} (mejor de 11) & F1, precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
+  \textcite{smith2013} & \textit{Random forest} & Precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} \\
+  \textcite{liu2024acc} & DINOv2, CLIP-ViT & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
+  \textcite{weld2019} & ResNet & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  \textcite{dong2019} & \textit{Gradient boosting} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
+  \textcite{li2024gsv} & \textit{Random forest} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
+  \textcite{wang2026} & \textit{Random forest} (mejor de 11) & F1, precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
   \midrule
   \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Modelos para datos tabulares} \\
-  Knights et al.~\cite{knights2026} & \textit{Random forest} (mejor de 4) & Exactitud, F1 & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{si} \\
-  Grinsztajn et al.~\cite{grinsztajn2022} & Árboles de decisión frente a \textit{deep learning} & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
-  Wu et al.~\cite{wu2026} & XGBoost & $R^2$, RMSE & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
+  \textcite{knights2026} & \textit{Random forest} (mejor de 4) & Exactitud, F1 & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{si} \\
+  \textcite{grinsztajn2022} & Árboles de decisión frente a \textit{deep learning} & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  \textcite{wu2026} & XGBoost & $R^2$, RMSE & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
   \midrule
   \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Clases ordinales y desbalanceadas} \\
-  Jean et al.~\cite{jean2025} & XGBoost ordinal & MAMAE, F1 macro, exactitud balanceada & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{no} \\
-  Agal~\cite{agal2026} & LightGBM, redes neuronales acumulativas & Error absoluto medio ordinal, kappa ponderada cuadrática, F1 macro, exactitud balanceada & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
-  Naseri et al.~\cite{naseri2022} & — & F1 macro, exactitud balanceada & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  \textcite{jean2025} & XGBoost ordinal & MAMAE, F1 macro, exactitud balanceada & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  \textcite{agal2026} & LightGBM, redes neuronales acumulativas & Error absoluto medio ordinal, kappa ponderada cuadrática, F1 macro, exactitud balanceada & \cumple{si} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
+  \textcite{naseri2022} & — & F1 macro, exactitud balanceada & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{no} \\
   \midrule
   \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Variables con fiabilidad o coste desigual} \\
-  Nan et al.~\cite{nan2014} & FMCC & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
-  Chen et al.~\cite{chen2024cost} & Selección inspirada en computación cuántica & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
-  Liu et al.~\cite{liu2024haff} & HAFF & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
-  Mohite et al.~\cite{mohite2024} & \textit{Random forest} & $R^2$ & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
-  Duan et al.~\cite{duan2022} & — & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
+  \textcite{nan2014} & FMCC & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  \textcite{chen2024cost} & Selección inspirada en computación cuántica & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  \textcite{liu2024haff} & HAFF & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  \textcite{mohite2024} & \textit{Random forest} & $R^2$ & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
+  \textcite{duan2022} & — & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
 \end{longtable}
 \endgroup
 
@@ -350,7 +350,7 @@ Se han identificado tres formas diferentes de hacerlo: \textbf{otorgar diferente
 
 \input{capitulos/03-estado-del-arte/figuras/perf-diferentes-pesos-por-grupo}
 
-En Moura et al.~\cite{moura2017} se computa un índice denominado IAAPE, que evalúa la accesibilidad (específicamente la caminabilidad) en cuatro grupos de personas (personas adultas, niñas y niños, personas mayores y personas con movilidad reducida).
+\textcite{moura2017} se computa un índice denominado IAAPE, que evalúa la accesibilidad (específicamente la caminabilidad) en cuatro grupos de personas (personas adultas, niñas y niños, personas mayores y personas con movilidad reducida).
 \\
 
 Para cada grupo de personas, se establece \textbf{un peso para cada variable} utilizada en el entrenamiento. Esto se hace de forma participativa, combinando un panel de personal experto en movilidad y urbanismo, que identifica las variables y rangos que pueden resultar de interés para el estudio; así como un panel de personas pertenecientes a cada uno de los grupos, que pondera cada una de las variables de interés elegidas.
@@ -370,7 +370,7 @@ Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con l
 
 \input{capitulos/03-estado-del-arte/figuras/perf-modelo-diferente-por-grupo}
 
-En Dong et al.~\cite{dong2019} se analiza cuál es la percepción de la infraestructura de las y los peatones en la ciudad de Harbin (China) con 400 personas encuestadas por grupo, distinguiendo entre comunidades cerradas (aquellas que viven en urbanizaciones), y comunidades abiertas (cuyos hogares están en vías públicas), en 27 atributos diferentes.
+\textcite{dong2019} se analiza cuál es la percepción de la infraestructura de las y los peatones en la ciudad de Harbin (China) con 400 personas encuestadas por grupo, distinguiendo entre comunidades cerradas (aquellas que viven en urbanizaciones), y comunidades abiertas (cuyos hogares están en vías públicas), en 27 atributos diferentes.
 \\
 
 La idea de este estudio es entrenar \textbf{dos modelos independientes} de \textit{gradient boosting} (\gls{GBDT}), comparando la importancia relativa de cada atributo en cada modelo. Una vez se obtiene la importancia de cada uno, se realiza un análisis de simetría de impacto (\gls{IAA}), que realiza una clasificación en tres clases ordinales según cómo afecta a la percepción de las personas de cada grupo.
@@ -390,7 +390,7 @@ El procedimiento permite conocer cuáles son las variables que hacen que la clas
 
 \input{capitulos/03-estado-del-arte/figuras/perf-modelo-unico}
 
-Otra alternativa es la utilizada por Mastelini et al.~\cite{mastelini2019}, en el que se propone utilizar un \textbf{único modelo} que permita realizar la predicción de la clase, distinguiendo por cada tipo de grupo a la vez (denominado \textit{multi-target} o \textit{multi-output}).
+Otra alternativa es la utilizada por \textcite{mastelini2019}, en el que se propone utilizar un \textbf{único modelo} que permita realizar la predicción de la clase, distinguiendo por cada tipo de grupo a la vez (denominado \textit{multi-target} o \textit{multi-output}).
 \\
 
 En este estudio se utilizó el método \gls{MOTC} (\textit{Multi-Output Tree Chaining}), que utiliza árboles de cadenas (\textit{chaining trees}) en dos fases:
@@ -410,7 +410,7 @@ En este estudio se utilizó el método \gls{MOTC} (\textit{Multi-Output Tree Cha
 Este algoritmo se ha demostrado exitoso, puesto que se aprovecha de las dependencias que existen entre las clases, que habitualmente no son totalmente independientes. Además, también se ha demostrado eficiente, puesto que se reutilizan los modelos de las hojas ya entrenadas.
 \\
 
-Otro estudio con un enfoque similar es el de Lin et al.~\cite{lin2019}, en el que se presenta el método \gls{MTBR} (\textit{Multi-Target Boosting for Regression}), una versión extendida de \textit{gradient boosting} con varias salidas.
+Otro estudio con un enfoque similar es el de \textcite{lin2019}, en el que se presenta el método \gls{MTBR} (\textit{Multi-Target Boosting for Regression}), una versión extendida de \textit{gradient boosting} con varias salidas.
 \\
 
 ¿Cómo funciona? En cada iteración se evalúa si la estructura de árbol aprendida para un perfil permite predecir el error de predicción de otro perfil, mediante la partición del espacio de características y haciendo el recálculo de las estimaciones finales separado por grupo. Las métricas utilizadas han sido \gls{RRMSE} (\textit{error cuadrático medio relativo}) y \gls{CRRMSE} (\textit{error cuadrático medio relativo comparado}).
@@ -431,10 +431,10 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
     \toprule
     \cabeceratabla Trabajo & Modelo & Métricas & Pesos por grupo & Modelo por grupo & Varias salidas & Puntúa calles \\
     \midrule
-    Moura et al.~\cite{moura2017} & Índice multicriterio (IAAPE) & --- & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{si} \\
-    Dong et al.~\cite{dong2019} & GBDT e IAA & Importancia relativa de los atributos & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
-    Mastelini et al.~\cite{mastelini2019} & MOTC (\textit{random forest}) & --- & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{no} \\
-    Lin et al.~\cite{lin2019} & MTBR (\textit{gradient boosting}) & RRMSE y CRRMSE & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{no} \\
+    \textcite{moura2017} & Índice multicriterio (IAAPE) & --- & \cumple{si} & \cumple{no} & \cumple{no} & \cumple{si} \\
+    \textcite{dong2019} & GBDT e IAA & Importancia relativa de los atributos & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
+    \textcite{mastelini2019} & MOTC (\textit{random forest}) & --- & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{no} \\
+    \textcite{lin2019} & MTBR (\textit{gradient boosting}) & RRMSE y CRRMSE & \cumple{no} & \cumple{parcial} & \cumple{si} & \cumple{no} \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
@@ -460,20 +460,20 @@ Entre los estudios analizados se han encontrado tres estrategias principales: la
 \subsection{Validación dentro de una ciudad}
 \label{subsec:validacion-dentro}
 
-En primer lugar, Wu et al.~\cite{wu2026} realizan una comparación entre \textbf{división aleatoria} de entrenamiento (80\,\%) y test (20\,\%), y una división de los tramos \textbf{agrupados por calle} (denominada \textit{Road-name-based grouped holdout}). Se utilizaron varios algoritmos, uno base, con una regresión lineal; y después varias técnicas no lineales: \gls{SVR}, XGBoost y \textit{random forest}.
+En primer lugar, \textcite{wu2026} realizan una comparación entre \textbf{división aleatoria} de entrenamiento (80\,\%) y test (20\,\%), y una división de los tramos \textbf{agrupados por calle} (denominada \textit{Road-name-based grouped holdout}). Se utilizaron varios algoritmos, uno base, con una regresión lineal; y después varias técnicas no lineales: \gls{SVR}, XGBoost y \textit{random forest}.
 \\
 
 La conclusión del estudio fue que las técnicas no lineales superaron a la estrategia base, siendo XGBoost y \textit{random forest} los que tuvieron la mayor precisión. Además, la utilización de particiones aleatorias tuvo más éxito que la agrupada por calle. Las métricas utilizadas fueron $R^2$, \gls{RMSE} y \gls{MAE}.
 Según los autores, este éxito de la aleatoriedad es debido a que tramos de la misma calle están divididos en entrenamiento y test, y habitualmente son tramos con puntuaciones similares.
 \\
 
-Otro estudio, el de Mohite et al.~\cite{mohite2024}, sigue una estrategia similar con las calles de Nagpur (India), que utiliza el algoritmo \gls{RFR} sobre un conjunto de datos de calles agrupadas por orientación (norte-sur y este-oeste) para predecir el confort térmico peatonal.
+Otro estudio, el de \textcite{mohite2024}, sigue una estrategia similar con las calles de Nagpur (India), que utiliza el algoritmo \gls{RFR} sobre un conjunto de datos de calles agrupadas por orientación (norte-sur y este-oeste) para predecir el confort térmico peatonal.
 \\
 
 La división en entrenamiento y test es aleatoria, y además se garantiza que al menos una calle de cada grupo quede en el conjunto de test. Se obtuvo una precisión adecuada en el conjunto de test. Las métricas utilizadas fueron $R^2$ y \gls{MSE}.
 \\
 
-Por último, se ha localizado un estudio, Li et al.~\cite{li2024gsv}, en el que se realiza el \textbf{entrenamiento en un único distrito} de Taipei, y luego se predice en el resto de distritos. Se utilizó un modelo de regresión con \textit{random forest} para determinar la caminabilidad de las calles.
+Por último, se ha localizado un estudio, \textcite{li2024gsv}, en el que se realiza el \textbf{entrenamiento en un único distrito} de Taipei, y luego se predice en el resto de distritos. Se utilizó un modelo de regresión con \textit{random forest} para determinar la caminabilidad de las calles.
 \\
 
 \subsection{Validación entre ciudades}
@@ -482,7 +482,7 @@ Por último, se ha localizado un estudio, Li et al.~\cite{li2024gsv}, en el que 
 Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a este tipo de validación, y además clasifican problemas de accesibilidad en aceras, en varias ciudades de EE. UU..
 \\
 
-En Duan et al.~\cite{duan2022} se realiza un análisis a partir de imágenes a pie de calle, que han sido etiquetadas por personas voluntarias. Utiliza una estrategia denominada \textbf{\textit{cross-city training}}, de validación entre ciudades.
+\textcite{duan2022} se realiza un análisis a partir de imágenes a pie de calle, que han sido etiquetadas por personas voluntarias. Utiliza una estrategia denominada \textbf{\textit{cross-city training}}, de validación entre ciudades.
 \\
 
 En concreto, se realizaron dos experimentos, uno combinando los datos de cuatro ciudades (Seattle, Columbus y Washington en EE. UU., y San Pedro Garza García en México); y otro excluyendo Columbus. Las métricas utilizadas fueron la \glslink{precision}{precisión}, el \glslink{recall}{\textit{recall}} y el \glslink{accuracy}{\textit{accuracy}}. Se determinó que el primer experimento bajó la precisión de las predicciones, mientras que el segundo experimento mejoró la precisión incluso de Columbus.
@@ -491,7 +491,7 @@ En concreto, se realizaron dos experimentos, uno combinando los datos de cuatro 
 Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que los autores atribuyen a diferencias urbanas entre esta ciudad y las estadounidenses.
 \\
 
-Mientras que en Weld et al.~\cite{weld2019} se aplicó una técnica denominada \textbf{\textit{cross-city generalizability}}, con un modelo a partir de ResNet18, en el que se realizaron cuatro estrategias:
+Mientras que en \textcite{weld2019} se aplicó una técnica denominada \textbf{\textit{cross-city generalizability}}, con un modelo a partir de ResNet18, en el que se realizaron cuatro estrategias:
 \begin{itemize}
   \item Modelo base: entrenando el modelo con los datos de Washington, y prediciendo en el resto de ciudades.
   \item Modelo combinado: entrenando datos de Washington y otra ciudad.
@@ -514,11 +514,11 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
     \toprule
     \cabeceratabla Trabajo & Modelo & Partición aleatoria & Validación agrupada & Entre ciudades & Métricas \\
     \midrule
-    Wu et al.~\cite{wu2026} & Regresión lineal, SVR, XGBoost y \textit{random forest} & \cumple{si} & \cumple{si} & \cumple{no} & $R^2$, RMSE y MAE \\
-    Mohite et al.~\cite{mohite2024} & \textit{Random forest regressor} & \cumple{si} & \cumple{parcial} & \cumple{no} & $R^2$ y MSE \\
-    Li et al.~\cite{li2024gsv} & \textit{Random forest} (regresión) & \cumple{no} & \cumple{si} & \cumple{no} & --- \\
-    Duan et al.~\cite{duan2022} & Clasificación de imágenes a pie de calle & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall} y \textit{accuracy} \\
-    Weld et al.~\cite{weld2019} & ResNet18 & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall}, curvas de precisión y matriz de confusión \\
+    \textcite{wu2026} & Regresión lineal, SVR, XGBoost y \textit{random forest} & \cumple{si} & \cumple{si} & \cumple{no} & $R^2$, RMSE y MAE \\
+    \textcite{mohite2024} & \textit{Random forest regressor} & \cumple{si} & \cumple{parcial} & \cumple{no} & $R^2$ y MSE \\
+    \textcite{li2024gsv} & \textit{Random forest} (regresión) & \cumple{no} & \cumple{si} & \cumple{no} & --- \\
+    \textcite{duan2022} & Clasificación de imágenes a pie de calle & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall} y \textit{accuracy} \\
+    \textcite{weld2019} & ResNet18 & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall}, curvas de precisión y matriz de confusión \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
@@ -527,7 +527,7 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
 La tabla~\ref{tab:validacion-previos} resume qué estrategia de validación usa cada trabajo y con qué métricas.
 \\
 
-En primer lugar, hay varios métodos de particionar los datos en entrenamiento y test, como la partición aleatoria o la validación agrupada (por calles o barrios). Aunque en Wu et al.~\cite{wu2026} el modelo obtiene mejores resultados con partición aleatoria, esto es debido a la división por tramos de la calle, por lo que \textbf{la validación agrupada parece la más adecuada} para construir los modelos.
+En primer lugar, hay varios métodos de particionar los datos en entrenamiento y test, como la partición aleatoria o la validación agrupada (por calles o barrios). Aunque en \textcite{wu2026} el modelo obtiene mejores resultados con partición aleatoria, esto es debido a la división por tramos de la calle, por lo que \textbf{la validación agrupada parece la más adecuada} para construir los modelos.
 \\
 
 Hay varias formas de realizar la transferencia entre ciudades, dando resultados diferentes \textbf{según la similitud entre ciudades}. Aunque en algunas ocasiones realizar el entrenamiento combinando datos de varias ciudades ayuda, en otros casos empeora los resultados, sobre todo si las ciudades tienen diferencias en su morfología urbana.

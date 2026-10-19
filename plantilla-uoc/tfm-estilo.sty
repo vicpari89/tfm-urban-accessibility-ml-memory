@@ -11,7 +11,7 @@
 % Opción [final]: oculta las marcas de estado de borrador (\estadobloque)
 \newif\iftfm@final
 \DeclareOption{final}{\tfm@finaltrue}
-% Opción [bibliografia]: biblatex + biber, estilo IEEE numerado por orden de aparición
+% Opción [bibliografia]: biblatex + biber, estilo Harvard (autor, año) según la biblioteca de la UOC
 \newif\iftfm@biblio
 \DeclareOption{bibliografia}{\tfm@bibliotrue}
 \ProcessOptions\relax
@@ -33,11 +33,21 @@
 \RequirePackage[most]{tcolorbox}
 \RequirePackage[autostyle]{csquotes}   % \enquote{...} → «...» en castellano, “...” anidadas
 \iftfm@biblio
-  \RequirePackage[backend=biber, style=ieee, sorting=none, dashed=false,
-                   doi=true, url=true, isbn=false, maxbibnames=6, minbibnames=3]{biblatex}
+  % Harvard 11th ed. (UOC): (Apellido, año); 1-3 autores citados, 4 o más: primer autor + et al.
+  \RequirePackage[backend=biber, style=authoryear, sorting=nyt, dashed=false,
+                   doi=true, url=true, isbn=false, uniquename=false, uniquelist=false,
+                   maxcitenames=3, mincitenames=1, maxbibnames=99, giveninits=true, urldate=long, abbreviate=false]{biblatex}
   \renewcommand*{\bibfont}{\small}
   \setlength{\bibitemsep}{0.35\baselineskip}
-  \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+  \renewcommand*{\nameyeardelim}{\addcomma\space}
+  \renewcommand*{\labelnamepunct}{\addspace}
+  % Referencia: Apellido, I. (año) Título. ...
+  \renewbibmacro*{date+extradate}{\printtext[parens]{\iffieldundef{year}{sin fecha}{\printdate}\printfield{extradate}}}
+  % Títulos de artículo y capítulo entre comillas simples; obras y revistas en cursiva
+  \DeclareFieldFormat[article,inbook,incollection,inproceedings]{title}{\textquoteleft #1\textquoteright}
+  \DeclareFieldFormat{urldate}{(Consultado: #1)}
+  \DeclareFieldFormat{url}{Disponible en: \url{#1}}
+  \DefineBibliographyStrings{spanish}{page={p.}, pages={pp.}}
 \fi
 \usetikzlibrary{arrows.meta,positioning,fit,calc,patterns,shapes.geometric,shapes.multipart,shapes.symbols,backgrounds,babel}
 % babel (spanish) activa < > " como atajos: la librería babel de TikZ evita conflictos
