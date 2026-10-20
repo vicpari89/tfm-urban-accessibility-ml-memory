@@ -97,6 +97,7 @@ Antes de entrar de lleno en la generación de los modelos de \textit{machine lea
 
 \subsection{Auditorías de campo}
 \label{subsec:eval-campo}
+\postit{Enlazar con los datos de Albacete y Algeciras.}
 En primer lugar, el protocolo \textit{Sidewalk Assessment Process}~\parencite{axelson1999} realiza el trabajo base de inspección in situ de todas las características de las vías (pendiente longitudinal o transversal) y las compara con los requisitos de la legislación de Estados Unidos (denominada \gls{ADA}).
 \\
 
@@ -140,6 +141,7 @@ Entre las conclusiones de las y los autores, para medir la accesibilidad se nece
 
 \subsection{Métodos difusos multicriterio}
 \label{subsec:eval-difusos}
+\postit{Enlazar con los datos de Albacete y Algeciras.}
 
 En el estudio de \textcite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
 \\
@@ -206,6 +208,7 @@ En general, se revisan trabajos y artículos sobre: modelos que trabajan sobre d
 
 \subsection{Trabajos previos en accesibilidad}
 \label{subsec:ml-accesibilidad}
+\postit{Añadir una frase para enlazar con el trabajo.}
 En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. \textcite{smith2013} utilizan imágenes de Google Street View en un modelo \glslink{random-forest}{\textit{random forest}} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
 \\
 
@@ -219,6 +222,7 @@ Otro trabajo similar es el de \textcite{wang2026}, donde se realizó una compara
 
 \subsection{Modelos para datos tabulares}
 \label{subsec:ml-tabular}
+\postit{Indicar qué modelos se van a usar.}
 
 Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto, en los que destacan los modelos de \textbf{árboles de decisión}, obteniendo los mejores resultados. En primer lugar, en \textcite{knights2026} se realiza una comparación entre regresión logística, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico sobre 600 observaciones; donde el modelo de \textit{random forest}, obtuvo la mejor exactitud y F1.
 \\
@@ -231,6 +235,7 @@ En los modelos de árboles de decisión, destacan los que están basados en \tex
 
 \subsection{Clases ordinales y desbalanceadas}
 \label{subsec:ml-ordinal}
+\postit{Incluir qué se va a usar en el trabajo de estos estudios.}
 
 En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{\glslink{clase-ordinal}{clase ordinal}}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C es incumplimiento); además, las clases están \textbf{\glslink{desbalanceo-clases}{desbalanceadas}} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
 
@@ -246,6 +251,7 @@ En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida
 
 \subsection{Importancia de las variables}
 \label{subsec:ml-importancia}
+\postit{Añadir qué se puede obtener y qué no con esto, enlazar con el trabajo.}
 
 Es parte de este proyecto identificar qué variables tienen más peso a la hora de clasificar la accesibilidad de las calles, por lo que se ha realizado un estudio de cómo comprobar cuáles son las variables que pesan más en los modelos. Se han analizado cuatro técnicas:
 
@@ -258,6 +264,7 @@ Es parte de este proyecto identificar qué variables tienen más peso a la hora 
 
 \subsection{Variables con fiabilidad o coste desigual}
 \label{subsec:ml-fiabilidad}
+\postit{Añadir qué se puede obtener y no con esto y enlazar con la tabla de viabilidad.}
 
 En este apartado se listan los estudios sobre el tratamiento de variables con mayor o menor coste, debido a que una de las ideas de este proyecto se intenta utilizar los menores desplazamientos in situ, mucho más costosa; así como el tratamiento de variables tomadas con mayor o menor fiabilidad, porque en el tratamiento de imágenes se podría obtener alguna variable con alguna imprecisión, como en el caso de calles con vegetación, o calidad menor de las imágenes.
 
@@ -326,6 +333,7 @@ La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
 
 \subsection{Conclusiones}
 \label{subsec:ml-conclusiones}
+\postit{Añadir decisiones de qué voy a usar en la implementación de esto.}
 
 En cuanto a los trabajos que aplican machine learning a la clasificación en datos tabulares, los modelos más adecuados son los árboles de decisión, especialmente \textit{random forest} y los modelos de \textit{gradient boosting}, puesto que son los que obtienen mejores resultados en el estado del arte analizado.
 \\
@@ -421,6 +429,7 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
 
 \subsection{Conclusiones}
 \label{subsec:perfiles-conclusiones}
+\postit{Revisar conclusión.}
 
 \begin{table}[htbp]
   \centering
@@ -504,6 +513,7 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
 
 \subsection{Conclusiones}
 \label{subsec:validacion-conclusiones}
+\postit{Revisar conclusión.}
 
 \begin{table}[htbp]
   \centering
@@ -565,10 +575,13 @@ En cuanto a los MDT, se ha comprobado que se utilizan principalmente para el cá
 \\
 
 El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el modelo digital de elevación del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía municipal de Barcelona).
-No se obtuvieron buenos resultados para la pendiente transversal.\\
+No se obtuvieron buenos resultados para la pendiente transversal.
+\\
+\postit{Añadir el segundo estudio.}
 
 El uso del MDT02 del IGN podría conseguir la misma información que el estudio de~\cite{vallsclua2023}, debido a que es equivalente al utilizado en el estudio de Barcelona.
 \\
 
 \subsection{Síntesis}
+\postit{Completar con todas las decisiones a tomar para hacer en la implementación.}
 
