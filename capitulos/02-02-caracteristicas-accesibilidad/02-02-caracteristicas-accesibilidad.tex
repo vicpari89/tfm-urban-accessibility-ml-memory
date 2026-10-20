@@ -483,7 +483,7 @@ En Algeciras no se ha encontrado una en el ayuntamiento, pero sí en el centro d
 Otra fuente de datos muy útil para el trabajo es OpenStreetMap, que contiene información a partir de fuentes públicas, digitalización desde imágenes satelitales y mapeo de datos por parte de voluntarios \parencite{openstreetmap}. Se pueden encontrar datos como cruces de las calles, incluso información de los barrios.
 
 % =====================================================================
-\section{Viabilidad de calcular las dimensiones a partir de imágenes}
+\section{Viabilidad de calcular las dimensiones a partir de cartografía e imágenes}
 \label{sec:viabilidad}
 % =====================================================================
 
@@ -524,7 +524,7 @@ Idealmente, el grado se podrá calcular de manera empírica cuando se realicen l
     \multicolumn{1}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Pendiente} & \textbf{25\,\%} & \textbf{0\,\%} & \textbf{40\,\%} & \\
     \Gls{pendiente-longitudinal} ($\leq$~6\,\%) & \cumple{si}\,80\,\% & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Desde el aire no se estima; a pie de calle, con varias fotografías podría hacerse una medición geométrica. Cartografía: podría obtenerse la pendiente. \\
     \arrayrulecolor{black!25}\cmidrule(lr){1-5}\arrayrulecolor{black}
-    \Gls{pendiente-transversal} ($\leq$~2\,\%) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Igual que la longitudinal: solo a pie de calle y con varias fotografías. \\
+    \Gls{pendiente-transversal} ($\leq$~2\,\%) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & \cumple{parcial}\,50\,\% & Igual que la longitudinal: solo a pie de calle y con varias fotografías. La cartografía no sirve, por la precisión del MDT y del LiDAR. \\
     \arrayrulecolor{black!25}\cmidrule(lr){1-5}\arrayrulecolor{black}
     Pendiente del \glslink{vado-peatonal}{vado} (10\,\% hasta 2\,m, 8\,\% hasta 3\,m) & \cumple{no}\,0\,\% & \cumple{no}\,0\,\% & \cumple{parcial}\,25\,\% & Más difícil de calcular, y algunos tramos pueden quedar tapado en la fotografía. \\
     \midrule
@@ -604,7 +604,7 @@ Esta información servirá para determinar qué dimensiones se utilizan en las h
 \label{sec:sintesis-marco}
 % =====================================================================
 
-En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías urbanas y los tipos de diversidad funcional, un análisis exploratorio de los conjuntos de datos de Albacete y Algeciras, así como qué variables o medidas se podrían extraer a partir de imágenes de las calles.
+En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías urbanas y los tipos de diversidad funcional, un análisis exploratorio de los conjuntos de datos de Albacete y Algeciras, así como las fuentes cartográficas públicas disponibles y qué variables o medidas se podrían extraer a partir de cartografía y de imágenes de las calles.
 \\
 
 \textit{Normativa y perfiles de accesibilidad.} (secciones~\ref{sec:caracteristicas} y~\ref{sec:perfiles-dalco}) Se ha basado el análisis en la Orden TMA/851/2021, en la que se fijan todos los requisitos medibles y sus umbrales en varias dimensiones (anchura, pendiente, pavimento, cruces, señalización, iluminación o mobiliario urbano); y se ha usado el marco DALCO para inferir la importancia de cada característica para cada tipo de diversidad funcional.
@@ -613,7 +613,10 @@ En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías
 \textit{Análisis y unificación de datos.} (sección~\ref{sec:analisis-exploratorio}) Se ha realizado un análisis exploratorio de los datos de Albacete y Algeciras. Los datos provienen de la misma empresa, aunque tienen escalas y perfiles de accesibilidad diferentes, y contienen las puntuaciones otorgadas en cada calle, por cada dimensión y tipo de diversidad. Se desconocen tanto la forma de recopilar los datos, como el algoritmo usado para las puntuaciones, así como las medidas realizadas. Se ha realizado una propuesta de unificación de los conjuntos de datos.
 \\
 
-\textit{Viabilidad de extracción de información en imágenes.} (sección~\ref{sec:viabilidad}) Se ha realizado una estimación del grado de obtención de datos a partir de imágenes aéreas o a pie de calle, y se ha determinado que la captura es desigual: mientras que las anchuras y cruces son más fáciles de obtener, otras dimensiones como el pavimento o la iluminación necesitan en mayor parte inspección in situ.
+\textit{Datos cartográficos públicos.} (sección~\ref{sec:datos-cartograficos-publicos}) Se han revisado las geometrías disponibles en los visores de accesibilidad de ambas ciudades y las fuentes cartográficas públicas: el PNOA-LiDAR y el MDT para la pendiente de las calles, y la Cartografía Vectorial del Catastro para la anchura de las aceras.
+\\
+
+\textit{Viabilidad de extracción de información en cartografía e imágenes.} (sección~\ref{sec:viabilidad}) Se ha realizado una estimación del grado de obtención de datos a partir de cartografía pública, de imágenes aéreas o a pie de calle, y se ha determinado que la captura es desigual: mientras que las anchuras y cruces son más fáciles de obtener, otras dimensiones como el pavimento o la iluminación necesitan en mayor parte inspección in situ.
 \\
 
 \noindent\textbf{Qué se investigará en el estado del arte.} Para poder responder a las hipótesis de investigación, se va a revisar en la literatura científica:

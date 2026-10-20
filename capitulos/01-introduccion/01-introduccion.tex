@@ -252,12 +252,12 @@ Se plantea la ejecución del diseño e implementación de código como un proyec
     \item Stack tecnológico
         \begin{itemize}
             \item \textbf{Lenguaje de programación:} Python, el lenguaje estándar para los trabajos de ciencia de datos.
-            \item \textbf{Librerías de \textit{deep learning} y visión por computador:} uso de librerías de Python como PyTorch o Torchvision.
+            \item \textbf{Librerías de aprendizaje automático:} uso de librerías de Python como scikit-learn, XGBoost o LightGBM, y SHAP para la interpretabilidad de los modelos.
             \item \textbf{Librerías de tratamiento espacial de datos:} utilización de librerías como GeoPandas, NumPy, exportación en formatos abiertos (GeoJson/CSV), y tecnologías estándar de desarrollo web (HTML5, CSS, Javascript).
         \end{itemize}
     \item Recursos hardware
         \begin{itemize}
-            \item \textbf{Entorno con \gls{GPU}:} se necesita utilizar un entorno con aceleración gráfica por hardware (\gls{GPU}), ya sea en entorno local o remoto, para poder entrenar los modelos.
+            \item \textbf{Entorno de ejecución:} un equipo convencional es suficiente para entrenar los modelos con datos tabulares; la \gls{GPU} no es imprescindible, inicialmente.
         \end{itemize}
     \item Herramientas
         \begin{itemize}
@@ -329,7 +329,7 @@ En primer lugar, se muestra en la siguiente tabla la división de las tareas a r
 \midrule
     WP6 & \textbf{Defensa oral:} ensayo, preparación de respuestas a posibles objeciones del tribunal y exposición oral final del proyecto. & \makecell{1.0 ECTS \\ (25 h)} & 06 ene - 21 ene & PEC6 \\
 \midrule
-    & \textbf{Total} & \makecell{\textbf{12.0 ECTS} \\ \textbf{(300 h)}} & 24 sep - 21 ene & \\
+    & \textbf{Total} & \textbf{12.0 ECTS (300 h)} & 24 sep - 21 ene & \\
 \end{longtable}
 \endgroup
 
@@ -341,7 +341,7 @@ En segundo lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tan
 \subsection{Identificación de riesgos}
 Con el fin de asegurar el cumplimiento de la planificación, así como la consecución de los hitos de entrega académicos, se ha realizado una matriz de evaluación de posibles riesgos que pueden tener impacto en la elaboración del trabajo, incluyendo qué probabilidad tienen de producirse, qué impacto pueden tener en el proyecto, y el plan de contingencia a seguir si se producen.
 
-Los principales riesgos identificados han estado centrados en la incertidumbre de la calidad de entrenamiento y predicción de los modelos de aprendizaje profundo, así como la priorización de objetivos principales frente a los secundarios.
+Los principales riesgos identificados han estado centrados en la incertidumbre de la calidad de entrenamiento y predicción de los modelos de aprendizaje automático, así como la priorización de objetivos principales frente a los secundarios.
 
 \begingroup
 \footnotesize
@@ -447,7 +447,7 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
     \item \textbf{Introducción y contexto del proyecto:} define el contexto y motivación del proyecto, una introducción a la normativa legal, el listado de objetivos, la metodología y la planificación del trabajo.
     \item \textbf{Características de vías accesibles. Marco legal y normativo:} define la legislación vigente en relación a las ciudades accesibles universales, así como las características de las vías accesibles en base a la ley, que servirán de base para los algoritmos.
     \item \textbf{Estado del arte:} contiene el análisis del estado el arte científico en cuanto a modelos de aprendizaje automático y algoritmos utilizados en problemas similares.
-    \item \textbf{Arquitectura del sistema:} describe la arquitectura tecnológica del sistema, incluyendo detalles de cada uno de los módulos del mismo: algoritmos de \textit{deep learning}, de visión computacional, y clasificación de accesibilidad de calles.
+    \item \textbf{Arquitectura del sistema:} describe la arquitectura tecnológica del sistema, incluyendo detalles de cada uno de los módulos del mismo: extracción de variables cartográficas, modelos de aprendizaje automático y clasificación de accesibilidad de calles.
     \item \textbf{Diseño e implementación de los algoritmos:} contiene las decisiones de diseño de los sistemas, las librerías y tecnologías utilizadas, y los detalles y decisiones de implementación.
     \item \textbf{Resultados y evaluación:} detalla los resultados de las predicciones realizadas, lista las rutas a los sistemas y conjuntos de datos, y analiza la evaluación de la calidad del trabajo.
     \item \textbf{Conclusiones y trabajos futuros:} contiene las conclusiones finales del estudiante y el listado de líneas futuras de trabajos.
@@ -458,12 +458,12 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
 A continuación se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
 
 \begin{itemize}
-    \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generar artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas; así como para poder filtrar los artículos de literatura científica con base en los requisitos del autor..
+    \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generar artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas; así como para poder filtrar los artículos de literatura científica con base en los requisitos del autor.
     \item \textbf{Recursos gráficos para la memoria:} con herramientas de inteligencia artificial generativa para incluir imágenes o esquemas que faciliten la lectura de la memoria y la enriquezcan.
     \begin{itemize}
         \item Se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas\ldots) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
     \end{itemize}
-    \item \textbf{Asistencia en formateo de textos en LaTeX:} como apoyo técnico para poder transformar textos escritos en textos formateados para LaTeX, o maquetación de tablas o diagramas.
+    \item \textbf{Asistencia en formateo de textos en LaTeX:} como apoyo técnico para poder transformar textos escritos en textos formateados para LaTeX, o maquetar tablas o diagramas.
     \item \textbf{Asistencia en programación y refactorización de código:} se utilizarán asistentes de código como Claude o Copilot como ayuda en la escritura de \textit{scripts} en Python.
     \item \textbf{Diseño UI/UX y estilos del portal web:} con el fin de ofrecer una página web más atractiva para el usuario, se emplearán herramientas de inteligencia artificial que den soporte con el diseño y estilos de la web.
     \item \textbf{Apoyo en la búsqueda bibliográfica:} propuesta de palabras clave y cadenas de búsqueda para Web of Science y Google Scholar, que el autor ha ejecutado, ajustado y filtrado según los criterios de selección del estado del arte.

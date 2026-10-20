@@ -3,7 +3,7 @@
 % ---------------------------------------------------------------------
 \section{Metodología de la revisión}
 \label{sec:metodo-revision}
-En las siguientes secciones se responderán las preguntas planteadas al final del capítulo anterior~\ref{cap:normativa} (sección~2.6).
+En las siguientes secciones se responderán las preguntas planteadas al final del capítulo anterior~\ref{cap:normativa} (sección~\ref{sec:sintesis-marco}).
 \\
 
 Para cada pregunta se ha definido una o varias cadenas de búsqueda, que se detallan en cada una de las secciones y se ha consultado en tres fuentes, que se usan de forma complementaria.
@@ -479,7 +479,7 @@ Por último, se ha localizado un estudio, \textcite{li2024gsv}, en el que se rea
 \subsection{Validación entre ciudades}
 \label{subsec:validacion-ciudades}
 
-Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a este tipo de validación, y además clasifican problemas de accesibilidad en aceras, en varias ciudades de EE. UU..
+Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a este tipo de validación, y además clasifican problemas de accesibilidad en aceras, en varias ciudades de EE. UU.
 \\
 
 \textcite{duan2022} se realiza un análisis a partir de imágenes a pie de calle, que han sido etiquetadas por personas voluntarias. Utiliza una estrategia denominada \textbf{\textit{cross-city training}}, de validación entre ciudades.
@@ -536,7 +536,7 @@ Hay varias formas de realizar la transferencia entre ciudades, dando resultados 
 Es preciso utilizar \textbf{las mismas métricas} para evaluar las diferentes estrategias utilizadas en los modelos, para poder garantizar la elección del modelo con base en criterios empíricos comparables.
 \\
 
-Se podrá utilizar una combinación de estas técnicas como estrategias para entrenar los modelos de los conjuntos de datos de Albacete y Algeciras.
+Para los conjuntos de datos de Albacete y Algeciras se plantean tres escenarios de validación: validación agrupada dentro de cada ciudad (por calles o barrios), entrenamiento en una ciudad y prueba en la otra (Albacete $\leftrightarrow$ Algeciras), y entrenamiento con las ciudades mezcladas.
 \\
 
 \section{Extracción de variables desde datos cartográficos}
@@ -548,10 +548,10 @@ En esta sección se va a revisar cómo artículos científicos han utilizado fue
 \subsection{LiDAR}
 En primer lugar, se han encontrado dos estudios que han conseguido extraer la información a partir de las nubes de puntos LiDAR.
 
-El primero es el de Hossain et al.~\cite{hossain2026}, que usa un LiDAR aéreo público de alta densidad de EE.UU. Lo combina con OpenStreetMap, la capa de límites de aceras DC-GIS Sidewalks (para las aceras), y recurre a la API de elevación de Google Maps como respaldo cuando hay vegetación.
+El primero es el de \textcite{hossain2026}, que usa un LiDAR aéreo público de alta densidad de EE.UU. Lo combina con OpenStreetMap, la capa de límites de aceras DC-GIS Sidewalks (para las aceras), y recurre a la API de elevación de Google Maps como respaldo cuando hay vegetación.
 \\
 
-Otro estudio es el de Ahmadi et al.~\cite{ahmadi2026}, que utiliza una nube LiDAR 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las pendientes longitudinal y transversal y el ancho de la acera, si bien depende de la calidad de la segmentación semántica previa.
+Otro estudio es el de \textcite{ahmadi2026}, que utiliza una nube LiDAR 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las pendientes longitudinal y transversal y el ancho de la acera, si bien depende de la calidad de la segmentación semántica previa.
 \\
 
 Como posibles problemas, la vegetación es un limitante para el LiDAR aéreo, y se tiene que combinar con otras fuentes de datos, como OpenStreetMap, o la cartografía vectorial del Catastro. Por lo que el uso del LiDAR del PNOA podría utilizarse de manera similar a~\cite{hossain2026}.
@@ -564,7 +564,7 @@ El LiDAR terrestre no está disponible en la cartografía pública española, ya
 En cuanto a los MDT, se ha comprobado que se utilizan principalmente para el cálculo de la pendiente longitudinal. A continuación se muestran dos estudios científicos.
 \\
 
-El primero es el de Valls y Clua~\cite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el modelo digital de elevación del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía municipal de Barcelona).
+El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el modelo digital de elevación del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía municipal de Barcelona).
 No se obtuvieron buenos resultados para la pendiente transversal.\\
 
 El uso del MDT02 del IGN podría conseguir la misma información que el estudio de~\cite{vallsclua2023}, debido a que es equivalente al utilizado en el estudio de Barcelona.
