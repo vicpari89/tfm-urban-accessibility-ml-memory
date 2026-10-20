@@ -1,10 +1,12 @@
 # Vía Accesible — kit del sistema visual del TFM
 
 ## Contenido
-- `latex/tfm-estilo.sty` — colores; gráficos de barras (vertical/horizontal, agrupado/apilado), líneas y circulares; diagramas de flujo, conceptuales, de secuencia, de red, de arquitectura y mapas; estados, Kanban, cronograma (Gantt), recuadros, tablas, código, columnas e imágenes externas.
+- `latex/tfm-estilo.sty` — colores; gráficos de barras (vertical/horizontal, agrupado/apilado), líneas y circulares; diagramas de flujo, conceptuales, de secuencia, de red, de arquitectura y mapas; estados, Kanban, cronograma (Gantt), recuadros, tablas, código, columnas, imágenes externas, árboles de decisión y XGBoost (v1.8).
 - `latex/beamerthemeUOCTFM.sty` — tema Beamer para la defensa.
 - `ejemplo_uso.tex` + `ejemplo_uso.pdf` — un ejemplo de cada pieza con la plantilla TFUOC.
 - `python/tfm.mplstyle` + `python/paletas.py` — mismo estilo para matplotlib (notebooks).
+- `ejemplo_arboles.tex` + `ejemplo_arboles.pdf` — árboles de decisión y XGBoost (árbol con camino resaltado, árbol de XGBoost, esquema de boosting, tabla de configuración, importancia y curva de aprendizaje). Requiere el paquete `forest` (TeX Live y Overleaf lo incluyen).
+- `python/arboles.py` — convierte árboles de scikit-learn y XGBoost en código LaTeX del sistema y dibuja importancia y curva de aprendizaje en matplotlib.
 - `fuentes/` — Computer Modern (CMU) en .ttf (instalar en el sistema para matplotlib) y .woff2 (web).
 - `tokens.json` — todos los colores, tamaños y espaciados en formato de datos.
 
@@ -74,3 +76,11 @@ mapas `tramoacierto`/`tramosobre`/`tramosub`. En Python: `paletas.real_vs_predic
 Las listas normales ya salen con el estilo (■ – ▪ en viñetas; 1. a) i. en numeradas). Además:
 `\begin{codigos}[O]` (O1, O2… también [H], [RF], [P]; referenciables con \label/\ref), `pasos`, `ventajas`,
 `inconvenientes`, `comprobacion` (`\item[\hecho]`, `\item[\parcial]`, `\item[\porhacer]`) y `enlinea` → (a), (b) y (c).
+
+## Árboles de decisión y XGBoost (v1.8)
+```python
+from arboles import sklearn_a_forest, xgb_a_forest, tabla_configuracion, importancia_pgfplots
+print(xgb_a_forest(modelo, arbol=0, nombres=nombres, profundidad_max=3))   # pega la salida en un figure
+print(tabla_configuracion(modelo.get_params(), rangos={"max_depth": "3--10"}))  # filas de la tabla
+```
+Ver `ejemplo_arboles.tex` para el resto de piezas (`\esquemaboosting`, `tfmimportancia`, `tfmaprendizaje`, `\paradatemprana`).

@@ -93,7 +93,7 @@
 
 @abbreviation{GIS,
   short = {GIS},
-  long = {Geographic Information System},
+  long = {\emph{Geographic Information System}},
   description = {Herramienta tecnológica que gestiona información espacial y cartográfica, permitiendo integrar diferentes capas vectoriales para su análisis y representación en mapas}
 }
 
@@ -104,7 +104,7 @@
 
 @abbreviation{GPU,
   short = {GPU},
-  long = {Graphics Processing Unit},
+  long = {\emph{Graphics Processing Unit}},
   description = {Unidad de procesamiento que permite la aceleración por hardware y el cálculo masivo en paralelo, vital para el entrenamiento e inferencia de redes neuronales}
 }
 
@@ -175,8 +175,8 @@
 
 @abbreviation{MVP,
   short = {MVP},
-  long = {Producto Mínimo Viable},
-  description = {Mínima unidad de entrega de un producto que contiene los objetivos fundamentales y esenciales del mismo, que permite ofrecer una funcionalidad mínima en un periodo corto de tiempo}
+  long = {\emph{Minimum Viable Product}},
+  description = {Producto mínimo viable: mínima unidad de entrega de un producto que contiene los objetivos fundamentales y esenciales del mismo, que permite ofrecer una funcionalidad mínima en un periodo corto de tiempo}
 }
 
 @entry{orden-tma-851-2021,
@@ -254,4 +254,238 @@
   name = {Visor SIG},
   text = {visor SIG},
   description = {Interfaz gráfica interactiva que representa datos en un mapa, permitiendo la visualización y consulta de elementos geográficos al usuario}
+}
+
+@abbreviation{ADA,
+  short = {ADA},
+  long = {\emph{Americans with Disabilities Act}},
+  description = {Ley federal de Estados Unidos de 1990 que prohíbe la discriminación por discapacidad y establece requisitos de accesibilidad para el espacio público, como pendientes máximas y anchuras mínimas de las aceras}
+}
+
+@abbreviation{SQI,
+  short = {SQI},
+  long = {\emph{Sidewalk Quality Index}},
+  description = {Índice que resume la calidad de una acera a partir de la existencia, el estado y la seguridad de sus características, utilizado en los estudios de Georgia Tech}
+}
+
+@entry{caminabilidad,
+  name = {Caminabilidad},
+  text = {caminabilidad},
+  description = {\emph{Walkability}: grado en que un entorno urbano resulta favorable para desplazarse a pie, atendiendo a su seguridad, comodidad y conectividad}
+}
+
+@entry{logica-difusa,
+  name = {Lógica difusa},
+  text = {lógica difusa},
+  description = {\emph{Fuzzy logic}: forma de razonar que admite respuestas intermedias en lugar de solo «sí» o «no». Permite, por ejemplo, decir que una acera es accesible «en parte» y dar a esa valoración un valor numérico entre 0 y 1}
+}
+
+@entry{fuzzy-topsis,
+  name = {Fuzzy-TOPSIS},
+  text = {Fuzzy-TOPSIS},
+  description = {Método para decidir entre varias opciones con criterios distintos: cuanto más se parece una opción a la mejor situación posible y más se aleja de la peor, mejor puntuación recibe. Incorpora lógica difusa para manejar datos imprecisos}
+}
+
+@entry{auditoria-virtual,
+  name = {Auditoría virtual},
+  text = {auditoría virtual},
+  description = {Evaluación de la accesibilidad de una vía a partir de imágenes a pie de calle, sin necesidad de desplazarse al lugar, en contraposición a la inspección \emph{in situ}}
+}
+
+@entry{arbol-decision,
+  name = {Árbol de decisión},
+  text = {árbol de decisión},
+  description = {Modelo que clasifica un tramo respondiendo a una serie de preguntas encadenadas sobre sus variables (por ejemplo, «¿El ancho es mayor a 1,80m?»), de modo que cada rama termina en una clase}
+}
+
+@entry{random-forest,
+  name = {Random forest},
+  text = {random forest},
+  description = {Modelo formado por muchos árboles de decisión entrenados con distintas muestras de los datos, cuya clasificación final se obtiene por votación}
+}
+
+@entry{gradient-boosting,
+  name = {Gradient boosting},
+  text = {gradient boosting},
+  description = {Técnica que construye los árboles de decisión uno tras otro, de manera que cada árbol corrige los errores del anterior. Ejemplos de implementación: XGBoost y LightGBM}
+}
+
+@entry{regresion-logistica,
+  name = {Regresión logística},
+  text = {regresión logística},
+  description = {Modelo lineal que calcula la probabilidad de que un tramo pertenezca a una clase a partir de una combinación ponderada de sus variables}
+}
+
+@entry{clase-ordinal,
+  name = {Clase ordinal},
+  text = {clase ordinal},
+  description = {Variable objetivo cuyas categorías siguen un orden (en este trabajo A, B y C), de modo que confundir A con C es un error más grave que confundir A con B}
+}
+
+@entry{desbalanceo-clases,
+  name = {Desbalanceo de clases},
+  text = {desbalanceo de clases},
+  description = {Situación en la que unas clases tienen muchos menos ejemplos que otras, lo que lleva al modelo a favorecer a la clase mayoritaria}
+}
+
+@entry{ponderacion-clases,
+  name = {Ponderación de clases},
+  text = {ponderación de clases},
+  description = {Técnica para tratar el desbalanceo que da más peso en el entrenamiento a los errores cometidos en las clases poco frecuentes. Es la base del aprendizaje sensible al coste}
+}
+
+@entry{submuestreo,
+  name = {Submuestreo},
+  text = {submuestreo},
+  description = {Técnica para tratar el desbalanceo que reduce el número de ejemplos de las clases mayoritarias hasta equilibrarlas con las minoritarias. Su opuesto es el sobremuestreo, que genera ejemplos sintéticos de las clases minoritarias}
+}
+
+@entry{f1-macro,
+  name = {F1 macro},
+  text = {F1 macro},
+  description = {Métrica que calcula el F1 de cada clase (media armónica de la precisión y el \textit{recall}) y promedia los resultados, de modo que todas las clases pesan igual con independencia de su tamaño}
+}
+
+@entry{exactitud-balanceada,
+  name = {Exactitud balanceada},
+  text = {exactitud balanceada},
+  description = {Media de la proporción de aciertos de cada clase, que evita que la clase mayoritaria domine el resultado, a diferencia de la exactitud global}
+}
+
+@entry{kappa-ponderada,
+  name = {Kappa ponderada cuadrática},
+  text = {kappa ponderada cuadrática},
+  description = {Métrica de concordancia entre la clase real y la predicha para clases ordinales, que penaliza los errores en proporción al cuadrado de la distancia entre clases}
+}
+
+@entry{importancia-permutacion,
+  name = {Importancia por permutación},
+  text = {importancia por permutación},
+  description = {Medida de la importancia de una variable que consiste en desordenar sus valores y observar cuánto empeora la métrica del modelo}
+}
+
+@entry{shap,
+  name = {SHAP},
+  text = {SHAP},
+  description = {\textit{SHapley Additive exPlanations}: método basado en la teoría de juegos que reparte la predicción del modelo entre las variables, calculando la contribución media de cada una}
+}
+
+@entry{indice-gini,
+  name = {Índice de Gini},
+  text = {índice de Gini},
+  description = {Medida de la homogeneidad de las clases dentro de un grupo. En los árboles de decisión sirve para medir la importancia de una variable según cuánto reduce esa impureza al dividir los datos}
+}
+
+@abbreviation{GBDT,
+  short = {GBDT},
+  long = {\emph{Gradient Boosting Decision Trees}},
+  description = {Familia de modelos de árboles de decisión entrenados mediante \emph{gradient boosting}, en los que cada árbol corrige los errores de los anteriores}
+}
+
+@abbreviation{IAA,
+  short = {IAA},
+  long = {\emph{Impact-Asymmetry Analysis}},
+  description = {Análisis que clasifica cada atributo en clases ordinales según el impacto}
+}
+
+@abbreviation{MOTC,
+  short = {MOTC},
+  long = {\emph{Multi-Output Tree Chaining}},
+  description = {Método de modelo único con varias salidas que encadena árboles para aprovechar las dependencias entre las variables objetivo}
+}
+
+@abbreviation{MTBR,
+  short = {MTBR},
+  long = {\emph{Multi-Target Boosting for Regression}},
+  description = {Extensión de \emph{gradient boosting} que predice varias variables objetivo continuas a la vez}
+}
+
+@abbreviation{RRMSE,
+  short = {RRMSE},
+  long = {\emph{Relative Root Mean Squared Error}},
+  description = {Error cuadrático medio relativo: error de un modelo dividido entre el de una predicción de referencia (la media), lo que permite comparar variables objetivo de distinta escala}
+}
+
+@abbreviation{CRRMSE,
+  short = {CRRMSE},
+  long = {\emph{Combined Relative Root Mean Squared Error}},
+  description = {Error cuadrático medio relativo comparado entre varias variables objetivo, obtenido a partir de los RRMSE de cada una}
+}
+
+@abbreviation{SVR,
+  short = {SVR},
+  long = {\emph{Support Vector Regression}},
+  description = {Modelo de regresión basado en máquinas de vectores de soporte, que ajusta una función tolerando un margen de error alrededor de las predicciones}
+}
+
+@abbreviation{RFR,
+  short = {RFR},
+  long = {\emph{Random Forest Regressor}},
+  description = {Versión de \emph{random forest} para variables objetivo continuas, que promedia las predicciones de sus árboles}
+}
+
+@abbreviation{MAE,
+  short = {MAE},
+  long = {\emph{Mean Absolute Error}},
+  description = {Error absoluto medio: promedio de las diferencias, en valor absoluto, entre el valor real y el predicho}
+}
+
+@abbreviation{MSE,
+  short = {MSE},
+  long = {\emph{Mean Squared Error}},
+  description = {Error cuadrático medio: promedio de los cuadrados de las diferencias entre el valor real y el predicho, que penaliza más los errores grandes}
+}
+
+@abbreviation{RMSE,
+  short = {RMSE},
+  long = {\emph{Root Mean Squared Error}},
+  description = {Raíz del error cuadrático medio: raíz cuadrada del MSE, expresada en las mismas unidades que la variable objetivo}
+}
+
+@entry{particion-aleatoria,
+  name = {Partición aleatoria},
+  text = {partición aleatoria},
+  description = {Estrategia de validación que divide al azar los datos en conjuntos de entrenamiento y de test, sin tener en cuenta su ubicación}
+}
+
+@entry{validacion-agrupada,
+  name = {Validación agrupada},
+  text = {validación agrupada},
+  description = {Estrategia de validación en la que los datos se agrupan (por calle, barrio o distrito) y cada grupo completo va a entrenamiento o a test, de modo que el modelo se evalúa sobre zonas que no ha visto}
+}
+
+@entry{validacion-entre-ciudades,
+  name = {Validación entre ciudades},
+  text = {validación entre ciudades},
+  description = {Estrategia de validación que entrena el modelo con los datos de una o varias ciudades y lo evalúa en otra distinta, para medir su capacidad de generalizar}
+}
+
+@entry{fine-tuning,
+  name = {\emph{Fine tuning}},
+  text = {fine tuning},
+  description = {Ajuste de un modelo ya entrenado con datos nuevos, normalmente con pocos datos y pocas iteraciones, para adaptarlo a otro dominio, como una ciudad distinta}
+}
+
+@entry{recall,
+  name = {\emph{Recall}},
+  text = {recall},
+  description = {Proporción de los casos positivos reales que el modelo detecta correctamente, es decir, cuántos problemas existentes se encuentran}
+}
+
+@entry{precision,
+  name = {Precisión},
+  text = {precisión},
+  description = {Proporción de las predicciones positivas del modelo que son correctas, es decir, cuántos de los problemas señalados existen realmente}
+}
+
+@entry{matriz-confusion,
+  name = {Matriz de confusión},
+  text = {matriz de confusión},
+  description = {Tabla que cruza las clases reales con las predichas y muestra cuántos casos se clasifican bien y cuáles se confunden entre sí}
+}
+
+@entry{accuracy,
+  name = {\emph{Accuracy}},
+  text = {accuracy},
+  description = {Proporción de predicciones correctas sobre el total de casos}
 }

@@ -5,8 +5,7 @@ on:
     types: [published, edited]
 
 permissions:
-  contents: read
-  releases: write
+  contents: write
 
 jobs:
   generate-notes:
@@ -53,17 +52,11 @@ jobs:
 
       - name: Update release body
         run: |
-          CURRENT_BODY="${{ github.event.release.body }}"
-          NEW_NOTES="${{ steps.changes.outputs.notes }}"
-
-          # Combine existing body with new notes
-          COMBINED_BODY="${CURRENT_BODY}
-
-${NEW_NOTES}"
-
-          # Update release with combined body
-          gh release edit "${{ github.event.release.tag_name }}" \
-            --notes "${COMBINED_BODY}" \
-            --repo "${{ github.repository }}"
+          gh release edit "$TAG" --repo "$REPO" \
+            --notes "$(printf '%s\n\n%s' "$BODY" "$NOTES")"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+          REPO: ${{ github.repository }}
+          BODY: ${{ github.event.release.body }}
+          NOTES: ${{ steps.changes.outputs.notes }}

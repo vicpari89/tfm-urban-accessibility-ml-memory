@@ -1,0 +1,17 @@
+\begin{wrapfigure}{r}{0.36\textwidth}
+  \centering
+  \vspace{-8pt}
+  \begin{tikzpicture}[node distance=2mm]
+    \node[perfent] (e) {Variables};
+    \node[perfmod, below=6mm of e, minimum width=34mm] (m) {Modelo \textit{multi-target}};
+    \node[perfcont, below=5mm of m] (y2) {$\hat{y}_2$};
+    \node[perfcont, left=of y2] (y1) {$\hat{y}_1$};
+    \node[perfcont, right=of y2] (y3) {$\hat{y}_3$};
+    \draw[relacion] (e) -- (m);
+    \foreach \i in {1,2,3} {\draw[relacion] (m.south -| y\i) -- (y\i);}
+    \node[perfnota, right=1mm of y3] {valores\\continuos};
+  \end{tikzpicture}
+  \caption{Un modelo con una salida $\hat{y}_i$ por grupo.}
+  \label{fig:perfiles-multisalida}
+  \vspace{-10pt}
+\end{wrapfigure}

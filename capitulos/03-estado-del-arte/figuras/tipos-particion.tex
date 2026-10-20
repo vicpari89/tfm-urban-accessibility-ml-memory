@@ -1,0 +1,34 @@
+\begin{wrapfigure}{r}{0.35\textwidth}
+  \centering
+  \vspace{-8pt}
+  \begin{tikzpicture}[
+      font=\sffamily\scriptsize,
+      celE/.style={minimum size=3.6mm, inner sep=0pt, fill=serie-1, draw=papel, line width=\trazo, text=papel},
+      celP/.style={minimum size=3.6mm, inner sep=0pt, fill=serie-3, draw=papel, line width=\trazo, text=tinta},
+      titulo/.style={anchor=west, font=\sffamily\scriptsize\bfseries, text=uoc-azul},
+      calle/.style={anchor=east, text=tinta-suave},
+    ]
+    % \bloque{y0}{filas}{etiquetas}: cuadrícula de tramos (E = entrenamiento, P = prueba), una fila por calle
+    \newcommand{\bloque}[3]{%
+      \foreach \s [count=\r from 0] in {#2} {%
+        \foreach \l [count=\k from 0] in \s {%
+          \node[cel\l] at (\k*3.6mm, #1-\r*3.6mm) {\l};}}%
+      \foreach \t [count=\r from 0] in {#3} {\node[calle] at (-2.4mm, #1-\r*3.6mm) {\t};}}
+    % Partición aleatoria: los tramos de una misma calle se reparten entre E y P
+    \node[titulo] at (-14mm, 0) {Partición aleatoria};
+    \bloque{-5mm}{{E,P,E,E,P},{E,E,P,E,E},{P,E,E,P,E},{E,E,E,P,E}}{Calle 1,Calle 2,Calle 3,Calle 4}
+    % Validación agrupada: cada calle entera va a E o a P
+    \node[titulo] at (-14mm, -22mm) {Validación agrupada};
+    \bloque{-27mm}{{E,E,E,E,E},{P,P,P,P,P},{E,E,E,E,E},{P,P,P,P,P}}{Calle 1,Calle 2,Calle 3,Calle 4}
+    % Validación entre ciudades: una ciudad entera para E, otra para P
+    \node[titulo] at (-14mm, -44mm) {Validación entre ciudades};
+    \bloque{-49mm}{{E,E,E,E,E},{E,E,E,E,E}}{Ciudad A,}
+    \bloque{-58mm}{{P,P,P,P,P},{P,P,P,P,P}}{Ciudad B,}
+    % Leyenda
+    \node[celE, label={[anchor=west, text=tinta]right:Entrenamiento}] at (-12mm, -67mm) {E};
+    \node[celP, label={[anchor=west, text=tinta]right:Prueba}] at (14mm, -67mm) {P};
+  \end{tikzpicture}
+  \caption{Reparto de los tramos entre entrenamiento y prueba según la estrategia.}
+  \label{fig:tipos-particion}
+  \vspace{-10pt}
+\end{wrapfigure}

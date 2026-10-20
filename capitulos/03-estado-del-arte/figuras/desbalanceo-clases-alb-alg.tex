@@ -1,0 +1,43 @@
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+        tfmapiladash,
+        width=0.76\textwidth, height=4.6cm,
+        bar width=18pt,
+        xmin=0, xmax=100, xlabel={Tramos (\%)},
+        symbolic y coords={Albacete, Algeciras},
+        yticklabels={Albacete (n = 916), Algeciras (n = 506)},
+        ytick=data,
+        enlarge y limits=0.45,
+        legend style={at={(0.5,1.06)}, anchor=south, legend columns=3,
+          /tikz/every even column/.append style={column sep=8pt}},
+        legend image code/.code={\draw[#1, draw=none] (0cm,-0.1cm) rectangle (0.25cm,0.12cm);},
+        clip=false,
+      ]
+      \addplot[fill=acc-accesible, draw=papel]    coordinates {(2.6,Albacete)  (5.5,Algeciras)};
+      \addplot[fill=acc-practicable, draw=papel]  coordinates {(78.2,Albacete) (56.1,Algeciras)};
+      \addplot[fill=acc-no-accesible, draw=papel] coordinates {(19.2,Albacete) (38.3,Algeciras)};
+      \legend{A (accesible), B (parcialmente accesible), C (incumplimiento)}
+      % Puntos de las etiquetas (se dibujan fuera del eje para que queden encima de las barras)
+      \coordinate (aAlb) at (axis cs:0.6,Albacete);
+      \coordinate (bAlb) at (axis cs:41.7,Albacete);
+      \coordinate (cAlb) at (axis cs:90.4,Albacete);
+      \coordinate (aAlg) at (axis cs:0.6,Algeciras);
+      \coordinate (bAlg) at (axis cs:33.55,Algeciras);
+      \coordinate (cAlg) at (axis cs:80.75,Algeciras);
+    \end{axis}
+    % Etiquetas: B y C dentro de la barra; A, por ser estrecha, encima
+    \begin{scope}[every node/.style={font=\sansmath\sffamily\scriptsize}]
+      \node[text=tinta, anchor=south west, yshift=9pt] at (aAlb) {2,6};
+      \node[text=tinta] at (bAlb) {78,2};
+      \node[text=papel] at (cAlb) {19,2};
+      \node[text=tinta, anchor=south west, yshift=9pt] at (aAlg) {5,5};
+      \node[text=tinta] at (bAlg) {56,1};
+      \node[text=papel] at (cAlg) {38,3};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Distribución de las clases de accesibilidad en Albacete y Algeciras.}
+  \label{fig:distribucion-clases}
+  \fuente{elaboración propia a partir de los datos de Albacete y Algeciras.}
+\end{figure}

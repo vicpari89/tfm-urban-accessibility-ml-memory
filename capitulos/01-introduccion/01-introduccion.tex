@@ -1,49 +1,11 @@
 \section{Contexto y justificación del trabajo}
-Las ciudades tienen una \textbf{deuda histórica con la diversidad humana} de sus habitantes. Hasta décadas recientes, el entorno urbano se ha \textbf{diseñado para la ciudadanía <<normativa>>}, definía como una persona adulta joven, ágil y sin ningún tipo de limitación física, sensorial o cognitiva. La irrupción del \textbf{vehículo privado} en el día a día de las personas añadió un nuevo elemento predominante en las vías urbanas (calzadas, aparcamientos). Esto eliminó espacios para los viandantes, facilitando entornos con \textbf{aceras estrechas, desniveles o problemas de continuidad} que excluyen a varios sectores de la sociedad en el ejercicio de sus derechos y disfrute de la ciudad.
+Las ciudades tienen una \textbf{deuda histórica con la diversidad humana} de sus habitantes. Hasta décadas recientes, el entorno urbano se ha \textbf{diseñado para la ciudadanía «normativa»}, definía como una persona adulta joven, ágil y sin ningún tipo de limitación física, sensorial o cognitiva. La irrupción del \textbf{vehículo privado} en el día a día de las personas añadió un nuevo elemento predominante en las vías urbanas (calzadas, aparcamientos). Esto eliminó espacios para los viandantes, facilitando entornos con \textbf{aceras estrechas, desniveles o problemas de continuidad} que excluyen a varios sectores de la sociedad en el ejercicio de sus derechos y disfrute de la ciudad.
 \\
 
-Cualquier persona puede pasar a lo largo de su vida de ser <<normativa>> a tener necesidades específicas de movilidad. Por esa razón, la \textbf{\gls{accesibilidad-universal}} no es una demanda exclusiva de la ciudadanía con discapacidad permanente, sino una condición que \textbf{afecta a toda la sociedad} en distintas etapas de la vida.
+Cualquier persona puede pasar a lo largo de su vida de ser «normativa» a tener necesidades específicas de movilidad. Por esa razón, la \textbf{\gls{accesibilidad-universal}} no es una demanda exclusiva de la ciudadanía con discapacidad permanente, sino una condición que \textbf{afecta a toda la sociedad} en distintas etapas de la vida.
 \\
 
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}[font=\sffamily, x=1cm, y=1cm]
-    % --- Bloque de identidad con el titular
-    \fill[uoc-cian] (0,0) rectangle (3.8,5.2);
-    \node[anchor=north west, text width=3.3cm, align=left, text=uoc-azul,
-          font=\sffamily\large\bfseries] at (0.3,4.8)
-      {\begin{hyphenrules}{nohyphenation}¿A quién beneficia la accesibilidad?\end{hyphenrules}};
-    \node[anchor=south west, text width=3.1cm, align=left, text=tinta,
-          font=\sffamily\scriptsize] at (0.3,0.3) {España};
- 
-    % --- Filetes del panel (como la cabecera UOC)
-    \draw[uoc-cian-filete, line width=1mm] (3.8,5.15) -- (16.7,5.15);
-    \draw[uoc-cian-filete, line width=1mm] (3.8,0.05) -- (16.7,0.05);
- 
-    % --- Tres cifras: \x = inicio de columna, \pct = % para la minibarra
-    \foreach \x/\cifra/\pct/\txt/\base in {
-        4.3/{9,5\,\%}/9.5/{de la población tiene una \textbf{discapacidad reconocida}: 4,38 millones de personas}/{Base: población total},
-        8.4/{\textgreater\,30\,\%}/30/{de la población es \textbf{beneficiaria real} de la accesibilidad universal}/{Base: población total},
-        12.5/{32,3\,\%}/32.3/{de las personas \textbf{mayores de 65 años} tiene alguna discapacidad}/{Base: mayores de 65 años}} {
-      % cifra
-      \node[anchor=north west, inner sep=0pt, text=uoc-azul, font=\sffamily\bfseries, scale=2.2]
-        at (\x,4.75) {\cifra};
-      % texto
-      \node[anchor=north west, inner sep=0pt, text width=3.6cm, align=left, text=tinta,
-            font=\sffamily\small] at (\x,3.5) {\begin{hyphenrules}{nohyphenation}\txt\end{hyphenrules}};
-      % minibarra sobre el 100 % de su base
-      \fill[rejilla] (\x,1.05) rectangle ++(3.6,0.3);
-      \fill[uoc-azul] (\x,1.05) rectangle ++(3.6*\pct/100,0.3);
-      \node[anchor=north west, inner sep=0pt, text=tinta-suave, font=\sffamily\scriptsize]
-        at (\x,0.85) {\base};
-    }
-    % separadores verticales finos
-    \foreach \x in {8.1,12.2} \draw[filete, line width=\trazofino] (\x,0.5) -- (\x,4.7);
-  \end{tikzpicture}
-  \caption{La accesibilidad en tres cifras.}
-  \label{fig:infografia_accesibilidad}
-  \fuente{INE, Encuesta de Discapacidad, Autonomía personal y situaciones de Dependencia (EDAD) 2020; Observatorio 2030 CSCAE y Fundación ONCE, \emph{Documenta 1.2}.}
-\end{figure}
+\input{capitulos/01-introduccion/figuras/infografia_accesibilidad}
 
 
 
@@ -57,64 +19,7 @@ De esta necesidad, y con el objetivo de tratar de tirar abajo la deuda accesible
 El marco estatal de referencia es la \textbf{\gls{orden-tma-851-2021} de 23 de julio}, que legisla sobre las \textbf{condiciones básicas de accesibilidad} y no discriminación, y los derechos de utilización de los espacios públicos urbanos.
 \\
 
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
-      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}},
-      cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
-      cotatxt/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
-      ref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
-      mobiliario/.style={fill=tinta-suave, draw=tinta},
-      rotulo/.style={font=\sffamily\scriptsize, text=tinta-suave},
-    ]
-    % =============== a) PLANTA (vista cenital, como en la ortofoto) ===============
-    \begin{scope}[x=1.15cm, y=1.15cm]
-      \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0,4.45) {Itinerario peatonal accesible: dimensiones mínimas};
-      % edificación
-      \fill[rejilla] (0,3.2) rectangle (12,4.2);
-      \draw[tinta-suave, line width=\trazo] (0,3.2) -- (12,3.2);
-      \node[rotulo] at (6,3.7) {Edificación · línea de fachada};
-      % acera
-      \fill[papel] (0,0) rectangle (12,3.2);
-      % IPA: banda libre junto a la fachada
-      \fill[uoc-cian-suave] (0,1.4) rectangle (12,3.2);
-      \draw[uoc-azul, dashed, line width=\trazo] (0,1.4) -- (12,1.4);
-      \node[font=\sffamily\small\bfseries, text=uoc-azul] at (5.2,2.5) {Itinerario peatonal accesible (IPA)};
-      \node[font=\sffamily\scriptsize, text=uoc-azul] at (5.2,2.05) {continuo y sin obstáculos};
-      % banda exterior (mobiliario)
-      \node[rotulo, anchor=west] at (9.35,0.7) {Banda exterior: mobiliario};
-      % bordillo y calzada
-      \fill[seg-calzada] (0,-1.8) rectangle (12,0);
-      \draw[tinta, line width=1.6pt] (0,0) -- (12,0);
-      \draw[papel, line width=1pt, dash pattern=on 10pt off 8pt] (0,-1.1) -- (12,-1.1);
-      \node[font=\sffamily\scriptsize, text=papel] at (1.3,-0.55) {Calzada};
-            % mobiliario a >= 0,40 m del bordillo
-      \fill[mobiliario] (2.4,0.7) circle (0.15);            \node[rotulo, below=1pt] at (2.4,0.55) {farola};
-      \filldraw[mobiliario] (3.7,0.5) rectangle (4.1,0.9);   \node[rotulo, below=1pt] at (3.9,0.5) {papelera};
-      \draw[tinta, fill=rejilla] (5.9,0.4) rectangle (6.9,1.2);
-      \fill[seg-vegetacion] (6.4,0.8) circle (0.28);         \node[rotulo, below=1pt] at (6.4,0.4) {alcorque};
-      \foreach \x in {8.2,8.8} \fill[mobiliario] (\x,0.55) circle (0.09);
-      \node[rotulo, below=1pt] at (8.5,0.45) {bolardos};
-      % cotas
-      \draw[ref] (11.2,1.4) -- (11.6,1.4);
-      \draw[cota] (11.4,1.4) -- (11.4,3.2) node[midway, cotatxt, rotate=90] {$\geq$\,1,80\,m};
-      \draw[ref] (2.4,0.55) -- (1.55,0.55);
-      \draw[cota] (1.65,0) -- (1.65,0.55) node[midway, cotatxt, left=1pt] {$\geq$\,0,40\,m};
-      \node[rotulo, anchor=north east] at (12,-0.02) {\textcolor{papel}{bordillo}};
-      % escala gráfica
-      \begin{scope}[shift={(9.6,-1.55)}]
-        \fill[papel] (0,0) rectangle (1,0.08); \fill[tinta-suave] (1,0) rectangle (2,0.08);
-        \draw[papel, line width=0.4pt] (0,0) rectangle (2,0.08);
-        \node[font=\sffamily\tiny, text=papel, above] at (0,0.08) {0};
-        \node[font=\sffamily\tiny, text=papel, above] at (2,0.08) {2\,m};
-      \end{scope}
-    \end{scope}
-
-  \end{tikzpicture}
-  \caption{Itinerario peatonal accesible: dimensiones mínimas en plano.}
-  \label{fig:ipa-plano}
-  \fuente{elaboración propia a partir de la Orden TMA/851/2021.}
-\end{figure}
+\input{capitulos/01-introduccion/figuras/ipa-plano}
 
 En esta normativa se impone como mínimo a las administraciones municipales:
 \begin{itemize}
@@ -123,63 +28,7 @@ En esta normativa se impone como mínimo a las administraciones municipales:
     \item Establecer los \textbf{requisitos mínimos} para considerar las vías urbanas como accesibles, bajo el concepto de \textbf{Itinerario Peatonal Accesible (IPA)}.
 \end{itemize}
  
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[tfm, font=\sffamily\scriptsize,
-      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}},
-      cota/.style={{Stealth[length=3.5pt]}-{Stealth[length=3.5pt]}, draw=uoc-azul, line width=0.6pt},
-      cotatxt/.style={font=\sansmath\sffamily\scriptsize\bfseries, text=uoc-azul, fill=papel, inner sep=1.2pt},
-      ref/.style={draw=uoc-azul, line width=\trazofino, densely dotted},
-      mobiliario/.style={fill=tinta-suave, draw=tinta},
-      rotulo/.style={font=\sffamily\scriptsize, text=tinta-suave},
-    ]
-    % =============== b) SECCIÓN TRANSVERSAL ===============
-    \begin{scope}[shift={(0,-7.4)}, x=1.15cm, y=1.15cm]
-      \node[anchor=south west, font=\sffamily\small\bfseries, text=tinta] at (0,3.35) {Vista transversal del itinerario peatonal accesible};
-      % calzada (más baja) y acera
-      \fill[seg-calzada] (0,-0.35) rectangle (1.5,-0.15);
-      \fill[rejilla] (1.5,-0.35) rectangle (4.7,0);
-      \draw[tinta, line width=\trazo] (0,-0.15) -- (1.5,-0.15) -- (1.5,0) -- (4.7,0);
-      % fachada
-      \fill[rejilla] (4.7,-0.35) rectangle (5.1,3.1);
-      \draw[tinta-suave, line width=\trazo] (4.7,0) -- (4.7,3.1);
-      % volumen libre del IPA
-      \fill[uoc-cian-suave] (2.9,0) rectangle (4.7,2.2);
-      \draw[uoc-azul, dashed, line width=\trazo] (2.9,0) -- (2.9,2.2) -- (4.7,2.2);
-      % persona genérica
-      \fill[uoc-azul] (3.8,1.62) circle (0.13);
-      \fill[uoc-azul, rounded corners=2pt] (3.62,0.02) rectangle (3.98,1.45);
-      \node[font=\sffamily\scriptsize\bfseries, text=uoc-azul] at (3.3,1.95) {IPA};
-      % farola en la banda exterior
-      \fill[tinta-suave] (1.95,0) rectangle (2.03,2.9);
-      \fill[tinta-suave] (2.03,2.84) rectangle (2.6,2.9);
-      % elemento volado (toldo o banderola) por encima de 2,20 m
-      \fill[tinta-suave] (4.7,2.45) -- (3.9,2.35) -- (3.9,2.3) -- (4.7,2.3) -- cycle;
-      % cotas
-      \draw[cota] (2.9,-0.55) -- (4.7,-0.55) node[midway, cotatxt, below=1pt, fill=none] {$\geq$\,1,80\,m};
-      \draw[ref] (2.9,0) -- (2.9,-0.65); \draw[ref] (4.7,-0.35) -- (4.7,-0.65);
-      \draw[cota] (2.65,0) -- (2.65,2.2) node[midway, cotatxt, rotate=90] {$\geq$\,2,20\,m};
-      \draw[ref] (2.55,2.2) -- (2.9,2.2);
-      \draw[cota] (1.5,0.35) -- (1.95,0.35) node[midway, cotatxt, above=1pt, fill=none] {$\geq$\,0,40\,m};
-      \node[rotulo, align=center] at (0.75,0.3) {calzada};
-    \end{scope}
- 
-    % =============== Requisitos ===============
-    \begin{scope}[shift={(7.0,-7.4)}]
-      \node[anchor=north west, text width=7.2cm, align=left, font=\sffamily\scriptsize, text=tinta,
-            draw=uoc-azul, line width=\trazofino, fill=superficie, inner sep=6pt] at (0,3.75) {%
-        {\small\bfseries\color{uoc-azul} Requisitos del IPA}\\[2pt]
-        {\color{tinta-suave}Orden TMA/851/2021}\\[5pt]
-        \textbf{Ancho libre de paso} $\geq$\,1,80\,m, continuo y sin obstáculos.\\[3pt]
-        \textbf{Altura libre de paso} $\geq$\,2,20\,m en todo el ancho del itinerario.\\[3pt]
-        \textbf{Mobiliario urbano} en la banda exterior de la acera, a $\geq$\,0,40\,m del borde del bordillo.\\[3pt]
-        \textbf{Trazado} junto a la línea de fachada o elemento que la sustituya.};
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Itinerario peatonal accesible: dimensiones mínimas en sección transversal.}
-  \label{fig:ipa-seccion}
-  \fuente{elaboración propia a partir de la Orden TMA/851/2021.}
-\end{figure}
+\input{capitulos/01-introduccion/figuras/ipa-seccion}
 
 
 A pesar de esta legislación, según los diagnósticos realizados por el IMSERSO, el estado actual de la accesibilidad de las ciudades es bastante negligente. En el año 2005, más del \textbf{16\% de aceras eran totalmente inaccesibles} por tener anchos inferiores a lo establecido por ley, y peor aún, más del \textbf{63\% de los itinerarios peatonales tenían obstáculos físicos} que dificultan la movilidad de los viandantes. Según el informe de Índice de Accesibilidad e Inclusión de la Fundación ONCE (2022), el \textbf{37\%} de las necesidades de accesibilidad en la vía urbana \textbf{siguen incumpliendo la ley}.
@@ -193,95 +42,13 @@ La ejecución de los planes de accesibilidad sufre de unos procedimientos excesi
 \end{itemize}
 
 
-La necesidad de acelerar los planes de accesibilidad es el punto de partida de este proyecto. Para ello, se plantea la utilización de parámetros potencialmente obtenibles a partir de imágenes aéreas y a pie de calle como fuente de datos para el diagnóstico de las vías urbanas, utilizando técnicas de inteligencia artificial, construyendo un \textbf{modelo de clasificación de accesibilidad} la evaluación de las calles de cada ciudad.
+La necesidad de acelerar los planes de accesibilidad es el punto de partida de este proyecto. Para ello, se plantea la utilización de parámetros potencialmente obtenibles a partir de imágenes aéreas y a pie de calle, así como datos cartográficos públicos, como fuente de datos para el diagnóstico de las vías urbanas, utilizando técnicas de inteligencia artificial, construyendo un \textbf{modelo de clasificación de accesibilidad} para la evaluación de las calles de cada ciudad.
 \\
 
 Este planteamiento permitirá \textbf{reducir la carga de trabajo, la lentitud y los costes} que conlleva la inspección \textit{in situ} del procedimiento actual, \textbf{impactando} positivamente en el conjunto de la \textbf{ciudadanía}.
 \\
 
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[tfm,
-      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
-      paso/.style={arqbase, text width=22mm, minimum height=11mm, inner sep=3pt,
-                   font=\sffamily\scriptsize, align=center},
-      manual/.style={paso, fill=superficie, draw=tinta-suave},
-      datos/.style={paso, fill=arq-datos},
-      algoritmo/.style={paso, fill=nn-conv, double=nn-conv, double distance=1.2pt},
-      externo/.style={paso, fill=arq-externo, draw=acc-deficiente},
-      % Etapas del objetivo secundario (línea discontinua)
-      extension/.style={paso, fill=nn-conv!40, draw=uoc-azul, dashed},
-      extext/.style={paso, fill=arq-externo, draw=acc-deficiente, dashed},
-      nota/.style={font=\sffamily\scriptsize, text=tinta, anchor=north west, inner sep=0pt,
-                   text width=41mm, align=left},
-    ]
-    % ---------- Carriles (fondo con mayor altura)
-    \fill[uoc-gris]       (-2.25, 2.00) rectangle (12.45,-2.00);
-    \fill[uoc-cian-suave] (-2.25,-2.30) rectangle (12.45,-7.10);
-
-    % Etiquetas laterales a dos líneas (la segunda línea no negrita) para que quepan en el carril
-    \node[rotate=90, align=center, font=\sffamily\scriptsize, text=tinta-suave] at (-1.8, 0.0)  {\textbf{ACTUAL}\\manual (\emph{in situ})};
-    \node[rotate=90, align=center, font=\sffamily\scriptsize, text=uoc-azul]    at (-1.8,-4.65) {\textbf{PROPUESTO}\\variables seleccionadas};
-
-    % ---------- Proceso actual
-    \node[manual] (a1) at (0,0)    {Planificación de rutas por barrios o sectores};
-    \node[manual] (a2) at (2.75,0)  {Desplazamiento del equipo técnico};
-    \node[manual] (a3) at (5.5,0)  {Medición manual calle a calle};
-    \node[manual] (a4) at (8.25,0)  {Registro en informes y fotografías};
-    \node[datos]  (a5) at (11,0) {Carga manual en la plataforma};
-    \foreach \i/\j in {a1/a2,a2/a3,a3/a4,a4/a5} \draw[flecha] (\i) -- (\j);
-    \draw[flecha, dashed] (a3.north) .. controls +(0,8mm) and +(0,8mm) .. (a2.north)
-      node[pos=0.5, above, etiqueta] {se repite en cada calle};
-    \foreach \x/\t in {-1.1/{Coste elevado de personal y desplazamientos},
-                        3.45/{Foto puntual del diagnóstico, se queda obsoleta pronto},
-                        8.0/{Datos lentos de procesar, difícil tener una visión global}}
-      \node[nota] at (\x,-1.0) {\textcolor{estado-bloqueado}{\textbf{\textminus}}~\t};
-
-    % ---------- Proceso propuesto
-    % Etapas discontinuas = objetivo secundario (extracción de variables desde imagen).
-    % En el trabajo principal las variables se toman de los datos de campo de los ayuntamientos.
-    \node[extext]    (b1) at (0,-4.3)    {Imágenes aéreas y a pie de calle};
-    \node[extension] (b2) at (2.75,-4.3)  {Extracción de variables seleccionadas};
-    \node[datos]     (b3) at (5.5,-4.3)  {Variables seleccionadas por tramo};
-    \node[algoritmo] (b4) at (8.25,-4.3)  {Modelo de clasificación de accesibilidad};
-    \node[datos]     (b5) at (11,-4.3) {Resultados y datos exportables};
-    \foreach \i/\j in {b1/b2,b2/b3,b3/b4,b4/b5} \draw[flecha] (\i) -- (\j);
-    \node[externo, text width=34mm, minimum height=8mm] (v) at (8.25,-2.95) {Datos de campo de Albacete y Algeciras};
-    \draw[flecha, dashed] (v) -- (b4);
-    \draw[flecha, dashed] (b5.south) .. controls +(0,-8mm) and +(0,-8mm) .. (b1.south)
-      node[pos=0.5, below=1pt, etiqueta, fill=uoc-cian-suave] {se actualiza con cada nueva carga de imágenes};
-
-    % Términos positivos desplazados a -6.20
-    \foreach \x/\t in {-1.1/{Cobertura más amplia con menos visitas de campo},
-                        3.45/{Se identifica qué variables bastan para clasificar},
-                        8.0/{Facilita la priorización de intervenciones}}
-      \node[nota] at (\x,-6.20) {\textcolor{estado-completado}{\textbf{+}}~\t};
-  \end{tikzpicture}
-
-  \vspace{3mm}
-  % ---------- Leyenda
-  % Los elementos se encadenan con posiciones relativas (no coordenadas fijas),
-  % de modo que no se solapan aunque la tipografía sea más ancha.
-  \begin{tikzpicture}[font=\sffamily\scriptsize, text=tinta,
-      leg/.style={minimum width=4.5mm, minimum height=2.4mm, inner sep=0pt, anchor=west, line width=\trazo},
-      legt/.style={anchor=west, inner sep=0pt}]
-    \node[leg, draw=tinta-suave, fill=superficie] (k1) at (0,0) {};
-    \node[legt] (t1) at ([xshift=1.2mm]k1.east) {Tarea manual};
-    \node[leg, draw=uoc-azul, fill=nn-conv, double=nn-conv, double distance=0.8pt] (k2) at ([xshift=3.5mm]t1.east) {};
-    \node[legt] (t2) at ([xshift=1.2mm]k2.east) {Algoritmo};
-    \node[leg, draw=uoc-azul, fill=arq-datos] (k3) at ([xshift=3.5mm]t2.east) {};
-    \node[legt] (t3) at ([xshift=1.2mm]k3.east) {Datos / resultado};
-    \node[leg, draw=acc-deficiente, fill=arq-externo] (k4) at ([xshift=3.5mm]t3.east) {};
-    \node[legt] (t4) at ([xshift=1.2mm]k4.east) {Fuente externa};
-    \node[leg, draw=uoc-azul, fill=nn-conv!40, dashed] (k5) at ([xshift=3.5mm]t4.east) {};
-    \node[legt] (t5) at ([xshift=1.2mm]k5.east) {Extensión};
-    \draw[flecha, dashed] ([xshift=3.5mm]t5.east) -- ++(5mm,0) coordinate (k6);
-    \node[legt] (t6) at ([xshift=1.2mm]k6) {Repetición};
-  \end{tikzpicture}
-  \caption{Proceso actual de diagnóstico de la accesibilidad mediante inspección \emph{in situ} frente al proceso propuesto basado en variables seleccionadas.}
-  \label{fig:proceso_actual_propuesto}
-  \fuente{elaboración propia, con ayuda de Claude y Gemini.}
-\end{figure}
+\input{capitulos/01-introduccion/figuras/proceso_actual_propuesto}
 
 \section{Motivación personal}
 Mi interés personal a la hora de seleccionar este trabajo parte principalmente de dos motivos. En primer lugar, buscaba realizar un proyecto con\textbf{ carga social} y que tuviera \textbf{aplicación real y humana}, intentando impactar en la mejora de la vida de las personas.
@@ -309,8 +76,9 @@ Esta experiencia personal me permitirá ayudar a identificar características y 
 
 El objetivo general del trabajo es el \textbf{diseño e implementación de un modelo de clasificación de parámetros de accesibilidad del viario urbano} basado en técnicas de \gls{machine-learning}, a partir de conjuntos de datos de estudios de accesibilidad de dos ciudades (Albacete y Algeciras).
 Se tratará de evaluar la viabilidad de clasificar la accesibilidad de las calles, a partir de un subconjunto de aquellos parámetros que se puedan obtener a partir de imágenes aéreas de alta resolución, o imágenes obtenidas desde otras perspectivas; y con qué fiabilidad.
+Además, se evaluará si parte de los parámetros se pueden obtener a partir de fuentes públicas cartográficas, sin necesidad de procesar las imágenes.
 
-A continuación se detalla una \textbf{lista de objetivos principales}, que comprenden el \textbf{\gls{MVP}} (siglas de Minimum Valuable Product) del trabajo; y una lista de objetivos secundarios de valor añadido.
+A continuación se detalla una \textbf{lista de objetivos principales}, que comprenden el \textbf{\gls{MVP}} del trabajo; y una lista de objetivos secundarios de valor añadido.
 
 \subsection{Objetivos principales (MVP)}
 
@@ -324,7 +92,7 @@ Analizar e identificar las necesidades de movilidad y accesibilidad en el espaci
 
 \textbf{OP2. Identificar, analizar y preparar los datos}
 
-Recopilar los conjuntos de datos disponibles de las ciudades de Albacete y Algeciras, analizar los parámetros medidos, seleccionar y categorizar aquellos relevantes según puedan obtenerse de imágenes aéreas, de imágenes a pie de calle o solo in situ, y preparar los datos para su uso en el entrenamiento y evaluación de los modelos de clasificación.
+Recopilar los conjuntos de datos disponibles de las ciudades de Albacete y Algeciras, analizar los parámetros medidos, seleccionar y categorizar aquellos relevantes según puedan obtenerse de fuentes cartográficas públicas, de imágenes aéreas, de imágenes a pie de calle o solo in situ, y preparar los datos para su uso en el entrenamiento y evaluación de los modelos de clasificación.
 \\
 
 \textbf{OP3. Identificar y definir las métricas e indicadores de evaluación de la accesibilidad}
@@ -334,7 +102,7 @@ Analizar la normativa vigente (estatal, autonómica y local) para identificar el
 
 \textbf{OP4. Entrenar modelos de aprendizaje automático de clasificación de accesibilidad}
 
-Modelar y entrenar diferentes modelos de \textit{machine learning}, con diferentes conjuntos de características extraídas de los datos recopilados, diferenciando entre las que se puedan obtener potencialmente de imágenes aéreas o transversales, y las que se obtienen directamente de los datos de campo; comparando los conjuntos aéreo, a pie de calle, la combinación de ambos y el completo con un mismo modelo de referencia.
+Modelar y entrenar diferentes modelos de \textit{machine learning}, con diferentes conjuntos de características extraídas de los datos recopilados, diferenciando entre las que se puedan obtener potencialmente de fuentes cartográficas públicas o imágenes aéreas, de imágenes a pie de calle, y las que se obtienen directamente de los datos de campo; comparando los conjuntos cartográfico y aéreo, a pie de calle, la combinación de ambos y el completo, con un mismo modelo de referencia.
 \\
 
 \textbf{OP5. Validación de los modelos}
@@ -344,48 +112,10 @@ Ejecutar el algoritmo sobre los conjuntos de datos de las ciudades piloto, y eva
 
 \textbf{OP6. Interpretación de los resultados}
 
-Responder a las preguntas de investigación planteadas, interpretando los resultados obtenidos en términos de la accesibilidad de las vías urbanas y la efectividad de la selección de características para imágenes aéreas, transversales y datos de campo, e identificando qué dimensiones medidas in situ son prescindibles.
+Responder a las preguntas de investigación planteadas, interpretando los resultados obtenidos en términos de la accesibilidad de las vías urbanas y la efectividad de la selección de características para fuentes cartográficas públicas e imágenes aéreas, imágenes a pie de calle y datos de campo, e identificando qué dimensiones medidas in situ son prescindibles.
 \\
 
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[tfm,
-      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
-      obj/.style={arqbase, fill=arq-datos, draw=uoc-azul, text width=40mm, minimum height=19mm,
-                  inner sep=4pt, font=\sffamily\scriptsize, align=left, text=tinta},
-      objalg/.style={obj, fill=nn-conv, double=nn-conv, double distance=1.2pt},
-      num/.style={circle, fill=uoc-azul, text=white, font=\sffamily\scriptsize\bfseries,
-                  inner sep=0pt, minimum size=5mm},
-    ]
-    % ---------- Fondo del MVP
-    \fill[uoc-gris] (-2.55, 2.15) rectangle (12.55,-4.65);
-    \node[anchor=north west, font=\sffamily\scriptsize\bfseries, text=uoc-azul] at (-2.35, 2.05)
-      {Producto mínimo viable (MVP): objetivos principales, en orden de ejecución};
-
-    % ---------- Objetivos
-    \node[obj]    (o1) at (0,0)   {\textbf{OP1}\\[1pt] Identificar necesidades y requisitos de accesibilidad universal};
-    \node[obj]    (o2) at (5,0)   {\textbf{OP2}\\[1pt] Identificar, analizar y preparar los datos};
-    \node[obj]    (o3) at (10,0)  {\textbf{OP3}\\[1pt] Identificar y definir las métricas e indicadores de evaluación de la accesibilidad};
-    \node[objalg] (o4) at (0,-3.3) {\textbf{OP4}\\[1pt] Entrenar modelos de aprendizaje automático de clasificación de accesibilidad};
-    \node[obj]    (o5) at (5,-3.3) {\textbf{OP5}\\[1pt] Validación de los modelos};
-    \node[obj]    (o6) at (10,-3.3){\textbf{OP6}\\[1pt] Interpretación de los resultados};
-
-    % ---------- Números de orden
-    \foreach \i in {1,...,6}
-      \node[num] at (o\i.north west) {\i};
-
-    % ---------- Flechas en orden
-    \draw[flecha] (o1) -- (o2);
-    \draw[flecha] (o2) -- (o3);
-    \draw[flecha] (o3.south) -- ++(0,-0.62) -| (o4.north);
-    \draw[flecha] (o4) -- (o5);
-    \draw[flecha] (o5) -- (o6);
-  \end{tikzpicture}
-
-  \caption{Objetivos principales del proyecto (MVP).}
-  \label{fig:objetivos_mvp}
-  \fuente{elaboración propia, con ayuda de Claude.}
-\end{figure}
+\input{capitulos/01-introduccion/figuras/objetivos_mvp}
 
 \subsection{Objetivos secundarios}
 
@@ -397,39 +127,47 @@ Representan las metas adicionales o de extensión al trabajo principal del proye
 Visualizar en un mapa las predicciones de accesibilidad generadas por los modelos entrenados, permitiendo a los usuarios explorar la información obtenida de manera visual e interactiva.
 \\
 
-\textbf{OS2. Prueba de concepto de extracción de imágenes aéreas}
+\textbf{OS2. Obtención de variables a partir de cartografía pública}
 
-Realizar una prueba de concepto para la extracción de imágenes aéreas de las vías urbanas, evaluando la posibilidad de extraer los datos necesarios para realizar las predicciones en el modelo de clasificación.
+Calcular, para los tramos de Albacete, las variables que según la estimación de viabilidad pueden obtenerse de fuentes cartográficas públicas (pendiente del modelo digital del terreno, anchura de la vía del catastro e intersecciones del callejero), y comprobar si los valores reales confirman esa estimación y pueden sustituir a las variables medidas in situ.
 \\
 
 \subsection{Hipótesis de investigación}
 Se plantean las siguientes hipótesis de investigación:
 
-\begin{table}[H]
-  \centering
-\caption{Hipótesis}
-\label{tab:hipotesis}
+\begingroup
 \small
 \renewcommand{\arraystretch}{1.15}
 \setlength{\extrarowheight}{1pt}
-
-\begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash\hsize=1.3\hsize}X >{\raggedright\arraybackslash\hsize=0.7\hsize}X}
-\toprule
-\cabeceratabla
-& \textbf{Hipótesis} & \textbf{Se refuta si…} \\
-\midrule
-\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
+\begin{longtable}{>{\centering\arraybackslash}p{1cm} >{\raggedright\arraybackslash}p{0.58\textwidth} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-0.58\textwidth-1cm-6\tabcolsep\relax}}
+  \caption{Hipótesis}\label{tab:hipotesis}\\
+  \toprule
+  \cabeceratabla
+  & \textbf{Hipótesis} & \textbf{Se refuta si…} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  & \textbf{Hipótesis} & \textbf{Se refuta si…} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
+\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de fuentes cartográficas públicas o de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
 \textbf{H2} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de calle, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
-\textbf{H3} & Combinar las variables de ambos tipos de imagen (aéreas y a pie de calle) mejora el rendimiento de los modelos que utilizan únicamente uno de los dos subconjuntos & No se aprecia mejora suficiente \\
+\textbf{H3} & Combinar las variables cartográficas y aéreas con las de imágenes a pie de calle mejora el rendimiento de los modelos que utilizan únicamente uno de los dos conjuntos & No se aprecia mejora suficiente \\
 \midrule
 \textbf{H4} & El entrenamiento del modelo con los datos de una ciudad es transferible a otra ciudad (es decir, tiene un rendimiento similar) & Hay bastante diferencia de precisión \\
 \midrule
 \textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Al excluir las características se detecta un claro descenso en la precisión \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\midrule
+\textbf{H6} & (Secundaria, OS2) Las variables obtenidas de fuentes cartográficas públicas confirman que son viables para sustituir a las medidas in situ sin una pérdida significativa de rendimiento & Los valores reales no confirman la estimación o el rendimiento desciende de forma significativa \\
+\end{longtable}
+\endgroup
 
 
 \section{Impacto en sostenibilidad, ético-social y de diversidad}
@@ -439,12 +177,12 @@ Una vez analizados los Objetivos de Desarrollo Sostenible (ODS) de la Agenda 203
 
 \subsection{Sostenibilidad y huella ecológica}
 
-Los ODS a los que más se contribuye en el proyecto son: \textbf{ODS 11 (\textit{Sustainable Cities and Communities})} y \textbf{ODS 9 (\textit{Industry, Innovation and Infraestructure})}.
+Los ODS a los que más se contribuye en el proyecto son: \textbf{ODS 11 (\textit{Sustainable Cities and Communities})} y \textbf{ODS 9 (\textit{Industry, Innovation and Infrastructure})}.
 \\
 
 En cuanto a los \textbf{impactos positivos}, se establecen:
 \begin{itemize}
-    \item \textbf{Sustitución de trabajos in situ}: el mecanismo tradicional de auditoría de accesibilidad incluye un desplazamiento continuo de vehículos, para que el personal técnico vaya a cada calle, así como material técnico para poder realizar las mediciones. La utilización de variables extraídas de imágenes reduce de manera significativa los desplazamientos, permitiendo una reducción de las emisiones indirectas CO2.
+    \item \textbf{Sustitución de trabajos in situ}: el mecanismo tradicional de auditoría de accesibilidad incluye un desplazamiento continuo de vehículos, para que el personal técnico vaya a cada calle, así como material técnico para poder realizar las mediciones. La utilización de variables obtenidas de cartografía pública y de imágenes reduce de manera significativa los desplazamientos, permitiendo una reducción de las emisiones indirectas CO2.
     \item \textbf{Optimización de los recursos públicos}: además de la reducción de costes de gasolina por los desplazamientos, la posibilidad de ordenar los tramos de calles menos accesibles permite a los ayuntamientos la priorización de obras de reparación en los tramos más críticos, optimizando las intervenciones en los puntos más necesarios.
 \end{itemize}
 
@@ -473,7 +211,7 @@ Uno de los objetivos principales del trabajo es el enfoque accesible universal, 
 
 Sobre los \textbf{impactos positivos}, se encuentran:
 \begin{itemize}
-    \item \textbf{Inclusión y \gls{diversidad-funcional} global}: los beneficios de los planes de accesibilidad no están únicamente pensados para colectivos particulares, sino que están pensados para todo el conjunto diverso de la población. Por lo que no se benefician unicamente en personas con discapacidad permanente, también disfrutan de los planes las personas mayores, personas con discapacidad temporal, familias o el resto de la población.
+    \item \textbf{Inclusión y \gls{diversidad-funcional} global}: los beneficios de los planes de accesibilidad no están únicamente pensados para colectivos particulares, sino que están pensados para todo el conjunto diverso de la población. Por ello, no se benefician únicamente las personas con discapacidad permanente: también disfrutan de los planes las personas mayores, personas con discapacidad temporal, familias o el resto de la población.
     \item \textbf{Derecho a la autonomía y disfrute de la ciudad}: el proyecto facilita la implantación de actuaciones de eliminación de barreras en la vía pública y tiene una visión global de la diversidad, por lo que permite una mayor autonomía personal, así como un mejor derecho de disfrute de la ciudad. 
     \item \textbf{Perspectiva de género en la movilidad urbana}: el aumento de autonomía en la diversidad funcional implica una menor necesidad de ayuda para los desplazamientos, algo que impacta positivamente en la habitual mayor carga de cuidados de las mujeres.
 \end{itemize}
@@ -488,54 +226,13 @@ Utilizando la referencia \textit{Researching Information Systems and Computing} 
 Las fases que comprende esta estrategia son:
 \begin{enumerate}
     \item \textbf{Identificación del problema (\textit{Awareness})}: identificación del problema grave de las ciudades que no cumplen con criterios de accesibilidad única, análisis de la legislación y buenas prácticas recomendadas por organizaciones accesibles, análisis de los planes de actuación y comprobación de las limitaciones actuales de los procedimientos manuales de verificación de parámetros de accesibilidad, con visitas in situ del personal técnico de los ayuntamientos.
-    \item \textbf{Diseño (\textit{Suggestion}):} análisis de literatura científica con el estado del arte del diseño de soluciones para el uso de información tabular de informes de accesibilidad, la reducción de características relevantes, y adicionalmente para el análisis de imágenes aéreas urbanas y extracción de medidas geométricas. Realización de una propuesta de diseño tecnológica con técnicas de aprendizaje automático, así como un análisis inicial de los conjuntos de datos de Albacete y Algeciras, con diversos modelos para cada conjunto de características.
+    \item \textbf{Diseño (\textit{Suggestion}):} análisis de literatura científica con el estado del arte del diseño de soluciones para el uso de información tabular de informes de accesibilidad, la reducción de características relevantes, y adicionalmente para el análisis de imágenes aéreas urbanas y extracción de medidas geométricas a partir de datos de cartografía pública. Realización de una propuesta de diseño tecnológica con técnicas de aprendizaje automático, así como un análisis inicial de los conjuntos de datos de Albacete y Algeciras, con diversos modelos para cada conjunto de características.
     \item \textbf{Desarrollo (\textit{Development})}: implementación del sistema informático en Python, incluyendo los modelos y los artefactos web necesarios para cumplir con el diseño planificado.
     \item \textbf{Evaluación (\textit{Evaluation})}: validación cuantitativa de la precisión de los modelos, comparándolo con los datos disponibles de ambas ciudades, lo que se conoce como \gls{ground-truth} en la ciencia de datos. Así como respuesta a las preguntas de investigación planteadas.
     \item \textbf{Conclusión (\textit{Conclusion})}: documentación de los resultados obtenidos, hipótesis confirmadas o refutadas, listado de variables recomendadas para futuros estudios de extracción de imágenes; aprendizajes y dificultades encontradas durante la realización del trabajo, así como enumeración de futuras líneas de ampliación.
 \end{enumerate}
 
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[tfm,
-      every node/.append style={execute at begin node={\begin{hyphenrules}{nohyphenation}}, execute at end node={\end{hyphenrules}}}, % sin guiones
-      fase/.style={arqbase, fill=arq-datos, draw=uoc-azul, text width=46mm, minimum height=22mm,
-                   inner sep=4pt, font=\sffamily\scriptsize, align=left, text=tinta},
-      fasealg/.style={fase, fill=nn-conv, double=nn-conv, double distance=1.2pt},
-      num/.style={circle, fill=uoc-azul, text=white, font=\sffamily\scriptsize\bfseries,
-                  inner sep=0pt, minimum size=5mm},
-    ]
-    % ---------- Etapas dispuestas en círculo (sentido horario)
-    \node[fase]    (f1) at (0, 3.7)   {\textbf{Identificación del problema}\\[1pt]
-      Descubrir el objetivo del proyecto a partir de la lentitud de los planes de accesibilidad, que exigen inspecciones \emph{in situ}.};
-    \node[fase]    (f2) at (5.3, 1.2) {\textbf{Diseño}\\[1pt]
-      Análisis de las leyes y del estado del arte para elegir las características de medida de la accesibilidad, y análisis de los datos de Albacete y Algeciras.};
-    \node[fase] (f3) at (3.3,-3.1) {\textbf{Desarrollo}\\[1pt]
-      Implementación de los modelos y de los sistemas.};
-    \node[fase]    (f4) at (-3.3,-3.1) {\textbf{Evaluación}\\[1pt]
-      Validación de la precisión de los modelos y comparativa entre modelos y entre ciudades.};
-    \node[fase]    (f5) at (-5.3, 1.2) {\textbf{Conclusión}\\[1pt]
-      Respuesta a las preguntas de investigación, documentación de los resultados y líneas futuras.};
-
-    % ---------- Números de etapa
-    \foreach \i in {1,...,5}
-      \node[num] at (f\i.north west) {\i};
-
-    % ---------- Flechas del ciclo
-    \draw[flecha] (f1.east)  to[bend left=22] (f2.north);
-    \draw[flecha] (f2.south) to[bend left=18] (f3.north);
-    \draw[flecha] (f3.west)  -- (f4.east);
-    \draw[flecha] (f4.north) to[bend left=18] (f5.south);
-    \draw[flecha, dashed] (f5.north) to[bend left=22] node[pos=0.5, above left, etiqueta] {nuevo ciclo} (f1.west);
-
-    % ---------- Centro
-    \node[align=center, font=\sffamily\scriptsize, text=uoc-azul] at (0,0.1)
-      {\textbf{Investigación}\\\textbf{basada en diseño}\\[1pt]\textcolor{tinta-suave}{(\emph{Design Research})}};
-  \end{tikzpicture}
-
-  \caption{Ciclo de vida de la metodología de desarrollo del trabajo.}
-  \label{fig:metodologia_ciclo}
-  \fuente{elaboración propia, con ayuda de Claude.}
-\end{figure}
+\input{capitulos/01-introduccion/figuras/metodologia_ciclo}
 
 \subsection{Estrategia adicional: caso de estudio (\textit{Case Study})}
 
@@ -544,7 +241,7 @@ Tomando como base el conjunto de datos de Albacete y Algeciras, se puede realiza
 De esta manera, se podrá demostrar la calidad del sistema, y servirá para demostrar el uso real de la herramienta en los ayuntamientos.
 
 \subsection{Metodología de ingeniería de software}
-Se plantea la ejecución del diseño e implementación de código como un proyecto de ingeniería de software, con tecnologías de codigo abierto, herramientas de inteligencia artificial, y de gestión de proyectos.
+Se plantea la ejecución del diseño e implementación de código como un proyecto de ingeniería de software, con tecnologías de código abierto, herramientas de inteligencia artificial, y de gestión de proyectos.
 
 \begin{enumerate}
     \item Metodología
@@ -555,12 +252,12 @@ Se plantea la ejecución del diseño e implementación de código como un proyec
     \item Stack tecnológico
         \begin{itemize}
             \item \textbf{Lenguaje de programación:} Python, el lenguaje estándar para los trabajos de ciencia de datos.
-            \item \textbf{Librerías de \textit{deep learning} y visión por computador:} uso de librerías de Python como PyTorch o Torchvision.
+            \item \textbf{Librerías de aprendizaje automático:} uso de librerías de Python como scikit-learn, XGBoost o LightGBM, y SHAP para la interpretabilidad de los modelos.
             \item \textbf{Librerías de tratamiento espacial de datos:} utilización de librerías como GeoPandas, NumPy, exportación en formatos abiertos (GeoJson/CSV), y tecnologías estándar de desarrollo web (HTML5, CSS, Javascript).
         \end{itemize}
     \item Recursos hardware
         \begin{itemize}
-            \item \textbf{Entorno con \gls{GPU}:} se necesita utilizar un entorno con aceleración gráfica por hardware (\gls{GPU}), ya sea en entorno local o remoto, para poder entrenar los modelos.
+            \item \textbf{Entorno de ejecución:} un equipo convencional es suficiente para entrenar los modelos con datos tabulares; la \gls{GPU} no es imprescindible, inicialmente.
         \end{itemize}
     \item Herramientas
         \begin{itemize}
@@ -586,110 +283,34 @@ Además, se han incluido paquetes de trabajo para los \textbf{objetivos secundar
 
 \subsection{Calendario del trabajo}
 
-En primer lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que en color verde se indican las entregas secundarias.
+En primer lugar, se muestra en la siguiente tabla la división de las tareas a realizar durante el trabajo, descompuestas en \textbf{6 paquetes de trabajo principales}, indicando el número de créditos ECTS y horas, y a qué entrega de evaluación continua se corresponden. Para el hito de implementación (WP3), se ha realizado una \textbf{división inicial en subfases}, que podría verse actualizada una vez se consolide la investigación del estado del arte (WP2).
 
-\begin{figure}[H]
-  \centering
-  \begin{ganttchart}[
-      tfmgantt,                          % estilo del sistema (tfm-estilo.sty)
-      time slot format=isodate,
-      x unit=1.0mm,                      % 120 días en el ancho de página
-      y unit chart=0.42cm, y unit title=0.5cm,
-      vgrid={*6{draw=none}, *1{draw=rejilla, line width=\trazofino}},  % una línea por semana
-      hgrid={*1{draw=rejilla, line width=\trazofino}},
-      canvas/.append style={draw=filete, line width=\trazofino},
-      bar height=0.55, milestone height=0.6, group peaks height=0.2,
-      milestone left shift=-1.5, milestone right shift=1.5,  % rombo de ~4 mm
-      bar label font=\sffamily\scriptsize,
-      group label font=\sffamily\scriptsize\bfseries\color{uoc-azul},
-      milestone label font=\sffamily\scriptsize\itshape\color{tinta-suave},
-      title label font=\sffamily\scriptsize\bfseries\color{uoc-azul},
-      secundaria/.style={bar/.append style={fill=papel, draw=uoc-azul, dashed}},
-      descanso/.style={bar/.append style={fill=uoc-gris, draw=tinta-suave, line width=\trazofino,
-                        pattern=north east lines, pattern color=tinta-suave},
-                       bar label font=\sffamily\scriptsize\itshape\color{tinta-suave}},
-    ]{2026-09-24}{2027-01-21}
-
-    % Escala de tiempo (en castellano; los números son días de cada mes dentro del rango)
-    \gantttitle{2026}{99} \gantttitle{2027}{21} \\
-    \gantttitle{sep.}{7} \gantttitle{oct.}{31} \gantttitle{nov.}{30}
-    \gantttitle{dic.}{31} \gantttitle{ene.}{21} \\
-
-    % WP1
-    \ganttbar{WP1 Definición y objetivos}{2026-09-24}{2026-10-04} \\
-    \ganttmilestone{Entrega PEC1}{2026-10-04} \\
-
-    % WP2
-    \ganttgroup{WP2 Contexto}{2026-10-05}{2026-10-25} \\
-    \ganttbar{WP2.1 Análisis legal}{2026-10-05}{2026-10-12} \\
-    \ganttbar{WP2.2 Estado del arte}{2026-10-13}{2026-10-25} \\
-    \ganttmilestone{Entrega PEC2}{2026-10-25} \\
-
-    % WP3
-    \ganttgroup{WP3 Desarrollo}{2026-10-19}{2026-12-15} \\
-    \ganttbar{WP3.1 Preparación de datos}{2026-10-19}{2026-11-03} \\
-    \ganttbar{WP3.2 Métricas y características}{2026-10-26}{2026-11-10} \\
-    \ganttbar{WP3.3 Entrenamiento de modelos}{2026-11-03}{2026-11-24} \\
-    \ganttbar{WP3.4 Comparativa y ajuste}{2026-11-11}{2026-11-24} \\
-    \ganttbar{WP3.5 Validación e iteración}{2026-11-13}{2026-12-05} \\
-    \ganttbar{WP3.6 Interpretación de resultados}{2026-11-25}{2026-12-05} \\
-    \ganttbar[descanso]{Descanso}{2026-12-02}{2026-12-07} \\
-    \ganttbar[secundaria]{WP3.7 (OS1) Integración con el callejero}{2026-12-08}{2026-12-11} \\
-    \ganttbar[secundaria]{WP3.8 (OS1) Visor GIS e interfaz}{2026-12-10}{2026-12-14} \\
-    \ganttbar[secundaria]{WP3.9 (OS2) POC con imágenes}{2026-12-08}{2026-12-15} \\
-    \ganttmilestone{Entrega PEC3}{2026-12-15} \\
-
-    % WP4
-    \ganttbar{WP4 Redacción memoria}{2026-12-16}{2026-12-27} \\
-    \ganttmilestone{Entrega PEC4}{2026-12-27} \\
-
-    % WP5 y WP6
-    \ganttbar{WP5 Presentación vídeo}{2026-12-28}{2027-01-05} \\
-    \ganttmilestone{Entrega PEC5}{2027-01-05} \\
-    \ganttbar{WP6 Defensa oral}{2027-01-06}{2027-01-21} \\
-    \ganttmilestone{Entrega PEC6 / Final}{2027-01-21}
-  \end{ganttchart}
-
-  \vspace{3mm}
-  % Leyenda
-  \begin{tikzpicture}[font=\sffamily\scriptsize, text=tinta]
-    \draw[uoc-azul, fill=uoc-azul] (0,-0.06) rectangle (0.5,0.06);
-    \node[anchor=west] at (0.6,0) {Fase};
-    \draw[uoc-azul, fill=nn-conv, line width=\trazofino] (1.6,-0.1) rectangle (2.1,0.1);
-    \node[anchor=west] at (2.2,0) {Tarea};
-    \draw[uoc-azul, fill=papel, dashed, line width=\trazofino] (3.3,-0.1) rectangle (3.8,0.1);
-    \node[anchor=west] at (3.9,0) {Tarea secundaria};
-    \draw[tinta-suave, fill=uoc-gris, line width=\trazofino, pattern=north east lines, pattern color=tinta-suave] (6.3,-0.1) rectangle (6.8,0.1);
-    \node[anchor=west] at (6.9,0) {Descanso};
-    \draw[acc-no-accesible, fill=acc-deficiente] (8.35,0) -- ++(0.1,0.1) -- ++(0.1,-0.1) -- ++(-0.1,-0.1) -- cycle;
-    \node[anchor=west] at (8.6,0) {Hito (entrega de PEC)};
-  \end{tikzpicture}
-
-  \caption{Diagrama de Gantt del proyecto.}
-  \label{fig:gantt_tfm}
-\end{figure}
-
-En segundo lugar, se muestra en la siguiente tabla la división de las tareas a realizar durante el trabajo, descompuestas en \textbf{6 paquetes de trabajo principales}, indicando el número de créditos ETCS y horas, y a qué entrega de evaluación continua se corresponden. Para el hito de implementación (WP3), se ha realizado una \textbf{división inicial en subfases}, que podría verse actualizada una vez se consolide la investigación del estado del arte (WP2).
-
-\begin{table}[H]
-  \centering
-\caption{Planificación del proyecto y distribución de carga ECTS}
-\label{tab:planificacion_tfm}
+\begingroup
 \scriptsize
 \setlength{\extrarowheight}{1pt}
-
-\begin{tabularx}{\textwidth}{l X c c c}
+\begin{longtable}{>{\raggedright\arraybackslash}p{1.6cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-6.6cm-10\tabcolsep\relax} >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{2.4cm} >{\centering\arraybackslash}p{1.1cm}}
+\caption{Planificación del proyecto y distribución de carga ECTS}\label{tab:planificacion_tfm}\\
 \toprule
 \cabeceratabla
 \textbf{WP} & \textbf{Tarea y descripción detallada} & \textbf{Carga} & \textbf{Fechas} & \textbf{UOC} \\
 \midrule
+\endfirsthead
+\toprule
+\cabeceratabla
+\textbf{WP} & \textbf{Tarea y descripción detallada} & \textbf{Carga} & \textbf{Fechas} & \textbf{UOC} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
     WP1 & \textbf{Definición y objetivos:} planteamiento inicial, problemática, alineación de objetivos, metodología y planificación temporal. & \makecell{0.6 ECTS \\ (15 h)} & 24 sep - 04 oct & PEC1 \\
 \midrule
     WP2.1 & \textbf{Análisis legal:} estudio de legislación y normativa sobre accesibilidad e infraestructura urbana, extrayendo requisitos. & \makecell{0.6 ECTS \\ (15 h)} & 05 oct - 12 oct & PEC2 \\
     WP2.2 & \textbf{Estado del arte:} revisión de literatura sobre evaluación de la accesibilidad urbana, aprendizaje automático con datos tabulares, validación con datos espaciales y visión por computador. & \makecell{1.0 ECTS \\ (25 h)} & 13 oct - 25 oct & PEC2 \\
 \midrule
-       WP3.1 & \textbf{Preparación de datos:} recopilación de los datos de Albacete y Algeciras, análisis de los parámetros medidos, selección y categorización de los relevantes, limpieza y preparación para el entrenamiento y la evaluación de los modelos. & \makecell{0.8 ECTS \\ (20 h)} & 19 oct - 03 nov & PEC3 \\
-    WP3.2 & \textbf{Métricas y características:} definición de los indicadores y fórmulas de evaluación a partir de la normativa, y construcción de los conjuntos de características (aéreas, transversales y de campo). & \makecell{0.6 ECTS \\ (15 h)} & 26 oct - 10 nov & PEC3 \\
+    WP3.1 & \textbf{Preparación de datos:} recopilación de los datos de Albacete y Algeciras, análisis de los parámetros medidos, selección y categorización de los relevantes según puedan obtenerse potencialmente de fuentes cartográficas públicas, de imágenes aéreas, de imágenes a pie de calle o solo in situ, limpieza y preparación para el entrenamiento y la evaluación de los modelos. & \makecell{0.8 ECTS \\ (20 h)} & 19 oct - 03 nov & PEC3 \\
+    WP3.2 & \textbf{Métricas y características:} definición de los indicadores y fórmulas de evaluación a partir de la normativa, y construcción de los conjuntos de características (cartográficas y aéreas, a pie de calle y de campo). & \makecell{0.6 ECTS \\ (15 h)} & 26 oct - 10 nov & PEC3 \\
     WP3.3 & \textbf{Entrenamiento de modelos:} entrenamiento de modelos de aprendizaje automático de clasificación de accesibilidad con los distintos conjuntos de características. & \makecell{1.2 ECTS \\ (30 h)} & 03 nov - 24 nov & PEC3 \\
     WP3.4 & \textbf{Comparativa y ajuste:} comparación de los modelos entre sí y entre los distintos conjuntos de características, y ajuste de hiperparámetros. & \makecell{0.8 ECTS \\ (20 h)} & 11 nov - 24 nov & PEC3 \\
     WP3.5 & \textbf{Validación e iteración:} evaluación frente al conjunto de prueba, análisis de errores y ajuste continuo de hiperparámetros. & \makecell{0.6 ECTS \\ (15 h)} & 13 nov - 05 dic & PEC3 \\
@@ -700,35 +321,47 @@ En segundo lugar, se muestra en la siguiente tabla la división de las tareas a 
     \multicolumn{5}{l}{\textit{Objetivos secundarios (de valor añadido, condicionados al tiempo disponible y a la evolución del proyecto)}} \\
     WP3.7 (OS1) & \textbf{Integración con el callejero:} realización de la integración del modelo con los datos geográficos del callejero de una ciudad, para poder incorporar los resultados del análisis al visor. & \makecell{0.4 ECTS \\ (10 h)} & 08 dic - 11 dic & PEC3 \\
     WP3.8 (OS1) & \textbf{Visor GIS e interfaz:} desarrollo de un visor geográfico interactivo para la representación gráfica sobre mapas de la red urbana. & \makecell{0.4 ECTS \\ (10 h)} & 10 dic - 14 dic & PEC3 \\
-    WP3.9 (OS2) & \textbf{Prueba de concepto con imágenes aéreas:} extracción de imágenes aéreas de las vías urbanas y evaluación de la posibilidad de obtener los datos necesarios para las predicciones del modelo de clasificación. & \makecell{0.8 ECTS \\ (20 h)} & 08 dic - 15 dic & PEC3 \\
+    WP3.9 (OS2) & \textbf{Variables a partir de cartografía pública:} cálculo, para los tramos de Albacete, de variables a partir de fuentes cartográficas públicas (pendiente del MDT, anchura de la vía del catastro e intersecciones del callejero) y comprobación de si los valores reales confirman la estimación de viabilidad y pueden sustituir a las variables medidas in situ en el modelo. & \makecell{0.8 ECTS \\ (20 h)} & 08 dic - 15 dic & PEC3 \\
 \midrule
     WP4 & \textbf{Redacción memoria:} consolidación y redacción de la memoria final del TFM, estructurando metodología y resultados. & \makecell{1.6 ECTS \\ (40 h)} & 16 dic - 27 dic & PEC4 \\
 \midrule
     WP5 & \textbf{Presentación vídeo:} elaboración del guion, soporte visual y grabación del recurso audiovisual requerido para la defensa. & \makecell{1.0 ECTS \\ (25 h)} & 28 dic - 05 ene & PEC5 \\
 \midrule
     WP6 & \textbf{Defensa oral:} ensayo, preparación de respuestas a posibles objeciones del tribunal y exposición oral final del proyecto. & \makecell{1.0 ECTS \\ (25 h)} & 06 ene - 21 ene & PEC6 \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\midrule
+    & \textbf{Total} & \textbf{12.0 ECTS (300 h)} & 24 sep - 21 ene & \\
+\end{longtable}
+\endgroup
+
+En segundo lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que las entregas secundarias se indican con barras discontinuas.
+
+\input{capitulos/01-introduccion/figuras/gantt_tfm}
 
 
 \subsection{Identificación de riesgos}
 Con el fin de asegurar el cumplimiento de la planificación, así como la consecución de los hitos de entrega académicos, se ha realizado una matriz de evaluación de posibles riesgos que pueden tener impacto en la elaboración del trabajo, incluyendo qué probabilidad tienen de producirse, qué impacto pueden tener en el proyecto, y el plan de contingencia a seguir si se producen.
 
-Los principales riesgos identificados han estado centrados en la incentidumbre de la calidad de entrenamiento y predicción de los modelos de aprendizaje profundo, así como la priorización de objetivos principales frente a los secundarios.
+Los principales riesgos identificados han estado centrados en la incertidumbre de la calidad de entrenamiento y predicción de los modelos de aprendizaje automático, así como la priorización de objetivos principales frente a los secundarios.
 
-\begin{table}[H]
-  \centering
-  \caption{Matriz de identificación de riesgos y planes de contingencia}
-  \label{tab:identificacion_riesgos}
-  \scriptsize
-  \setlength{\extrarowheight}{3pt}
-  
-  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm} c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
-    \toprule
-    \cabeceratabla
-    \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
-    \midrule
+\begingroup
+\footnotesize
+\setlength{\extrarowheight}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.8cm} >{\centering\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-4.9cm-8\tabcolsep)/2\relax} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-4.9cm-8\tabcolsep)/2\relax}}
+  \caption{Matriz de identificación de riesgos y planes de contingencia}\label{tab:identificacion_riesgos}\\
+  \toprule
+  \cabeceratabla
+  \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla
+  \textbf{Factor de riesgo} & \textbf{Prob. / Impacto} & \textbf{Impacto en el proyecto} & \textbf{Plan de contingencia} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
     
     \textbf{Dificultad en el análisis de los conjuntos de datos de Albacete o Algeciras} & 
     Media/Alto & 
@@ -748,50 +381,63 @@ Los principales riesgos identificados han estado centrados en la incentidumbre d
     En caso de que la planificación de los objetivos principales no se cumpla a tiempo, hay un riesgo de que se extienda el tiempo dedicado a estos objetivos, influyendo en el tiempo disponible para realizar los objetivos secundarios del proyecto. & 
     Dar prioridad a los hitos principales, extendiendo la dedicación en el cronograma y reevaluando cada semana el estado de los hitos secundarios en la planificación. \\
     \midrule
-    
+
+    \textbf{Dificultad en obtener datos de cartografía pública} &
+    Alta/Bajo &
+    La obtención de datos de cartografía pública que sean útiles para los modelos, así como la precisión de los datos es un riesgo que puede darse, así como enlazar los datos extraídos con las variables disponibles. &
+    No añadir todas las fuentes cartográficas a la vez, y realizar previamente un análisis de viabilidad. Al ser OS2 un objetivo secundario, las hipótesis principales se evalúan con la estimación de viabilidad. \\
+    \midrule
+
     \textbf{Indisponibilidad personal por vacaciones planificadas} & 
     Alta/Medio & 
     Se ha incluido en el calendario un período de descanso de una semana (del 2 al 7 de diciembre) por un período vacacional planificado, lo que puede afectar al tiempo disponible para la realización del proyecto. & 
     Adelanto de la fase implementación (WP3) respecto a lo indicado por el calendario de entregas de la UOC. \\
     
-    \bottomrule
-  \end{tabularx}
-\end{table}
+    
+\end{longtable}
+\endgroup
 
 
 \section{Breve sumario de productos obtenidos}
 
-Los productos que se obtendrán tras la ejecución del proyecto se detallan a continuación, distinguiendo los entregablos del MVP de los secundarios:
+Los productos que se obtendrán tras la ejecución del proyecto se detallan a continuación, distinguiendo los entregables del MVP de los secundarios:
 
-\begin{table}[H]
-  \centering
-\caption{Productos del proyecto.}
-\label{tab:productos2}
+\begingroup
 \small
 \renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{\textwidth}{l >{\raggedright\arraybackslash}X l l}
+\begin{longtable}{>{\raggedright\arraybackslash}p{1.3cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-6.6cm-8\tabcolsep\relax} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.5cm}}
+\caption{Productos del proyecto.}\label{tab:productos2}\\
 \toprule
 \cabeceratabla
     Código & Producto & Formato & WP \\
 \midrule
+\endfirsthead
+\toprule
+\cabeceratabla
+    Código & Producto & Formato & WP \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\multicolumn{4}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{\textsuperscript{*}\,Productos secundarios: se desarrollarán si el calendario lo permite.}}
+\endlastfoot
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Producto mínimo viable (MVP)} \\
     P1 & Conjunto de datos limpio y preparado de las vías urbanas de Albacete y Algeciras, con su diccionario de datos. & Dataset & WP3.1 \\
     P2 & Repositorio en GitHub con el código de preparación de datos, selección de características y entrenamiento de los modelos de clasificación de accesibilidad. & Código & WP3.2--3.3 \\
-    P3 & Comparativa de modelos y de conjuntos de variables (aéreas, a pie de calle y de campo), con evaluación de los mismos y rendimiento entre ciudades. & Resultados y código & WP3.4--3.5 \\
+    P3 & Comparativa de modelos y de conjuntos de variables (cartográficas y aéreas, a pie de calle y de campo), con evaluación de los mismos y rendimiento entre ciudades. & Resultados y código & WP3.4--3.5 \\
     P4 & Análisis e interpretación de los resultados frente a las hipótesis, indicando qué variables sirven para poder clasificar la accesibilidad. & Informe & WP3.6 \\
 \midrule
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Productos secundarios\textsuperscript{*}} \\
     P5 & Capa de calles clasificadas integrada en el callejero municipal. & Capa GIS & WP3.7 \\
     P6 & Visor GIS interactivo con los resultados. & Aplicación web & WP3.8 \\
-    P7 & Prueba de concepto de extracción de variables a partir de imágenes aéreas. & Código e informe & WP3.9 \\
+    P7 & Variables reales obtenidas de cartografía pública en Albacete y su comparación con la estimación. & Código e informe & WP3.9 \\
 \midrule
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Entregables académicos} \\
     P8  & Memoria del TFM. & PDF & WP4 \\
     P9  & Presentación en vídeo. & Vídeo & WP5 \\
-\bottomrule
-\end{tabularx}
-\notatabla{\textsuperscript{*}\,Productos secundarios: se desarrollarán si el calendario lo permite.}
-\end{table}
+\end{longtable}
+\endgroup
 
 \section{Breve descripción de los otros capítulos de la memoria}
 
@@ -801,25 +447,30 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
     \item \textbf{Introducción y contexto del proyecto:} define el contexto y motivación del proyecto, una introducción a la normativa legal, el listado de objetivos, la metodología y la planificación del trabajo.
     \item \textbf{Características de vías accesibles. Marco legal y normativo:} define la legislación vigente en relación a las ciudades accesibles universales, así como las características de las vías accesibles en base a la ley, que servirán de base para los algoritmos.
     \item \textbf{Estado del arte:} contiene el análisis del estado el arte científico en cuanto a modelos de aprendizaje automático y algoritmos utilizados en problemas similares.
-    \item \textbf{Arquitectura del sistema:} describe la arquitectura tecnológica del sistema, incluyendo detalles de cada uno de los módulos del mismo: algoritmos de \textit{deep learning}, de visión computacional, y clasificación de accesibilidad de calles.
-    \item \textbf{Diseño e implementación de los algoritmos:} contiene las decisiones de diseño de los sistemas, las librerías y tecnológícas utilizadas, y los detalles y decisiones de implementación.
+    \item \textbf{Arquitectura del sistema:} describe la arquitectura tecnológica del sistema, incluyendo detalles de cada uno de los módulos del mismo: extracción de variables cartográficas, modelos de aprendizaje automático y clasificación de accesibilidad de calles.
+    \item \textbf{Diseño e implementación de los algoritmos:} contiene las decisiones de diseño de los sistemas, las librerías y tecnologías utilizadas, y los detalles y decisiones de implementación.
     \item \textbf{Resultados y evaluación:} detalla los resultados de las predicciones realizadas, lista las rutas a los sistemas y conjuntos de datos, y analiza la evaluación de la calidad del trabajo.
     \item \textbf{Conclusiones y trabajos futuros:} contiene las conclusiones finales del estudiante y el listado de líneas futuras de trabajos.
 \end{enumerate}
 
 \section{Declaración sobre el uso de inteligencia artificial generativa}
 
-En primer lugar, se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
+A continuación se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
 
 \begin{itemize}
-    \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generando artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas.
+    \item \textbf{Facilitación de ingesta de legislación y literatura científica:} se ha usado NotebookLM para poder analizar y comprender mejor textos legales y científicos y generar artefactos como mapas mentales o infografías conceptuales, o para obtener las secciones más interesantes a leer de las fuentes seleccionadas; así como para poder filtrar los artículos de literatura científica con base en los requisitos del autor.
     \item \textbf{Recursos gráficos para la memoria:} con herramientas de inteligencia artificial generativa para incluir imágenes o esquemas que faciliten la lectura de la memoria y la enriquezcan.
     \begin{itemize}
-        \item En primer lugar, se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas...) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
+        \item Se ha generado un sistema de diseño utilizando Claude Design, a partir de la plantilla de la memoria de la UOC, que incluye una paleta de colores, tipografías y componentes (gráficos, tablas, diagramas\ldots) que permiten enriquecer visualmente la memoria y mantener un estilo coherente en todo el documento.
     \end{itemize}
-    \item \textbf{Asistencia en formateo de textos en LaTeX:} como apoyo técnico para poder transformar textos escritos en textos formateados para LaTeX, o maquetación de tablas o diagramas.
-    \item \textbf{Asistencia programación y refactorización de código:} se utilizarán asistentes de código como Claude o Copilot como ayuda en la escritura de \textit{scripts} en Python.
+    \item \textbf{Asistencia en formateo de textos en LaTeX:} como apoyo técnico para poder transformar textos escritos en textos formateados para LaTeX, o maquetar tablas o diagramas.
+    \item \textbf{Asistencia en programación y refactorización de código:} se utilizarán asistentes de código como Claude o Copilot como ayuda en la escritura de \textit{scripts} en Python.
     \item \textbf{Diseño UI/UX y estilos del portal web:} con el fin de ofrecer una página web más atractiva para el usuario, se emplearán herramientas de inteligencia artificial que den soporte con el diseño y estilos de la web.
+    \item \textbf{Apoyo en la búsqueda bibliográfica:} propuesta de palabras clave y cadenas de búsqueda para Web of Science y Google Scholar, que el autor ha ejecutado, ajustado y filtrado según los criterios de selección del estado del arte.
+    \item \textbf{Consulta y contraste de alternativas metodológicas:} como interlocutor para plantear dudas y comparar opciones (como métricas de evaluación o estrategias de validación), siendo el autor el que ha tomado las decisiones necesarias.
+    \item \textbf{Revisión de la redacción:} se ha utilizado una \textit{skill} en Claude a partir de las fuentes de formato de la memoria de la UOC, que se ha aplicado al final de cada capítulo, para corroborar el formato del texto. Se puede encontrar en el anexo «Skill de auditoría de la memoria» del documento de anexos, que se entrega por separado.
 \end{itemize}
 
-Para ver detalles de los prompt específicos usados, se puede consultar el \nameref{anx:ia}.
+Para ver detalles de los prompt específicos usados, se puede consultar el anexo «Registro de uso de inteligencia artificial generativa» del documento de anexos, que se entrega por separado.
+
+En todos los casos, el planteamiento del problema, el análisis de los datos, la selección y lectura de las fuentes, la verificación de datos y citas, la redacción de la memoria, así como las decisiones de diseño del trabajo han sido realizados por el autor.

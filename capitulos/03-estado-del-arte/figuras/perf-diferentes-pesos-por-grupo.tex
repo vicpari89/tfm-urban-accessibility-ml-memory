@@ -1,0 +1,36 @@
+\tikzset{
+  perfent/.style={arqbase, fill=arq-datos, minimum width=34mm, minimum height=6mm,
+                  inner sep=2pt, font=\sffamily\scriptsize},
+  perfpeso/.style={arqbase, fill=flujo-decision, draw=acc-deficiente, minimum width=9mm,
+                   minimum height=5.5mm, inner sep=1pt, font=\sffamily\scriptsize},
+  perfmod/.style={arqmodulo, minimum width=9mm, minimum height=5.5mm, inner sep=1pt,
+                  font=\sffamily\scriptsize},
+  perfclase/.style={arqbase, fill=uoc-azul, text=papel, minimum width=9mm, minimum height=5.5mm,
+                    inner sep=1pt, font=\sffamily\scriptsize\bfseries},
+  perfcont/.style={arqbase, fill=papel, draw=serie-2, line width=\trazo, rounded corners=2.8mm,
+                   minimum width=9mm, minimum height=5.5mm, inner sep=1pt, font=\sffamily\scriptsize},
+  perfnota/.style={etiqueta, align=center, font=\sffamily\tiny},
+}
+
+% ---------------------------------------------------------------------
+% (a) 3.4.1 Diferentes pesos por grupo — Moura et al.
+% ---------------------------------------------------------------------
+\begin{wrapfigure}{r}{0.36\textwidth}
+  \centering
+  \vspace{-8pt}
+  \begin{tikzpicture}[node distance=2mm]
+    \node[perfent] (e) {Indicadores de la calle};
+    \node[perfpeso, below=6mm of e] (w2) {$w_2$};
+    \node[perfpeso, left=of w2] (w1) {$w_1$};
+    \node[perfpeso, right=of w2] (w3) {$w_3$};
+    \node[perfclase, below=5mm of w1] (c1) {G$_1$};
+    \node[perfclase, below=5mm of w2] (c2) {G$_2$};
+    \node[perfclase, below=5mm of w3] (c3) {G$_3$};
+    \foreach \i in {1,2,3} {\draw[relacion] (e.south) -- (w\i.north); \draw[relacion] (w\i) -- (c\i);}
+    \node[perfnota, right=1mm of w3] {pesos};
+    \node[perfnota, right=1mm of c3] {clase};
+  \end{tikzpicture}
+  \caption{Un índice con pesos $w_i$ por grupo.}
+  \label{fig:perfiles-pesos}
+  \vspace{-10pt}
+\end{wrapfigure}

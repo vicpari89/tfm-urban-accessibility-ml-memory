@@ -3,7 +3,7 @@
 % Compatible con TFUOC.cls: no redefine sus colores (darkblueUOC, lightblueUOC, greyUOC).
 % Los nombres de color coinciden con los tokens del sistema de diseño.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tfm-estilo}[2026/09/29 v1.7 Sistema visual TFM]
+\ProvidesPackage{tfm-estilo}[2026/10/18 v1.8 Sistema visual TFM]
 
 % Opción [tabla]: "Tabla" / "Índice de tablas" en lugar de "Cuadro" / "Índice de cuadros" (babel spanish)
 \newif\iftfm@tabla
@@ -11,7 +11,7 @@
 % Opción [final]: oculta las marcas de estado de borrador (\estadobloque)
 \newif\iftfm@final
 \DeclareOption{final}{\tfm@finaltrue}
-% Opción [bibliografia]: biblatex + biber, estilo IEEE numerado por orden de aparición
+% Opción [bibliografia]: biblatex + biber, estilo Harvard (autor, año) según la biblioteca de la UOC
 \newif\iftfm@biblio
 \DeclareOption{bibliografia}{\tfm@bibliotrue}
 \ProcessOptions\relax
@@ -33,11 +33,21 @@
 \RequirePackage[most]{tcolorbox}
 \RequirePackage[autostyle]{csquotes}   % \enquote{...} → «...» en castellano, “...” anidadas
 \iftfm@biblio
-  \RequirePackage[backend=biber, style=ieee, sorting=none, dashed=false,
-                   doi=true, url=true, isbn=false, maxbibnames=6, minbibnames=3]{biblatex}
+  % Harvard 11th ed. (UOC): (Apellido, año); 1-3 autores citados, 4 o más: primer autor + et al.
+  \RequirePackage[backend=biber, style=authoryear, sorting=nyt, dashed=false,
+                   doi=true, url=true, isbn=false, uniquename=false, uniquelist=false,
+                   maxcitenames=3, mincitenames=1, maxbibnames=99, giveninits=true, urldate=long, abbreviate=false]{biblatex}
   \renewcommand*{\bibfont}{\small}
   \setlength{\bibitemsep}{0.35\baselineskip}
-  \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+  \renewcommand*{\nameyeardelim}{\addcomma\space}
+  \renewcommand*{\labelnamepunct}{\addspace}
+  % Referencia: Apellido, I. (año) Título. ...
+  \renewbibmacro*{date+extradate}{\printtext[parens]{\iffieldundef{year}{sin fecha}{\printdate}\printfield{extradate}}}
+  % Títulos de artículo y capítulo entre comillas simples; obras y revistas en cursiva
+  \DeclareFieldFormat[article,inbook,incollection,inproceedings]{title}{\textquoteleft #1\textquoteright}
+  \DeclareFieldFormat{urldate}{(Consultado: #1)}
+  \DeclareFieldFormat{url}{Disponible en: \url{#1}}
+  \DefineBibliographyStrings{spanish}{page={p.}, pages={pp.}}
 \fi
 \usetikzlibrary{arrows.meta,positioning,fit,calc,patterns,shapes.geometric,shapes.multipart,shapes.symbols,backgrounds,babel}
 % babel (spanish) activa < > " como atajos: la librería babel de TikZ evita conflictos
@@ -210,9 +220,11 @@
 %     Parámetro 1 & Requisito & art. 5 \\
 %     ...
 %   \end{tablarequisitos}
-\newenvironment{tablarequisitos}[2]{%
+% Fuente por defecto «Orden TMA/851/2021»; otra: \begin{tablarequisitos}[Otra fuente]{Título}{etiqueta}
+\newenvironment{tablarequisitos}[3][Orden TMA/851/2021]{%
+  \def\tablarequisitosfuente{#1}%
   \begin{table}[htbp]\centering\small
-  \caption{#1}\label{#2}%
+  \caption{#2}\label{#3}%
   \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.24\linewidth-2\tabcolsep\relax}
                   >{\raggedright\arraybackslash}p{\dimexpr0.62\linewidth-2\tabcolsep\relax}
                   >{\raggedright\arraybackslash}p{\dimexpr0.14\linewidth-2\tabcolsep\relax}}
@@ -221,7 +233,7 @@
   \midrule}
  {\bottomrule
   \end{tabular}
-  \fuente{Orden TMA/851/2021.}%
+  \fuente{\tablarequisitosfuente.}%
   \end{table}}
 
 % Marcador visual para contenido por rellenar: \porrellenar[etiqueta]
@@ -682,6 +694,128 @@
   % Etiquetas de valor sobre barras (opcional)
   valores/.style={nodes near coords, every node near coord/.append style={font=\sansmath\sffamily\scriptsize, text=tinta}},
 }
+
+% ---------------------------------------------------------------- Árboles de decisión y XGBoost
+% Árbol (forest):  \begin{forest} tfmarbol [{ancho $\leq$ 1,80} [...] [...]] \end{forest}
+%   · Nodos de decisión: borde uoc-azul sobre arbol-division; hojas: arbol-hoja (valor o clase).
+%   · Primera rama = «sí» (se cumple la condición), segunda = «no». \etiquetasramas{yes}{no}.
+%   · Opciones por nodo: hojaclase=<accesible|practicable|deficiente|no-accesible|sin-datos>,
+%     camino (resalta la ruta de una predicción), ausente (rama por defecto con valores ausentes).
+%   · \arbolinfo{n = 120} añade una línea secundaria (muestras, impureza, ganancia).
+\RequirePackage{forest}
+\colorlet{arbol-division}{papel}
+\colorlet{arbol-hoja}{superficie}
+\colorlet{arbol-camino}{uoc-azul}
+\@namedef{tfm@txt@accesible}{papel}\@namedef{tfm@txt@no-accesible}{papel}
+\@namedef{tfm@txt@practicable}{tinta}\@namedef{tfm@txt@deficiente}{tinta}\@namedef{tfm@txt@sin-datos}{tinta}
+\newcommand{\tfm@si}{sí}\newcommand{\tfm@no}{no}
+\newcommand{\etiquetasramas}[2]{\renewcommand{\tfm@si}{#1}\renewcommand{\tfm@no}{#2}}
+\newcommand{\arbolinfo}[1]{\\{\tiny #1}}
+\tikzset{
+  arboldivision/.style={draw=uoc-azul, fill=arbol-division, line width=\trazo, rounded corners=1.5pt,
+    align=center, font=\sansmath\sffamily\scriptsize, text=tinta, inner sep=3pt},
+  arbolhoja/.style={draw=tinta-suave, fill=arbol-hoja, line width=\trazo, rounded corners=0pt,
+    align=center, font=\sansmath\sffamily\scriptsize, text=tinta, inner sep=3pt, minimum width=13mm},
+  hojaclase/.style={arbolhoja, fill=acc-#1, draw=acc-#1,
+    text=\csname tfm@txt@#1\endcsname,
+    tfmrayado-#1/.try},
+  tfmrayado-sin-datos/.style={postaction={pattern=north east lines, pattern color=papel}},
+  arbolrama/.style={draw=tinta-suave, line width=\trazo},
+  arbolramatexto/.style={font=\sffamily\tiny, text=tinta-suave, fill=papel, inner sep=0.8pt},
+}
+\forestset{
+  tfmarbol/.style={
+    for tree={arboldivision, edge={arbolrama}, l sep=8mm, s sep=4mm,
+      parent anchor=south, child anchor=north, anchor=north},
+    where n children=0{arbolhoja}{},
+    for descendants={if n=1
+      {edge label={node[midway, left, arbolramatexto]{\tfm@si}}}
+      {edge label={node[midway, right, arbolramatexto]{\tfm@no}}}},
+  },
+  camino/.style={line width=\trazogrueso, edge+={draw=arbol-camino, line width=\trazogrueso}},
+  ausente/.style={if n=1
+      {edge label={node[midway, left, arbolramatexto]{\tfm@si\,·\,ausente}}}
+      {edge label={node[midway, right, arbolramatexto]{\tfm@no\,·\,ausente}}}},
+}
+
+% Árbol en miniatura (iconos en esquemas de ensamblado): \pic{arbolmini};  \pic{arbolmini={2}} resalta la hoja 1-4
+\tikzset{
+  arbolmini/.pic={
+    \def\tfm@hl{#1}
+    \foreach \x/\y/\a/\b in {0/0/-0.45/-0.42, 0/0/0.45/-0.42, -0.45/-0.42/-0.68/-0.84,
+        -0.45/-0.42/-0.22/-0.84, 0.45/-0.42/0.22/-0.84, 0.45/-0.42/0.68/-0.84}
+      {\draw[arbolrama] (\x,\y) -- (\a,\b);}
+    \foreach \p in {(0,0),(-0.45,-0.42),(0.45,-0.42)}
+      {\filldraw[draw=uoc-azul, fill=arbol-division, line width=\trazo] \p circle (0.085);}
+    \foreach \x [count=\i] in {-0.68,-0.22,0.22,0.68}
+      {\ifnum\i=\tfm@hl\relax
+         \filldraw[draw=arbol-camino, fill=arbol-camino, line width=\trazo] (\x-0.08,-0.92) rectangle (\x+0.08,-0.76);
+       \else
+         \filldraw[draw=tinta-suave, fill=arbol-hoja, line width=\trazo] (\x-0.08,-0.92) rectangle (\x+0.08,-0.76);
+       \fi}
+  },
+  arbolmini/.default=0,
+}
+
+% Esquema de boosting (XGBoost): árboles secuenciales que corrigen el residuo del anterior
+%   \esquemaboosting[arboles=3, eta={\eta = 0{,}1}, salida={\hat{y} = \sigma(\cdot)}]
+\pgfkeys{/tfm/boost/.cd, arboles/.store in=\tfm@bK, eta/.store in=\tfm@bEta,
+  entrada/.store in=\tfm@bIn, salida/.store in=\tfm@bOut, residuo/.store in=\tfm@bRes,
+  separacion/.store in=\tfm@bSep}
+\newcommand{\esquemaboosting}[1][]{%
+  \pgfkeys{/tfm/boost/.cd, arboles=3, eta={\eta}, entrada={$\mathbf{x}$}, salida={$\hat{y}$},
+    residuo={residuo}, separacion=2.5, #1}%
+  \begin{tikzpicture}[tfm, font=\sansmath\sffamily\scriptsize]
+    \pgfmathtruncatemacro\tfm@bKm{\tfm@bK-1}
+    \node[nnentrada, minimum width=8mm, minimum height=7mm] (bx) at (-1.9,-0.45) {\tfm@bIn};
+    % bus de entrada
+    \draw[arbolrama] (bx.east) -- ++(0.3,0) |- (0,0.55) -- ({(\tfm@bK-1)*\tfm@bSep+0.8},0.55);
+    \foreach \k in {1,...,\tfm@bK}{
+      \pgfmathsetmacro\tfm@bX{(\k-1)*\tfm@bSep + (\k==\tfm@bK ? 0.8 : 0)}
+      \pgfmathtruncatemacro\tfm@bH{\k==1 ? 2 : (\k==2 ? 3 : 1)}
+      \draw[flecha] (\tfm@bX,0.55) -- (\tfm@bX,0.12);
+      \pic at (\tfm@bX,0) {arbolmini=\tfm@bH};
+      \node[font=\sffamily\scriptsize\bfseries, text=tinta] at (\tfm@bX,-1.15)
+        {Árbol \ifnum\k=\tfm@bK $K$\else\k\fi};
+      \node[font=\sansmath\sffamily\scriptsize, text=tinta-suave] (bf\k) at (\tfm@bX,-1.5)
+        {$f_{\ifnum\k=\tfm@bK K\else\k\fi}(\mathbf{x})$};
+      \draw[arbolrama] (bf\k.south) -- (\tfm@bX,-1.95);
+    }
+    % residuo entre árboles consecutivos
+    \foreach \k in {1,...,\tfm@bKm}{
+      \pgfmathsetmacro\tfm@bA{(\k-1)*\tfm@bSep+0.85}
+      \pgfmathsetmacro\tfm@bB{\k*\tfm@bSep-0.85 + (\k==\tfm@bKm ? 0.8 : 0)}
+      \draw[-{Stealth[length=4pt]}, draw=nn-skip, line width=\trazo, dashed] (\tfm@bA,-0.42) -- (\tfm@bB,-0.42)
+        node[midway, above, font=\sffamily\tiny, text=tinta-suave, inner sep=1.5pt] {\tfm@bRes}
+        node[midway, fill=papel, inner sep=1pt, font=\sffamily\small, text=tinta-suave] {\ifnum\k=\tfm@bKm\relax\ifnum\tfm@bK>2 \dots\fi\fi};
+    }
+    \draw[arbolrama] (0,-1.95) -- ({(\tfm@bK-1)*\tfm@bSep+0.8},-1.95);
+    \draw[flecha] ({(\tfm@bK-1)*\tfm@bSep/2+0.4},-1.95) -- ({(\tfm@bK-1)*\tfm@bSep/2+0.4},-2.58);
+    \node[circle, draw=uoc-azul, fill=uoc-cian-suave, line width=\trazo, inner sep=1pt,
+          font=\sansmath\sffamily\small] (bsum) at ({(\tfm@bK-1)*\tfm@bSep/2+0.4},-2.85) {$\Sigma$};
+    \node[anchor=east, font=\sansmath\sffamily\scriptsize, text=tinta-suave] at ([xshift=-2mm]bsum.west)
+      {$\tfm@bEta\cdot$};
+    \node[nnsalida, minimum width=8mm, minimum height=7mm, right=8mm of bsum] (by) {\tfm@bOut};
+    \draw[flecha] (bsum) -- (by);
+  \end{tikzpicture}}
+
+% Configuración de hiperparámetros (tablas): \hiperparam{max_depth}, \filagrupo{4}{Estructura del árbol}
+\newcommand{\hiperparam}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\filagrupo}[2]{\multicolumn{#1}{@{}l}{\cellcolor{superficie}\sffamily\footnotesize\bfseries\color{uoc-azul}\strut #2}\\}
+% Importancia de variables y curva de aprendizaje (pgfplots)
+\pgfplotsset{
+  tfmimportancia/.style={tfmbarrash, bar width=6pt, xmin=0, cycle list={{fill=serie-1, draw=serie-1}},
+    enlarge y limits=0.08, xlabel={Ganancia media}, valores, scaled x ticks=false,
+    xticklabel style={/pgf/number format/fixed}, nodes near coords align={horizontal},
+    every node near coord/.append style={/pgf/number format/.cd, fixed, precision=2}},
+  tfmaprendizaje/.style={tfm, xlabel={Iteración (número de árboles)}, xmin=0,
+    legend pos=south west},
+}
+% Línea de parada temprana dentro de un axis: \paradatemprana{312}{mejor iteración: 312}
+\newcommand{\paradatemprana}[2]{%
+  \draw[tinta-suave, line width=\trazo, densely dashed]
+    ({axis cs:#1,0}|-{rel axis cs:0,0}) -- ({axis cs:#1,0}|-{rel axis cs:0,1})
+    node[pos=0.97, anchor=north west, font=\sffamily\scriptsize, text=tinta-suave, inner sep=2pt, align=left] {#2};}
 
 % ---------------------------------------------------------------- Código
 \lstdefinestyle{tfmcodigo}{

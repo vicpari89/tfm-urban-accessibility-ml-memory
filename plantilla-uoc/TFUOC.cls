@@ -283,7 +283,7 @@ Esta obra esta sujeta a una licencia de Reconocimiento-SinObraDerivada \\ \url{h
 Esta obra esta sujeta a una licencia de Reconocimiento-CompartirIgual \\  \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccBy}{
 Esta obra esta sujeta a una licencia de Reconocimiento
- \\  \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+ \\  \url{https://creativecommons.org/licenses/by/3.0/es/}}
  \newcommand{\GNU}{
  Copyright \copyright  \@author\\
 
@@ -328,7 +328,7 @@ Aquesta obra està subjecta a una llicència de Reconeixement-SenseObraDerivada 
 Aquesta obra està subjecta a una llicència de Reconeixement-CompartirIgual  \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccBy}{
 Aquesta obra està subjecta a una llicència de Reconeixement
- \\\  \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+ \\\  \url{https://creativecommons.org/licenses/by/3.0/es/}}
  \newcommand{\GNU}{
  Copyright \copyright  \@author\\
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Programari Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. 
@@ -369,7 +369,7 @@ This work is under the license Attribution-NoDerivatives \\ \url{https://creativ
 This work is under the license Attribution-ShareAlike  \\ \url{https://creativecommons.org/licenses/by-nc/3.0}}
 \newcommand{\ccBy}{
 This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.
- \\\  \url{https://creativecommons.org/licenses/by-nc/3.0}}
+ \\\  \url{https://creativecommons.org/licenses/by/3.0}}
  \newcommand{\GNU}{
  Copyright \copyright  \@author\\
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Programari Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. 

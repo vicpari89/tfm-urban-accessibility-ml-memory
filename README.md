@@ -56,10 +56,10 @@ Para compilar la memoria en LaTeX y trabajar con los ficheros fuente, necesitas:
 git clone <URL_DEL_REPOSITORIO>
 cd tfm-victor-pariente-ciencia-de-datos-uoc
 
-# Compilar el documento
-latexmk -pdf TFM_Victor_Pariente_Gonzalez.tex
+# Compilar la memoria y los anexos (la memoria primero: los anexos leen sus referencias)
+latexmk -pdf TFM_Victor_Pariente_Gonzalez.tex TFM_Anexos.tex
 
-# El PDF generado estará en: build/TFM_Victor_Pariente_Gonzalez.pdf
+# Los PDF generados estarán en: build/TFM_Victor_Pariente_Gonzalez.pdf y build/TFM_Anexos.pdf
 ```
 
 **Nota**: La primera compilación puede tardar varios minutos mientras LaTeX descarga y procesa todas las dependencias.
@@ -82,6 +82,7 @@ mkdir -p build
 ```
 .
 ├── TFM_Victor_Pariente_Gonzalez.tex         # Documento principal LaTeX
+├── TFM_Anexos.tex                           # Anexos (PDF aparte)
 ├── capitulos/                               # Capítulos de la memoria
 │   ├── 01-introduccion/
 │   │   ├── 01-introduccion.tex             # Capítulo: Introducción y motivación
