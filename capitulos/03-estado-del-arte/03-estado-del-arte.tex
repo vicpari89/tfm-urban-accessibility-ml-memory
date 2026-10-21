@@ -6,7 +6,7 @@
 En las siguientes secciones se responderán las preguntas planteadas al final del capítulo anterior~\ref{cap:normativa} (sección~\ref{sec:sintesis-marco}).
 \\
 
-Para cada pregunta se ha definido una o varias cadenas de búsqueda, que se detallan en cada una de las secciones y se ha consultado en tres fuentes, que se usan de forma complementaria.
+Para cada pregunta se ha definido una o varias cadenas de búsqueda, que se muestran en la tabla~\ref{tab:cadenas-busqueda} y se ha consultado en tres fuentes, que se usan de forma complementaria.
 \\
 
 \subsection{Fuentes de información}
@@ -55,8 +55,10 @@ En Web of Science, cada cadena de búsqueda de la tabla~\ref{tab:cadenas-busqued
       & \texttt{"machine learning" AND ("sidewalk" OR "walkability") AND "accessibility"}
       \par\vspace{3pt}\texttt{("ordinal classification" OR "imbalanced") AND ("gradient boosting" OR "random forest")}
       \par\vspace{3pt}\texttt{"cost-sensitive" AND "feature selection"}
+      \par\vspace{3pt}\texttt{"imbalanced classification" "macro F1" OR "balanced accuracy"}
       & \texttt{"machine learning" "sidewalk accessibility"}
       \par\vspace{3pt}\texttt{"tabular data" tree-based benchmark}
+      \par\vspace{3pt}\texttt{"ordinal classification" machine learning evaluation}
       \par\vspace{3pt}\texttt{"attribute noise" classification robustness} \\ \addlinespace
     Perfiles de usuario (\ref{sec:perfiles-arte})
       & \texttt{"pedestrian accessibility" AND ("wheelchair" OR "visually impaired" OR "disability type")}
@@ -69,9 +71,18 @@ En Web of Science, cada cadena de búsqueda de la tabla~\ref{tab:cadenas-busqued
       \par\vspace{3pt}\texttt{"cross-city" AND ("sidewalk" OR "street view")}
       & \texttt{"spatial cross-validation" machine learning}
       \par\vspace{3pt}\texttt{"cross-city" transfer urban model}
-      \par\vspace{3pt}\texttt{"grouped" holdout street segments} \\
+      \par\vspace{3pt}\texttt{"grouped" holdout street segments} \\\addlinespace
+    Extracción desde datos cartográficos (\ref{sec:datos-cartograficos-publicos})
+      & \texttt{("LiDAR" OR "digital elevation model") AND ("sidewalk" OR "street") AND "slope"}
+      \par\vspace{3pt}\texttt{"sidewalk width" AND ("cadastre" OR "LiDAR" OR "GIS")}
+      & \texttt{"sidewalk slope" LiDAR}
+      \par\vspace{3pt}\texttt{"digital elevation model" sidewalk accessibility}
+      \par\vspace{3pt}\texttt{"sidewalk width" cadastre OR GIS} \\
 \end{longtable}
 \endgroup
+
+Se muestran las cadenas principales, aunque se han utilizado además variantes y combinaciones con los mismos términos, para restringir o ampliar los resultados, así como búsqueda directa en internet.
+\\
 
 \subsection{Criterios de selección}
 \label{subsec:criterios-seleccion}
@@ -208,17 +219,60 @@ En general, se revisan trabajos y artículos sobre: modelos que trabajan sobre d
 
 \subsection{Trabajos previos en accesibilidad}
 \label{subsec:ml-accesibilidad}
-\postit{Añadir una frase para enlazar con el trabajo.}
-En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la accesibilidad de las aceras. \textcite{smith2013} utilizan imágenes de Google Street View en un modelo \glslink{random-forest}{\textit{random forest}} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y  el \textit{recall}.
+
+Los trabajos previos se agrupan según el tipo de datos que utilizan: \textbf{imágenes} y \textbf{datos tabulares}. La tabla~\ref{tab:previos-accesibilidad} resume los trabajos previos de ambos grupos, con los datos, el modelo, las métricas y la variable objetivo de cada uno.
 \\
 
-\textcite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT; mientras que \textcite{weld2019} usan \textit{deep learning}, con un modelo ResNet, sobre el \textit{Project Sidewalk} indicado en la sección anterior de la memoria, sobre imágenes de Street View. En ambos casos, los modelos se evalúan por la precisión.
+En primer lugar, se han encontrado varios artículos científicos que trabajan sobre las \textbf{imágenes} para medir la ausencia o presencia de elementos físicos de las aceras. \textcite{smith2013} utilizan imágenes a pie de calle del conjunto de datos \textit{Caltech Lanes Dataset} de Pasadena, en un modelo \glslink{random-forest}{\textit{random forest}} con atributos como color, posición y contexto, evaluando el modelo mediante la precisión y el \textit{recall}.
 \\
 
-Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan \textcite{dong2019} con \glslink{arbol-decision}{árboles de decisión} con \glslink{gradient-boosting}{\textit{gradient boosting}} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o \textcite{li2024gsv}, en el que se utiliza un modelo de árbol de decisión de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo) en una muestra de 510 encuestas a estudiantes en 252 imágenes.
+\textcite{liu2024acc} trabajan sobre 33 variables de accesibilidad en imágenes recortadas, entrenando modelos de visión computacional como DINOv2 o CLIP-ViT, para estimar valores físicos de las aceras (ancho libre, tipo de pavimento, vados o escalones).
 \\
 
-Otro trabajo similar es el de \textcite{wang2026}, donde se realizó una comparación con 11 modelos diferentes (CatBoost, Decision Tree, GBM, Gaussian Naive Bayes, KNN, LightGBM, \glslink{regresion-logistica}{Regresión Logística}, MLP, Random Forest, SVM y XGBoost), sobre un conjunto de datos en tabla para 2.305 muestras sobre salud; donde el mejor parado fue \textit{random forest} también, evaluado con F1, precisión y recall.
+Mientras que \textcite{weld2019} usan \textit{deep learning}, con un modelo ResNet-18, sobre imágenes de Street View del \textit{Project Sidewalk} indicado en la sección~\ref{subsec:eval-virtual}, para detectar y clasificar 4 elementos que pueden servir en estudios de accesibilidad (rampas de bordillo, ausencia de rampas, obstáculos o problemas de superficie). En ambos casos, los modelos se evalúan por la precisión y el \textit{recall}.
+\\
+
+Estos trabajos se centran en obtener variables físicas a partir de imágenes, pero no realizan estimaciones de accesibilidad, ni comprueban si cumplen la normativa. Por lo tanto, suponen un paso previo a este proyecto, ya que permiten valorar si es viable estimar la accesibilidad a partir de las variables extraídas de las imágenes.
+\\
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.13\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.13\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth}}
+  \caption{Trabajos previos de aprendizaje automático en accesibilidad.}\label{tab:previos-accesibilidad}\\
+  \toprule
+  \cabeceratabla \textbf{Trabajo} & \textbf{Datos} & \textbf{Modelo} & \textbf{Métricas} & \textbf{Variable objetivo} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla \textbf{Trabajo} & \textbf{Datos} & \textbf{Modelo} & \textbf{Métricas} & \textbf{Variable objetivo} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \multicolumn{5}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia.}} \\
+  \endlastfoot
+  \multicolumn{5}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Imágenes} \\
+  \textcite{smith2013} & Imágenes de calle (\textit{Caltech Lanes Dataset}, Pasadena) & \textit{Random forest} & Precisión, \textit{recall} & Presencia o ausencia de elementos de la acera \\
+  \textcite{liu2024acc} & Imágenes recortadas de calle, 33 variables & DINOv2, CLIP-ViT & Precisión, \textit{recall} & Valores físicos: ancho libre, pavimento, vados, escalones \\
+  \textcite{weld2019} & Imágenes de Street View (\textit{Project Sidewalk}) & ResNet-18 & Precisión, \textit{recall} & 4 elementos: rampas, ausencia de rampas, obstáculos, superficie \\
+  \midrule
+  \multicolumn{5}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Datos tabulares} \\
+  \textcite{dong2019} & Encuestas a 800 personas, 27 variables subjetivas & \textit{Gradient boosting} &  & Satisfacción peatonal general (subjetiva) \\
+  \textcite{li2024gsv} & 510 encuestas a estudiantes, 252 imágenes & \textit{Random forest} &  & Caminabilidad percibida (subjetiva) \\
+  \textcite{wang2026} & Tabla de 2305 muestras (sector sanitario) & \textit{Random forest} (mejor de 11) & F1, precisión, \textit{recall} &  \\
+\end{longtable}
+\endgroup
+
+Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para variables subjetivas de encuestas o percepción. Se destacan \textcite{dong2019} con \glslink{arbol-decision}{árboles de decisión} y \glslink{gradient-boosting}{\textit{gradient boosting}} que predicen la satisfacción general peatonal sobre 27 variables subjetivas como calidad o seguridad a una población de 800 personas; o \textcite{li2024gsv}, en el que se utiliza un modelo de \textit{random forest} sobre el grado de caminabilidad percibida (comodidad, seguridad, usabilidad y atractivo), a partir de 510 encuestas realizadas a estudiantes sobre 252 imágenes.
+\\
+
+Se incluye también el trabajo de \textcite{wang2026}, que aunque pertenece al sector sanitario, es un ejemplo de comparación de modelos sobre datos tabulares. Se compararon 11 modelos (CatBoost, árbol de decisión, GBM, \textit{Gaussian naive Bayes}, KNN, LightGBM, \glslink{regresion-logistica}{regresión logística}, MLP, \textit{random forest}, SVM y XGBoost), sobre un conjunto de datos en tabla de 2305 muestras; el mejor resultado fue para \textit{random forest}, evaluado con F1, precisión y \textit{recall}.
+\\
+
+En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a usuarios; a diferencia de los datos de Albacete y Algeciras, que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
+\\
 
 \subsection{Modelos para datos tabulares}
 \label{subsec:ml-tabular}
@@ -306,8 +360,8 @@ La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
   \endlastfoot
   \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Trabajos previos en accesibilidad} \\
   \textcite{smith2013} & \textit{Random forest} & Precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{no} \\
-  \textcite{liu2024acc} & DINOv2, CLIP-ViT & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
-  \textcite{weld2019} & ResNet & Precisión & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
+  \textcite{liu2024acc} & DINOv2, CLIP-ViT & Precisión, \textit{recall} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
+  \textcite{weld2019} & ResNet-18 & Precisión, \textit{recall} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} \\
   \textcite{dong2019} & \textit{Gradient boosting} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
   \textcite{li2024gsv} & \textit{Random forest} & — & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} & \cumple{no} \\
   \textcite{wang2026} & \textit{Random forest} (mejor de 11) & F1, precisión, \textit{recall} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} & \cumple{si} \\
@@ -500,7 +554,7 @@ En concreto, se realizaron dos experimentos, uno combinando los datos de cuatro 
 Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que los autores atribuyen a diferencias urbanas entre esta ciudad y las estadounidenses.
 \\
 
-Mientras que en \textcite{weld2019} se aplicó una técnica denominada \textbf{\textit{cross-city generalizability}}, con un modelo a partir de ResNet18, en el que se realizaron cuatro estrategias:
+Mientras que en \textcite{weld2019} se aplicó una técnica denominada \textbf{\textit{cross-city generalizability}}, con un modelo a partir de ResNet-18, en el que se realizaron cuatro estrategias:
 \begin{itemize}
   \item Modelo base: entrenando el modelo con los datos de Washington, y prediciendo en el resto de ciudades.
   \item Modelo combinado: entrenando datos de Washington y otra ciudad.
@@ -528,7 +582,7 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
     \textcite{mohite2024} & \textit{Random forest regressor} & \cumple{si} & \cumple{parcial} & \cumple{no} & $R^2$ y MSE \\
     \textcite{li2024gsv} & \textit{Random forest} (regresión) & \cumple{no} & \cumple{si} & \cumple{no} & --- \\
     \textcite{duan2022} & Clasificación de imágenes a pie de calle & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall} y \textit{accuracy} \\
-    \textcite{weld2019} & ResNet18 & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall}, curvas de precisión y matriz de confusión \\
+    \textcite{weld2019} & ResNet-18 & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall}, curvas de precisión y matriz de confusión \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
