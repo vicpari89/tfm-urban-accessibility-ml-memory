@@ -305,16 +305,31 @@ En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida
 
 \subsection{Importancia de las variables}
 \label{subsec:ml-importancia}
-\postit{Añadir qué se puede obtener y qué no con esto, enlazar con el trabajo.}
 
 Es parte de este proyecto identificar qué variables tienen más peso a la hora de clasificar la accesibilidad de las calles, por lo que se ha realizado un estudio de cómo comprobar cuáles son las variables que pesan más en los modelos. Se han analizado cuatro técnicas:
 
 \begin{itemize}
-  \item \textbf{Importancia interna de los árboles de decisión (\glslink{indice-gini}{índice de Gini})}, en los artículos~\parencite{smith2013, dong2019, li2024gsv}. Mide la homogeneidad de las variables por grupos, en las ramas de los árboles de decisión.
-  \item \textbf{\glslink{importancia-permutacion}{Importancia por valores de permutación}}, en los estudios~\parencite{agal2026, wu2026}. Mide la caída en las métricas de una variable si se desordenan los datos de esa variable y se dejan fijos los demás.
-  \item \textbf{Valores \gls{shap}}, en~\parencite{agal2026, wang2026}. Basado en la teoría de juegos, miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. La métrica utilizada es la media del valor absoluto de SHAP.
-  \item \textbf{Permutación en un indicador de consenso (con SHAP)}, en \textcite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score (CIS)} combinando SHAP, la importancia por permutación y la sensibilidad local.
+  \item \textbf{Importancia interna de los árboles de decisión (\glslink{indice-gini}{índice de Gini})}, en \textcite{smith2013}, \textcite{dong2019} y \textcite{li2024gsv}. Mide cuánto ayuda cada variable a separar las clases, es decir, a obtener grupos más homogéneos cuando el árbol usa la variable para dividir los datos.
+  \item \textbf{\glslink{importancia-permutacion}{Importancia por permutación}}, en \textcite{agal2026} y \textcite{wu2026}. Mide la caída en las métricas del modelo si se desordenan los datos de esa variable y se dejan fijos los demás.
+  \item \textbf{Valores \gls{shap}}, en \textcite{agal2026} y \textcite{wang2026}. Se basan en la teoría de juegos y miden la contribución marginal promedio de cada variable, calculando las predicciones con varios subconjuntos de datos. Como medida global se usa la media del valor absoluto de los valores SHAP.
+  \item \textbf{Indicador de consenso combinado}, en \textcite{knights2026}. Realiza el cálculo \textit{Consensus Interpretability Score} combinando en una métrica las contribuciones de SHAP, la importancia por permutación y la sensibilidad local.
 \end{itemize}
+
+Las técnicas listadas responden a diferentes preguntas. El índice de Gini es propio de los árboles de decisión e indica cuáles son las variables más útiles durante el entrenamiento, pero no cuánto empeora el modelo si se elimina alguna de ellas.
+\\
+
+La permutación sí que permite valorar el empeoramiento del modelo con la ausencia de alguna variable. Además, puede utilizarse en modelos que no sean árboles y puede calcularse sobre el conjunto de prueba. Por su parte, los valores SHAP ayudan a comprender si una variable empuja un tramo de calle a una clase u otra.
+\\
+
+El índice de consenso de \textcite{knights2026} combina tres métodos diferentes (entre ellos, permutación y SHAP), lo que sugiere que conviene utilizar métodos combinados y no basarse solo en uno.
+\\
+
+Hay que tener en cuenta, además, que aunque una variable tenga poca importancia, no quiere decir que haya que deshacerse de ella. En la sección~\ref{subsec:ml-fiabilidad}, se analiza cómo poder confirmar que una variable se puede eliminar del modelo.
+\\
+
+En relación al proyecto, se utilizará el \textbf{índice de Gini} como una orientación inicial, cuando los modelos sean de árbol de decisión; así como la \textbf{importancia por permutación} y los \textbf{valores SHAP}, como en \textcite{agal2026}. Esto servirá para comprobar cuáles de las variables que solo se pueden tomar in situ aportan menos al modelo.
+De esta manera, se podrá responder a la hipótesis H5 (tabla~\ref{tab:hipotesis}), entrenando el modelo sin las dimensiones in situ para ver si la calidad sigue siendo suficiente.
+\\
 
 \subsection{Variables con fiabilidad o coste desigual}
 \label{subsec:ml-fiabilidad}
