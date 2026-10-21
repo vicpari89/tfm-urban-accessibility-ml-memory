@@ -552,36 +552,41 @@ Para los conjuntos de datos de Albacete y Algeciras se plantean tres escenarios 
 \section{Extracción de variables desde datos cartográficos}
 \label{sec:datos-cartograficos}
 
-En esta sección se va a revisar cómo artículos científicos han utilizado fuentes cartográficas públicas para extraer información de pendientes y anchos de aceras.
+En esta sección se revisa cómo se han utilizado fuentes cartográficas públicas en artículos científicos para extraer información de pendientes y anchos de aceras.
 \\
 
 \subsection{LiDAR}
-En primer lugar, se han encontrado dos estudios que han conseguido extraer la información a partir de las nubes de puntos LiDAR.
+En primer lugar, se han encontrado dos estudios que han conseguido extraer la información a partir de las nubes de puntos \gls{LiDAR}.
 
-El primero es el de \textcite{hossain2026}, que usa un LiDAR aéreo público de alta densidad de EE.UU. Lo combina con OpenStreetMap, la capa de límites de aceras DC-GIS Sidewalks (para las aceras), y recurre a la API de elevación de Google Maps como respaldo cuando hay vegetación.
+El primero es el de \textcite{hossain2026}, que usa un \gls{LiDAR} aéreo público de alta densidad de EE. UU. Lo combina con \gls{OSM}~\parencite{openstreetmap}, la capa de límites de aceras DC-GIS Sidewalks (para las aceras), y recurre a la API de elevación de Google Maps como respaldo cuando hay vegetación.
 \\
 
-Otro estudio es el de \textcite{ahmadi2026}, que utiliza una nube LiDAR 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las pendientes longitudinal y transversal y el ancho de la acera, si bien depende de la calidad de la segmentación semántica previa.
+Otro estudio es el de \textcite{ahmadi2026}, que utiliza una nube \gls{LiDAR} 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las pendientes longitudinal y transversal y el ancho de la acera, si bien depende de la calidad de la segmentación semántica previa.
 \\
 
-Como posibles problemas, la vegetación es un limitante para el LiDAR aéreo, y se tiene que combinar con otras fuentes de datos, como OpenStreetMap, o la cartografía vectorial del Catastro. Por lo que el uso del LiDAR del PNOA podría utilizarse de manera similar a~\cite{hossain2026}.
+Como posibles problemas, la vegetación es un limitante para el \gls{LiDAR} aéreo, y se tiene que combinar con otras fuentes de datos, como \gls{OSM}, o la cartografía vectorial del Catastro~\parencite{catastro_descarga_datos}. Por lo que el uso del \gls{PNOA}-\gls{LiDAR}~\parencite{pnoa_lidar,pnoa_lidar_descargas} podría utilizarse de manera similar a \textcite{hossain2026}.
 \\
 
-El LiDAR terrestre no está disponible en la cartografía pública española, ya que el PNOA solo publica LiDAR aéreo, de menor densidad. Aun así, estos estudios apuntan a que con datos más densos y detallados se podría conseguir la extracción de datos de accesibilidad con mayor precisión.
+El \gls{LiDAR} terrestre no está disponible en la cartografía pública española, ya que el \gls{PNOA} solo publica \gls{LiDAR} aéreo, de menor densidad. Aun así, estos estudios apuntan a que con datos más densos y detallados se podría conseguir la extracción de datos de accesibilidad con mayor precisión.
 \\
 
 \subsection{Modelos digitales del terreno}
-En cuanto a los MDT, se ha comprobado que se utilizan principalmente para el cálculo de la pendiente longitudinal. A continuación se muestran dos estudios científicos.
+En cuanto a los \gls{MDT}, se ha comprobado que se utilizan principalmente para el cálculo de la pendiente longitudinal. A continuación se muestran dos estudios científicos.
 \\
 
-El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el modelo digital de elevación del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía municipal de Barcelona).
-No se obtuvieron buenos resultados para la pendiente transversal.
+El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el \gls{MDT} del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía topográfica municipal de Barcelona, que aporta los polígonos de aceras, manzanas y pasos de peatones), así como el Geoportal del Área Metropolitana de Barcelona.
 \\
-\postit{Añadir el segundo estudio.}
 
-El uso del MDT02 del IGN podría conseguir la misma información que el estudio de~\cite{vallsclua2023}, debido a que es equivalente al utilizado en el estudio de Barcelona.
+Se modeló la red de aceras y su entorno metropolitano a una resolución de 1 m, y fue necesaria una revisión profunda y manual de los cruces peatonales. El ancho de cada acera se calculó a partir del eje central de los polígonos de acera; mientras que la pendiente longitudinal se obtuvo mediante interpolación de las cotas del \gls{MDT}. Se calculó también la velocidad de marcha utilizando la función de Tobler, que estima la velocidad de marcha de una persona a partir de la pendiente existente, y así se pueden calcular los tiempos del recorrido.
+No se calculó la pendiente transversal.
+\\
+
+El segundo estudio es el de \textcite{cetin2026}, en el que se evalúa el grado de caminabilidad de la ciudad de Isparta (Turquía) y se clasifica la pendiente longitudinal mediante tres clases. Se logra combinando un \gls{MDT} (en ArcGIS), con las líneas centrales de las calles \gls{OSM}, utilizando la sintaxis espacial, basada en grafos (mapas axiales y segmentos).
+No se calcula ni pendiente transversal ni ancho de las aceras.
+\\
+
+El uso del MDT02 del \gls{IGN}~\parencite{pnoa_mdt} podría conseguir la misma información que el estudio de \textcite{vallsclua2023}, debido a que la resolución (2 m) es equivalente a la utilizada en el estudio de Barcelona.
 \\
 
 \subsection{Síntesis}
-\postit{Completar con todas las decisiones a tomar para hacer en la implementación.}
-
+En los estudios que se han revisado, la cartografía pública permitiría calcular la pendiente longitudinal y, combinada con otras fuentes de datos, el ancho de las aceras. La pendiente transversal, en cambio, resulta más difícil de obtener si no se dispone de una nube de puntos LiDAR del terreno en tres dimensiones.
