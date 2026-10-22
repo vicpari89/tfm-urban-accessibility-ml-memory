@@ -124,7 +124,7 @@ Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se comb
 \subsection{Auditorías virtuales a partir de imágenes}
 \label{subsec:eval-virtual}
 
-La herramienta Project Sidewalk~\parencite{saha2019} también utiliza \textbf{Google Street View} para la toma de datos mediante \gls{auditoria-virtual}, pero de una manera participativa. Una serie de voluntarios y voluntarias acceden a un conjunto de imágenes, y valoran diferentes variables de accesibilidad mediante etiquetas de severidad.
+La herramienta Project Sidewalk~\parencite{saha2019} también utiliza Google Street View para la toma de datos mediante \gls{auditoria-virtual}, pero de una manera participativa. Una serie de voluntarios y voluntarias acceden a un conjunto de imágenes, y valoran diferentes variables de accesibilidad mediante etiquetas de severidad.
 \\
 
 El resultado de accesibilidad se calcula a partir de la votación por mayoría a partir de las etiquetas.
@@ -140,7 +140,7 @@ Es interesante para este trabajo, puesto que valida que sería potencialmente po
 El trabajo más cercano a los conjuntos de datos de Albacete y Algeciras es el de \textcite{moura2017}, sobre la ciudad de Lisboa. Contiene una herramienta denominada IAAPE, que evalúa cómo de fácil es que la ciudadanía se desplace por sus calles, con 17 indicadores diferentes, agrupados en 7 dimensiones.
 \\
 
-Realiza el estudio a partir de \textbf{inspecciones de campo in situ}; así como análisis geográfico, digitalizando la red peatonal completa junto con \textbf{Google Street View}, realizando mediciones geométricas.
+Realiza el estudio a partir de \textbf{inspecciones de campo in situ}; así como análisis geográfico, digitalizando la red peatonal completa junto con Google Street View, realizando mediciones geométricas.
 También se realizaron encuestas a la población.
 \\
 
@@ -362,26 +362,53 @@ De esta manera, se podrá responder a la hipótesis H5 (tabla~\ref{tab:hipotesis
 
 \subsection{Variables con fiabilidad o coste desigual}
 \label{subsec:ml-fiabilidad}
-\postit{Añadir qué se puede obtener y no con esto y enlazar con la tabla de viabilidad.}
 
-En este apartado se listan los estudios sobre el tratamiento de variables con mayor o menor coste, debido a que una de las ideas de este proyecto se intenta utilizar los menores desplazamientos in situ, mucho más costosa; así como el tratamiento de variables tomadas con mayor o menor fiabilidad, porque en el tratamiento de imágenes se podría obtener alguna variable con alguna imprecisión, como en el caso de calles con vegetación, o calidad menor de las imágenes.
+En este apartado se listan los estudios sobre el tratamiento de variables con mayor o menor coste, debido a que en este trabajo se busca reducir las variables recogidas in situ, que son mucho más costosas. También se detalla el tratamiento de variables tomadas con mayor o menor fiabilidad, porque en el tratamiento de imágenes se podría obtener alguna variable con imprecisión, como en el caso de calles con vegetación, o menor calidad de las imágenes.
 
-\noindent\textbf{En cuanto al coste desigual:}
+\noindent En cuanto al \textbf{coste desigual}:
 \begin{itemize}
-  \item \textcite{nan2014} se usa la técnica \textbf{FMCC} (\textit{Fast Margin-based Cost-sensitive classification}) en el que se empieza seleccionando una característica, y se van eligiendo las siguientes, seleccionando aquella que maximice la probabilidad de acierto balanceando con el coste de adquisición hasta que la probabilidad de acierto llega a un umbral de confianza.
-  \item \textcite{chen2024cost} y \textcite{liu2024haff}, se obtiene un subconjunto de variables que se ajustan a un presupuesto máximo de manera más eficiente posible. \textcite{liu2024haff} utiliza mecanismos de atención jerárquica (\textbf{HAFF}), mientras que \textcite{chen2024cost} usa como inspiración la computación cuántica para seleccionar las variables. Métricas: AUC (área bajo la curva), exactitud, KS, H-Measure y G-Mean.
+  \item En \textcite{nan2014} se usa la técnica de clasificación sensible al coste basada en márgenes (\textit{Fast Margin-based Cost-sensitive classification}, \textbf{\glsxtrshort{FMCC}}), en la que se empieza seleccionando una característica y se van eligiendo las siguientes, la que maximice la probabilidad de acierto balanceada con el coste de adquisición, hasta que la probabilidad de acierto llega a un umbral de confianza. Es un estudio teórico del \textit{machine learning}.
+  \item En \textcite{chen2024cost} y \textcite{liu2024haff} se obtiene un subconjunto de variables que se ajustan a un presupuesto máximo de la manera más eficiente posible. \textcite{liu2024haff} utiliza mecanismos de atención jerárquica (\textbf{\glsxtrshort{HAFF}}), mientras que \textcite{chen2024cost} usa como inspiración la computación cuántica para seleccionar las variables. En ambos estudios se utilizan métricas de clasificación como el AUC (área bajo la curva) y la exactitud; el detalle de cada uno se encuentra en la tabla~\ref{tab:ml-revisados}.
   \item Otros estudios tratan de calcular cuánta precisión se pierde cuando se reduce el número de variables, como \textcite{mohite2024}, que evalúa la importancia de cada variable en un modelo \textit{random forest} (métrica $R^2$); o \textcite{wu2026}, que realiza un análisis de sensibilidad sobre subconjuntos de variables.
 \end{itemize}
 
-\noindent\textbf{En cuanto a la fiabilidad:}
+Tanto \textcite{chen2024cost} como \textcite{liu2024haff} son del ámbito financiero, y por lo tanto el coste es monetario por cada variable. Se han incluido en el análisis porque este trabajo busca reducir el coste de recoger los datos de accesibilidad a pie de calle. El coste viene del desplazamiento de los equipos técnicos para tomar las medidas in situ.
+\\
+
+\noindent En cuanto a la \textbf{fiabilidad}:
 \begin{itemize}
-  \item En los estudios de \textcite{duan2022, liu2024acc}, se comparan los conjuntos de datos validados sin ruido con conjuntos reales (con ruido), y se ha determinado que cuantos más datos sucios se utilicen, peor será para el modelo.
-  \item \textcite{wang2026}, se indica que es mejor no utilizar técnicas de aumento sintético de los datos (sobremuestreo), por la misma razón.
+  \item En \textcite{duan2022} se compararon datos de aceras validados manualmente con datos ruidosos agregados mediante \textit{crowdsourcing} (experimento 1), y se determinó que cuantos más datos sucios se utilicen, peor será para el modelo.
+  \item En \textcite{wang2026} se indica que es mejor no utilizar técnicas de aumento sintético de los datos (sobremuestreo), por la misma razón.
   \item En \textcite{agal2026} se sugiere utilizar índices compuestos para atenuar el ruido de las variables.
-  \item Mientras que en \textcite{knights2026} se utiliza la varianza del rango (\textbf{\textit{VarRank}}), cuanto más alta sea, menos peso se le otorga en el modelo. También evalúa la sensibilidad del modelo, introduciendo pequeñas perturbaciones locales.
+  \item En \textcite{knights2026} se utiliza la varianza del rango (\textbf{\textit{VarRank}}): cuanto más alta es, menos peso se otorga a esa variable en el modelo. También evalúa la sensibilidad del modelo, introduciendo pequeñas perturbaciones o modificaciones locales.
 \end{itemize}
 
-La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
+Se han incluido estos artículos de fiabilidad debido a que en este trabajo se pueden encontrar problemas de oclusión por la vegetación en las imágenes aéreas o errores de precisión de cota en los \glslink{MDT}{modelos digitales del terreno}.
+\\
+
+\tituloconclusion{Conclusión}
+A diferencia de los estudios financieros, donde cada variable tiene un coste propio, en este trabajo el coste se debe al desplazamiento del equipo técnico, por lo que si hay una sola variable in situ que recoger, el equipo se tendría que desplazar igualmente. Por lo tanto, no se aplicarán a este trabajo las \textbf{técnicas de selección} de \textcite{chen2024cost} o \textcite{liu2024haff}.
+\\
+
+En su lugar, se crearán grupos de dimensiones según su origen (tabla~\ref{tab:viabilidad}), y se medirá la pérdida de rendimiento en cada uno de ellos frente al modelo con todas las dimensiones, de manera similar a \textcite{mohite2024} y \textcite{wu2026}.
+\\
+
+En cuanto a la fiabilidad, no se aplicarán técnicas de \textbf{sobremuestreo}, siguiendo las conclusiones de \textcite{wang2026}. Se usarán, como variables de entrada en los modelos, las \textbf{puntuaciones de cada dimensión}, ya que son índices compuestos, como recomienda \textcite{agal2026}, aunque se desconoce la fórmula exacta con la que se han calculado.
+\\
+
+Además, como en \textcite{knights2026}, se introducirá \textbf{ruido} mediante pequeñas modificaciones en las dimensiones que se pueden obtener a partir de imágenes o cartografía, para evaluar cuánto afectaría al modelo un error en su extracción.
+\\
+
+En este proyecto no se extraen datos de imágenes aéreas ni a pie de calle, sino que se ha estimado qué variables se podrían obtener (véase la tabla~\ref{tab:viabilidad}). Por tanto, los resultados del modelo serán el máximo rendimiento alcanzable con esas variables.
+\\
+
+\subsection{Conclusiones}
+\label{subsec:ml-conclusiones}
+
+En cuanto a los trabajos que aplican \textit{machine learning} a la clasificación en datos tabulares, los modelos más adecuados son los árboles de decisión, especialmente \textit{random forest} y los modelos de \textit{gradient boosting}, puesto que son los que obtienen mejores resultados en el estado del arte analizado.
+\\
+
+Las métricas varían según el tipo de problema (véase la tabla~\ref{tab:ml-revisados}). Para la regresión se usa $R^2$ y \gls{RMSE}; para la clasificación el AUC, la precisión y el \textit{recall}. En clases desbalanceadas se sustituye la exactitud (\textit{accuracy}) por métricas que dan el mismo peso a cada clase, como F1 macro o la exactitud balanceada; y en las clases ordinales, el error absoluto medio ordinal o la kappa ponderada cuadrática. En cuanto a la importancia de las variables, se combinan la importancia por permutación y SHAP.
 \\
 
 \begingroup
@@ -422,25 +449,22 @@ La tabla~\ref{tab:ml-revisados} resume los estudios revisados.
   \midrule
   \multicolumn{8}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Variables con fiabilidad o coste desigual} \\
   \textcite{nan2014} & FMCC & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
-  \textcite{chen2024cost} & Selección inspirada en computación cuántica & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
+  \textcite{chen2024cost} & Selección inspirada en computación cuántica & AUC, exactitud, precisión, \textit{recall}, falsos positivos & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
   \textcite{liu2024haff} & HAFF & AUC, exactitud, KS, H-Measure, G-Mean & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{no} \\
   \textcite{mohite2024} & \textit{Random forest} & $R^2$ & \cumple{no} & \cumple{no} & \cumple{si} & \cumple{si} & \cumple{no} \\
   \textcite{duan2022} & — & — & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{no} & \cumple{si} \\
 \end{longtable}
 \endgroup
 
-\subsection{Conclusiones}
-\label{subsec:ml-conclusiones}
-\postit{Añadir decisiones de qué voy a usar en la implementación de esto.}
-
-En cuanto a los trabajos que aplican machine learning a la clasificación en datos tabulares, los modelos más adecuados son los árboles de decisión, especialmente \textit{random forest} y los modelos de \textit{gradient boosting}, puesto que son los que obtienen mejores resultados en el estado del arte analizado.
-\\
-
-Observando las métricas, varían según el tipo de modelo (ver tabla~\ref{tab:ml-revisados}).Para la regresión se usa $R^2$ y RMSE; para la clasificación el AUC, la precisión y el recall. En clases desbalanceadas se sustituye el recall por métricas que dan el mismo peso a cada clase, como F1-macro o la exactitud balanceada; así como los que trabajan con clases ordinales, el error absoluto medio ordinal o la kappa ponderada cuadrática. En cuanto a la importancia de las variables, combinan permutación y SHAP.
-\\
-
-En algunos trabajos se ha podido comprobar cómo seleccionar las variables según su coste, o qué precisión se pierde al reducirlas.
-\\
+En resumen, las decisiones para este trabajo son:
+\begin{itemize}
+  \item \textbf{Modelos:} \textit{random forest}, XGBoost y LightGBM, con la regresión logística como referencia. No se utilizará \textit{deep learning} (subsección~\ref{subsec:ml-tabular}).
+  \item \textbf{Desbalanceo de clases:} ponderación de clases, sin sobremuestreo ni submuestreo. Las clases se tratan como independientes, aunque ordinales (subsección~\ref{subsec:ml-ordinal}).
+  \item \textbf{Métricas:} F1 macro, exactitud balanceada y kappa ponderada cuadrática (subsección~\ref{subsec:ml-ordinal}).
+  \item \textbf{Importancia de las variables:} índice de Gini (solo en modelos de árbol), importancia por permutación y valores SHAP (subsección~\ref{subsec:ml-importancia}).
+  \item \textbf{Coste y fiabilidad:} no se seleccionan variables por coste; se mide la pérdida de rendimiento al quitar las dimensiones \textit{in situ}, se usan como entradas las puntuaciones de cada dimensión y se evalúa el efecto del ruido en las dimensiones obtenibles de imágenes o cartografía (subsección~\ref{subsec:ml-fiabilidad}).
+  \item \textbf{Fuga de información:} no se utilizarán las puntuaciones totales como variables de entrada, ya que la clase de accesibilidad (variable objetivo) se calcula a partir de ellas.
+\end{itemize}
 
 \section{Perfiles de usuario en la evaluación}
 \label{sec:perfiles-arte}
@@ -559,10 +583,10 @@ Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pes
 \section{Transferencia de modelos entre ciudades}
 \label{sec:transferencia-ciudades}
 
-\input{capitulos/03-estado-del-arte/figuras/tipos-particion}
-
 Esta sección responde a la pregunta de investigación de «¿Cómo comprobar que un modelo funciona en otra ciudad?». Se ha considerado no solo evaluar la transferencia \textbf{entre ciudades}, sino también \textbf{dentro de una misma ciudad} (de tramo a calle, de calle a barrio o de calle a ciudad).
 \\
+
+\input{capitulos/03-estado-del-arte/figuras/tipos-particion}
 
 Entre los estudios analizados se han encontrado tres estrategias principales: la \textbf{\glslink{particion-aleatoria}{\mbox{partición} \mbox{aleatoria}}}, consistente en dividir al azar qué datos son de entrenamiento o validación; una \textbf{\glslink{validacion-agrupada}{\mbox{validación} \mbox{agrupada}}}, donde se utilizan y agrupan unas calles o áreas para el entrenamiento o test; o la \textbf{\glslink{validacion-entre-ciudades}{\mbox{validación} \mbox{entre} \mbox{ciudades}}}, que consiste en entrenar en una ciudad y probar en otra diferente (figura~\ref{fig:tipos-particion}).
 \\
@@ -662,7 +686,7 @@ En primer lugar, se han encontrado dos estudios que han conseguido extraer la in
 El primero es el de \textcite{hossain2026}, que usa un \gls{LiDAR} aéreo público de alta densidad de EE. UU. Lo combina con \gls{OSM}~\parencite{openstreetmap}, la capa de límites de aceras DC-GIS Sidewalks (para las aceras), y recurre a la API de elevación de Google Maps como respaldo cuando hay vegetación.
 \\
 
-Otro estudio es el de \textcite{ahmadi2026}, que utiliza una nube \gls{LiDAR} 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las pendientes longitudinal y transversal y el ancho de la acera, si bien depende de la calidad de la segmentación semántica previa.
+Otro estudio es el de \textcite{ahmadi2026}, que utiliza una nube \gls{LiDAR} 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las \textbf{pendientes longitudinal y transversal} y el \textbf{ancho de la acera}, si bien depende de la calidad de la segmentación semántica previa.
 \\
 
 Como posibles problemas, la vegetación es un limitante para el \gls{LiDAR} aéreo, y se tiene que combinar con otras fuentes de datos, como \gls{OSM}, o la cartografía vectorial del Catastro~\parencite{catastro_descarga_datos}. Por lo que el uso del \gls{PNOA}-\gls{LiDAR}~\parencite{pnoa_lidar,pnoa_lidar_descargas} podría utilizarse de manera similar a \textcite{hossain2026}.
@@ -672,7 +696,7 @@ El \gls{LiDAR} terrestre no está disponible en la cartografía pública españo
 \\
 
 \subsection{Modelos digitales del terreno}
-En cuanto a los \gls{MDT}, se ha comprobado que se utilizan principalmente para el cálculo de la pendiente longitudinal. A continuación se muestran dos estudios científicos.
+En cuanto a los \glslink{MDT}{modelos digitales del terreno} (\glsxtrshort{MDT}), se ha comprobado que se utilizan principalmente para el cálculo de la \textbf{pendiente longitudinal}. A continuación se muestran dos estudios científicos.
 \\
 
 El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el \gls{MDT} del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía topográfica municipal de Barcelona, que aporta los polígonos de aceras, manzanas y pasos de peatones), así como el Geoportal del Área Metropolitana de Barcelona.
@@ -691,4 +715,4 @@ El uso del MDT02 del \gls{IGN}~\parencite{pnoa_mdt} podría conseguir la misma i
 \\
 
 \subsection{Síntesis}
-En los estudios que se han revisado, la cartografía pública permitiría calcular la pendiente longitudinal y, combinada con otras fuentes de datos, el ancho de las aceras. La pendiente transversal, en cambio, resulta más difícil de obtener si no se dispone de una nube de puntos LiDAR del terreno en tres dimensiones.
+En los estudios que se han revisado, la cartografía pública permitiría calcular la \textbf{pendiente longitudinal} y, combinada con otras fuentes de datos, el \textbf{ancho de las aceras}. La \textbf{pendiente transversal}, en cambio, resulta más difícil de obtener si no se dispone de una nube de puntos LiDAR del terreno en tres dimensiones.
