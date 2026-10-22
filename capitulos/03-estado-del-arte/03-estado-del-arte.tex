@@ -480,10 +480,10 @@ Se han identificado tres formas diferentes de hacerlo: \textbf{otorgar diferente
 
 \input{capitulos/03-estado-del-arte/figuras/perf-diferentes-pesos-por-grupo}
 
-\textcite{moura2017} se computa un índice denominado IAAPE, que evalúa la accesibilidad (específicamente la caminabilidad) en cuatro grupos de personas (personas adultas, niñas y niños, personas mayores y personas con movilidad reducida).
+En \textcite{moura2017} se computa un índice denominado IAAPE, que evalúa la accesibilidad (específicamente la caminabilidad) en cuatro grupos de personas (personas adultas, niñas y niños, personas mayores y personas con movilidad reducida).
 \\
 
-Para cada grupo de personas, se establece \textbf{un peso para cada variable} utilizada en el entrenamiento. Esto se hace de forma participativa, combinando un panel de personal experto en movilidad y urbanismo, que identifica las variables y rangos que pueden resultar de interés para el estudio; así como un panel de personas pertenecientes a cada uno de los grupos, que pondera cada una de las variables de interés elegidas.
+Para cada grupo de personas, se establece \textbf{un peso para cada variable} utilizada en el cálculo del índice. Esto se hace de forma participativa, combinando un panel de personal experto en movilidad y urbanismo, que identifica las variables y rangos que pueden resultar de interés para el estudio; así como un panel de personas pertenecientes a cada uno de los grupos, que pondera cada una de las variables de interés elegidas.
 \\
 
 La comparación se hace por pares, mostrando a las personas dos opciones de combinación de variables para que elijan su preferencia. Por ejemplo, en la primera opción, una variable x tiene una puntuación elevada, pero la y la tiene baja; mientras que en la segunda opción es al revés. Una vez se computan todos los datos, se realiza el cálculo de los pesos.
@@ -501,7 +501,7 @@ Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con l
 
 \input{capitulos/03-estado-del-arte/figuras/perf-modelo-diferente-por-grupo}
 
-\textcite{dong2019} se analiza cuál es la percepción de la infraestructura de las y los peatones en la ciudad de Harbin (China) con 400 personas encuestadas por grupo, distinguiendo entre comunidades cerradas (aquellas que viven en urbanizaciones), y comunidades abiertas (cuyos hogares están en vías públicas), en 27 atributos diferentes.
+En \textcite{dong2019} se analiza cuál es la percepción de la infraestructura peatonal en la ciudad de Harbin (China) con 400 personas encuestadas por grupo, distinguiendo entre comunidades cerradas (aquellas que viven en urbanizaciones), y comunidades abiertas (cuyos hogares están en vías públicas), en 27 atributos diferentes.
 \\
 
 La idea de este estudio es entrenar \textbf{dos modelos independientes} de \textit{gradient boosting} (\gls{GBDT}), comparando la importancia relativa de cada atributo en cada modelo. Una vez se obtiene la importancia de cada uno, se realiza un análisis de simetría de impacto (\gls{IAA}), que realiza una clasificación en tres clases ordinales según cómo afecta a la percepción de las personas de cada grupo.
@@ -525,7 +525,7 @@ El procedimiento permite conocer cuáles son las variables que hacen que la clas
 Otra alternativa es la utilizada por \textcite{mastelini2019}, en el que se propone utilizar un \textbf{único modelo} que permita realizar la predicción de la clase, distinguiendo por cada tipo de grupo a la vez (denominado \textit{multi-target} o \textit{multi-output}).
 \\
 
-En este estudio se utilizó el método \gls{MOTC} (\textit{Multi-Output Tree Chaining}), que utiliza árboles de cadenas (\textit{chaining trees}) en dos fases:
+En este estudio se utilizó el método \gls{MOTC}, que utiliza árboles de cadenas (\textit{chaining trees}) en dos fases:
 \begin{itemize}
   \item Descubrir dependencias entre grupos:
   \begin{itemize}
@@ -539,13 +539,13 @@ En este estudio se utilizó el método \gls{MOTC} (\textit{Multi-Output Tree Cha
   \end{itemize}
 \end{itemize}
 
-Este algoritmo se ha demostrado exitoso, puesto que se aprovecha de las dependencias que existen entre las clases, que habitualmente no son totalmente independientes. Además, también se ha demostrado eficiente, puesto que se reutilizan los modelos de las hojas ya entrenadas.
+Este algoritmo ha demostrado ser eficaz, puesto que se aprovecha de las dependencias que existen entre las clases, que habitualmente no son totalmente independientes. Además, también ha demostrado ser eficiente, puesto que se reutilizan los modelos de las hojas ya entrenadas.
 \\
 
-Otro estudio con un enfoque similar es el de \textcite{lin2019}, en el que se presenta el método \gls{MTBR} (\textit{Multi-Target Boosting for Regression}), una versión extendida de \textit{gradient boosting} con varias salidas.
+Otro estudio con un enfoque similar es el de \textcite{lin2019}, en el que se presenta el método \gls{MTBR}, una versión extendida de \textit{gradient boosting} con varias salidas.
 \\
 
-¿Cómo funciona? En cada iteración se evalúa si la estructura de árbol aprendida para un perfil permite predecir el error de predicción de otro perfil, mediante la partición del espacio de características y haciendo el recálculo de las estimaciones finales separado por grupo. Las métricas utilizadas han sido \gls{RRMSE} (\textit{error cuadrático medio relativo}) y \gls{CRRMSE} (\textit{error cuadrático medio relativo comparado}).
+¿Cómo funciona? En cada iteración se evalúa si la estructura de árbol aprendida para un perfil permite predecir el error de predicción de otro perfil, mediante la partición del espacio de características y haciendo el recálculo de las estimaciones finales separado por grupo. Las métricas utilizadas han sido \gls{RRMSE} y \gls{CRRMSE}.
 \\
 
 \tituloconclusion{Conclusión}
@@ -554,7 +554,6 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
 
 \subsection{Conclusiones}
 \label{subsec:perfiles-conclusiones}
-\postit{Revisar conclusión.}
 
 \begin{table}[htbp]
   \centering
@@ -577,7 +576,7 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
 Los trabajos revisados coinciden en que cada grupo de usuarios \textbf{valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
 \\
 
-Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pesos a cada variable, varios modelos diferentes por cada grupo, así como entrenar un único modelo con varias salidas (únicamente comprobado en regresión, pero no clasificación). En el caso del proyecto elaborado en esta memoria, se podría aplicar alguna de estas técnicas para poder clasificar a los diferentes perfiles funcionales existentes en los conjuntos de datos.
+Se han encontrado tres formas de incorporar los grupos: otorgar diferentes pesos a cada variable, entrenar varios modelos diferentes por cada grupo, o entrenar un único modelo con varias salidas (comprobado únicamente en regresión, no en clasificación). En este proyecto no se conocen los pesos de cada variable, y el modelo con varias salidas solo se ha probado en regresión, por lo que se va a \textbf{entrenar un modelo para cada perfil funcional}, y se comparará qué variables tienen más peso en cada uno.
 \\
 
 \section{Transferencia de modelos entre ciudades}
@@ -604,7 +603,7 @@ Según los autores, este éxito de la aleatoriedad es debido a que tramos de la 
 Otro estudio, el de \textcite{mohite2024}, sigue una estrategia similar con las calles de Nagpur (India), que utiliza el algoritmo \gls{RFR} sobre un conjunto de datos de calles agrupadas por orientación (norte-sur y este-oeste) para predecir el confort térmico peatonal.
 \\
 
-La división en entrenamiento y test es aleatoria, y además se garantiza que al menos una calle de cada grupo quede en el conjunto de test. Se obtuvo una precisión adecuada en el conjunto de test. Las métricas utilizadas fueron $R^2$ y \gls{MSE}.
+La división en entrenamiento y test es aleatoria, y además se garantiza que al menos una calle de cada grupo quede en el conjunto de test. Se obtuvo un $R^2$ de 0,95 en las calles norte-sur y de 0,98 en las este-oeste, en el conjunto de test. Las métricas utilizadas fueron $R^2$ y \gls{MSE}.
 \\
 
 Por último, se ha localizado un estudio, \textcite{li2024gsv}, en el que se realiza el \textbf{entrenamiento en un único distrito} de Taipei, y luego se predice en el resto de distritos. Se utilizó un modelo de regresión con \textit{random forest} para determinar la caminabilidad de las calles.
@@ -619,7 +618,7 @@ Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a
 \textcite{duan2022} se realiza un análisis a partir de imágenes a pie de calle, que han sido etiquetadas por personas voluntarias. Utiliza una estrategia denominada \textbf{\textit{cross-city training}}, de validación entre ciudades.
 \\
 
-En concreto, se realizaron dos experimentos, uno combinando los datos de cuatro ciudades (Seattle, Columbus y Washington en EE. UU., y San Pedro Garza García en México); y otro excluyendo Columbus. Las métricas utilizadas fueron la \glslink{precision}{precisión}, el \glslink{recall}{\textit{recall}} y el \glslink{accuracy}{\textit{accuracy}}. Se determinó que el primer experimento bajó la precisión de las predicciones, mientras que el segundo experimento mejoró la precisión incluso de Columbus.
+En concreto, se compararon dos formas de entrenar: con los datos de una sola ciudad, evaluando sobre otra; y con los datos combinados de las cuatro ciudades (Seattle, Columbus y Washington en EE. UU., y San Pedro Garza García en México). Las métricas utilizadas fueron la \glslink{precision}{precisión}, el \glslink{recall}{\textit{recall}} y la \glslink{accuracy}{exactitud}. Se determinó que entrenar con una sola ciudad reducía la precisión al evaluar en otra, mientras que entrenar con las ciudades combinadas la mejoraba, también en Columbus.
 \\
 
 Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que los autores atribuyen a diferencias urbanas entre esta ciudad y las estadounidenses.
@@ -638,7 +637,6 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
 
 \subsection{Conclusiones}
 \label{subsec:validacion-conclusiones}
-\postit{Revisar conclusión.}
 
 \begin{table}[htbp]
   \centering
@@ -652,7 +650,7 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
     \textcite{wu2026} & Regresión lineal, SVR, XGBoost y \textit{random forest} & \cumple{si} & \cumple{si} & \cumple{no} & $R^2$, RMSE y MAE \\
     \textcite{mohite2024} & \textit{Random forest regressor} & \cumple{si} & \cumple{parcial} & \cumple{no} & $R^2$ y MSE \\
     \textcite{li2024gsv} & \textit{Random forest} (regresión) & \cumple{no} & \cumple{si} & \cumple{no} & --- \\
-    \textcite{duan2022} & Clasificación de imágenes a pie de calle & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall} y \textit{accuracy} \\
+    \textcite{duan2022} & Clasificación de imágenes a pie de calle & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall} y exactitud \\
     \textcite{weld2019} & ResNet-18 & \cumple{no} & \cumple{no} & \cumple{si} & Precisión, \textit{recall}, curvas de precisión y matriz de confusión \\
     \bottomrule
   \end{tabularx}
