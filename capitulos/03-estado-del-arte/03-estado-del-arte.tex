@@ -300,19 +300,36 @@ Como conclusión, en este trabajo se van a utilizar los modelos \textbf{\textit{
 
 \subsection{Clases ordinales y desbalanceadas}
 \label{subsec:ml-ordinal}
-\postit{Incluir qué se va a usar en el trabajo de estos estudios.}
 
-En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{\glslink{clase-ordinal}{clase ordinal}}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C es incumplimiento); además, las clases están \textbf{\glslink{desbalanceo-clases}{desbalanceadas}} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
+En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{\glslink{clase-ordinal}{clase ordinal}}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C incumple); además, las clases están \textbf{\glslink{desbalanceo-clases}{desbalanceadas}} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
+\\
+
+La figura~\ref{fig:distribucion-clases} muestra la distribución de las clases en ambos conjuntos de datos.
 
 \input{capitulos/03-estado-del-arte/figuras/desbalanceo-clases-alb-alg}
 
-Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en \textcite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 4). Mientras que en \textcite{agal2026} se utilizan redes neuronales acumulativas en un \textit{dataset} de estudiantes, para evitar tratar las clases ordinales como inconexas; se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
+Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en \textcite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 3).
+\\
 
-En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases, como el error absoluto medio ordinal (MAMAE en \textcite{jean2025}) o el error absoluto medio ordinal y la \glslink{kappa-ponderada}{kappa ponderada cuadrática} en \textcite{agal2026}.
+Por su parte, en \textcite{agal2026} se utilizan redes neuronales acumulativas en un conjunto de datos educativo, para evitar tratar las clases ordinales como independientes. Para ello, se utiliza el concepto de variable continua latente no observada, en el que se procesan todas las características para calcular una única función de salida, que tras aplicar unos umbrales, clasifica en la variable objetivo.
+\\
 
-Los estudios sobre \textbf{desbalanceo de clases}, utilizan la \glslink{ponderacion-clases}{ponderación de clases} y el aprendizaje sensible al coste~\parencite{wang2026, agal2026}, o el \glslink{submuestreo}{submuestreo}~\parencite{smith2013}. Las métricas que se han utilizado están elegidas porque no favorecen a la clase con mayor frecuencia: F1-score, \glslink{f1-macro}{F1-macro} y \glslink{exactitud-balanceada}{exactitud balanceada}~\parencite{jean2025, naseri2022}.
+En ambos casos se utilizan métricas de evaluación que penalizan los errores según la distancia entre clases. En \textcite{jean2025} se utiliza el \gls{MAMAE}, que además da el mismo peso a cada clase, por lo que también es adecuado para clases desbalanceadas; mientras que en \textcite{agal2026} se utilizan el error absoluto medio ordinal y la \glslink{kappa-ponderada}{kappa ponderada cuadrática}.
+\\
 
-En el \textbf{aprendizaje sensible al coste} se modifica la función de pérdida de manera que penalice más cuando se comete un error de predicción en una de las clases menos frecuentes; mientras que en el \textbf{submuestreo} lo que se hace es reducir el número de observaciones de las clases dominantes, para lograr un balanceo mejor de los datos.
+Los estudios sobre \textbf{desbalanceo de clases} utilizan principalmente dos técnicas. En el \textbf{\glslink{aprendizaje-sensible-coste}{aprendizaje sensible al coste}}, que se aplica mediante la \glslink{ponderacion-clases}{ponderación de clases}~\parencite{wang2026, agal2026}, se modifica la función de pérdida de manera que penalice más cuando se comete un error de predicción en una de las clases menos frecuentes. En el \textbf{\glslink{submuestreo}{submuestreo}}~\parencite{smith2013} se reduce el número de observaciones de las clases dominantes, para lograr un balanceo mejor de los datos. Las métricas que se han utilizado se eligieron porque no favorecen a la clase con mayor frecuencia: F1, \glslink{f1-macro}{F1 macro} y \glslink{exactitud-balanceada}{exactitud balanceada}~\parencite{jean2025, naseri2022}.
+\\
+
+\tituloconclusion{Conclusión}
+Una vez analizados los estudios, en este proyecto se utilizará el \textbf{\glslink{aprendizaje-sensible-coste}{aprendizaje sensible al coste}} mediante la \textbf{ponderación de clases}, que modifica la función de pérdida para tratar el desbalanceo de clases existente en el conjunto de datos. De esta manera, se compensará la baja frecuencia de la clase A sin perder información por submuestreo, que no se aplicará debido al bajo número de tramos con accesibilidad de clase A (24 tramos en Albacete y 28 en Algeciras).
+\\
+
+En cuanto a las métricas, no se utilizará la exactitud, ya que un modelo que asignara siempre la clase B acertaría el 78,2\,\% de los tramos de Albacete. En su lugar, se utilizarán la \textbf{F1 macro} y la \textbf{exactitud balanceada}, que a diferencia de la exactitud, no favorecen a la clase con mayor frecuencia; y la \textbf{kappa ponderada cuadrática}, que penaliza los errores según la distancia entre clases.
+\\
+
+Como se descartó el uso de \textit{deep learning} en la subsección~\ref{subsec:ml-tabular}, no se utilizarán las redes neuronales acumulativas de \textcite{agal2026}.
+Por tanto, los modelos de árboles tratarán las clases como independientes, aunque ordinales, y su orden se tendrá en cuenta en la evaluación.
+\\
 
 \subsection{Importancia de las variables}
 \label{subsec:ml-importancia}
@@ -448,7 +465,7 @@ Para cada grupo de personas, se establece \textbf{un peso para cada variable} ut
 La comparación se hace por pares, mostrando a las personas dos opciones de combinación de variables para que elijan su preferencia. Por ejemplo, en la primera opción, una variable x tiene una puntuación elevada, pero la y la tiene baja; mientras que en la segunda opción es al revés. Una vez se computan todos los datos, se realiza el cálculo de los pesos.
 \\
 
-En el estudio, se identificó que \textbf{cada grupo de personas otorgaba una importancia más elevada a diferentes variables}, como la seguridad vial en los cruces para las personas adultas, o la calidad del pavimento para las personas mayores. Por lo tanto, cada calle recibe una puntuación y clase diferente según el grupo.
+En el estudio, se identificó una \textbf{importancia distinta según el grupo} en las variables, como la seguridad vial en los cruces para las personas adultas, o la calidad del pavimento para las personas mayores. Por lo tanto, cada calle recibe una puntuación y clase diferente según el grupo.
 \\
 
 \tituloconclusion{Conclusión}
@@ -533,7 +550,7 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
   \fuente{elaboración propia.}
 \end{table}
 
-Los trabajos revisados coinciden en que \textbf{cada grupo de usuarios valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
+Los trabajos revisados coinciden en que cada grupo de usuarios \textbf{valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
 \\
 
 Se han encontrado tres formas de incorporar los grupos, otorgando diferentes pesos a cada variable, varios modelos diferentes por cada grupo, así como entrenar un único modelo con varias salidas (únicamente comprobado en regresión, pero no clasificación). En el caso del proyecto elaborado en esta memoria, se podría aplicar alguna de estas técnicas para poder clasificar a los diferentes perfiles funcionales existentes en los conjuntos de datos.
@@ -621,7 +638,7 @@ Las métricas utilizadas fueron precisión, \textit{recall}, curvas de precisió
 La tabla~\ref{tab:validacion-previos} resume qué estrategia de validación usa cada trabajo y con qué métricas.
 \\
 
-En primer lugar, hay varios métodos de particionar los datos en entrenamiento y test, como la partición aleatoria o la validación agrupada (por calles o barrios). Aunque en \textcite{wu2026} el modelo obtiene mejores resultados con partición aleatoria, esto es debido a la división por tramos de la calle, por lo que \textbf{la validación agrupada parece la más adecuada} para construir los modelos.
+En primer lugar, hay varios métodos de particionar los datos en entrenamiento y test, como la partición aleatoria o la validación agrupada (por calles o barrios). Aunque en \textcite{wu2026} el modelo obtiene mejores resultados con partición aleatoria, esto es debido a la división por tramos de la calle, por lo que la \textbf{validación agrupada} parece la más adecuada para construir los modelos.
 \\
 
 Hay varias formas de realizar la transferencia entre ciudades, dando resultados diferentes \textbf{según la similitud entre ciudades}. Aunque en algunas ocasiones realizar el entrenamiento combinando datos de varias ciudades ayuda, en otros casos empeora los resultados, sobre todo si las ciudades tienen diferencias en su morfología urbana.
