@@ -524,6 +524,8 @@
 \newcommand{\aclaracion}[2][Aclaración]{\begin{tfm@aclbox}{\sffamily\footnotesize\bfseries\color{uoc-azul}#1.}\ #2\end{tfm@aclbox}}
 % 3) \notatabla{texto}: nota bajo una tabla o figura (convención académica «Nota.»).
 \newcommand{\notatabla}[1]{\par\vspace{3pt}{\footnotesize\raggedright\textit{Nota.}\ #1\par}}
+% Título de conclusión: sin numerar ni entrar en el índice.
+\newcommand{\tituloconclusion}[1]{\par\vspace{1.5ex}\noindent{\color{uoc-cian-filete}\rule{\linewidth}{0.8pt}}\par\nobreak\vspace{0.3ex}\noindent{\sffamily\bfseries\color{uoc-azul}#1}\par\nobreak\vspace{0.6ex}}
 % Notas al pie: número en uoc-azul
 \let\tfm@thefnmark\thefootnote
 \renewcommand{\thefootnote}{\textcolor{uoc-azul}{\arabic{footnote}}}

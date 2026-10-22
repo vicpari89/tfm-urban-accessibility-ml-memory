@@ -130,6 +130,7 @@ La herramienta Project Sidewalk~\parencite{saha2019} también utiliza \textbf{Go
 El resultado de accesibilidad se calcula a partir de la votación por mayoría a partir de las etiquetas.
 \\
 
+\tituloconclusion{Conclusión}
 Es interesante para este trabajo, puesto que valida que sería potencialmente posible extraer información de imágenes a pie de calle para valorar la accesibilidad.
 \\
 
@@ -271,20 +272,30 @@ Los trabajos sobre \textbf{datos tabulares} se han utilizado principalmente para
 Se incluye también el trabajo de \textcite{wang2026}, que aunque pertenece al sector sanitario, es un ejemplo de comparación de modelos sobre datos tabulares. Se compararon 11 modelos (CatBoost, árbol de decisión, GBM, \textit{Gaussian naive Bayes}, KNN, LightGBM, \glslink{regresion-logistica}{regresión logística}, MLP, \textit{random forest}, SVM y XGBoost), sobre un conjunto de datos en tabla de 2305 muestras; el mejor resultado fue para \textit{random forest}, evaluado con F1, precisión y \textit{recall}.
 \\
 
+\tituloconclusion{Conclusión}
 En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a usuarios; a diferencia de los datos de Albacete y Algeciras, que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
 \\
 
 \subsection{Modelos para datos tabulares}
 \label{subsec:ml-tabular}
-\postit{Indicar qué modelos se van a usar.}
 
-Se han revisado varios trabajos sobre datos en tabla, como los de este proyecto, en los que destacan los modelos de \textbf{árboles de decisión}, obteniendo los mejores resultados. En primer lugar, en \textcite{knights2026} se realiza una comparación entre regresión logística, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico sobre 600 observaciones; donde el modelo de \textit{random forest}, obtuvo la mejor exactitud y F1.
+Se han revisado varios trabajos sobre datos en formato tabular, como los de este proyecto, en los que destacan los modelos de \textbf{árboles de decisión}, que obtienen los mejores resultados. En primer lugar, en \textcite{knights2026} se realiza una comparación entre \glslink{regresion-logistica}{regresión logística}, \textit{random forest}, \textit{gradient boosting} y una red neuronal, para un conjunto de datos bioquímico y demográfico de 600 observaciones, donde el modelo de \textit{random forest} obtuvo la mejor exactitud y F1.
 \\
 
-Y en general, en el estudio \textcite{grinsztajn2022} se realizó un estudio intensivo sobre 45 conjuntos de datos tabulares, y se determinó que los árboles de decisión eran más adecuados para este tipo de datos que el \textit{deep learning}.
+Aunque el estudio de \textcite{knights2026} no es de accesibilidad y trabaja con datos bioquímicos, se ha incluido en el análisis porque el número de observaciones es similar al de este trabajo (916 en Albacete y 506 en Algeciras).
 \\
 
-En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. \textcite{wu2026} XGBoost tuvo mejores resultados que \textit{random forest}, SVR o la regresión lineal, en un estudio de morfología urbana (5.060 observaciones), con métricas $R^2$ y \gls{RMSE}; así como en \textcite{jean2025}. En cuanto a LightGBM, fue el modelo con mejor rendimiento en \textcite{agal2026}, sobre 100.000 registros sobre estudiantes.
+De forma más general, en \textcite{grinsztajn2022} se realizó un estudio intensivo sobre 45 conjuntos de datos tabulares, y se determinó que los árboles de decisión eran más adecuados para este tipo de datos que el \textit{deep learning}.
+\\
+
+En los modelos de árboles de decisión, destacan los que están basados en \textbf{\textit{gradient boosting}}, como XGBoost y LightGBM. En \textcite{wu2026}, XGBoost tuvo mejores resultados que \textit{random forest}, \gls{SVR} o la regresión lineal, en un estudio de regresión del ruido de tráfico en carriles bici a partir de la morfología urbana (5060 observaciones), con métricas $R^2$ y \gls{RMSE}; y también en \textcite{jean2025}, que se detalla en la siguiente sección.
+\\
+
+En cuanto a LightGBM, fue el modelo con mejor rendimiento en \textcite{agal2026} dentro de los modelos de árboles, en un conjunto de datos de estudiantes, aunque con un número de observaciones mucho más alto que en este trabajo (100\,000 registros). Es cierto que el modelo con mejor rendimiento fue uno de \textit{deep learning} ordinal, pero la diferencia de la métrica utilizada, F1 macro, es mínima (0,842 contra 0,846).
+\\
+
+\tituloconclusion{Conclusión}
+Como conclusión, en este trabajo se van a utilizar los modelos \textbf{\textit{random forest}}, \textbf{XGBoost} y \textbf{LightGBM}, por obtener los mejores resultados entre los modelos de árboles en los estudios analizados \parencite{knights2026, wu2026, agal2026}, así como la \textbf{\glslink{regresion-logistica}{regresión logística}} como referencia base, como en \textcite{knights2026}. A partir de las conclusiones de \textcite{grinsztajn2022} y de los demás estudios revisados, no se utilizará \textit{deep learning} en este trabajo.
 \\
 
 \subsection{Clases ordinales y desbalanceadas}
@@ -327,6 +338,7 @@ El índice de consenso de \textcite{knights2026} combina tres métodos diferente
 Hay que tener en cuenta, además, que aunque una variable tenga poca importancia, no quiere decir que haya que deshacerse de ella. En la sección~\ref{subsec:ml-fiabilidad}, se analiza cómo poder confirmar que una variable se puede eliminar del modelo.
 \\
 
+\tituloconclusion{Conclusión}
 En relación al proyecto, se utilizará el \textbf{índice de Gini} como una orientación inicial, cuando los modelos sean de árbol de decisión; así como la \textbf{importancia por permutación} y los \textbf{valores SHAP}, como en \textcite{agal2026}. Esto servirá para comprobar cuáles de las variables que solo se pueden tomar in situ aportan menos al modelo.
 De esta manera, se podrá responder a la hipótesis H5 (tabla~\ref{tab:hipotesis}), entrenando el modelo sin las dimensiones in situ para ver si la calidad sigue siendo suficiente.
 \\
@@ -439,6 +451,7 @@ La comparación se hace por pares, mostrando a las personas dos opciones de comb
 En el estudio, se identificó que \textbf{cada grupo de personas otorgaba una importancia más elevada a diferentes variables}, como la seguridad vial en los cruces para las personas adultas, o la calidad del pavimento para las personas mayores. Por lo tanto, cada calle recibe una puntuación y clase diferente según el grupo.
 \\
 
+\tituloconclusion{Conclusión}
 Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con la diferencia de que en este proyecto no se conocen los pesos para cada una de las variables.
 \\
 
@@ -459,6 +472,7 @@ En el artículo se pudo comprobar que la importancia de las variables cambia seg
   \item \textbf{Comunidades abiertas:} la calidad de la acera, la seguridad del barrio y las actividades de ocio.
 \end{itemize}
 
+\tituloconclusion{Conclusión}
 El procedimiento permite conocer cuáles son las variables que hacen que la clase tienda más a tener un valor u otro, y se puede trasladar a este proyecto, entrenando un modelo para cada perfil, y comparando qué variables tienen más peso en cada uno de los perfiles funcionales.
 \\
 
@@ -493,6 +507,7 @@ Otro estudio con un enfoque similar es el de \textcite{lin2019}, en el que se pr
 ¿Cómo funciona? En cada iteración se evalúa si la estructura de árbol aprendida para un perfil permite predecir el error de predicción de otro perfil, mediante la partición del espacio de características y haciendo el recálculo de las estimaciones finales separado por grupo. Las métricas utilizadas han sido \gls{RRMSE} (\textit{error cuadrático medio relativo}) y \gls{CRRMSE} (\textit{error cuadrático medio relativo comparado}).
 \\
 
+\tituloconclusion{Conclusión}
 En ambos estudios se resuelve un problema de regresión, por lo que las variables objetivo son continuas, a diferencia de las clases ordinales de este proyecto. Por lo que no se puede hacer una transferencia directa, pero sí tomarlo como idea.
 \\
 
@@ -654,6 +669,7 @@ El segundo estudio es el de \textcite{cetin2026}, en el que se evalúa el grado 
 No se calcula ni pendiente transversal ni ancho de las aceras.
 \\
 
+\tituloconclusion{Conclusión}
 El uso del MDT02 del \gls{IGN}~\parencite{pnoa_mdt} podría conseguir la misma información que el estudio de \textcite{vallsclua2023}, debido a que la resolución (2 m) es equivalente a la utilizada en el estudio de Barcelona.
 \\
 
