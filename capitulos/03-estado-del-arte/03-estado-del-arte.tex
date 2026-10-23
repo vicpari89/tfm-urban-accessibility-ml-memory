@@ -3,7 +3,7 @@
 % ---------------------------------------------------------------------
 \section{Metodología de la revisión}
 \label{sec:metodo-revision}
-En las siguientes secciones se responderán las preguntas planteadas al final del capítulo anterior~\ref{cap:normativa} (sección~\ref{sec:sintesis-marco}).
+En las siguientes secciones se responderán las preguntas planteadas al final del capítulo~\ref{cap:normativa} (sección~\ref{sec:sintesis-marco}).
 \\
 
 Para cada pregunta se ha definido una o varias cadenas de búsqueda, que se muestran en la tabla~\ref{tab:cadenas-busqueda} y se ha consultado en tres fuentes, que se usan de forma complementaria.
@@ -72,7 +72,7 @@ En Web of Science, cada cadena de búsqueda de la tabla~\ref{tab:cadenas-busqued
       & \texttt{"spatial cross-validation" machine learning}
       \par\vspace{3pt}\texttt{"cross-city" transfer urban model}
       \par\vspace{3pt}\texttt{"grouped" holdout street segments} \\\addlinespace
-    Extracción desde datos cartográficos (\ref{sec:datos-cartograficos-publicos})
+    Extracción desde datos cartográficos (\ref{sec:datos-cartograficos})
       & \texttt{("LiDAR" OR "digital elevation model") AND ("sidewalk" OR "street") AND "slope"}
       \par\vspace{3pt}\texttt{"sidewalk width" AND ("cadastre" OR "LiDAR" OR "GIS")}
       & \texttt{"sidewalk slope" LiDAR}
@@ -87,17 +87,17 @@ Se muestran las cadenas principales, aunque se han utilizado además variantes y
 \subsection{Criterios de selección}
 \label{subsec:criterios-seleccion}
 
-Una vez leídos los títulos y resúmenes de los trabajos, se seleccionarán aquellos que:
+Una vez leídos los títulos y resúmenes de los trabajos, se han seleccionado aquellos que:
 \begin{itemize}
   \item Tienen relación con alguna de las 5 preguntas de investigación, aunque se hayan localizado por una cadena de otra categoría.
   \item Son artículos científicos, trabajos universitarios, o incluso preprints que sean relevantes.
   \item Describen el método científico seguido y sus conclusiones.
 \end{itemize}
 
-Todos los seleccionados (entre 2 y 6 por pregunta), se leerán más en profundidad, con ayuda de NotebookLM, y se realizará una ficha resumen con la aportación a cada pregunta de investigación.
+Todos los seleccionados (entre 2 y 6 por pregunta), se han leído más en profundidad, con ayuda de NotebookLM, y se ha realizado una ficha resumen con la aportación a cada pregunta de investigación.
 \\
 
-Finalmente, por cada subsección, se realizará una conclusión.
+Finalmente, por cada sección, se ha realizado una conclusión.
 \\
 
 % ---------------------------------------------------------------------
@@ -108,7 +108,6 @@ Antes de entrar de lleno en la generación de los modelos de \textit{machine lea
 
 \subsection{Auditorías de campo}
 \label{subsec:eval-campo}
-\postit{Enlazar con los datos de Albacete y Algeciras.}
 En primer lugar, el protocolo \textit{Sidewalk Assessment Process}~\parencite{axelson1999} realiza el trabajo base de inspección in situ de todas las características de las vías (pendiente longitudinal o transversal) y las compara con los requisitos de la legislación de Estados Unidos (denominada \gls{ADA}).
 \\
 
@@ -119,6 +118,9 @@ Los estudios de Georgia Tech~\parencite{frackelton2013, guensler2015} indican el
 \\
 
 Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos.
+\\
+
+De forma similar, en Albacete y Algeciras los equipos técnicos inspeccionaron las calles \textit{in situ} y compararon sus características con la Orden TMA/851/2021 (sección~\ref{sec:analisis-exploratorio}), aplicando un algoritmo de puntuación que se desconoce (sección~\ref{sec:limitaciones-datos}).
 \\
 
 \subsection{Auditorías virtuales a partir de imágenes}
@@ -153,7 +155,6 @@ Entre las conclusiones de las y los autores, para medir la accesibilidad se nece
 
 \subsection{Métodos difusos multicriterio}
 \label{subsec:eval-difusos}
-\postit{Enlazar con los datos de Albacete y Algeciras.}
 
 En el estudio de \textcite{soaresmuller2024}, se realizó una auditoría in situ en el centro de la ciudad de Santa María, en Brasil, y se evaluaron valores cualitativos (sí, parcialmente, no cumple) para diferentes variables.
 \\
@@ -165,6 +166,9 @@ En el estudio de \textcite{jahromi2024}, centrado en personas en silla de ruedas
 \\
 
 Se aplicó un método \textbf{\gls{fuzzy-topsis} adaptativo}, en el que entra en juego la fatiga, mayor cuanta mayor longitud en pendiente. El resultado es un índice de accesibilidad de cuatro niveles.
+\\
+
+A diferencia de estos métodos, en Albacete y Algeciras la puntuación de cada dimensión ya viene dada, y se desconoce cómo se ha calculado (sección~\ref{sec:limitaciones-datos}).
 \\
 
 La Tabla~\ref{tab:enfoques-evaluacion} resume los enfoques revisados.
@@ -475,6 +479,7 @@ Como se ha visto en el análisis exploratorio de Algeciras y Albacete, se ha pun
 Se han identificado tres formas diferentes de hacerlo: \textbf{otorgar diferentes pesos} a cada variable por cada grupo, \textbf{entrenar modelos diferentes} para cada grupo y comparar los resultados, o \textbf{entrenar un único modelo} que tenga una salida diferente por cada grupo.
 \\
 
+\Needspace{18\baselineskip}
 \subsection{Diferentes pesos por grupo}
 \label{subsec:perfiles-pesos}
 
@@ -496,6 +501,7 @@ En el estudio, se identificó una \textbf{importancia distinta según el grupo} 
 Este trabajo de Moura et al. es similar al trabajo de esta memoria, aunque con la diferencia de que en este proyecto no se conocen los pesos para cada una de las variables.
 \\
 
+\Needspace{18\baselineskip}
 \subsection{Un modelo diferente para cada grupo}
 \label{subsec:perfiles-modelo-por-grupo}
 
@@ -517,6 +523,7 @@ En el artículo se pudo comprobar que la importancia de las variables cambia seg
 El procedimiento permite conocer cuáles son las variables que hacen que la clase tienda más a tener un valor u otro, y se puede trasladar a este proyecto, entrenando un modelo para cada perfil, y comparando qué variables tienen más peso en cada uno de los perfiles funcionales.
 \\
 
+\Needspace{18\baselineskip}
 \subsection{Modelo único con varias salidas por grupo}
 \label{subsec:perfiles-multisalida}
 
@@ -585,6 +592,7 @@ Se han encontrado tres formas de incorporar los grupos: otorgar diferentes pesos
 Esta sección responde a la pregunta de investigación de «¿Cómo comprobar que un modelo funciona en otra ciudad?». Se ha considerado no solo evaluar la transferencia \textbf{entre ciudades}, sino también \textbf{dentro de una misma ciudad} (de tramo a calle, de calle a barrio o de calle a ciudad).
 \\
 
+\Needspace{20\baselineskip}
 \input{capitulos/03-estado-del-arte/figuras/tipos-particion}
 
 Entre los estudios analizados se han encontrado tres estrategias principales: la \textbf{\glslink{particion-aleatoria}{\mbox{partición} \mbox{aleatoria}}}, consistente en dividir al azar qué datos son de entrenamiento o validación; una \textbf{\glslink{validacion-agrupada}{\mbox{validación} \mbox{agrupada}}}, donde se utilizan y agrupan unas calles o áreas para el entrenamiento o test; o la \textbf{\glslink{validacion-entre-ciudades}{\mbox{validación} \mbox{entre} \mbox{ciudades}}}, que consiste en entrenar en una ciudad y probar en otra diferente (figura~\ref{fig:tipos-particion}).
@@ -675,42 +683,83 @@ Para los conjuntos de datos de Albacete y Algeciras se plantean tres escenarios 
 \section{Extracción de variables desde datos cartográficos}
 \label{sec:datos-cartograficos}
 
-En esta sección se revisa cómo se han utilizado fuentes cartográficas públicas en artículos científicos para extraer información de pendientes y anchos de aceras.
+En esta sección se revisa cómo se han utilizado fuentes cartográficas públicas en artículos científicos para extraer información de pendientes y anchuras de las aceras. Se agrupan según la fuente de datos: \textbf{nubes de puntos \gls{LiDAR}}, \textbf{modelos digitales del terreno} y \textbf{cartografía catastral}.
 \\
 
 \subsection{LiDAR}
 En primer lugar, se han encontrado dos estudios que han conseguido extraer la información a partir de las nubes de puntos \gls{LiDAR}.
-
-El primero es el de \textcite{hossain2026}, que usa un \gls{LiDAR} aéreo público de alta densidad de EE. UU. Lo combina con \gls{OSM}~\parencite{openstreetmap}, la capa de límites de aceras DC-GIS Sidewalks (para las aceras), y recurre a la API de elevación de Google Maps como respaldo cuando hay vegetación.
 \\
 
-Otro estudio es el de \textcite{ahmadi2026}, que utiliza una nube \gls{LiDAR} 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simula el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extraen las \textbf{pendientes longitudinal y transversal} y el \textbf{ancho de la acera}, si bien depende de la calidad de la segmentación semántica previa.
+El primero es el de \textcite{hossain2026}, que usó un \gls{LiDAR} aéreo público de alta densidad de EE. UU. Lo combinó con \gls{OSM}~\parencite{openstreetmap}, la capa DC-GIS Sidewalks (los polígonos de las aceras de Washington, digitalizados a partir de fotografía aérea), y recurrió a la API de elevación de Google Maps como respaldo cuando había vegetación. En el estudio se extrajeron las pendientes longitudinal y transversal, además de las discontinuidade verticales (resaltes o baches). La anchura no se obtuvo del \gls{LiDAR}, sino de la capa DC-GIS Sidewalks.
 \\
 
-Como posibles problemas, la vegetación es un limitante para el \gls{LiDAR} aéreo, y se tiene que combinar con otras fuentes de datos, como \gls{OSM}, o la cartografía vectorial del Catastro~\parencite{catastro_descarga_datos}. Por lo que el uso del \gls{PNOA}-\gls{LiDAR}~\parencite{pnoa_lidar,pnoa_lidar_descargas} podría utilizarse de manera similar a \textcite{hossain2026}.
-\\
-
-El \gls{LiDAR} terrestre no está disponible en la cartografía pública española, ya que el \gls{PNOA} solo publica \gls{LiDAR} aéreo, de menor densidad. Aun así, estos estudios apuntan a que con datos más densos y detallados se podría conseguir la extracción de datos de accesibilidad con mayor precisión.
+Otro estudio es el de \textcite{ahmadi2026}, que utilizó una nube \gls{LiDAR} 3D terrestre de Canadá, segmentada semánticamente en 35 categorías. Un robot virtual simuló el desplazamiento de una silla de ruedas en pasos de 30 cm. En el estudio se extrajeron las pendientes longitudinal y transversal y la anchura de la acera, si bien dependía de la calidad de la segmentación semántica previa.
 \\
 
 \subsection{Modelos digitales del terreno}
-En cuanto a los \glslink{MDT}{modelos digitales del terreno} (\glsxtrshort{MDT}), se ha comprobado que se utilizan principalmente para el cálculo de la \textbf{pendiente longitudinal}. A continuación se muestran dos estudios científicos.
+En cuanto a los \glslink{MDT}{modelos digitales del terreno} (\glsxtrshort{MDT}), se ha comprobado que se utilizan principalmente para el cálculo de la pendiente longitudinal. A continuación se muestran dos estudios científicos.
+\glsunset{MDT}
 \\
 
-El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y el ancho de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el \gls{MDT} del Institut Cartogràfic i Geològic de Catalunya, con CartoBCN (cartografía topográfica municipal de Barcelona, que aporta los polígonos de aceras, manzanas y pasos de peatones), así como el Geoportal del Área Metropolitana de Barcelona.
+El primero es el de \textcite{vallsclua2023}, en el que calcularon la pendiente longitudinal y la anchura de las aceras en la ciudad de Barcelona. Como fuentes de datos, combinaron el \gls{MDT} del Institut Cartogràfic i Geològic de Catalunya (de 2 m de resolución), con CartoBCN (cartografía topográfica municipal de Barcelona, que aporta los polígonos de aceras, manzanas y pasos de peatones), así como el Geoportal del Área Metropolitana de Barcelona.
 \\
 
-Se modeló la red de aceras y su entorno metropolitano a una resolución de 1 m, y fue necesaria una revisión profunda y manual de los cruces peatonales. El ancho de cada acera se calculó a partir del eje central de los polígonos de acera; mientras que la pendiente longitudinal se obtuvo mediante interpolación de las cotas del \gls{MDT}. Se calculó también la velocidad de marcha utilizando la función de Tobler, que estima la velocidad de marcha de una persona a partir de la pendiente existente, y así se pueden calcular los tiempos del recorrido.
-No se calculó la pendiente transversal.
+Se modeló la red de aceras y su entorno metropolitano, y fue necesaria una revisión profunda y manual de los cruces peatonales. La anchura de cada acera se calculó a partir del eje central de los polígonos de acera; mientras que la pendiente longitudinal se obtuvo mediante interpolación de las cotas del \gls{MDT}. No se calculó la pendiente transversal.
 \\
 
-El segundo estudio es el de \textcite{cetin2026}, en el que se evalúa el grado de caminabilidad de la ciudad de Isparta (Turquía) y se clasifica la pendiente longitudinal mediante tres clases. Se logra combinando un \gls{MDT} (en ArcGIS), con las líneas centrales de las calles \gls{OSM}, utilizando la sintaxis espacial, basada en grafos (mapas axiales y segmentos).
-No se calcula ni pendiente transversal ni ancho de las aceras.
+El segundo estudio es el de \textcite{cetin2026}, en el que se evaluó el grado de caminabilidad de la ciudad de Isparta (Turquía) y se clasificó la pendiente longitudinal en tres clases (0--5\,\%, 5--10\,\% y más del 10\,\%). Para ello, se combinó un \gls{MDT} (en ArcGIS) con las líneas centrales de las calles de \gls{OSM}, utilizando la sintaxis espacial, basada en grafos (mapas axiales y segmentos). No se calcularon ni la pendiente transversal ni la anchura de las aceras.
 \\
 
-\tituloconclusion{Conclusión}
-El uso del MDT02 del \gls{IGN}~\parencite{pnoa_mdt} podría conseguir la misma información que el estudio de \textcite{vallsclua2023}, debido a que la resolución (2 m) es equivalente a la utilizada en el estudio de Barcelona.
+En España, el \gls{IGN} publica el MDT02, con 2 m de resolución~\parencite{pnoa_mdt}.
 \\
 
-\subsection{Síntesis}
-En los estudios que se han revisado, la cartografía pública permitiría calcular la \textbf{pendiente longitudinal} y, combinada con otras fuentes de datos, el \textbf{ancho de las aceras}. La \textbf{pendiente transversal}, en cambio, resulta más difícil de obtener si no se dispone de una nube de puntos LiDAR del terreno en tres dimensiones.
+\subsection{Cartografía catastral}
+Por último, se ha buscado si algún estudio ha utilizado la cartografía catastral para obtener la anchura de las aceras.
+\\
+
+En el ámbito de España, los datos del Catastro se han combinado con \gls{LiDAR} para determinar la altura y el volumen de los edificios en Barcelona, Madrid, Valencia y Zaragoza~\parencite{domingo2023}. En cambio, en \textcite{delacruz2026} se utilizaron los datos alfanuméricos, la cartografía vectorial y las imágenes de fachada del Catastro para clasificar más de 19\,000 edificios de Murcia mediante \textit{deep learning}. En ambos casos, el Catastro se utilizó para obtener datos del edificio, pero no para medir las aceras.
+\\
+
+\subsection{Conclusiones}
+\label{subsec:cartografia-conclusiones}
+
+La tabla~\ref{tab:cartografia-revisados} resume las variables que se obtienen en cada trabajo, además de las fuentes que se han utilizado.
+\\
+
+\begin{table}[htbp]
+  \centering
+  \caption{Variables obtenidas a partir de datos cartográficos en los trabajos revisados.}
+  \label{tab:cartografia-revisados}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.11\textwidth} ccc}
+    \toprule
+    \cabeceratabla Trabajo & Fuentes & Ámbito & P. long. & P. transv. & Anchura \\
+    \midrule
+    \textcite{hossain2026} & \gls{LiDAR} aéreo, \gls{OSM}, DC-GIS Sidewalks & EE.\,UU. & \cumple{si} & \cumple{si} & \cumple{no} \\ \addlinespace
+    \textcite{ahmadi2026} & \gls{LiDAR} terrestre segmentado & Canadá & \cumple{si} & \cumple{si} & \cumple{si} \\ \addlinespace
+    \textcite{vallsclua2023} & \gls{MDT}, CartoBCN & Barcelona & \cumple{si} & \cumple{no} & \cumple{si} \\ \addlinespace
+    \textcite{cetin2026} & \gls{MDT}, \gls{OSM} & Turquía & \cumple{si} & \cumple{no} & \cumple{no} \\ \addlinespace
+    \textcite{domingo2023} & Catastro, \gls{LiDAR} & España & \cumple{no} & \cumple{no} & \cumple{no} \\ \addlinespace
+    \textcite{delacruz2026} & Catastro (datos, cartografía e imágenes de fachada) & Murcia & \cumple{no} & \cumple{no} & \cumple{no} \\
+    \midrule
+    \filapropia Este trabajo (OS2) & MDT02, Catastro, callejero & Albacete & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{elaboración propia.}
+\end{table}
+
+En los estudios revisados, la \textbf{pendiente longitudinal} se calcula a partir del \gls{MDT} o del \gls{LiDAR} aéreo. Con las fuentes públicas españolas se podría obtener con el MDT02, que tiene la misma resolución (2 m) que el \gls{MDT} del estudio de Barcelona.
+\\
+
+La \textbf{pendiente transversal} solo se ha obtenido con nubes de puntos \gls{LiDAR} de alta densidad, aéreas~\parencite{hossain2026} o terrestres~\parencite{ahmadi2026}, y no a partir de un \gls{MDT}. El \gls{PNOA}-\gls{LiDAR}~\parencite{pnoa_lidar,pnoa_lidar_descargas} es solo aéreo y de menor densidad, y la vegetación limita el LiDAR aéreo, por lo que habría que combinarlo con otras fuentes como \gls{OSM}.
+\\
+
+La \textbf{anchura de las aceras} solo se ha podido calcular con los polígonos de acera, como en la cartografía municipal de Barcelona, o con \gls{LiDAR} terrestre, como en \textcite{ahmadi2026}, que no está disponible en la cartografía pública española. No se ha encontrado ningún estudio que lo obtenga con la cartografía catastral en España. Esta contiene las fachadas de los edificios, por lo que se podría estimar la anchura entre fachadas, pero no la anchura libre de paso, salvo en los municipios que disponen de las líneas de las aceras~\parencite{catastro_descarga_datos}.
+\\
+
+Esto coincide con la estimación de la tabla~\ref{tab:viabilidad}: pendiente longitudinal (80\,\%), cruces a partir del callejero (80\,\%), pendiente transversal (0\,\%) y anchura (25\,\%, solo de forma parcial).
+\\
+
+Por tanto, en este trabajo se utilizarán el \textbf{MDT02} para la pendiente longitudinal, la \textbf{cartografía vectorial del Catastro} para la anchura entre fachadas y el \textbf{callejero} para los cruces. Su obtención real en los tramos de Albacete se hará como objetivo secundario (OS2), para comprobar si confirman la estimación de viabilidad.
+\\
