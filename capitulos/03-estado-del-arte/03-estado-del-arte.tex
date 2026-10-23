@@ -117,7 +117,7 @@ Tras los datos obtenidos, se realiza un diagnóstico de cumplimiento por cada un
 Los estudios de Georgia Tech~\parencite{frackelton2013, guensler2015} indican el desarrollo de la aplicación de Android SideWalk Sentry para la toma de datos de parámetros de accesibilidad de las calles (existencia de acera, estado, seguridad peatonal), en la ciudad de Atlanta.
 \\
 
-Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos.
+Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos/as.
 \\
 
 De forma similar, en Albacete y Algeciras los equipos técnicos inspeccionaron las calles \textit{in situ} y compararon sus características con la Orden TMA/851/2021 (sección~\ref{sec:analisis-exploratorio}), aplicando un algoritmo de puntuación que se desconoce (sección~\ref{sec:limitaciones-datos}).
@@ -277,7 +277,7 @@ Se incluye también el trabajo de \textcite{wang2026}, que aunque pertenece al s
 \\
 
 \tituloconclusion{Conclusión}
-En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a usuarios; a diferencia de los datos de Albacete y Algeciras, que se supone que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
+En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a personas usuarias; a diferencia de los datos de Albacete y Algeciras, que se supone que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
 \\
 
 \subsection{Modelos para datos tabulares}
@@ -581,7 +581,7 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
   \fuente{elaboración propia.}
 \end{table}
 
-Los trabajos revisados coinciden en que cada grupo de usuarios \textbf{valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
+Los trabajos revisados coinciden en que cada grupo \textbf{valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
 \\
 
 Se han encontrado tres formas de incorporar los grupos: otorgar diferentes pesos a cada variable, entrenar varios modelos diferentes por cada grupo, o entrenar un único modelo con varias salidas (comprobado únicamente en regresión, no en clasificación). En este proyecto no se conocen los pesos de cada variable, y el modelo con varias salidas solo se ha probado en regresión, por lo que se va a \textbf{entrenar un modelo para cada perfil funcional}, y se comparará qué variables tienen más peso en cada uno.
@@ -606,7 +606,7 @@ En primer lugar, \textcite{wu2026} realizan una comparación entre \textbf{divis
 \\
 
 La conclusión del estudio fue que las técnicas no lineales superaron a la estrategia base, siendo XGBoost y \textit{random forest} los que tuvieron la mayor precisión. Además, la utilización de particiones aleatorias tuvo más éxito que la agrupada por calle. Las métricas utilizadas fueron $R^2$, \gls{RMSE} y \gls{MAE}.
-Según los autores, este éxito de la aleatoriedad es debido a que tramos de la misma calle están divididos en entrenamiento y test, y habitualmente son tramos con puntuaciones similares.
+Según el estudio, este éxito de la aleatoriedad es debido a que tramos de la misma calle están divididos en entrenamiento y test, y habitualmente son tramos con puntuaciones similares.
 \\
 
 Otro estudio, el de \textcite{mohite2024}, sigue una estrategia similar con las calles de Nagpur (India), que utiliza el algoritmo \gls{RFR} sobre un conjunto de datos de calles agrupadas por orientación (norte-sur y este-oeste) para predecir el confort térmico peatonal.
@@ -630,7 +630,7 @@ Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a
 En concreto, se compararon dos formas de entrenar: con los datos de una sola ciudad, evaluando sobre otra; y con los datos combinados de las cuatro ciudades (Seattle, Columbus y Washington en EE. UU., y San Pedro Garza García en México). Las métricas utilizadas fueron la \glslink{precision}{precisión}, el \glslink{recall}{\textit{recall}} y la \glslink{accuracy}{exactitud}. Se determinó que entrenar con una sola ciudad reducía la precisión al evaluar en otra, mientras que entrenar con las ciudades combinadas la mejoraba, también en Columbus.
 \\
 
-Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que los autores atribuyen a diferencias urbanas entre esta ciudad y las estadounidenses.
+Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que el estudio atribuye a diferencias urbanas entre esta ciudad y las estadounidenses.
 \\
 
 Mientras que en \textcite{weld2019} se aplicó una técnica denominada \textbf{\textit{cross-city generalizability}}, con un modelo a partir de ResNet-18, en el que se realizaron cuatro estrategias:
@@ -815,7 +815,7 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
 
 \begin{fichasintesis}{3}{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?}{sec:perfiles-arte}{OP1, OP4, OP6, H6}
   \sintesisliteratura{
-    \item Los trabajos revisados coinciden en que cada grupo de usuarios valora la calle de forma distinta.
+    \item Los trabajos revisados coinciden en que cada grupo valora la calle de forma distinta.
     \item Hay tres formas de incorporar los grupos: pesos diferentes por variable, un modelo por grupo, o un único modelo con varias salidas (solo comprobado en regresión) (subsección~\ref{subsec:perfiles-conclusiones}).}
   \sintesisdecision{
     \item \sintesisclave{Enfoque} un modelo para cada perfil funcional, ya que no se conocen los pesos de cada variable y el modelo con varias salidas solo se ha probado en regresión.
