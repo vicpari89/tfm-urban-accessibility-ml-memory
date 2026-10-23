@@ -108,7 +108,7 @@ Modelar y entrenar diferentes modelos de \textit{machine learning}, con diferent
 
 \textbf{OP5. Validación de los modelos}
 
-Ejecutar el algoritmo sobre los conjuntos de datos de las ciudades piloto, y evaluar de manera cuantitativa la precisión de las predicciones obtenidas por el modelo, cruzando los datos contra los registros previamente calculados sobre el terreno, tanto dentro de cada ciudad como entrenando con una y evaluando en la otra.
+Ejecutar el algoritmo sobre los conjuntos de datos de las ciudades piloto, y evaluar de manera cuantitativa el rendimiento de las predicciones obtenidas por el modelo, cruzando los datos contra los registros previamente calculados sobre el terreno, tanto dentro de cada ciudad como entrenando con una y evaluando en la otra.
 \\
 
 \textbf{OP6. Interpretación de los resultados}
@@ -156,17 +156,19 @@ Se plantean las siguientes hipótesis de investigación:
   \endfoot
   \bottomrule
   \endlastfoot
-\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de fuentes cartográficas públicas o de imágenes aéreas, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
+\textbf{H1} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de fuentes cartográficas públicas o de imágenes aéreas, se clasifica la accesibilidad con un rendimiento suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
-\textbf{H2} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de calle, se clasifica la accesibilidad con una precisión suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
+\textbf{H2} & Utilizando únicamente variables que se puedan obtener potencialmente a partir de imágenes a pie de calle, se clasifica la accesibilidad con un rendimiento suficiente, similar a cuando se evalúa con todos los parámetros & El rendimiento es claramente inferior al del modelo con todas las variables \\
 \midrule
 \textbf{H3} & Combinar las variables cartográficas y aéreas con las de imágenes a pie de calle mejora el rendimiento de los modelos que utilizan únicamente uno de los dos conjuntos & No se aprecia mejora suficiente \\
 \midrule
-\textbf{H4} & El entrenamiento del modelo con los datos de una ciudad es transferible a otra ciudad (es decir, tiene un rendimiento similar) & Hay bastante diferencia de precisión \\
+\textbf{H4} & El entrenamiento del modelo con los datos de una ciudad es transferible a otra ciudad (es decir, tiene un rendimiento similar) & El rendimiento en la otra ciudad es claramente inferior \\
 \midrule
-\textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Al excluir las características se detecta un claro descenso en la precisión \\
+\textbf{H5} & Las dimensiones que exigen traslado in situ no son necesarias para obtener un modelo de calidad suficiente & Al excluir las dimensiones in situ el rendimiento es claramente inferior \\
 \midrule
-\textbf{H6} & (Secundaria, OS2) Las variables obtenidas de fuentes cartográficas públicas confirman que son viables para sustituir a las medidas in situ sin una pérdida significativa de rendimiento & Los valores reales no confirman la estimación o el rendimiento desciende de forma significativa \\
+\textbf{H6} & La importancia de las variables para clasificar la accesibilidad es distinta según el perfil de diversidad funcional & Las variables más importantes coinciden en todos los perfiles \\
+\midrule
+\textbf{H7} & (Secundaria, OS2) Las variables obtenidas de fuentes cartográficas públicas confirman que son viables para sustituir a las medidas in situ sin una pérdida significativa de rendimiento & Los valores reales no confirman la estimación o el rendimiento es claramente inferior \\
 \end{longtable}
 \endgroup
 

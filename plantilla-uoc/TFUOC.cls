@@ -272,17 +272,17 @@ I aquí tens el resultat \@parcla i el títol és: \@title
 \newcommand{\resumcode}{Resumen del trabajo}
 %-----Textos llicència
 \newcommand{\ccByNcNd}{
-Esta obra esta sujeta a una licencia de Reconocimiento-NoComercial-SinObraDerivada \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+Esta obra está sujeta a una licencia de Reconocimiento-NoComercial-SinObraDerivada \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccByNcSa}{
-Esta obra esta sujeta a una licencia de Reconocimiento-NoComercial-CompartirIgual \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+Esta obra está sujeta a una licencia de Reconocimiento-NoComercial-CompartirIgual \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccByNc}{
-Esta obra esta sujeta a una licencia de Reconocimiento-NoComercial  \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+Esta obra está sujeta a una licencia de Reconocimiento-NoComercial  \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccByNd}{
-Esta obra esta sujeta a una licencia de Reconocimiento-SinObraDerivada \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+Esta obra está sujeta a una licencia de Reconocimiento-SinObraDerivada \\ \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccBySa}{
-Esta obra esta sujeta a una licencia de Reconocimiento-CompartirIgual \\  \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
+Esta obra está sujeta a una licencia de Reconocimiento-CompartirIgual \\  \url{https://creativecommons.org/licenses/by-nc/3.0/es/}}
 \newcommand{\ccBy}{
-Esta obra esta sujeta a una licencia de Reconocimiento
+Esta obra está sujeta a una licencia de Reconocimiento
  \\  \url{https://creativecommons.org/licenses/by/3.0/es/}}
  \newcommand{\GNU}{
  Copyright \copyright  \@author\\
