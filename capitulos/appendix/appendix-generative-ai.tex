@@ -89,6 +89,15 @@ No se incluyen como resultados obtenidos aquellos que ya están incluidos en la 
   \fichaprompt{Crea un diagrama que muestre cómo se dividen los tramos de calles en: partición aleatoria agrupada por calle o barrio o entre ciudades, en los conjuntos de entrenamiento o test, que tenga un tamaño pequeño para ponerlo al lado de un párrafo y que sea más visual). En partición aleatoria, los tramos de una misma calle pueden caer en test o entrenamiento; en la agrupada todos los tramos de una calle caen en entrenamiento o test, pero nunca separadas; mientras que entre ciudades, se entrenan todas las calles en una ciudad, y se prueban en otra. Puedes poner cuadritos con dos colores (entrenamiento y prueba) o algo similar. Sigue el design system.}
 \end{fichaia}
 
+\begin{fichaia}{Figura~\ref{fig:ponderacion-submuestreo}. Ponderación de clases frente a submuestreo}
+  \fichadato{Fecha}{23/10/2026}
+  \fichadato{Herramienta}{Claude (Anthropic)~\parencite{claude}}
+  \fichadato{Objetivo}{Representar gráficamente la decisión de tratamiento del desbalanceo de la subsección~\ref{subsec:ml-ordinal}, en la parte más densa del estado del arte.}
+  \fichadato{Material aportado}{Distribución de las clases de accesibilidad de Albacete (figura~\ref{fig:distribucion-clases}) y sistema de diseño de la memoria (\texttt{tfm-estilo.sty}).}
+  \fichaprompt{Necesito un gráfico usando el sistema de diseño de la memoria, que compare la ponderación de clases con el submuestreo usando los datos de Albacete, que use los datos reales de Albacete del anterior gráfico.}
+  \fichaajuste{Cambia los pesos numéricos por valores relativos (alto, medio y bajo).}
+\end{fichaia}
+
 \begin{fichaia}{Consultas y análisis de la literatura}
   \fichadato{Fecha}{Octubre de 2026 (varias sesiones)}
   \fichadato{Herramienta}{Gemini (Google)~\parencite{gemini} y Claude (Anthropic)~\parencite{claude}}

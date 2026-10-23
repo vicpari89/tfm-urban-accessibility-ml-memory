@@ -273,7 +273,7 @@
 \colorlet{tfm@recfondo@definicion}{uoc-azul-suave}\colorlet{tfm@recborde@definicion}{uoc-azul}\colorlet{tfm@rectit@definicion}{papel}
 \colorlet{tfm@recfondo@hipotesis}{estado-revision-fondo}\colorlet{tfm@recborde@hipotesis}{estado-revision}\colorlet{tfm@rectit@hipotesis}{papel}
 \colorlet{tfm@recfondo@atencion}{estado-en-curso-fondo}\colorlet{tfm@recborde@atencion}{estado-en-curso}\colorlet{tfm@rectit@atencion}{tinta}% papel sobre ámbar no llega a 4,5:1
-\newtcolorbox{recuadro}[2][nota]{enhanced, sharp corners, boxrule=0.8pt,
+\newtcolorbox{recuadro}[2][nota]{enhanced, breakable, sharp corners, boxrule=0.8pt,
   colback=tfm@recfondo@#1, colframe=tfm@recborde@#1, coltitle=tfm@rectit@#1,
   fonttitle=\sffamily\small\bfseries, title={\csname tfm@rec@#1\endcsname\ifx\relax#2\relax\else\ ·\ #2\fi},
   left=6pt, right=6pt, top=4pt, bottom=4pt, before skip=10pt, after skip=10pt}

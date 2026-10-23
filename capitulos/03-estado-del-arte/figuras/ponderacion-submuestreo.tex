@@ -1,0 +1,48 @@
+% Figura 3.x · Ponderación de clases frente a submuestreo (Albacete)
+% Recuentos exactos de la clase de Albacete (24, 716 y 176 de 916 tramos).
+% Pesos relativos: inversamente proporcionales al número de tramos de cada clase.
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+      font=\sffamily\scriptsize,
+      x=0.0045cm, % 716 tramos ≈ 3,2 cm
+      barra/.style={minimum height=4.2mm, inner sep=0pt, anchor=west},
+      etq/.style={anchor=east, text=tinta},
+      val/.style={anchor=west, text=tinta-suave},
+      tit/.style={anchor=west, font=\sffamily\small\bfseries, text=uoc-azul},
+      sub/.style={anchor=north west, text=tinta-suave, align=left},
+    ]
+    % ---------------- Panel izquierdo: ponderación
+    \node[tit] at (0,1.45) {Ponderación de clases};
+    \node[sub] at (0,1.2) {Se usan todos los tramos;\\los errores en A pesan más};
+    \foreach \cl/\n/\w/\col/\y in {A/24/{alto}/acc-accesible/0, B/716/{bajo}/acc-practicable/-0.55, C/176/{medio}/acc-no-accesible/-1.1}{
+      \node[etq] at (-6,\y) {\cl};
+      \fill[\col] (0,\y-0.21) rectangle (\n,\y+0.21);
+      \node[val] at (\n+8,\y) {\n\ tramos · peso \w};
+    }
+    \node[sub] at (0,-1.4) {Total: 916 tramos para entrenar};
+
+    % ---------------- Panel derecho: submuestreo
+    \begin{scope}[xshift=8.6cm]
+      \node[tit] at (0,1.45) {Submuestreo};
+      \node[sub] at (0,1.2) {Se reducen B y C hasta\\igualar la clase A};
+      \foreach \cl/\n/\col/\y in {A/24/acc-accesible/0, B/716/acc-practicable/-0.55, C/176/acc-no-accesible/-1.1}{
+        \node[etq] at (-6,\y) {\cl};
+        % parte descartada
+        \fill[rejilla] (0,\y-0.21) rectangle (\n,\y+0.21);
+        \draw[filete, line width=0.3pt, dashed] (0,\y-0.21) rectangle (\n,\y+0.21);
+        % parte que se conserva
+        \fill[\col] (0,\y-0.21) rectangle (24,\y+0.21);
+      }
+      \node[val] at (32,0) {24 tramos};
+      \node[val] at (724,-0.55) {24 de 716};
+      \node[val] at (184,-1.1) {24 de 176};
+      \node[sub] at (0,-1.4) {Total: 72 tramos para entrenar};
+      \node[anchor=west, text=tinta-suave] at (0,-2.05) {\muestracolor{rejilla}\ tramos descartados};
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{Ponderación de clases frente a submuestreo con los tramos de Albacete.}
+  \label{fig:ponderacion-submuestreo}
+  \fuente{elaboración propia a partir de la distribución de la figura~\ref{fig:distribucion-clases}, con ayuda de Claude. El peso de cada clase es inversamente proporcional a su número de tramos.}
+\end{figure}

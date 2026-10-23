@@ -323,8 +323,10 @@ Los estudios sobre \textbf{desbalanceo de clases} utilizan principalmente dos t�
 \\
 
 \tituloconclusion{Conclusión}
-Una vez analizados los estudios, en este proyecto se utilizará el \textbf{\glslink{aprendizaje-sensible-coste}{aprendizaje sensible al coste}} mediante la \textbf{ponderación de clases}, que modifica la función de pérdida para tratar el desbalanceo de clases existente en el conjunto de datos. De esta manera, se compensará la baja frecuencia de la clase A sin perder información por submuestreo, que no se aplicará debido al bajo número de tramos con accesibilidad de clase A (24 tramos en Albacete y 28 en Algeciras).
+Una vez analizados los estudios, en este proyecto se utilizará el \textbf{\glslink{aprendizaje-sensible-coste}{aprendizaje sensible al coste}} mediante la \textbf{ponderación de clases}, que modifica la función de pérdida para tratar el desbalanceo de clases existente en el conjunto de datos. De esta manera, se compensará la baja frecuencia de la clase A sin perder información por submuestreo, que no se aplicará debido al bajo número de tramos con accesibilidad de clase A (24 tramos en Albacete y 28 en Algeciras), como muestra la figura~\ref{fig:ponderacion-submuestreo}.
 \\
+
+\input{capitulos/03-estado-del-arte/figuras/ponderacion-submuestreo}
 
 En cuanto a las métricas, no se utilizará la exactitud, ya que un modelo que asignara siempre la clase B acertaría el 78,2\,\% de los tramos de Albacete. En su lugar, se utilizarán la \textbf{F1 macro} y la \textbf{exactitud balanceada}, que a diferencia de la exactitud, no favorecen a la clase con mayor frecuencia; y la \textbf{kappa ponderada cuadrática}, que penaliza los errores según la distancia entre clases.
 \\
@@ -465,6 +467,7 @@ En resumen, las decisiones para este trabajo son:
   \item \textbf{Métricas:} F1 macro, exactitud balanceada y kappa ponderada cuadrática, tratando las clases como independientes (subsección~\ref{subsec:ml-ordinal}).
   \item \textbf{Importancia de las variables:} índice de Gini (solo en modelos de árbol), importancia por permutación y valores SHAP (subsección~\ref{subsec:ml-importancia}).
   \item \textbf{Coste y fiabilidad:} no se seleccionan variables por coste; se mide la pérdida de rendimiento de cada grupo de dimensiones según su origen frente al modelo con todas las dimensiones, se usan como entradas las puntuaciones de cada dimensión y se evalúa el efecto del ruido en las dimensiones obtenibles de imágenes o cartografía (subsección~\ref{subsec:ml-fiabilidad}).
+  \item \textbf{Criterio de refutación:} es un criterio propio, que se fija antes de realizar el entrenamiento. Se considera que el rendimiento es «claramente inferior» si no llega al 80\,\% del que tiene el modelo de comparación, medido con la F1 macro. En H1, H2 y H5 se compara con el modelo con todas las variables; en H4, con el modelo validado dentro de la ciudad de destino; y en H7, con el que se entrena con las dimensiones medidas in situ. En H3, se refuta si la combinación no mejora al mejor de los dos conjuntos por separado.
   \item \textbf{Fuga de información:} no se utilizarán las puntuaciones totales como variables de entrada, ya que la clase de accesibilidad (variable objetivo) se calcula a partir de ellas.
 \end{itemize}
 
@@ -804,7 +807,7 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
     \item \sintesisclave{Desbalanceo} ponderación de clases para compensar la baja frecuencia de la clase A, sin sobremuestreo ni submuestreo (subsección~\ref{subsec:ml-ordinal}).
     \item \sintesisclave{Clases ordinales} los modelos tratarán las clases como independientes y su orden se tendrá en cuenta en la evaluación (subsección~\ref{subsec:ml-ordinal}).
     \item \sintesisclave{Métricas} F1 macro, exactitud balanceada y kappa ponderada cuadrática (subsección~\ref{subsec:ml-ordinal}).
-    \item \sintesisclave{Criterio de refutación} criterio propio, fijado antes de entrenar: «claramente inferior» (H1, H2, H4, H5, H7) significa recuperar menos del 80\,\% del rendimiento del modelo con todas las variables, y en H3 que la combinación no supere al mejor de los dos conjuntos por separado.
+    \item \sintesisclave{Criterio de refutación} «claramente inferior» es recuperar menos del 80\,\% del rendimiento del modelo de comparación (subsección~\ref{subsec:ml-conclusiones}).
     \item \sintesisclave{Grupos de dimensiones} un modelo por cada origen (cartografía pública e imágenes aéreas, imágenes a pie de calle o in situ), comparado con el modelo con todas las dimensiones (subsección~\ref{subsec:ml-fiabilidad}).
     \item \sintesisclave{Ruido} pequeñas modificaciones en las dimensiones que se pueden obtener de imágenes o cartografía para evaluar el efecto de un error de extracción (subsección~\ref{subsec:ml-fiabilidad}).
     \item \sintesisclave{Importancia} índice de Gini, permutación y \gls{shap} (subsección~\ref{subsec:ml-importancia}).}
@@ -862,8 +865,7 @@ A diferencia de los trabajos revisados, en este trabajo:
     \item \sintesisclave{Lo que se hace} se entrenarán modelos que reproducen la clase de accesibilidad de cada tramo de Albacete y Algeciras (asignada por la empresa ACCESIA en Algeciras, y calculada por el autor con el mismo criterio en Albacete), y se comprobará si se mantiene el rendimiento sin las dimensiones que solo se pueden obtener in situ.
     \item \sintesisclave{Lo que no se hace} no se evaluará la accesibilidad real de las calles. Se desconocen el algoritmo de puntuación y las mediciones que realizó el equipo técnico de ACCESIA (subsección~\ref{sec:limitaciones-datos}), por lo que el modelo aprenderá la valoración de la empresa, sin compararla con la normativa.
     \item \sintesisclave{Lo que se simula} se estimará qué dimensiones podrían obtenerse de imágenes aéreas o a pie de calle (tabla~\ref{tab:viabilidad}), se entrenará el modelo solo con ese grupo de dimensiones y con los valores que ya midió ACCESIA in situ, y se comparará con el modelo con todas las dimensiones.\par
-    Estos resultados serán el mejor caso posible, porque los valores medidos in situ no tienen los errores que habría al extraerlos de imágenes.\par
-    La única extracción real será la de las variables de cartografía pública, en los tramos que tengan geometría (como objetivo secundario OS2).
+    Estos resultados serán el mejor caso posible, porque los valores medidos in situ no tienen los errores que habría al extraerlos de imágenes.
   \end{itemize}
 \end{recuadro}
 
