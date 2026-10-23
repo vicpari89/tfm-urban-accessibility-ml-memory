@@ -1,5 +1,5 @@
 \section{Contexto y justificación del trabajo}
-Las ciudades tienen una \textbf{deuda histórica con la diversidad humana} de sus habitantes. Hasta décadas recientes, el entorno urbano se ha \textbf{diseñado para la ciudadanía «normativa»}, definía como una persona adulta joven, ágil y sin ningún tipo de limitación física, sensorial o cognitiva. La irrupción del \textbf{vehículo privado} en el día a día de las personas añadió un nuevo elemento predominante en las vías urbanas (calzadas, aparcamientos). Esto eliminó espacios para los viandantes, facilitando entornos con \textbf{aceras estrechas, desniveles o problemas de continuidad} que excluyen a varios sectores de la sociedad en el ejercicio de sus derechos y disfrute de la ciudad.
+Las ciudades tienen una \textbf{deuda histórica con la diversidad humana} de sus habitantes. Hasta décadas recientes, el entorno urbano se ha \textbf{diseñado para la ciudadanía «normativa»}, definida como una persona adulta joven, ágil y sin ningún tipo de limitación física, sensorial o cognitiva. La irrupción del \textbf{vehículo privado} en el día a día de las personas añadió un nuevo elemento predominante en las vías urbanas (calzadas, aparcamientos). Esto eliminó espacios para los viandantes, facilitando entornos con \textbf{aceras estrechas, desniveles o problemas de continuidad} que excluyen a varios sectores de la sociedad en el ejercicio de sus derechos y disfrute de la ciudad.
 \\
 
 Cualquier persona puede pasar a lo largo de su vida de ser «normativa» a tener necesidades específicas de movilidad. Por esa razón, la \textbf{\gls{accesibilidad-universal}} no es una demanda exclusiva de la ciudadanía con discapacidad permanente, sino una condición que \textbf{afecta a toda la sociedad} en distintas etapas de la vida.
@@ -23,7 +23,7 @@ El marco estatal de referencia es la \textbf{\gls{orden-tma-851-2021} de 23 de j
 
 En esta normativa se impone como mínimo a las administraciones municipales:
 \begin{itemize}
-    \item La obligación de elaborar los \textbf{\gls{PAU}}, planes estratégicos para identificar el estado de las calles, programar y priorizar las intervenciones y comprobar su cumplimiento.
+    \item La obligación de elaborar los \textbf{\glspl{PAU}}, planes estratégicos para identificar el estado de las calles, programar y priorizar las intervenciones y comprobar su cumplimiento.
     \item Impulsar el concepto de \textbf{accesibilidad universal}, no solo pensando en la población con problemas de movilidad, sino atendiendo a todos los tipos de diversidad.
     \item Establecer los \textbf{requisitos mínimos} para considerar las vías urbanas como accesibles, bajo el concepto de \textbf{Itinerario Peatonal Accesible (IPA)}.
 \end{itemize}
@@ -71,11 +71,12 @@ Esta experiencia personal me permitirá ayudar a identificar características y 
 \\
 
 \section{Objetivos del trabajo}
+\label{sec:objetivos}
 
 \subsection{Objetivo general}
 
-El objetivo general del trabajo es el \textbf{diseño e implementación de un modelo de clasificación de parámetros de accesibilidad del viario urbano} basado en técnicas de \gls{machine-learning}, a partir de conjuntos de datos de estudios de accesibilidad de dos ciudades (Albacete y Algeciras).
-Se tratará de evaluar la viabilidad de clasificar la accesibilidad de las calles, a partir de un subconjunto de aquellos parámetros que se puedan obtener a partir de imágenes aéreas de alta resolución, o imágenes obtenidas desde otras perspectivas; y con qué fiabilidad.
+El objetivo general del trabajo es el \textbf{diseño e implementación de un modelo de clasificación de la accesibilidad del viario urbano} basado en técnicas de \gls{machine-learning}, a partir de conjuntos de datos de estudios de accesibilidad de dos ciudades (Albacete y Algeciras).
+Se tratará de evaluar la viabilidad de clasificar la accesibilidad de las calles, a partir de un subconjunto de aquellos parámetros que se puedan obtener a partir de imágenes aéreas de alta resolución, o imágenes a pie de calle; y con qué fiabilidad.
 Además, se evaluará si parte de los parámetros se pueden obtener a partir de fuentes públicas cartográficas, sin necesidad de procesar las imágenes.
 
 A continuación se detalla una \textbf{lista de objetivos principales}, que comprenden el \textbf{\gls{MVP}} del trabajo; y una lista de objetivos secundarios de valor añadido.
@@ -129,7 +130,7 @@ Visualizar en un mapa las predicciones de accesibilidad generadas por los modelo
 
 \textbf{OS2. Obtención de variables a partir de cartografía pública}
 
-Calcular, para los tramos de Albacete, las variables que según la estimación de viabilidad pueden obtenerse de fuentes cartográficas públicas (pendiente del modelo digital del terreno, anchura de la vía del catastro e intersecciones del callejero), y comprobar si los valores reales confirman esa estimación y pueden sustituir a las variables medidas in situ.
+Calcular, para los tramos que dispongan de geometría (completa en Albacete y parcial en Algeciras), las variables que según la estimación de viabilidad pueden obtenerse de fuentes cartográficas públicas (pendiente del modelo digital del terreno, anchura de la vía del catastro e intersecciones del callejero), y comprobar si los valores reales confirman esa estimación y pueden sustituir a las variables medidas in situ.
 \\
 
 \subsection{Hipótesis de investigación}
@@ -191,7 +192,7 @@ Sin embargo, como \textbf{impacto negativo} se encuentra:
     \item \textbf{Consumo energético por entrenamiento de los modelos de inteligencia artificial}: la utilización de algoritmos de aprendizaje automático va asociada una huella de carbono digital.
 \end{itemize}
 
-La \textbf{mitigación} de este punto se basa en el estudio del estado del arte de los modelos de aprendizaje automático para tareas similares, y en caso de utilizar modelos de deep learning, la preferencia del uso de modelos ya preentrenados, utilizando técnicas de \gls{transfer-learning}, lo que hace reducir el tiempo de uso eléctrico y computacional a la hora de entrenar el modelo.
+La \textbf{mitigación} de este punto se basa en el estudio del estado del arte de los modelos de aprendizaje automático para tareas similares, y en el uso de modelos basados en árboles de decisión, de bajo coste computacional (subsección~\ref{subsec:ml-tabular}), lo que hace reducir el tiempo de uso eléctrico y computacional a la hora de entrenar el modelo.
 
 \subsection{Comportamiento ético y responsabilidad social}
 
@@ -225,8 +226,8 @@ Utilizando la referencia \textit{Researching Information Systems and Computing} 
 
 Las fases que comprende esta estrategia son:
 \begin{enumerate}
-    \item \textbf{Identificación del problema (\textit{Awareness})}: identificación del problema grave de las ciudades que no cumplen con criterios de accesibilidad única, análisis de la legislación y buenas prácticas recomendadas por organizaciones accesibles, análisis de los planes de actuación y comprobación de las limitaciones actuales de los procedimientos manuales de verificación de parámetros de accesibilidad, con visitas in situ del personal técnico de los ayuntamientos.
-    \item \textbf{Diseño (\textit{Suggestion}):} análisis de literatura científica con el estado del arte del diseño de soluciones para el uso de información tabular de informes de accesibilidad, la reducción de características relevantes, y adicionalmente para el análisis de imágenes aéreas urbanas y extracción de medidas geométricas a partir de datos de cartografía pública. Realización de una propuesta de diseño tecnológica con técnicas de aprendizaje automático, así como un análisis inicial de los conjuntos de datos de Albacete y Algeciras, con diversos modelos para cada conjunto de características.
+    \item \textbf{Identificación del problema (\textit{Awareness})}: identificación del problema grave de las ciudades que no cumplen con criterios de accesibilidad universal, análisis de la legislación y buenas prácticas recomendadas por organizaciones accesibles, análisis de los planes de actuación y comprobación de las limitaciones actuales de los procedimientos manuales de verificación de parámetros de accesibilidad, con visitas in situ del personal técnico de los ayuntamientos.
+    \item \textbf{Diseño (\textit{Suggestion}):} análisis de literatura científica con el estado del arte del diseño de soluciones para el uso de información tabular de informes de accesibilidad, la reducción de características relevantes, y adicionalmente para la extracción de medidas geométricas a partir de datos de cartografía pública. Las variables que se podrían obtener de imágenes aéreas y a pie de calle no se extraen de las imágenes, sino que se simulan a partir de las dimensiones de los conjuntos de datos. Realización de una propuesta de diseño tecnológica con técnicas de aprendizaje automático, así como un análisis inicial de los conjuntos de datos de Albacete y Algeciras, con diversos modelos para cada conjunto de características.
     \item \textbf{Desarrollo (\textit{Development})}: implementación del sistema informático en Python, incluyendo los modelos y los artefactos web necesarios para cumplir con el diseño planificado.
     \item \textbf{Evaluación (\textit{Evaluation})}: validación cuantitativa de la precisión de los modelos, comparándolo con los datos disponibles de ambas ciudades, lo que se conoce como \gls{ground-truth} en la ciencia de datos. Así como respuesta a las preguntas de investigación planteadas.
     \item \textbf{Conclusión (\textit{Conclusion})}: documentación de los resultados obtenidos, hipótesis confirmadas o refutadas, listado de variables recomendadas para futuros estudios de extracción de imágenes; aprendizajes y dificultades encontradas durante la realización del trabajo, así como enumeración de futuras líneas de ampliación.
@@ -269,15 +270,15 @@ Se plantea la ejecución del diseño e implementación de código como un proyec
         \begin{itemize}
             \item Se utilizarán \textbf{plataformas de aprendizaje online} como DataCamp o Coursera para consolidar y refrescar los conceptos de Python y sus librerías de ciencia de datos con impacto en el proyecto.
         \end{itemize}    
-    \item Utilización de la inteligencia artificial  
+    \item Utilización de la inteligencia artificial: véase la sección~\ref{sec:declaracion-ia}.
 \end{enumerate}
 
 
 \section{Planificación del trabajo}
 
-Se ha realizado una \textbf{planificación en base a la carga de 12 créditos ECTS}, equivalentes a 300 horas de dedicación, distribuyendo la carga de trabajo en las 15 semanas lectivas disponibles.
+Se ha realizado una \textbf{planificación según la carga de 12 créditos ECTS}, equivalentes a 300 horas de dedicación, distribuyendo la carga de trabajo en las 15 semanas lectivas disponibles.
 
-La estructuración del trabajo se ha realizado utilizando \textbf{paquetes de trabajo (WP)}, que se han basado principalmente en las entregas establecidas en las pruebas de integración continua de la UOC, incluyendo una serie de \textbf{hitos} para reflejar la evolución incremental del trabajo tanto en el estudio del estado del arte y en el diseño e implementación del mismo.
+La estructuración del trabajo se ha realizado utilizando \textbf{paquetes de trabajo (WP)}, que se han basado principalmente en las entregas establecidas en las pruebas de evaluación continua de la UOC, incluyendo una serie de \textbf{hitos} para reflejar la evolución incremental del trabajo tanto en el estudio del estado del arte y en el diseño e implementación del mismo.
 
 Además, se han incluido paquetes de trabajo para los \textbf{objetivos secundarios}, planificados inicialmente como opcionales.
 
@@ -307,7 +308,7 @@ En primer lugar, se muestra en la siguiente tabla la división de las tareas a r
     WP1 & \textbf{Definición y objetivos:} planteamiento inicial, problemática, alineación de objetivos, metodología y planificación temporal. & \makecell{0.6 ECTS \\ (15 h)} & 24 sep - 04 oct & PEC1 \\
 \midrule
     WP2.1 & \textbf{Análisis legal:} estudio de legislación y normativa sobre accesibilidad e infraestructura urbana, extrayendo requisitos. & \makecell{0.6 ECTS \\ (15 h)} & 05 oct - 12 oct & PEC2 \\
-    WP2.2 & \textbf{Estado del arte:} revisión de literatura sobre evaluación de la accesibilidad urbana, aprendizaje automático con datos tabulares, validación con datos espaciales y visión por computador. & \makecell{1.0 ECTS \\ (25 h)} & 13 oct - 25 oct & PEC2 \\
+    WP2.2 & \textbf{Estado del arte:} revisión de literatura sobre evaluación de la accesibilidad urbana, aprendizaje automático con datos tabulares, perfiles de usuario, validación entre ciudades y extracción de variables desde datos cartográficos. & \makecell{1.0 ECTS \\ (25 h)} & 13 oct - 25 oct & PEC2 \\
 \midrule
     WP3.1 & \textbf{Preparación de datos:} recopilación de los datos de Albacete y Algeciras, análisis de los parámetros medidos, selección y categorización de los relevantes según puedan obtenerse potencialmente de fuentes cartográficas públicas, de imágenes aéreas, de imágenes a pie de calle o solo in situ, limpieza y preparación para el entrenamiento y la evaluación de los modelos. & \makecell{0.8 ECTS \\ (20 h)} & 19 oct - 03 nov & PEC3 \\
     WP3.2 & \textbf{Métricas y características:} definición de los indicadores y fórmulas de evaluación a partir de la normativa, y construcción de los conjuntos de características (cartográficas y aéreas, a pie de calle y de campo). & \makecell{0.6 ECTS \\ (15 h)} & 26 oct - 10 nov & PEC3 \\
@@ -321,7 +322,7 @@ En primer lugar, se muestra en la siguiente tabla la división de las tareas a r
     \multicolumn{5}{l}{\textit{Objetivos secundarios (de valor añadido, condicionados al tiempo disponible y a la evolución del proyecto)}} \\
     WP3.7 (OS1) & \textbf{Integración con el callejero:} realización de la integración del modelo con los datos geográficos del callejero de una ciudad, para poder incorporar los resultados del análisis al visor. & \makecell{0.4 ECTS \\ (10 h)} & 08 dic - 11 dic & PEC3 \\
     WP3.8 (OS1) & \textbf{Visor GIS e interfaz:} desarrollo de un visor geográfico interactivo para la representación gráfica sobre mapas de la red urbana. & \makecell{0.4 ECTS \\ (10 h)} & 10 dic - 14 dic & PEC3 \\
-    WP3.9 (OS2) & \textbf{Variables a partir de cartografía pública:} cálculo, para los tramos de Albacete, de variables a partir de fuentes cartográficas públicas (pendiente del MDT, anchura de la vía del catastro e intersecciones del callejero) y comprobación de si los valores reales confirman la estimación de viabilidad y pueden sustituir a las variables medidas in situ en el modelo. & \makecell{0.8 ECTS \\ (20 h)} & 08 dic - 15 dic & PEC3 \\
+    WP3.9 (OS2) & \textbf{Variables a partir de cartografía pública:} cálculo, para los tramos que dispongan de geometría (completa en Albacete y parcial en Algeciras), de variables a partir de fuentes cartográficas públicas (pendiente del MDT, anchura de la vía del catastro e intersecciones del callejero) y comprobación de si los valores reales confirman la estimación de viabilidad y pueden sustituir a las variables medidas in situ en el modelo. & \makecell{0.8 ECTS \\ (20 h)} & 08 dic - 15 dic & PEC3 \\
 \midrule
     WP4 & \textbf{Redacción memoria:} consolidación y redacción de la memoria final del TFM, estructurando metodología y resultados. & \makecell{1.6 ECTS \\ (40 h)} & 16 dic - 27 dic & PEC4 \\
 \midrule
@@ -333,7 +334,7 @@ En primer lugar, se muestra en la siguiente tabla la división de las tareas a r
 \end{longtable}
 \endgroup
 
-En segundo lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hilos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que las entregas secundarias se indican con barras discontinuas.
+En segundo lugar se presenta el \textbf{cronograma del proyecto}, incluyendo tanto los paquetes de trabajo como hitos de entrega, se detalla en el siguiente diagrama de Gantt. En color azul se encuentran las entregas principales, mientras que las entregas secundarias se indican con barras discontinuas.
 
 \input{capitulos/01-introduccion/figuras/gantt_tfm}
 
@@ -373,7 +374,7 @@ Los principales riesgos identificados han estado centrados en la incertidumbre d
     \textbf{Tiempos elevados de entrenamiento de modelos} & 
     Media/Medio & 
     Los trabajos de ciencia de datos se basan en la experimentación y prueba continua, por lo que el tiempo de entrenamiento constituye una variable importante en la consecución de objetivos. Con tiempos de entrenamiento elevados, se reduce el número de iteraciones que se pueden realizar y validar. & 
-    Priorización del uso de modelos con mejor optimización y en caso de utilizar deep learning, usar \textit{transfer learning} sobre redes preentrenadas basándose en el estado del arte analizado y empleo de aceleración por GPU. \\
+    Priorización del uso de modelos con mejor optimización, utilizando modelos basados en árboles de decisión de bajo coste computacional (subsección~\ref{subsec:ml-tabular}), que se pueden entrenar en un equipo convencional sin aceleración por GPU. \\
     \midrule
     
     \textbf{No llegar a tiempo para completar los objetivos secundarios} & 
@@ -431,7 +432,7 @@ Los productos que se obtendrán tras la ejecución del proyecto se detallan a co
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Productos secundarios\textsuperscript{*}} \\
     P5 & Capa de calles clasificadas integrada en el callejero municipal. & Capa GIS & WP3.7 \\
     P6 & Visor GIS interactivo con los resultados. & Aplicación web & WP3.8 \\
-    P7 & Variables reales obtenidas de cartografía pública en Albacete y su comparación con la estimación. & Código e informe & WP3.9 \\
+    P7 & Variables reales obtenidas de cartografía pública en Albacete y Algeciras y su comparación con la estimación. & Código e informe & WP3.9 \\
 \midrule
 \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Entregables académicos} \\
     P8  & Memoria del TFM. & PDF & WP4 \\
@@ -445,8 +446,8 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
 
 \begin{enumerate}
     \item \textbf{Introducción y contexto del proyecto:} define el contexto y motivación del proyecto, una introducción a la normativa legal, el listado de objetivos, la metodología y la planificación del trabajo.
-    \item \textbf{Características de vías accesibles. Marco legal y normativo:} define la legislación vigente en relación a las ciudades accesibles universales, así como las características de las vías accesibles en base a la ley, que servirán de base para los algoritmos.
-    \item \textbf{Estado del arte:} contiene el análisis del estado el arte científico en cuanto a modelos de aprendizaje automático y algoritmos utilizados en problemas similares.
+    \item \textbf{Características de vías accesibles. Marco legal y normativo:} define la legislación vigente en relación a las ciudades accesibles universales, así como las características de las vías accesibles según la ley, que servirán de base para los algoritmos.
+    \item \textbf{Estado del arte:} contiene el análisis del estado del arte científico sobre la evaluación de la accesibilidad urbana, los modelos de aprendizaje automático para clasificarla, el tratamiento de los perfiles de usuario, la transferencia de modelos entre ciudades y la extracción de variables desde datos cartográficos públicos.
     \item \textbf{Arquitectura del sistema:} describe la arquitectura tecnológica del sistema, incluyendo detalles de cada uno de los módulos del mismo: extracción de variables cartográficas, modelos de aprendizaje automático y clasificación de accesibilidad de calles.
     \item \textbf{Diseño e implementación de los algoritmos:} contiene las decisiones de diseño de los sistemas, las librerías y tecnologías utilizadas, y los detalles y decisiones de implementación.
     \item \textbf{Resultados y evaluación:} detalla los resultados de las predicciones realizadas, lista las rutas a los sistemas y conjuntos de datos, y analiza la evaluación de la calidad del trabajo.
@@ -454,6 +455,7 @@ La estructura de la memoria tendrá los siguientes capítulos, coincidiendo en o
 \end{enumerate}
 
 \section{Declaración sobre el uso de inteligencia artificial generativa}
+\label{sec:declaracion-ia}
 
 A continuación se listan los casos de uso de la inteligencia artificial generativa durante el desarrollo del trabajo:
 

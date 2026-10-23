@@ -3,7 +3,7 @@
 % Compatible con TFUOC.cls: no redefine sus colores (darkblueUOC, lightblueUOC, greyUOC).
 % Los nombres de color coinciden con los tokens del sistema de diseño.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tfm-estilo}[2026/10/18 v1.8 Sistema visual TFM]
+\ProvidesPackage{tfm-estilo}[2026/10/23 v1.9 Sistema visual TFM]
 
 % Opción [tabla]: "Tabla" / "Índice de tablas" en lugar de "Cuadro" / "Índice de cuadros" (babel spanish)
 \newif\iftfm@tabla
@@ -524,6 +524,8 @@
 \newcommand{\aclaracion}[2][Aclaración]{\begin{tfm@aclbox}{\sffamily\footnotesize\bfseries\color{uoc-azul}#1.}\ #2\end{tfm@aclbox}}
 % 3) \notatabla{texto}: nota bajo una tabla o figura (convención académica «Nota.»).
 \newcommand{\notatabla}[1]{\par\vspace{3pt}{\footnotesize\raggedright\textit{Nota.}\ #1\par}}
+% Título de conclusión: sin numerar ni entrar en el índice.
+\newcommand{\tituloconclusion}[1]{\par\vspace{1.5ex}\noindent{\color{uoc-cian-filete}\rule{\linewidth}{0.8pt}}\par\nobreak\vspace{0.3ex}\noindent{\sffamily\bfseries\color{uoc-azul}#1}\par\nobreak\vspace{0.6ex}}
 % Notas al pie: número en uoc-azul
 \let\tfm@thefnmark\thefootnote
 \renewcommand{\thefootnote}{\textcolor{uoc-azul}{\arabic{footnote}}}
@@ -550,6 +552,39 @@
   \enquote{#2}\end{tcolorbox}}
 \newcommand{\fichaprompt}[1]{\tfm@fichatexto{Instrucción}{#1}}
 \newcommand{\fichaajuste}[1]{\tfm@fichatexto{Ajuste}{#1}}
+
+% ---------------------------------------------------------------- Fichas de síntesis (v1.9)
+% Una ficha por pregunta de investigación en la síntesis de un capítulo.
+% \begin{fichasintesis}{1}{¿Pregunta?}{sec:etiqueta}{OP1, H1}
+%   \sintesisliteratura{\item ... \item ...}
+%   \sintesisdecision{\item \sintesisclave{Modelos} ... \item ...}
+% \end{fichasintesis}
+\newtcolorbox{fichasintesis}[4]{enhanced, breakable, sharp corners,
+  colback=papel, colframe=uoc-azul, boxrule=0pt, toprule=1.2pt, bottomrule=0.4pt,
+  leftrule=0pt, rightrule=0pt, colbacktitle=superficie, coltitle=uoc-azul,
+  titlerule=0.4pt, titlerule style={draw=filete},
+  fonttitle=\sffamily\small\bfseries,
+  title={Pregunta~#1\ ·\ #2\par\vspace{1pt}{\mdseries\footnotesize\color{tinta-suave}Sección~\ref{#3}\ ·\ #4}},
+  fontupper=\small, left=6pt, right=6pt, top=5pt, bottom=5pt, before skip=8pt, after skip=8pt}
+% Viñetas con icono: libro abierto (literatura) y flecha (decisión)
+\newcommand{\tfm@icolupa}{\tikz[baseline=-0.6ex, line width=0.5pt, line join=round, draw=serie-2]{%
+  \draw[fill=papel] (0,-0.95mm) -- (-1.5mm,-0.6mm) -- (-1.5mm,1mm) -- (0,0.65mm) -- cycle;
+  \draw[fill=papel] (0,-0.95mm) -- (1.5mm,-0.6mm) -- (1.5mm,1mm) -- (0,0.65mm) -- cycle;
+  \draw[line width=0.3pt] (-1.15mm,0.35mm) -- (-0.35mm,0.15mm) (-1.15mm,-0.15mm) -- (-0.35mm,-0.35mm)
+                         (1.15mm,0.35mm) -- (0.35mm,0.15mm) (1.15mm,-0.15mm) -- (0.35mm,-0.35mm);}}
+\newcommand{\tfm@icocheck}{\tikz[baseline=-0.6ex]{%
+  \fill[uoc-azul] (-1.2mm,-0.45mm) rectangle (0.2mm,0.45mm);
+  \fill[uoc-azul] (0.1mm,-1.15mm) -- (1.45mm,0) -- (0.1mm,1.15mm) -- cycle;}}
+% Término clave al inicio de una viñeta (sin negrita, con dos puntos): \sintesisclave{Modelos}
+\newcommand{\sintesisclave}[1]{{\sffamily\small\color{uoc-azul}#1:}}
+% Uso: \sintesisliteratura{\item ... \item ...}   \sintesisdecision{\item ... \item ...}
+\newcommand{\sintesisliteratura}[1]{\par\noindent{\sffamily\footnotesize\bfseries\color{uoc-azul}Qué aporta la literatura}\par\nopagebreak
+  \begin{itemize}[label=\tfm@icolupa, leftmargin=6mm, labelsep=2mm, topsep=3pt, itemsep=2pt]#1\end{itemize}}
+\newcommand{\sintesisdecision}[1]{\par\smallskip\noindent{\sffamily\footnotesize\bfseries\color{uoc-azul}Decisión para este trabajo}\par\nopagebreak
+  \begin{tcolorbox}[enhanced, breakable, sharp corners, colback=uoc-cian-suave, boxrule=0pt, frame hidden,
+    borderline west={2pt}{0pt}{uoc-azul},
+    left=6pt, right=6pt, top=3pt, bottom=3pt, before skip=2pt, after skip=2pt, fontupper=\small]
+  \begin{itemize}[label=\tfm@icocheck, leftmargin=6mm, labelsep=2mm, topsep=0pt, itemsep=2pt]#1\end{itemize}\end{tcolorbox}}
 
 % ---------------------------------------------------------------- Imágenes externas
 % Carpetas donde LaTeX busca imágenes (crea las que uses junto al .tex)
