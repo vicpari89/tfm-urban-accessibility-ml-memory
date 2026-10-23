@@ -302,6 +302,16 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
   \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
 \end{itemize}
 
+\noindent\textit{Clase de accesibilidad.} Algeciras tiene una clase de accesibilidad de cada calle (A, B o C, en las columnas \texttt{PIC\_*}), que no existe en Albacete, aunque se puede calcular. Por lo analizado en los datos de Algeciras, las clases salen de dividir las puntuaciones en 1/3 y 2/3 de la puntuación máxima (5): C por debajo de un tercio, B entre un tercio y dos tercios, y A a partir de dos tercios. Con estos cortes se reproduce la clase de las 506 calles que tienen puntuación total y clase (el 100\,\%).
+\\
+
+La clase de Albacete la ha añadido el autor para disponer de clases de accesibilidad en ese conjunto de datos, con los mismos cortes sobre su escala de 0 a 100 (C por debajo de 33,3, B entre 33,3 y 66,7, y A a partir de 66,7), a partir de \texttt{ACCGLOBAL}. Se ha intentado seguir un criterio común, el de Algeciras, puesto que este análisis es posterior al de Albacete y, por tanto, representa el criterio más reciente de la empresa.
+\\
+
+\noindent\textit{Distribución de las clases.} La figura~\ref{fig:distribucion-clases} muestra la distribución de la clase de accesibilidad (A, B y C) en ambos conjuntos de datos: la clase A es minoritaria (2,6\,\% en Albacete y 5,5\,\% en Algeciras) y la B es la mayoritaria (78,2\,\% y 56,1\,\%).
+
+\input{capitulos/02-02-caracteristicas-accesibilidad/figuras/desbalanceo-clases-alb-alg}
+
 \subsection{Limitaciones de los datos}
 \label{sec:limitaciones-datos}
 
@@ -317,7 +327,13 @@ Los conjuntos tampoco distinguen el sexo ni el género de las personas, por lo q
 Como posible mejora, se plantea realizar una solicitud a los ayuntamientos de los criterios seguidos por la empresa adjudicataria de los contratos para calcular las puntuaciones.
 \\
 
-Otra de las limitaciones es la ausencia de coordenadas en los conjuntos de datos. Se buscarán estos datos en las fuentes oficiales de los ayuntamientos, pero podría darse el caso de encontrar datos ausentes o haber dificultad a la hora de relacionarlos con los conjuntos de datos disponibles.
+Otra de las limitaciones es la ausencia de coordenadas en los conjuntos de datos. Las geometrías disponibles, y las calles que no las tienen, se describen en la subsección~\ref{subsec:geometrias-visores}.
+\\
+
+Además, la clase de Algeciras la asigna la empresa y la de Albacete la calcula el autor a partir de las puntuaciones de la empresa, por lo que refleja la valoración de la accesibilidad aplicada por la empresa.
+\\
+
+Por último, solo se dispone de dos ciudades, y los análisis de ambas los realizó la misma empresa.
 \\
 
 \section{Perfiles de diversidad funcional y dimensiones de accesibilidad}
@@ -325,9 +341,9 @@ Otra de las limitaciones es la ausencia de coordenadas en los conjuntos de datos
 
 \subsection{El marco DALCO}
 
-Para poder distinguir de qué manera diferente afecta cada dimensión a cada tipo de diversidad, se va a utilizar el marco \gls{DALCO}, definido en la norma UNE 170001-1.
+Para poder distinguir de qué manera diferente afecta cada dimensión a cada tipo de diversidad, se va a utilizar el marco \gls{DALCO}, definido en la norma UNE 170001-1 \parencite{une_170001_1_2007}.
 \\
-DALCO son las siglas de deambulación, aprehensión, localización y comunicación, y contiene los requisitos que se deben cumplir en cada acción para completar la accesibilidad universal en el entorno.
+Este marco contiene los requisitos que se deben cumplir en cada acción para completar la accesibilidad universal en el entorno.
 \\
 
 \begin{table}[H]
@@ -350,11 +366,9 @@ DALCO son las siglas de deambulación, aprehensión, localización y comunicaci�
   \fuente{elaboración propia a partir de~\parencite{une_170001_1_2007}.}
 \end{table}
 
-\subsection{Qué se espera que pese más en cada dimensión}
+\subsection{Qué se espera que pese más en cada dimensión y requisito}
 
 Teniendo en cuenta los requisitos DALCO, se puede inferir qué características de cada dimensión tienen más importancia, o hay que tener en cuenta, para cada perfil. Por ejemplo, el \glslink{avisador-acustico}{avisador acústico} de los semáforos es más importante para una persona ciega que para otro tipo de perfiles de diversidad.
-\\
-Se indican a continuación cuáles son por cada dimensión las tipologías de diversidad funcional más afectadas.
 \\
 
 
@@ -362,9 +376,7 @@ Se indican a continuación cuáles son por cada dimensión las tipologías de di
 \newcommand{\pesomedio}{\tikz[baseline=-0.6ex]{\draw[line width=0.4pt] (0,0) circle (0.9mm);\fill (0,0.9mm) arc (90:-90:0.9mm) -- cycle;}}
 \newcommand{\pesonulo}{\tikz[baseline=-0.6ex]\draw[line width=0.4pt] (0,0) circle (0.9mm);}
 
-\subsection{Qué se espera que pese más en cada requisito}
-
-Con las acciones DALCO se puede intuir qué requisitos de cada dimensión importan más a cada perfil. Por ejemplo, el avisador acústico de un semáforo importa más a una persona con discapacidad visual que a una con movilidad reducida, mientras que la pendiente de un vado importa más a una persona en silla de ruedas.
+Además, con las acciones DALCO se puede intuir qué requisitos de cada dimensión importan más a cada perfil. Por ejemplo, la pendiente de un vado importa más a una persona en silla de ruedas.
 \\
 
 Se ha realizado una tabla que muestra, por cada característica definida en la sección 2.2 a partir de la Orden TMA/851/2021~\parencite{mitma_orden_tma851_2021}, se indica el grado de importancia que tiene en cada una de las diversidades funcionales.
@@ -432,7 +444,7 @@ Se ha realizado una tabla que muestra, por cada característica definida en la s
 \endgroup
 \fuente{elaboración propia a partir de~\parencite{une_170001_1_2007} y~\parencite{mitma_orden_tma851_2021}. \cumple{si} mucho peso esperado, \cumple{parcial} algo, \cumple{no} poco o ninguno.}
 
-Se trata de una clasificación propia, intuyendo el grado de importancia de cada característica, por lo que podría ser recomendable que fuera revisada por una persona especialista en accesibilidad.
+Se trata de una clasificación propia, intuyendo el grado de importancia de cada característica, por lo que podría ser recomendable que fuera revisada por una persona especialista en accesibilidad. Esta importancia esperada se contrastará con la importancia obtenida en los modelos entrenados para cada perfil (H6).
 \\
 
 % =====================================================================
@@ -473,7 +485,7 @@ Se han hecho tres ciclos de vuelos, mejorando cada vez más la densidad, de 0,5 
 En segundo lugar, el MDT (Modelo Digital del Terreno), también del PNOA, que filtra los datos del LiDAR (y el modelo digital de superficies) y permite obtener la pendiente de las calles, eliminando toda la capa de edificios, vegetación o mobiliario. El MDT02 tiene un paso de malla de 2 metros, y el MDT05 de 5 metros \parencite{pnoa_mdt}.
 \\
 
-Para el ancho de las aceras, se podría contar con la Cartografía Vectorial del Catastro, que contiene información de líneas de fachada o bordillos \parencite{catastro_descarga_datos}.
+Para el ancho de las aceras, se podría contar con la Cartografía Vectorial del Catastro, que contiene información de las fachadas de las construcciones y, en algunos municipios, la línea de acera \parencite{catastro_descarga_datos}.
 
 También se dispone de la cartografía municipal a gran escala que se puede descargar de los ayuntamientos. En el caso de Albacete, existe una cartografía topográfica, con datos hasta 2021 \parencite{cartografia_topografica_albacete}.
 
@@ -596,7 +608,7 @@ La dimensión más viable es la anchura, sobre todo a pie de calle (95\,\%; desd
 Las dimensiones de menor viabilidad son la iluminación (15\,\% desde el aire y 30\,\% a pie de calle, y suponiendo que se dispone de imágenes nocturnas), la pendiente (25\,\% por cartografía, 0\,\% desde el aire y 40\,\% a pie de calle) y el pavimento (40\,\% y 30\,\%). En el pavimento, la resbaladicidad no se puede extraer de ninguna manera, y los resaltes de 4\,mm solo en parte (25\,\% a pie de calle). La señalización se queda en el 10\,\% desde el aire y en el 50\,\% a pie de calle.
 \\
 
-Esta información servirá para determinar qué dimensiones se utilizan en las hipótesis de investigación (H1, H2, H3 y H5), comprobando la precisión del modelo usando dimensiones que se pueden obtener de cartografía pública o desde imágenes aéreas, a pie de calle o forzosamente in situ por el equipo técnico.
+Esta información servirá para determinar qué dimensiones se utilizan en las hipótesis de investigación (H1, H2, H3, H5 y H7), comprobando el rendimiento del modelo usando dimensiones que se pueden obtener de cartografía pública o desde imágenes aéreas, a pie de calle o forzosamente in situ por el equipo técnico.
 \\
 
 % =====================================================================
@@ -613,18 +625,18 @@ En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías
 \textit{Análisis y unificación de datos.} (sección~\ref{sec:analisis-exploratorio}) Se ha realizado un análisis exploratorio de los datos de Albacete y Algeciras. Los datos provienen de la misma empresa, aunque tienen escalas y perfiles de accesibilidad diferentes, y contienen las puntuaciones otorgadas en cada calle, por cada dimensión y tipo de diversidad. Se desconocen tanto la forma de recopilar los datos, como el algoritmo usado para las puntuaciones, así como las medidas realizadas. Se ha realizado una propuesta de unificación de los conjuntos de datos.
 \\
 
-\textit{Datos cartográficos públicos.} (sección~\ref{sec:datos-cartograficos-publicos}) Se han revisado las geometrías disponibles en los visores de accesibilidad de ambas ciudades y las fuentes cartográficas públicas: el PNOA-LiDAR y el MDT para la pendiente de las calles, y la Cartografía Vectorial del Catastro para la anchura de las aceras.
+\textit{Datos cartográficos públicos.} (sección~\ref{sec:datos-cartograficos-publicos}) Se han revisado las geometrías disponibles en los visores de accesibilidad de ambas ciudades y las fuentes cartográficas públicas: el PNOA-LiDAR y el MDT para la pendiente de las calles, y la Cartografía Vectorial del Catastro para la anchura entre fachadas.
 \\
 
 \textit{Viabilidad de extracción de información en cartografía e imágenes.} (sección~\ref{sec:viabilidad}) Se ha realizado una estimación del grado de obtención de datos a partir de cartografía pública, de imágenes aéreas o a pie de calle, y se ha determinado que la captura es desigual: mientras que las anchuras y cruces son más fáciles de obtener, otras dimensiones como el pavimento o la iluminación necesitan en mayor parte inspección in situ.
 \\
 
-\noindent\textbf{Qué se investigará en el estado del arte.} Para poder responder a las hipótesis de investigación, se va a revisar en la literatura científica:
+\noindent\textbf{Qué se investigará en el estado del arte.} Para poder contrastar las hipótesis de investigación y abordar los objetivos, se va a revisar en la literatura científica:
 \begin{itemize}
-  \item \textbf{¿Cómo se mide la accesibilidad de una calle?} Qué indicadores usan otros estudios, cómo categorizan las puntuaciones y qué métricas utilizar para la evaluación de los modelos (OP3).
-  \item \textbf{¿Qué modelos usar y cómo saber qué variables importan?} Qué modelos se emplean a partir de datos tabulares y cómo medir la importancia de cada variable, para comprobar si las medidas tomadas in situ se pueden eliminar sin perder precisión (OP4, OP6, H1--H3, H5).
-  \item \textbf{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?} Cómo se trata en otros estudios el análisis de los distintos perfiles de diversidad funcional (si se realizan ponderaciones por pesos, o incluso si se modela cada perfil por separado), para decidir cómo interpretar los resultados por perfil (OP1, OP6).
-  \item \textbf{¿Cómo comprobar que un modelo funciona en otra ciudad?} Evaluar la transferencia de un modelo de una ciudad a otra, comprobando cómo se realiza en otros estudios el entrenamiento y evaluación de los modelos; si entrenando en una ciudad, o mezclando datos de ambas. (OP5, H4).
-  \item \textbf{¿Qué se puede obtener de cartografía pública e imágenes?} Qué trabajos han obtenido ya la anchura de las aceras, o la identificación de mobiliario urbano u obstáculos a partir de fotografías aéreas o de la calle, con qué precisión y de qué manera lo han hecho (OS2, H1--H3).
+  \item \textbf{¿Cómo se mide la accesibilidad de una calle?} Qué indicadores usan otros estudios, cómo categorizan las puntuaciones y si se han obtenido a partir de imágenes (OP1, OP2, OP3, H1, H2).
+  \item \textbf{¿Qué modelos usar y cómo saber qué variables importan?} Qué modelos se emplean a partir de datos tabulares, qué métricas utilizar para la evaluación de los modelos y cómo medir la importancia de cada variable, y cómo tratar variables con coste de obtención o fiabilidad desiguales, para comprobar si las medidas tomadas in situ se pueden eliminar sin perder rendimiento (OP2, OP3, OP4, OP6, H1--H3, H5).
+  \item \textbf{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?} Cómo se trata en otros estudios el análisis de los distintos perfiles de diversidad funcional, para decidir cómo modelar e interpretar los resultados por perfil (OP1, OP4, OP6, H6).
+  \item \textbf{¿Cómo comprobar que un modelo funciona en otra ciudad?} Cómo evaluar la transferencia de un modelo de una ciudad a otra y cómo validar dentro de una misma ciudad, comprobando cómo se realiza en otros estudios el entrenamiento y evaluación de los modelos, ya sea entrenando en una ciudad o mezclando datos de ambas (OP5, H4).
+  \item \textbf{¿Qué se puede obtener de la cartografía pública?} Qué trabajos han obtenido ya la pendiente y la anchura de las aceras a partir de cartografía pública y de qué manera lo han hecho (OS2, H1, H7).
 \end{itemize}
 

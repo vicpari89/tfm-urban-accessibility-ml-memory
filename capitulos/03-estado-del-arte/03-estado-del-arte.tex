@@ -117,7 +117,7 @@ Tras los datos obtenidos, se realiza un diagnóstico de cumplimiento por cada un
 Los estudios de Georgia Tech~\parencite{frackelton2013, guensler2015} indican el desarrollo de la aplicación de Android SideWalk Sentry para la toma de datos de parámetros de accesibilidad de las calles (existencia de acera, estado, seguridad peatonal), en la ciudad de Atlanta.
 \\
 
-Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos.
+Una vez obtenidas las métricas, se calculaba un \textbf{\gls{SQI}}, que se combinaba con el cumplimiento de la normativa ADA, y calibración de expertos/as.
 \\
 
 De forma similar, en Albacete y Algeciras los equipos técnicos inspeccionaron las calles \textit{in situ} y compararon sus características con la Orden TMA/851/2021 (sección~\ref{sec:analisis-exploratorio}), aplicando un algoritmo de puntuación que se desconoce (sección~\ref{sec:limitaciones-datos}).
@@ -277,7 +277,7 @@ Se incluye también el trabajo de \textcite{wang2026}, que aunque pertenece al s
 \\
 
 \tituloconclusion{Conclusión}
-En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a usuarios; a diferencia de los datos de Albacete y Algeciras, que se supone que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
+En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a personas usuarias; a diferencia de los datos de Albacete y Algeciras, que se supone que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
 \\
 
 \subsection{Modelos para datos tabulares}
@@ -308,9 +308,7 @@ Como conclusión, en este trabajo se van a utilizar los modelos \textbf{\textit{
 En los conjuntos de datos del proyecto, existe una clase de accesibilidad (A, B y C), que se trata de una \textbf{\glslink{clase-ordinal}{clase ordinal}}, puesto que son etiquetas que están en orden (A es accesible, B es parcialmente accesible, mientras que C incumple); además, las clases están \textbf{\glslink{desbalanceo-clases}{desbalanceadas}} en ambos conjuntos de datos: solo el 2,6\,\% tiene clase A en Albacete, o el 5,5\,\% en Algeciras; mientras que la mayoría de datos se encuentran en la clase B, 78,2\,\% en Albacete y 56,1\,\% en Algeciras.
 \\
 
-La figura~\ref{fig:distribucion-clases} muestra la distribución de las clases en ambos conjuntos de datos.
-
-\input{capitulos/03-estado-del-arte/figuras/desbalanceo-clases-alb-alg}
+La distribución de las clases en ambos conjuntos de datos se muestra en la figura~\ref{fig:distribucion-clases} (sección~\ref{sec:analisis-exploratorio}).
 
 Se han analizado artículos científicos sobre clases ordinales y desbalanceos. En cuanto a las \textbf{clases ordinales}, en \textcite{jean2025} se utiliza una adaptación de XGBoost para escalas clínicas con una función de pérdida de error cuadrático, optimizando los límites de decisión al punto medio entre clases (ordenadas de 0 a 3).
 \\
@@ -325,8 +323,10 @@ Los estudios sobre \textbf{desbalanceo de clases} utilizan principalmente dos t�
 \\
 
 \tituloconclusion{Conclusión}
-Una vez analizados los estudios, en este proyecto se utilizará el \textbf{\glslink{aprendizaje-sensible-coste}{aprendizaje sensible al coste}} mediante la \textbf{ponderación de clases}, que modifica la función de pérdida para tratar el desbalanceo de clases existente en el conjunto de datos. De esta manera, se compensará la baja frecuencia de la clase A sin perder información por submuestreo, que no se aplicará debido al bajo número de tramos con accesibilidad de clase A (24 tramos en Albacete y 28 en Algeciras).
+Una vez analizados los estudios, en este proyecto se utilizará el \textbf{\glslink{aprendizaje-sensible-coste}{aprendizaje sensible al coste}} mediante la \textbf{ponderación de clases}, que modifica la función de pérdida para tratar el desbalanceo de clases existente en el conjunto de datos. De esta manera, se compensará la baja frecuencia de la clase A sin perder información por submuestreo, que no se aplicará debido al bajo número de tramos con accesibilidad de clase A (24 tramos en Albacete y 28 en Algeciras), como muestra la figura~\ref{fig:ponderacion-submuestreo}.
 \\
+
+\input{capitulos/03-estado-del-arte/figuras/ponderacion-submuestreo}
 
 En cuanto a las métricas, no se utilizará la exactitud, ya que un modelo que asignara siempre la clase B acertaría el 78,2\,\% de los tramos de Albacete. En su lugar, se utilizarán la \textbf{F1 macro} y la \textbf{exactitud balanceada}, que a diferencia de la exactitud, no favorecen a la clase con mayor frecuencia; y la \textbf{kappa ponderada cuadrática}, que penaliza los errores según la distancia entre clases.
 \\
@@ -467,6 +467,7 @@ En resumen, las decisiones para este trabajo son:
   \item \textbf{Métricas:} F1 macro, exactitud balanceada y kappa ponderada cuadrática, tratando las clases como independientes (subsección~\ref{subsec:ml-ordinal}).
   \item \textbf{Importancia de las variables:} índice de Gini (solo en modelos de árbol), importancia por permutación y valores SHAP (subsección~\ref{subsec:ml-importancia}).
   \item \textbf{Coste y fiabilidad:} no se seleccionan variables por coste; se mide la pérdida de rendimiento de cada grupo de dimensiones según su origen frente al modelo con todas las dimensiones, se usan como entradas las puntuaciones de cada dimensión y se evalúa el efecto del ruido en las dimensiones obtenibles de imágenes o cartografía (subsección~\ref{subsec:ml-fiabilidad}).
+  \item \textbf{Criterio de refutación:} es un criterio propio, que se fija antes de realizar el entrenamiento. Se considera que el rendimiento es «claramente inferior» si no llega al 80\,\% del que tiene el modelo de comparación, medido con la F1 macro. En H1, H2 y H5 se compara con el modelo con todas las variables; en H4, con el modelo validado dentro de la ciudad de destino; y en H7, con el que se entrena con las dimensiones medidas in situ. En H3, se refuta si la combinación no mejora al mejor de los dos conjuntos por separado.
   \item \textbf{Fuga de información:} no se utilizarán las puntuaciones totales como variables de entrada, ya que la clase de accesibilidad (variable objetivo) se calcula a partir de ellas.
 \end{itemize}
 
@@ -580,7 +581,7 @@ En ambos estudios se resuelve un problema de regresión, por lo que las variable
   \fuente{elaboración propia.}
 \end{table}
 
-Los trabajos revisados coinciden en que cada grupo de usuarios \textbf{valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
+Los trabajos revisados coinciden en que cada grupo \textbf{valora la calle de forma distinta}: cambian tanto las características con más peso como la clase final de un mismo tramo. La tabla~\ref{tab:perfiles-previos} resume cómo lo trata cada uno.
 \\
 
 Se han encontrado tres formas de incorporar los grupos: otorgar diferentes pesos a cada variable, entrenar varios modelos diferentes por cada grupo, o entrenar un único modelo con varias salidas (comprobado únicamente en regresión, no en clasificación). En este proyecto no se conocen los pesos de cada variable, y el modelo con varias salidas solo se ha probado en regresión, por lo que se va a \textbf{entrenar un modelo para cada perfil funcional}, y se comparará qué variables tienen más peso en cada uno.
@@ -605,7 +606,7 @@ En primer lugar, \textcite{wu2026} realizan una comparación entre \textbf{divis
 \\
 
 La conclusión del estudio fue que las técnicas no lineales superaron a la estrategia base, siendo XGBoost y \textit{random forest} los que tuvieron la mayor precisión. Además, la utilización de particiones aleatorias tuvo más éxito que la agrupada por calle. Las métricas utilizadas fueron $R^2$, \gls{RMSE} y \gls{MAE}.
-Según los autores, este éxito de la aleatoriedad es debido a que tramos de la misma calle están divididos en entrenamiento y test, y habitualmente son tramos con puntuaciones similares.
+Según el estudio, este éxito de la aleatoriedad es debido a que tramos de la misma calle están divididos en entrenamiento y test, y habitualmente son tramos con puntuaciones similares.
 \\
 
 Otro estudio, el de \textcite{mohite2024}, sigue una estrategia similar con las calles de Nagpur (India), que utiliza el algoritmo \gls{RFR} sobre un conjunto de datos de calles agrupadas por orientación (norte-sur y este-oeste) para predecir el confort térmico peatonal.
@@ -629,7 +630,7 @@ Los trabajos relacionados con el Project Sidewalk son los que más contribuyen a
 En concreto, se compararon dos formas de entrenar: con los datos de una sola ciudad, evaluando sobre otra; y con los datos combinados de las cuatro ciudades (Seattle, Columbus y Washington en EE. UU., y San Pedro Garza García en México). Las métricas utilizadas fueron la \glslink{precision}{precisión}, el \glslink{recall}{\textit{recall}} y la \glslink{accuracy}{exactitud}. Se determinó que entrenar con una sola ciudad reducía la precisión al evaluar en otra, mientras que entrenar con las ciudades combinadas la mejoraba, también en Columbus.
 \\
 
-Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que los autores atribuyen a diferencias urbanas entre esta ciudad y las estadounidenses.
+Un dato interesante del estudio fue que hubo una disminución significativa del \textit{recall} en la ciudad mexicana, que el estudio atribuye a diferencias urbanas entre esta ciudad y las estadounidenses.
 \\
 
 Mientras que en \textcite{weld2019} se aplicó una técnica denominada \textbf{\textit{cross-city generalizability}}, con un modelo a partir de ResNet-18, en el que se realizaron cuatro estrategias:
@@ -784,7 +785,7 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
 \\
 
 \needspace{14\baselineskip}
-\begin{fichasintesis}{1}{¿Cómo se mide la accesibilidad de una calle?}{sec:eval-accesibilidad}{OP1, OP2, OP3}
+\begin{fichasintesis}{1}{¿Cómo se mide la accesibilidad de una calle?}{sec:eval-accesibilidad}{OP1, OP2, OP3, H1, H2}
   \sintesisliteratura{
     \item Los artículos analizados utilizan dimensiones y medidas similares a las de Albacete y Algeciras (pendiente, anchura, desniveles, vados, obstáculos), pero cada trabajo compila los datos y puntúa de forma distinta.
     \item La mayoría usa \textbf{datos recogidos in situ}; algunos usan imágenes, pero ninguno de los trabajos revisados comprueba si bastarían para inferir la accesibilidad.
@@ -806,18 +807,19 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
     \item \sintesisclave{Desbalanceo} ponderación de clases para compensar la baja frecuencia de la clase A, sin sobremuestreo ni submuestreo (subsección~\ref{subsec:ml-ordinal}).
     \item \sintesisclave{Clases ordinales} los modelos tratarán las clases como independientes y su orden se tendrá en cuenta en la evaluación (subsección~\ref{subsec:ml-ordinal}).
     \item \sintesisclave{Métricas} F1 macro, exactitud balanceada y kappa ponderada cuadrática (subsección~\ref{subsec:ml-ordinal}).
+    \item \sintesisclave{Criterio de refutación} «claramente inferior» es recuperar menos del 80\,\% del rendimiento del modelo de comparación (subsección~\ref{subsec:ml-conclusiones}).
     \item \sintesisclave{Grupos de dimensiones} un modelo por cada origen (cartografía pública e imágenes aéreas, imágenes a pie de calle o in situ), comparado con el modelo con todas las dimensiones (subsección~\ref{subsec:ml-fiabilidad}).
     \item \sintesisclave{Ruido} pequeñas modificaciones en las dimensiones que se pueden obtener de imágenes o cartografía para evaluar el efecto de un error de extracción (subsección~\ref{subsec:ml-fiabilidad}).
     \item \sintesisclave{Importancia} índice de Gini, permutación y \gls{shap} (subsección~\ref{subsec:ml-importancia}).}
 \end{fichasintesis}
 
-\begin{fichasintesis}{3}{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?}{sec:perfiles-arte}{OP1, OP4, OP6}
+\begin{fichasintesis}{3}{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?}{sec:perfiles-arte}{OP1, OP4, OP6, H6}
   \sintesisliteratura{
-    \item Los trabajos revisados coinciden en que cada grupo de usuarios valora la calle de forma distinta.
+    \item Los trabajos revisados coinciden en que cada grupo valora la calle de forma distinta.
     \item Hay tres formas de incorporar los grupos: pesos diferentes por variable, un modelo por grupo, o un único modelo con varias salidas (solo comprobado en regresión) (subsección~\ref{subsec:perfiles-conclusiones}).}
   \sintesisdecision{
     \item \sintesisclave{Enfoque} un modelo para cada perfil funcional, ya que no se conocen los pesos de cada variable y el modelo con varias salidas solo se ha probado en regresión.
-    \item \sintesisclave{Comparación} qué variables pesan más en cada perfil (subsección~\ref{subsec:perfiles-conclusiones}).}
+    \item \sintesisclave{Comparación} qué variables pesan más en cada perfil, contrastado con la importancia esperada de la tabla~\ref{tab:peso-requisitos} (subsección~\ref{subsec:perfiles-conclusiones}).}
 \end{fichasintesis}
 
 \begin{fichasintesis}{4}{¿Cómo comprobar que un modelo funciona en otra ciudad?}{sec:transferencia-ciudades}{OP5, H4}
@@ -829,7 +831,7 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
     \item \sintesisclave{Métricas} las mismas de la pregunta~2 en todos los escenarios, para que los resultados sean comparables (subsección~\ref{subsec:validacion-conclusiones}).}
 \end{fichasintesis}
 
-\begin{fichasintesis}{5}{¿Qué se puede obtener de la cartografía pública?}{sec:datos-cartograficos}{OS2, H1, H6}
+\begin{fichasintesis}{5}{¿Qué se puede obtener de la cartografía pública?}{sec:datos-cartograficos}{OS2, H1, H7}
   \sintesisliteratura{
     \item La \textbf{pendiente longitudinal} se calcula a partir del \gls{MDT} o del \gls{LiDAR} aéreo.
     \item La \textbf{pendiente transversal} solo se ha obtenido con \gls{LiDAR} de alta densidad, y la \textbf{anchura de las aceras} con polígonos de acera o \gls{LiDAR} terrestre.
@@ -848,7 +850,7 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
 
 A diferencia de los trabajos revisados, en este trabajo:
 \begin{itemize}
-  \item \sintesisclave{Variable objetivo} se clasificará la accesibilidad a partir de la clase asignada por la empresa ACCESIA, que se supone basada en la normativa, y no a partir de la percepción recogida en encuestas (subsección~\ref{subsec:ml-accesibilidad}).
+  \item \sintesisclave{Variable objetivo} se clasificará la accesibilidad a partir de la clase de accesibilidad (la asignada por la empresa ACCESIA en Algeciras, y la calculada por el autor con el mismo criterio en Albacete), que se supone basada en la normativa, y no a partir de la percepción recogida en encuestas (subsección~\ref{subsec:ml-accesibilidad}).
   \item \sintesisclave{Variables según su origen} se comparará el rendimiento de los modelos con las variables agrupadas según de dónde se podrían obtener. Los trabajos revisados miden la pérdida al reducir variables pero no según su origen (subsección~\ref{subsec:ml-fiabilidad}).
   \item \sintesisclave{Transferencia entre ciudades} se evaluará la transferencia entre dos ciudades españolas con escalas y perfiles de diversidad funcional distintos. Los trabajos revisados etiquetan las ciudades con la misma plataforma y el mismo criterio (subsección~\ref{subsec:validacion-ciudades}).
   \item \sintesisclave{Cartografía pública española} se comprobarán en Albacete y Algeciras las variables que se pueden obtener con datos públicos españoles, como objetivo secundario OS2 (subsección~\ref{subsec:cartografia-conclusiones}).
@@ -860,11 +862,10 @@ A diferencia de los trabajos revisados, en este trabajo:
 \begin{recuadro}[atencion]{Alcance del trabajo}
   Conviene distinguir tres cuestiones diferentes:
   \begin{itemize}
-    \item \sintesisclave{Lo que se hace} se entrenarán modelos que reproducen la clase de accesibilidad asignada por la empresa ACCESIA a cada tramo de Albacete y Algeciras, y se comprobará si se mantiene el rendimiento sin las dimensiones que solo se pueden obtener in situ.
+    \item \sintesisclave{Lo que se hace} se entrenarán modelos que reproducen la clase de accesibilidad de cada tramo de Albacete y Algeciras (asignada por la empresa ACCESIA en Algeciras, y calculada por el autor con el mismo criterio en Albacete), y se comprobará si se mantiene el rendimiento sin las dimensiones que solo se pueden obtener in situ.
     \item \sintesisclave{Lo que no se hace} no se evaluará la accesibilidad real de las calles. Se desconocen el algoritmo de puntuación y las mediciones que realizó el equipo técnico de ACCESIA (subsección~\ref{sec:limitaciones-datos}), por lo que el modelo aprenderá la valoración de la empresa, sin compararla con la normativa.
     \item \sintesisclave{Lo que se simula} se estimará qué dimensiones podrían obtenerse de imágenes aéreas o a pie de calle (tabla~\ref{tab:viabilidad}), se entrenará el modelo solo con ese grupo de dimensiones y con los valores que ya midió ACCESIA in situ, y se comparará con el modelo con todas las dimensiones.\par
-    Estos resultados serán el mejor caso posible, porque los valores medidos in situ no tienen los errores que habría al extraerlos de imágenes.\par
-    La única extracción real será la de las variables de cartografía pública, en los tramos que tengan geometría (como objetivo secundario OS2).
+    Estos resultados serán el mejor caso posible, porque los valores medidos in situ no tienen los errores que habría al extraerlos de imágenes.
   \end{itemize}
 \end{recuadro}
 
