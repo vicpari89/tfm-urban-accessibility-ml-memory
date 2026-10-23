@@ -97,7 +97,7 @@ Una vez leídos los títulos y resúmenes de los trabajos, se han seleccionado a
 Todos los seleccionados (entre 2 y 6 por pregunta), se han leído más en profundidad, con ayuda de NotebookLM, y se ha realizado una ficha resumen con la aportación a cada pregunta de investigación.
 \\
 
-Finalmente, por cada sección, se ha realizado una conclusión.
+Finalmente se ha realizado una conclusión por cada sección, y todas ellas se resumen en la síntesis del capítulo (sección~\ref{sec:sintesis-arte}).
 \\
 
 % ---------------------------------------------------------------------
@@ -464,7 +464,7 @@ En resumen, las decisiones para este trabajo son:
 \begin{itemize}
   \item \textbf{Modelos:} \textit{random forest}, XGBoost y LightGBM, con la regresión logística como referencia. No se utilizará \textit{deep learning} (subsección~\ref{subsec:ml-tabular}).
   \item \textbf{Desbalanceo de clases:} ponderación de clases, sin sobremuestreo ni submuestreo. Las clases se tratan como independientes, aunque ordinales (subsección~\ref{subsec:ml-ordinal}).
-  \item \textbf{Métricas:} F1 macro, exactitud balanceada y kappa ponderada cuadrática (subsección~\ref{subsec:ml-ordinal}).
+  \item \textbf{Métricas:} F1 macro, exactitud balanceada y kappa ponderada cuadrática, tratando las clases como independientes (subsección~\ref{subsec:ml-ordinal}).
   \item \textbf{Importancia de las variables:} índice de Gini (solo en modelos de árbol), importancia por permutación y valores SHAP (subsección~\ref{subsec:ml-importancia}).
   \item \textbf{Coste y fiabilidad:} no se seleccionan variables por coste; se mide la pérdida de rendimiento al quitar las dimensiones \textit{in situ}, se usan como entradas las puntuaciones de cada dimensión y se evalúa el efecto del ruido en las dimensiones obtenibles de imágenes o cartografía (subsección~\ref{subsec:ml-fiabilidad}).
   \item \textbf{Fuga de información:} no se utilizarán las puntuaciones totales como variables de entrada, ya que la clase de accesibilidad (variable objetivo) se calcula a partir de ellas.
@@ -763,3 +763,78 @@ Esto coincide con la estimación de la tabla~\ref{tab:viabilidad}: pendiente lon
 
 Por tanto, en este trabajo se utilizarán el \textbf{MDT02} para la pendiente longitudinal, la \textbf{cartografía vectorial del Catastro} para la anchura entre fachadas y el \textbf{callejero} para los cruces. Su obtención real en los tramos de Albacete se hará como objetivo secundario (OS2), para comprobar si confirman la estimación de viabilidad.
 \\
+
+% =====================================================================
+% 3.7 Síntesis del capítulo
+% =====================================================================
+\section{Síntesis del capítulo}
+\label{sec:sintesis-arte}
+
+En este capítulo se han revisado los trabajos relacionados con las cinco preguntas planteadas al final del capítulo~\ref{cap:normativa} (sección~\ref{sec:sintesis-marco}).
+Las fichas siguientes resumen, para cada pregunta, lo que aporta la literatura y la decisión que se toma para este trabajo.
+\\
+
+Se han encontrado estudios y artículos científicos que evalúan la accesibilidad con variables y datos tomados por los equipos técnicos in situ, o que extraen variables y características físicas de imágenes y desde cartografía.
+\\
+
+Sin embargo, no se ha encontrado ningún trabajo que clasifique la accesibilidad de un tramo de calle basándose en la normativa legal vigente cuando se prescinde de las variables que solo se pueden obtener mediante inspección in situ.
+\\
+
+En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetivos}) y las hipótesis (tabla~\ref{tab:hipotesis}) con los que se relaciona la pregunta. Las hipótesis se detallan, junto con el criterio para refutarlas, en esa tabla.
+\\
+
+\needspace{14\baselineskip}
+\begin{fichasintesis}{1}{¿Cómo se mide la accesibilidad de una calle?}{sec:eval-accesibilidad}{OP1, OP2, OP3}
+  \sintesisliteratura{
+    \item Los artículos analizados utilizan dimensiones y medidas similares a las de Albacete y Algeciras (pendiente, anchura, desniveles, vados, obstáculos), pero cada trabajo compila los datos y puntúa de forma distinta.
+    \item La mayoría usa \textbf{datos recogidos in situ}; algunos usan imágenes, pero ninguno de los trabajos revisados comprueba si bastarían para inferir la accesibilidad.
+    \item Ninguno de ellos entrena modelos de clasificación (subsección~\ref{subsec:eval-conclusiones}).}
+  \sintesisdecision{
+    \item \sintesisclave{Variable objetivo} la clase de accesibilidad A--C.
+    \item \sintesisclave{Variables de entrada} las puntuaciones por dimensión y perfil de diversidad funcional (subsección~\ref{subsec:eval-conclusiones}).}
+\end{fichasintesis}
+
+\begin{fichasintesis}{2}{¿Qué modelos usar y cómo saber qué variables importan?}{sec:ml}{OP2, OP3, OP4, OP6, H1--H3, H5}
+  \sintesisliteratura{
+    \item Los \textbf{árboles de decisión} obtienen los mejores resultados en datos tabulares.
+    \item En clases desbalanceadas se usan la ponderación de clases y métricas que dan el mismo peso a cada clase.
+    \item En clases ordinales se usan métricas que penalizan según la distancia entre clases, como la kappa ponderada cuadrática.
+    \item La importancia de las variables se mide con permutación y \gls{shap} (subsección~\ref{subsec:ml-conclusiones}).}
+  \sintesisdecision{
+    \item \sintesisclave{Fuga de información} las puntuaciones totales no se usarán como variables de entrada (subsección~\ref{subsec:ml-conclusiones}).
+    \item \sintesisclave{Modelos} \textit{random forest}, XGBoost y LightGBM, con la regresión logística como referencia (subsección~\ref{subsec:ml-tabular}).
+    \item \sintesisclave{Desbalanceo} ponderación de clases para compensar la baja frecuencia de la clase A, sin submuestreo (subsección~\ref{subsec:ml-ordinal}).
+    \item \sintesisclave{Métricas} F1 macro, exactitud balanceada y kappa ponderada cuadrática (subsección~\ref{subsec:ml-ordinal}).
+    \item \sintesisclave{Grupos de dimensiones} un modelo por cada origen (cartografía pública e imágenes aéreas, imágenes a pie de calle o in situ), comparado con el modelo con todas las dimensiones (subsección~\ref{subsec:ml-fiabilidad}).
+    \item \sintesisclave{Importancia} índice de Gini, permutación y \gls{shap} (subsección~\ref{subsec:ml-importancia}).}
+\end{fichasintesis}
+
+\begin{fichasintesis}{3}{¿Cómo se tiene en cuenta que la accesibilidad cambia según la persona?}{sec:perfiles-arte}{OP1, OP4, OP6}
+  \sintesisliteratura{
+    \item Los trabajos revisados coinciden en que cada grupo de usuarios valora la calle de forma distinta.
+    \item Hay tres formas de incorporar los grupos: pesos diferentes por variable, un modelo por grupo, o un único modelo con varias salidas (solo comprobado en regresión) (subsección~\ref{subsec:perfiles-conclusiones}).}
+  \sintesisdecision{
+    \item \sintesisclave{Enfoque} un modelo para cada perfil funcional, ya que no se conocen los pesos de cada variable y el modelo con varias salidas solo se ha probado en regresión.
+    \item \sintesisclave{Comparación} qué variables pesan más en cada perfil (subsección~\ref{subsec:perfiles-conclusiones}).}
+\end{fichasintesis}
+
+\begin{fichasintesis}{4}{¿Cómo comprobar que un modelo funciona en otra ciudad?}{sec:transferencia-ciudades}{OP5, H4}
+  \sintesisliteratura{
+    \item La partición aleatoria sobrestima el rendimiento, porque los tramos de una misma calle quedan repartidos entre entrenamiento y prueba; la \textbf{validación agrupada} (por calles o barrios) parece la más adecuada.
+    \item La transferencia entre ciudades da resultados diferentes según su similitud: combinar datos de varias ciudades unas veces ayuda y otras empeora los resultados, sobre todo si su morfología urbana es distinta (subsección~\ref{subsec:validacion-conclusiones}).}
+  \sintesisdecision{
+    \item \sintesisclave{Escenarios} validación agrupada por calles o barrios dentro de cada ciudad, entrenamiento en una ciudad y prueba en la otra, entre Albacete y Algeciras en ambos sentidos, y entrenamiento con las ciudades mezcladas.
+    \item \sintesisclave{Métricas} las mismas de la pregunta~2 en todos los escenarios, para que los resultados sean comparables (subsección~\ref{subsec:validacion-conclusiones}).}
+\end{fichasintesis}
+
+\begin{fichasintesis}{5}{¿Qué se puede obtener de la cartografía pública?}{sec:datos-cartograficos}{OS2, H1, H6}
+  \sintesisliteratura{
+    \item La \textbf{pendiente longitudinal} se calcula a partir del \gls{MDT} o del \gls{LiDAR} aéreo.
+    \item La \textbf{pendiente transversal} solo se ha obtenido con \gls{LiDAR} de alta densidad, y la \textbf{anchura de las aceras} con polígonos de acera o \gls{LiDAR} terrestre.
+    \item No se ha encontrado ningún estudio que obtenga la anchura con la cartografía catastral en España (subsección~\ref{subsec:cartografia-conclusiones}).}
+  \sintesisdecision{
+    \item \sintesisclave{Fuentes} MDT02 para la pendiente longitudinal, cartografía vectorial del Catastro para la anchura entre fachadas y callejero para los cruces.
+    \item \sintesisclave{Pendiente transversal} no se obtendrá de la cartografía pública, ya que requiere \gls{LiDAR} terrestre o de alta densidad (viabilidad del 0\,\% en la tabla~\ref{tab:viabilidad}).
+    \item \sintesisclave{Obtención real} en los tramos de Albacete, como objetivo secundario (OS2), para comprobar la estimación de viabilidad de la tabla~\ref{tab:viabilidad} (subsección~\ref{subsec:cartografia-conclusiones}).}
+\end{fichasintesis}
+
