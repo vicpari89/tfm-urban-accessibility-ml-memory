@@ -277,7 +277,7 @@ Se incluye también el trabajo de \textcite{wang2026}, que aunque pertenece al s
 \\
 
 \tituloconclusion{Conclusión}
-En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a usuarios; a diferencia de los datos de Albacete y Algeciras, que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
+En los estudios de \textcite{dong2019} y \textcite{li2024gsv}, la variable objetivo es \textbf{subjetiva}, puesto que se ha obtenido de encuestas a usuarios; a diferencia de los datos de Albacete y Algeciras, que se supone que otorgan puntuaciones a partir de los requisitos de la normativa. En este proyecto, se combina el uso de datos tabulares con una variable de accesibilidad \textbf{objetiva}.
 \\
 
 \subsection{Modelos para datos tabulares}
@@ -466,7 +466,7 @@ En resumen, las decisiones para este trabajo son:
   \item \textbf{Desbalanceo de clases:} ponderación de clases, sin sobremuestreo ni submuestreo. Las clases se tratan como independientes, aunque ordinales (subsección~\ref{subsec:ml-ordinal}).
   \item \textbf{Métricas:} F1 macro, exactitud balanceada y kappa ponderada cuadrática, tratando las clases como independientes (subsección~\ref{subsec:ml-ordinal}).
   \item \textbf{Importancia de las variables:} índice de Gini (solo en modelos de árbol), importancia por permutación y valores SHAP (subsección~\ref{subsec:ml-importancia}).
-  \item \textbf{Coste y fiabilidad:} no se seleccionan variables por coste; se mide la pérdida de rendimiento al quitar las dimensiones \textit{in situ}, se usan como entradas las puntuaciones de cada dimensión y se evalúa el efecto del ruido en las dimensiones obtenibles de imágenes o cartografía (subsección~\ref{subsec:ml-fiabilidad}).
+  \item \textbf{Coste y fiabilidad:} no se seleccionan variables por coste; se mide la pérdida de rendimiento de cada grupo de dimensiones según su origen frente al modelo con todas las dimensiones, se usan como entradas las puntuaciones de cada dimensión y se evalúa el efecto del ruido en las dimensiones obtenibles de imágenes o cartografía (subsección~\ref{subsec:ml-fiabilidad}).
   \item \textbf{Fuga de información:} no se utilizarán las puntuaciones totales como variables de entrada, ya que la clase de accesibilidad (variable objetivo) se calcula a partir de ellas.
 \end{itemize}
 
@@ -743,7 +743,7 @@ La tabla~\ref{tab:cartografia-revisados} resume las variables que se obtienen en
     \textcite{domingo2023} & Catastro, \gls{LiDAR} & España & \cumple{no} & \cumple{no} & \cumple{no} \\ \addlinespace
     \textcite{delacruz2026} & Catastro (datos, cartografía e imágenes de fachada) & Murcia & \cumple{no} & \cumple{no} & \cumple{no} \\
     \midrule
-    \filapropia Este trabajo (OS2) & MDT02, Catastro, callejero & Albacete & \cumple{si} & \cumple{no} & \cumple{parcial} \\
+    \filapropia Este trabajo (OS2) & MDT02, Catastro, callejero & Albacete y Algeciras & \cumple{si} & \cumple{no} & \cumple{parcial} \\
     \bottomrule
   \end{tabularx}
   \fuente{elaboración propia.}
@@ -761,7 +761,7 @@ La \textbf{anchura de las aceras} solo se ha podido calcular con los polígonos 
 Esto coincide con la estimación de la tabla~\ref{tab:viabilidad}: pendiente longitudinal (80\,\%), cruces a partir del callejero (80\,\%), pendiente transversal (0\,\%) y anchura (25\,\%, solo de forma parcial).
 \\
 
-Por tanto, en este trabajo se utilizarán el \textbf{MDT02} para la pendiente longitudinal, la \textbf{cartografía vectorial del Catastro} para la anchura entre fachadas y el \textbf{callejero} para los cruces. Su obtención real en los tramos de Albacete se hará como objetivo secundario (OS2), para comprobar si confirman la estimación de viabilidad.
+Por tanto, en este trabajo se utilizarán el \textbf{MDT02} para la pendiente longitudinal, la \textbf{cartografía vectorial del Catastro} para la anchura entre fachadas y el \textbf{callejero} para los cruces. Su obtención real en los tramos que dispongan de geometría (completa en Albacete y parcial en Algeciras) se hará como objetivo secundario (OS2), para comprobar si confirman la estimación de viabilidad.
 \\
 
 % =====================================================================
@@ -777,7 +777,7 @@ Las fichas siguientes resumen, para cada pregunta, lo que aporta la literatura y
 Se han encontrado estudios y artículos científicos que evalúan la accesibilidad con variables y datos tomados por los equipos técnicos in situ, o que extraen variables y características físicas de imágenes y desde cartografía.
 \\
 
-Sin embargo, no se ha encontrado ningún trabajo que clasifique la accesibilidad de un tramo de calle basándose en la normativa legal vigente cuando se prescinde de las variables que solo se pueden obtener mediante inspección in situ.
+Sin embargo, no se ha encontrado ningún trabajo que clasifique la accesibilidad de un tramo de calle con puntuaciones que se suponen basadas en la normativa cuando se prescinde de las variables que solo se pueden obtener mediante inspección in situ.
 \\
 
 En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetivos}) y las hipótesis (tabla~\ref{tab:hipotesis}) con los que se relaciona la pregunta. Las hipótesis se detallan, junto con el criterio para refutarlas, en esa tabla.
@@ -788,10 +788,10 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
   \sintesisliteratura{
     \item Los artículos analizados utilizan dimensiones y medidas similares a las de Albacete y Algeciras (pendiente, anchura, desniveles, vados, obstáculos), pero cada trabajo compila los datos y puntúa de forma distinta.
     \item La mayoría usa \textbf{datos recogidos in situ}; algunos usan imágenes, pero ninguno de los trabajos revisados comprueba si bastarían para inferir la accesibilidad.
-    \item Ninguno de ellos entrena modelos de clasificación (subsección~\ref{subsec:eval-conclusiones}).}
+    \item Ninguno de los trabajos de esta sección entrena modelos de clasificación (subsección~\ref{subsec:eval-conclusiones}).}
   \sintesisdecision{
     \item \sintesisclave{Variable objetivo} la clase de accesibilidad A--C.
-    \item \sintesisclave{Variables de entrada} las puntuaciones por dimensión y perfil de diversidad funcional (subsección~\ref{subsec:eval-conclusiones}).}
+    \item \sintesisclave{Variables de entrada} las puntuaciones por dimensión de cada perfil de diversidad funcional (subsección~\ref{subsec:eval-conclusiones}).}
 \end{fichasintesis}
 
 \begin{fichasintesis}{2}{¿Qué modelos usar y cómo saber qué variables importan?}{sec:ml}{OP2, OP3, OP4, OP6, H1--H3, H5}
@@ -803,9 +803,11 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
   \sintesisdecision{
     \item \sintesisclave{Fuga de información} las puntuaciones totales no se usarán como variables de entrada (subsección~\ref{subsec:ml-conclusiones}).
     \item \sintesisclave{Modelos} \textit{random forest}, XGBoost y LightGBM, con la regresión logística como referencia (subsección~\ref{subsec:ml-tabular}).
-    \item \sintesisclave{Desbalanceo} ponderación de clases para compensar la baja frecuencia de la clase A, sin submuestreo (subsección~\ref{subsec:ml-ordinal}).
+    \item \sintesisclave{Desbalanceo} ponderación de clases para compensar la baja frecuencia de la clase A, sin sobremuestreo ni submuestreo (subsección~\ref{subsec:ml-ordinal}).
+    \item \sintesisclave{Clases ordinales} los modelos tratarán las clases como independientes y su orden se tendrá en cuenta en la evaluación (subsección~\ref{subsec:ml-ordinal}).
     \item \sintesisclave{Métricas} F1 macro, exactitud balanceada y kappa ponderada cuadrática (subsección~\ref{subsec:ml-ordinal}).
     \item \sintesisclave{Grupos de dimensiones} un modelo por cada origen (cartografía pública e imágenes aéreas, imágenes a pie de calle o in situ), comparado con el modelo con todas las dimensiones (subsección~\ref{subsec:ml-fiabilidad}).
+    \item \sintesisclave{Ruido} pequeñas modificaciones en las dimensiones que se pueden obtener de imágenes o cartografía para evaluar el efecto de un error de extracción (subsección~\ref{subsec:ml-fiabilidad}).
     \item \sintesisclave{Importancia} índice de Gini, permutación y \gls{shap} (subsección~\ref{subsec:ml-importancia}).}
 \end{fichasintesis}
 
@@ -835,6 +837,35 @@ En la cabecera de cada ficha se indican los objetivos (sección~\ref{sec:objetiv
   \sintesisdecision{
     \item \sintesisclave{Fuentes} MDT02 para la pendiente longitudinal, cartografía vectorial del Catastro para la anchura entre fachadas y callejero para los cruces.
     \item \sintesisclave{Pendiente transversal} no se obtendrá de la cartografía pública, ya que requiere \gls{LiDAR} terrestre o de alta densidad (viabilidad del 0\,\% en la tabla~\ref{tab:viabilidad}).
-    \item \sintesisclave{Obtención real} en los tramos de Albacete, como objetivo secundario (OS2), para comprobar la estimación de viabilidad de la tabla~\ref{tab:viabilidad} (subsección~\ref{subsec:cartografia-conclusiones}).}
+    \item \sintesisclave{Obtención real} en los tramos que dispongan de geometría, completa en Albacete y parcial en Algeciras (subsección~\ref{subsec:geometrias-visores}), como objetivo secundario (OS2) para comprobar la estimación de viabilidad de la tabla~\ref{tab:viabilidad} (subsección~\ref{subsec:cartografia-conclusiones}).}
 \end{fichasintesis}
 
+% ---------------------------------------------------------------------
+% Contribuciones
+% ---------------------------------------------------------------------
+\subsection{Contribuciones de este trabajo}
+\label{subsec:contribuciones}
+
+A diferencia de los trabajos revisados, en este trabajo:
+\begin{itemize}
+  \item \sintesisclave{Variable objetivo} se clasificará la accesibilidad a partir de la clase asignada por la empresa ACCESIA, que se supone basada en la normativa, y no a partir de la percepción recogida en encuestas (subsección~\ref{subsec:ml-accesibilidad}).
+  \item \sintesisclave{Variables según su origen} se comparará el rendimiento de los modelos con las variables agrupadas según de dónde se podrían obtener. Los trabajos revisados miden la pérdida al reducir variables pero no según su origen (subsección~\ref{subsec:ml-fiabilidad}).
+  \item \sintesisclave{Transferencia entre ciudades} se evaluará la transferencia entre dos ciudades españolas con escalas y perfiles de diversidad funcional distintos. Los trabajos revisados etiquetan las ciudades con la misma plataforma y el mismo criterio (subsección~\ref{subsec:validacion-ciudades}).
+  \item \sintesisclave{Cartografía pública española} se comprobarán en Albacete y Algeciras las variables que se pueden obtener con datos públicos españoles, como objetivo secundario OS2 (subsección~\ref{subsec:cartografia-conclusiones}).
+\end{itemize}
+
+% ---------------------------------------------------------------------
+% Alcance
+% ---------------------------------------------------------------------
+\begin{recuadro}[atencion]{Alcance del trabajo}
+  Conviene distinguir tres cuestiones diferentes:
+  \begin{itemize}
+    \item \sintesisclave{Lo que se hace} se entrenarán modelos que reproducen la clase de accesibilidad asignada por la empresa ACCESIA a cada tramo de Albacete y Algeciras, y se comprobará si se mantiene el rendimiento sin las dimensiones que solo se pueden obtener in situ.
+    \item \sintesisclave{Lo que no se hace} no se evaluará la accesibilidad real de las calles. Se desconocen el algoritmo de puntuación y las mediciones que realizó el equipo técnico de ACCESIA (subsección~\ref{sec:limitaciones-datos}), por lo que el modelo aprenderá la valoración de la empresa, sin compararla con la normativa.
+    \item \sintesisclave{Lo que se simula} se estimará qué dimensiones podrían obtenerse de imágenes aéreas o a pie de calle (tabla~\ref{tab:viabilidad}), se entrenará el modelo solo con ese grupo de dimensiones y con los valores que ya midió ACCESIA in situ, y se comparará con el modelo con todas las dimensiones.\par
+    Estos resultados serán el mejor caso posible, porque los valores medidos in situ no tienen los errores que habría al extraerlos de imágenes.\par
+    La única extracción real será la de las variables de cartografía pública, en los tramos que tengan geometría (como objetivo secundario OS2).
+  \end{itemize}
+\end{recuadro}
+
+El capítulo siguiente describe la arquitectura del sistema que aplicará estas decisiones.
