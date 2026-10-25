@@ -237,70 +237,7 @@ En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcio
   \item o no realizar ninguna actuación.
 \end{itemize}
 
-Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único conjunto de datos, cuya correspondencia se muestra en la Tabla~\ref{tab:columnas-unificadas}.
-
-\begingroup
-\small
-\renewcommand{\arraystretch}{1.1}
-\begin{longtable}{>{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-7.5cm-8\tabcolsep)/2\relax} >{\raggedright\arraybackslash}p{\dimexpr(\textwidth-7.5cm-8\tabcolsep)/2\relax}}
-  \caption{Columnas del conjunto de datos unificado de Albacete y Algeciras.}\label{tab:columnas-unificadas}\\
-  \toprule
-  \cabeceratabla
-  \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
-  \midrule
-  \endfirsthead
-  \toprule
-  \cabeceratabla
-  \textbf{Concepto} & \textbf{Columna unificada} & \textbf{Algeciras} & \textbf{Albacete} \\
-  \midrule
-  \endhead
-  \bottomrule
-  \endfoot
-  \bottomrule
-  \multicolumn{4}{p{\dimexpr\textwidth-2\tabcolsep\relax}}{\notatabla{Fuente: elaboración propia a partir de los conjuntos de datos de Albacete y Algeciras.}}
-  \endlastfoot
-    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Identificación y localización} \\
-    Ciudad (nueva, para unir los datos) & \texttt{ciudad} & -- & -- \\
-    \cmidrule(lr){1-4}
-    Nombre de la calle & \texttt{nombre\_calle} & \texttt{NOMBRE} & \texttt{NOMBRE} \\
-    \cmidrule(lr){1-4}
-    Nombre de la calle sin la marca de tramo & \texttt{nombre\_calle\_base} & \texttt{NOMBRE} sin la marca de tramo & \texttt{NOMBRE} sin la marca de tramo \\
-    \cmidrule(lr){1-4}
-    Tramo de la calle (número) & \texttt{tramo} & Letra final de \texttt{REFERENCIA} o marca del nombre & Número del final de \texttt{NOMBRE} \\
-    \cmidrule(lr){1-4}
-    Barrio & \texttt{barrio} & \texttt{Barriada} & -- (pendiente de cruzar con el callejero) \\
-    \cmidrule(lr){1-4}
-    Zona & \texttt{zona} & -- & Letras de \texttt{REFER} \\
-    \midrule
-    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Tipología y actuación} \\
-    Tipología de la vía & \texttt{tipologia\_via} & \texttt{TIPOLOGÍA} & \texttt{TIPOLACT} \\
-    \cmidrule(lr){1-4}
-    Propuesta de actuación & \texttt{propuesta\_actuacion} & \texttt{PROPUESTA} & \texttt{PROPACT} \\
-    \cmidrule(lr){1-4}
-    Presupuesto & \texttt{presupuesto\_euros} & \texttt{PRESUPUESTO} & \texttt{PRESUP} \\
-    \midrule
-    \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Puntuaciones y clase} \\
-    Puntuación total & \texttt{puntuacion\_total} & \texttt{PUNT\_TOTAL} & \texttt{ACCGLOBAL} \\
-    \cmidrule(lr){1-4}
-    Puntuación total de un tipo de diversidad & \texttt{puntuacion\_total\_*} & \texttt{PUNT\_TOTAL\_FU} & Media de \texttt{GLOBALSR} y \texttt{GLOBALMR} \\
-    \cmidrule(lr){1-4}
-    Puntuación global de una dimensión & \texttt{puntuacion\_*\_global} & \texttt{PUNT\_PEND\_GB} & \texttt{GLOBALPEND} \\
-    \cmidrule(lr){1-4}
-    Puntuación de una dimensión y un tipo de diversidad & \texttt{puntuacion\_*\_*} & \texttt{PUNT\_PEND\_FU} & Media de \texttt{PENDIENTESR} y \texttt{PENDIENTEMR} \\
-    \cmidrule(lr){1-4}
-    \gls{clase-accesibilidad} total & \texttt{clase\_total} & \texttt{PIC\_TOTAL} & Calculada a partir de \texttt{ACCGLOBAL} \\
-\end{longtable}
-\endgroup
-
-\medskip
-\noindent\textit{Cómo leer la tabla.}
-\begin{itemize}
-  \item \textbf{Columnas \texttt{puntuacion\_*\_*}:} el primer comodín es una de las dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación, mobiliario y transporte, esta última solo en Albacete) y el segundo uno de los tipos de diversidad (funcional, sensorial y cognitiva).
-  \item \textbf{Escala:} las puntuaciones están normalizadas a la escala de 0 a 1.
-  \item \textbf{Tipos de diversidad en Albacete:} para unificarlos, funcional es la media de silla de ruedas y movilidad reducida, sensorial la media de visión e hipoacusia, y cognitiva es la de diversidad cognitiva.
-  \item \textbf{Transporte:} los ceros de transporte, que indican que no hay datos, se sustituyen por valores nulos.
-  \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
-\end{itemize}
+Para trabajar con ambas ciudades a la vez, sus columnas se unifican en un único conjunto de datos, cuya correspondencia y criterios se describen en la sección~\ref{sec:arq-ingesta}. En este apartado se mencionan las columnas originales de cada ciudad; su equivalencia con las unificadas está en la tabla~\ref{tab:columnas-unificadas}.
 
 \noindent\textit{Clase de accesibilidad.} Algeciras tiene una clase de accesibilidad de cada calle (A, B o C, en las columnas \texttt{PIC\_*}), que no existe en Albacete, aunque se puede calcular. Por lo analizado en los datos de Algeciras, las clases salen de dividir las puntuaciones en 1/3 y 2/3 de la puntuación máxima (5): C por debajo de un tercio, B entre un tercio y dos tercios, y A a partir de dos tercios. Con estos cortes se reproduce la clase de las 506 calles que tienen puntuación total y clase (el 100\,\%).
 \\
