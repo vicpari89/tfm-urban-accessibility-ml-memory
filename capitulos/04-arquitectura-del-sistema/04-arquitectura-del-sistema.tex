@@ -1,0 +1,26 @@
+\label{cap:arquitectura}
+
+Una vez analizado el estudio del arte, antes de pasar a la implementación, se debe tener claro cuál es el sistema en su conjunto. En este capítulo se analizan las fuentes de datos utilizadas, cuáles son los componentes del sistema y su relación entre ellos. Se indica el flujo que se realiza, desde la ingesta inicial de datos, el entrenamiento, o las conclusiones inferidas tras el contraste de hipótesis.
+\\
+
+
+\section{Visión general}
+\label{sec:arq-vision}
+
+Como en todo proyecto de ciencia de datos, el inicio de cualquier sistema está en los datos de las fuentes originales de Albacete y Algeciras, así como las geometrías de las calles. Tras la ingestión de los mismos, se necesita realizar un análisis exploratorio, y tras una limpieza y homogeneización se llega al conjunto unificado de los datos.
+\\
+
+Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que consiste en la realización de los conjuntos de datos según el origen que se puedan obtener (aéreo o cartografía, a pie de calle o in situ), una división en entrenamiento y test de los datos, para realizar el entrenamiento, su posterior evaluación, y finalmente la interpretación de los resultados.
+\\
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura.drawio.png}
+  \caption{Arquitectura del sistema: componentes y flujo de datos.}
+  \label{fig:arquitectura}
+\end{figure}
+
+Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se extraen las variables útiles para el sistema, y se unifican al conjunto unificado de los datos.
+\\
+
+
