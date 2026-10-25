@@ -7,20 +7,27 @@ Una vez analizado el estudio del arte, antes de pasar a la implementación, se d
 \section{Visión general}
 \label{sec:arq-vision}
 
-Como en todo proyecto de ciencia de datos, el inicio de cualquier sistema está en los datos de las fuentes originales de Albacete y Algeciras, así como las geometrías de las calles. Tras la ingestión de los mismos, se necesita realizar un análisis exploratorio, y tras una limpieza y homogeneización se llega al conjunto unificado de los datos.
-\\
-
-Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que consiste en la realización de los conjuntos de datos según el origen que se puedan obtener (aéreo o cartografía, a pie de calle o in situ), una división en entrenamiento y test de los datos, para realizar el entrenamiento, su posterior evaluación, y finalmente la interpretación de los resultados.
+Como en todo proyecto de ciencia de datos, el inicio de cualquier sistema está en los datos de las fuentes originales de Albacete y Algeciras, así como las geometrías de las calles. Tras la ingestión de los mismos, se necesita realizar un análisis exploratorio, y tras una limpieza y homogeneización se llega al conjunto unificado de los datos. Se representa en la figura \ref{fig:arquitectura-ingesta}.
 \\
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura.drawio.png}
-  \caption{Arquitectura del sistema: componentes y flujo de datos.}
-  \label{fig:arquitectura}
+  \resizebox{\linewidth}{!}{\input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-ingesta.tex}}
+  \caption{Arquitectura del sistema (1/2): ingestión y unificación de los datos.}
+  \label{fig:arquitectura-ingesta}
 \end{figure}
 
-Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se extraen las variables útiles para el sistema, y se unifican al conjunto unificado de los datos.
+Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que consiste en la realización de los conjuntos de datos según el origen que se puedan obtener (aéreo o cartografía, a pie de calle o in situ), una división en entrenamiento y test de los datos, para realizar el entrenamiento, su posterior evaluación, y finalmente la interpretación de los resultados. Se representa en la figura \ref{fig:arquitectura-modelado}.
+\\
+
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\linewidth}{!}{\input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-modelado.tex}}
+  \caption{Arquitectura del sistema (2/2): modelado, evaluación y objetivos secundarios. Las líneas discontinuas corresponden a los objetivos secundarios.}
+  \label{fig:arquitectura-modelado}
+\end{figure}
+
+Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se extraen las variables útiles para el sistema, y se unifican al conjunto unificado de los datos. Los números en los diagramas representan los componentes del sistema numerados, que se detallan a continuación.
 \\
 
 

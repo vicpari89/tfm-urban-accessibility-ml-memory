@@ -1,0 +1,43 @@
+% Fases 2 y 3 · Modelado y evaluación, y objetivos secundarios
+\begin{tikzpicture}
+\input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-estilos.tex}
+% --- Conjunto unificado (viene de la figura anterior) ---
+\node[dato] (unificado) at (1.4,1.5) {Conjunto\\unificado};
+
+% --- Objetivo secundario: variables cartográficas ---
+\node[dato, sec, fill=papel, minimum width=27mm] (carto) at (1.9,3.2) {Cartografía pública\\[-1pt]{\tiny PNOA · Catastro · MDT02}};
+\node[comp, sec] (obtencion)   at (5.4,3.2) {OS2 · Variables cartográficas};
+\node[comp, sec] (unificacion) at (5.4,1.5) {Unificación};
+\node[dato, sec, fill=papel, minimum width=30mm] (final) at (9.2,1.5) {Datos unificados con\\variables cartográficas};
+\draw[flechasec] (carto) -- (obtencion);
+\draw[flechasec] (obtencion) -- (unificacion);
+\draw[flechasec] (unificado) -- (unificacion);
+\draw[flechasec] (unificacion) -- (final);
+
+% --- Modelado y evaluación ---
+\node[comp] (variables)  at (1.4,-0.8) {Conjuntos de variables según origen};
+\node[comp] (division)   at (4.0,-0.8) {División entrenamiento / test};
+\node[comp] (entrena)    at (6.6,-0.8) {Entrenamiento de modelos};
+\node[comp] (evalua)     at (9.2,-0.8) {Evaluación};
+\node[comp] (interpreta) at (11.8,-0.8) {Interpretación y contraste};
+\draw[flecha] ([xshift=-3mm]unificado.south) -- ([xshift=-3mm]variables.north);
+\draw[flechasec] (final.south) -- ++(0,-0.6) -| ([xshift=3mm]variables.north);
+\draw[flecha] (variables) -- (division);
+\draw[flecha] (division) -- (entrena);
+\draw[flecha] (entrena) -- (evalua);
+\draw[flecha] (evalua) -- (interpreta);
+
+\node[draw=serie-2, line width=0.6pt, fill=uoc-cian-suave, shape=tape, tape bend top=none, tape bend height=1.5mm, align=center, minimum height=11mm, minimum width=19mm, inner sep=2pt] (resultados) at (9.2,-2.6) {Resultados\\e informes};
+\node[comp, sec] (os1) at (5.8,-2.6) {OS1 · Visor GIS};
+\draw[flecha] (evalua) -- (resultados);
+\draw[flecha] (interpreta.south) |- (resultados.east);
+\draw[flechasec] (resultados) -- (os1);
+
+\foreach \n/\c in {2/variables, 3/division, 4/entrena, 5/evalua, 6/interpreta}
+  \node[num] at (\c.north west) {\n};
+
+\begin{scope}[on background layer]
+  \node[carril, fit=(variables)(interpreta)(resultados)(os1)] (cmodelo) {};
+\end{scope}
+\node[rotulo, anchor=south west] at (cmodelo.south west) {Modelado y evaluación};
+\end{tikzpicture}

@@ -1,0 +1,15 @@
+% Estilos compartidos de los diagramas de la arquitectura (figuras de la sección Visión general)
+\tikzset{
+  font=\sffamily\scriptsize,
+  comp/.style={draw=uoc-azul, line width=0.6pt, fill=papel, rounded corners=2pt,
+               align=center, minimum height=10mm, text width=19mm, inner sep=2pt},
+  dato/.style={draw=serie-2, line width=0.6pt, fill=uoc-cian-suave, shape=cylinder,
+               shape border rotate=90, aspect=0.15, align=center,
+               minimum height=11mm, minimum width=19mm, inner sep=1pt},
+  sec/.style={dashed, draw=serie-base, text=tinta-suave},
+  flecha/.style={-{Latex[length=2mm]}, line width=0.6pt, draw=uoc-azul},
+  flechasec/.style={flecha, draw=serie-base, dashed},
+  carril/.style={draw=none, fill=superficie, rounded corners=3pt, inner sep=3mm},
+  rotulo/.style={font=\sffamily\scriptsize\bfseries, text=uoc-azul, anchor=north west, inner sep=2pt},
+  num/.style={circle, fill=uoc-azul, text=papel, inner sep=0pt, minimum size=4.2mm, font=\sffamily\scriptsize\bfseries}
+}
