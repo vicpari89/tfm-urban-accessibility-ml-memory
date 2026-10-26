@@ -237,12 +237,12 @@ En ambos casos, las puntuaciones por cada dimensión y tipo de diversidad funcio
   \item o no realizar ninguna actuación.
 \end{itemize}
 
-Para trabajar con ambas ciudades a la vez, sus columnas se unifican en un único conjunto de datos, cuya correspondencia y criterios se describen en la sección~\ref{sec:arq-ingesta}. En este apartado se mencionan las columnas originales de cada ciudad; su equivalencia con las unificadas está en la tabla~\ref{tab:columnas-unificadas}.
+Para trabajar con ambas ciudades a la vez, sus columnas se unifican en un único conjunto de datos, cuya correspondencia y criterios se describen en la sección~\ref{subsec:arq-ingesta}. En este apartado se mencionan las columnas originales de cada ciudad; su equivalencia con las unificadas está en la tabla~\ref{tab:columnas-unificadas}.
 
 \noindent\textit{Clase de accesibilidad.} Algeciras tiene una clase de accesibilidad de cada calle (A, B o C, en las columnas \texttt{PIC\_*}), que no existe en Albacete, aunque se puede calcular. Por lo analizado en los datos de Algeciras, las clases salen de dividir las puntuaciones en 1/3 y 2/3 de la puntuación máxima (5): C por debajo de un tercio, B entre un tercio y dos tercios, y A a partir de dos tercios. Con estos cortes se reproduce la clase de las 506 calles que tienen puntuación total y clase (el 100\,\%).
 \\
 
-Albacete no dispone de clase de accesibilidad, por lo que el autor la ha añadido a partir de \texttt{ACCGLOBAL}, con los mismos cortes (sección~\ref{sec:arq-ingesta}).
+Albacete no dispone de clase de accesibilidad, por lo que el autor la ha añadido a partir de \texttt{ACCGLOBAL}, con los mismos cortes (sección~\ref{subsec:arq-ingesta}).
 \\
 
 \noindent\textit{Distribución de las clases.} La figura~\ref{fig:distribucion-clases} muestra la distribución de la clase de accesibilidad (A, B y C) en ambos conjuntos de datos: la clase A es minoritaria (2,6\,\% en Albacete y 5,5\,\% en Algeciras) y la B es la mayoritaria (78,2\,\% y 56,1\,\%).

@@ -30,8 +30,40 @@ Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que c
 Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se extraen las variables útiles para el sistema, y se unifican al conjunto unificado de los datos. Los números en los diagramas representan los componentes del sistema numerados, que se detallan a continuación.
 \\
 
-\section{Ingesta de datos}
-\label{sec:arq-ingesta}
+\section{Ingesta y unificación de datos}
+\label{sec:arq-ingesta-unificacion-datos}
+
+Esta sección recoge los datos con los que trabaja el sistema, su limpieza y unificación.
+\\
+
+\subsection{Fuentes}
+\label{subsec:arq-fuentes-datos}
+
+\begin{table}[htbp]
+  \centering\small
+  \caption{Fuentes de datos del sistema.}
+  \label{tab:arq-fuentes}
+  \begin{tabularx}{\textwidth}{@{}l l X >{\raggedright\arraybackslash}p{3.6cm}@{}}
+    \toprule
+    \cabeceratabla Fuente & Formato & Contenido & Acceso \\
+    \midrule
+    \filagrupo{4}{Objetivo principal}
+    Datos de Albacete & SQL & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+    Datos de Algeciras & Excel & 506 calles con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+    Geometrías de Albacete & GeoJSON & Trazado de las calles. & Visor~\parencite{visor_albacete_accesibilidad} \\
+    Geometrías de Algeciras & KML & Trazado de las calles. & Visor~\parencite{visor_algeciras_accesibilidad} y OSM~\parencite{openstreetmap} \\
+    \filagrupo{4}{Objetivo secundario (OS2): cartografía pública}
+    PNOA-LiDAR & Nube de puntos & Elevación del terreno. & \hueco{enlace}~\parencite{pnoa_lidar} \\
+    MDT02 & Ráster & Modelo digital del terreno (malla de 2 m). & \hueco{enlace}~\parencite{pnoa_mdt} \\
+    Catastro & Vectorial & Fachadas y línea de acera. & \hueco{enlace}~\parencite{catastro_descarga_datos} \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{Elaboración propia.}
+\end{table}
+
+
+\subsection{Ingesta de datos}
+\label{subsec:arq-ingesta}
 
 Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único conjunto de datos, cuya correspondencia se muestra en la tabla~\ref{tab:columnas-unificadas}.
 
