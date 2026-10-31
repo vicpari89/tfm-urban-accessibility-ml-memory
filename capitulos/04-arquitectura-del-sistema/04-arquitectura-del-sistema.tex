@@ -39,6 +39,9 @@ Esta sección recoge los datos con los que trabaja el sistema, su limpieza y uni
 \begin{fichacomponente}{1}{Ingestión y unificación}{}
   Limpia los datos de cada ciudad, les añade la geometría de las calles y los unifica en un único conjunto.
   \componenteflujo{\raggedright Datasets de Albacete y Algeciras, y geometrías de las calles y los barrios.}{\raggedright Conjunto unificado de datos (\texttt{streets\_unified.csv}).}
+  \componentedecisiones{
+    \item Implementación: \texttt{urban\_accessibility\_ml/pipeline.py} (\texttt{DatasetPipeline}), con módulos para cada ciudad y uno común. Los \textit{notebooks} 0.01 a 0.06 se pueden ejecutar en orden como alternativa (\texttt{make unified}).
+  }
 \end{fichacomponente}
 
 \subsection{Fuentes}
@@ -85,7 +88,7 @@ Por último, se dispone de las fuentes de cartografía pública de los organismo
 \subsection{Limpieza y transformación de datos}
 \label{subsec:arq-limpieza-transformacion}
 
-La limpieza y transformación de los conjuntos de datos se ha realizado durante el análisis exploratorio, y está disponible en los \textit{notebooks} del repositorio. También se ha incluido un comando para poder ejecutar en orden todos los archivos, y poder reproducir el proceso.
+La limpieza y transformación de los conjuntos de datos se realiza durante el análisis exploratorio, en los \textit{notebooks} del repositorio. Después, se traslada a código, y el comando \texttt{make data} ejecuta todo el proceso (comprobación de los ficheros originales, limpieza, unificación y validación) con la clase \texttt{DatasetPipeline} (\texttt{urban\_accessibility\_ml/pipeline.py}). Con \texttt{make unified} se obtiene el mismo resultado ejecutando los \textit{notebooks} en orden.
 \\
 
 Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpetas del repositorio. En \texttt{data/raw/} se guardan los ficheros originales, que se dejan tal cual están al inicio. En \texttt{data/interim/} se guardan los tramos de calles limpios, junto con su geometría. Finalmente, en \texttt{data/processed/} se guarda el conjunto unificado que se usa en los modelos.
