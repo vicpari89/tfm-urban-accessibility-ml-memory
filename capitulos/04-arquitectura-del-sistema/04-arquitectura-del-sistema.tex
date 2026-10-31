@@ -76,16 +76,16 @@ Esta sección recoge los datos con los que trabaja el sistema, su limpieza y uni
 En primer lugar, los archivos de datos de Albacete y Algeciras han sido facilitados por el tutor, y se han subido a Zenodo, para que estén accesibles para su descarga. En cuanto a los datos de geometrías, se ha tenido que acceder a los visores de accesibilidad de los municipios.
 \\
 
-En el caso de Albacete, el visor dispone de un apartado de descargas, en el que se puede exportar a formato GeoJSON, mientras que en el caso del visor de Algeciras, se puede exportar en formato KLM. En ambos casos, solo se ha descargado la información relativa a las calles, pero no a los edificios.
+En el caso de Albacete, el visor dispone de un apartado de descargas, en el que se puede exportar a formato GeoJSON, mientras que en el caso del visor de Algeciras, se puede exportar en formato KML. En ambos casos, solo se ha descargado la información relativa a las calles, pero no a los edificios.
 \\
 
-Por último, se dispone de las fuentes de cartografía pública de los organismos estatales, a partir del centro de descargas del CNIG (PONA-LiDAR y MDT02), así como de Catastro (cartografía vectorial).
+Por último, se dispone de las fuentes de cartografía pública de los organismos estatales, a partir del centro de descargas del CNIG (PNOA-LiDAR y MDT02), así como de Catastro (cartografía vectorial).
 \\
 
 \subsection{Limpieza y transformación de datos}
 \label{subsec:arq-limpieza-transformacion}
 
-La limpieza y transformación de los conjuntos de datos se ha realizado durante el análisis exploratorio, y está disponible en los \textit{notebooks} del respositorio. También se ha incluido un comando para poder ejecutar en orden todos los archivos, y poder reproducir el proceso.
+La limpieza y transformación de los conjuntos de datos se ha realizado durante el análisis exploratorio, y está disponible en los \textit{notebooks} del repositorio. También se ha incluido un comando para poder ejecutar en orden todos los archivos, y poder reproducir el proceso.
 \\
 
 Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpetas del repositorio. En \texttt{data/raw/} se guardan los ficheros originales, que se dejan tal cual están al inicio. En \texttt{data/interim/} se guardan los tramos de calles limpios, junto con su geometría. Finalmente, en \texttt{data/processed/} se guarda el conjunto unificado que se usa en los modelos.
@@ -106,6 +106,8 @@ Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpet
   \item \textbf{Algeciras (\textit{notebook} 0.03):} se une el KML por la referencia de la calle (285 de 506 calles) y se completa el resto con OpenStreetMap. Salida: calles de Algeciras con geometría (GeoJSON): \texttt{algeciras\_streets\_geo.geojson}.
   \item \textbf{Albacete (\textit{notebook} 0.04):} se une el GeoJSON por la referencia de la calle (se fusionan las 14 filas repetidas y 12 calles quedan sin geometría) y se asigna el barrio a partir de las letras de la zona y el catálogo de barrios de la ciudad. Salida: calles de Albacete con geometría (GeoJSON): \texttt{albacete\_streets\_geo.geojson}. Así como actualización de las calles limpias de Albacete.
 \end{itemize}
+
+\noindent\textit{Zonas y barrios.} En Algeciras el barrio viene en los datos (la columna \texttt{Barriada}, con 44 barriadas). En Albacete no, pero las letras de la referencia identifican 27 zonas, y comparando manualmente sus iniciales con el mapa general de barrios del ayuntamiento \parencite{cartoteca_barrios_albacete_2016} se han asignado 25 barrios. Las zonas X e Y no se han podido relacionar con ningún barrio y conservan su letra.
 
 \subsubsection{Normalización y unificación}
 \label{subsubsec:arq-normalizacion-unificacion}
@@ -142,13 +144,15 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
     \multicolumn{4}{l}{\sffamily\footnotesize\bfseries\color{uoc-azul}Identificación y localización} \\
     Ciudad (nueva, para unir los datos) & \texttt{ciudad} & -- & -- \\
     \cmidrule(lr){1-4}
+    Identificador del tramo (único dentro de cada ciudad) & \texttt{id\_tramo} & \texttt{REFERENCIA} & \texttt{REFER} \\
+    \cmidrule(lr){1-4}
     Nombre de la calle & \texttt{nombre\_calle} & \texttt{NOMBRE} & \texttt{NOMBRE} \\
     \cmidrule(lr){1-4}
     Nombre de la calle sin la marca de tramo & \texttt{nombre\_calle\_base} & \texttt{NOMBRE} sin la marca de tramo & \texttt{NOMBRE} sin la marca de tramo \\
     \cmidrule(lr){1-4}
     Tramo de la calle (número) & \texttt{tramo} & Letra final de \texttt{REFERENCIA} o marca del nombre & Número del final de \texttt{NOMBRE} \\
     \cmidrule(lr){1-4}
-    Barrio & \texttt{barrio} & \texttt{Barriada} & -- (pendiente de cruzar con el callejero) \\
+    Barrio & \texttt{barrio} & \texttt{Barriada} & Cruzado con mapa de barrios  \\
     \cmidrule(lr){1-4}
     Zona & \texttt{zona} & -- & Letras de \texttt{REFER} \\
     \midrule
@@ -183,3 +187,70 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
 \end{itemize}
 
 \noindent\textit{Clase de accesibilidad de Albacete.} La clase de Albacete la ha añadido el autor para disponer de clases de accesibilidad en ese conjunto de datos, con los mismos cortes sobre su escala de 0 a 100 (C por debajo de 33,3, B entre 33,3 y 66,7, y A a partir de 66,7), a partir de \texttt{ACCGLOBAL}. Se ha intentado seguir un criterio común, el de Algeciras, puesto que este análisis es posterior al de Albacete y, por tanto, representa el criterio más reciente de la empresa.
+
+\section{Modelado y evaluación}
+\label{sec:arq-modelado-evaluacion}
+
+A continuación se detallan las diferentes fases involucradas en la preparación de los datos, el entrenamiento de modelos y la interpretación de los resultados.
+\\
+
+\begin{fichacomponente}{2}{Conjuntos de variables}{}
+  Se organizan los conjuntos de variables de entrada a partir del origen del que se podrían obtener las dimensiones: de cartografía pública e imágenes aéreas, de imágenes a pie de calle o de datos capturados in situ.
+  \componenteflujo{Conjunto unificado (\texttt{streets\_unified.csv}) y estimación de viabilidad por dimensión (tabla~\ref{tab:viabilidad}).}{Un conjunto por origen: cartográfico y aéreo, a pie de calle, la combinación de ambos y el completo.}
+  \componentedecisiones{
+    \item Implementación: \texttt{urban\_accessibility\_ml/features.py}, con la correspondencia entre dimensiones y origen en \texttt{config.py}.
+    \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-fiabilidad} y \ref{subsec:ml-conclusiones}.
+  }
+\end{fichacomponente}
+
+\begin{fichacomponente}{3}{División agrupada}{}
+  Se dividen los tramos en entrenamiento y test, sin separar los tramos de una misma calle o barrio. En esta fase, también se definen las estrategias de validación.
+  \componenteflujo{Conjuntos de variables, con el nombre base de la calle (\texttt{nombre\_calle\_base}) y el barrio de cada tramo (\texttt{barrio}).}{Particiones de entrenamiento y test para cada escenario.}
+  \componentedecisiones{
+    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/split.py}.
+    \item Justificación de las decisiones: subsección~\ref{subsec:validacion-conclusiones}.
+  }
+\end{fichacomponente}
+
+\begin{fichacomponente}{4}{Entrenamiento}{}
+  Se entrenan los modelos de clasificación con cada conjunto de variables, con un modelo para cada perfil de diversidad (funcional, sensorial y cognitiva).
+  \componenteflujo{Particiones de entrenamiento de la división agrupada.}{Modelos entrenados por conjunto de variables, perfil y estrategia de validación.}
+  \componentedecisiones{
+    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/train.py}. Los modelos se guardan en \texttt{models/}.
+    \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-tabular}, \ref{subsec:ml-ordinal} y \ref{subsec:perfiles-conclusiones}.
+  }
+\end{fichacomponente}
+
+\begin{fichacomponente}{5}{Evaluación}{}
+  Se calcula el rendimiento de los modelos sobre las particiones de test y se compara con el del modelo con todas las variables.
+  \componenteflujo{Modelos entrenados y particiones de test.}{Métricas por conjunto de variables, perfil y estrategia de validación. Pérdida de rendimiento frente al modelo completo.}
+  \componentedecisiones{
+    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/evaluate.py}. Los resultados se guardan en \texttt{reports/}.
+    \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-ordinal} y \ref{subsec:ml-fiabilidad}.
+  }
+\end{fichacomponente}
+
+\begin{fichacomponente}{6}{Interpretación}{}
+  Se mide qué variables pesan más para cada perfil y se contrastan las hipótesis de investigación con los resultados de la evaluación.
+  \componenteflujo{Modelos entrenados y métricas de la evaluación.}{Importancia de las variables por perfil y resultado del contraste de cada hipótesis.}
+  \componentedecisiones{
+    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/interpret.py}. Los gráficos se generan con \texttt{plots.py} en \texttt{reports/figures/}.
+    \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-importancia}, \ref{subsec:ml-conclusiones} y \ref{subsec:perfiles-conclusiones}.
+  }
+\end{fichacomponente}
+
+\section{Componentes secundarios}
+\label{sec:arq-secundarios}
+
+Los componentes secundarios son objetivos de valor añadido, por lo que solo se abordarán si el calendario lo permite (subsección~\ref{subsec:objetivos-secundarios}).  La columna con la que se relacionan con las geometrías es \texttt{id\_tramo}.
+\\
+
+\begin{fichasecundaria}{OS1}{Visor de predicciones}{}
+  Muestra en un mapa interactivo las predicciones de accesibilidad de los modelos entrenados.
+  \componenteflujo{Predicciones por tramo y geometrías del callejero.}{Visor GIS con las predicciones sobre el mapa.}
+\end{fichasecundaria}
+
+\begin{fichasecundaria}{OS2}{Variables cartográficas}{}
+  Calcula las variables que se pueden obtener de la cartografía pública, y comprueba si confirman la estimación de viabilidad de la tabla~\ref{tab:viabilidad}. Solo para aquellos tramos con geometría disponible.
+  \componenteflujo{Geometrías de los tramos, MDT02, cartografía vectorial del Catastro y callejero.}{Conjunto unificado con las variables cartográficas: pendiente, anchura de la vía e intersecciones.}
+\end{fichasecundaria}
