@@ -381,7 +381,7 @@ Se ha realizado una tabla que muestra, por cada característica definida en la s
 \endgroup
 \fuente{elaboración propia a partir de~\parencite{une_170001_1_2007} y~\parencite{mitma_orden_tma851_2021}. \cumple{si} mucho peso esperado, \cumple{parcial} algo, \cumple{no} poco o ninguno.}
 
-Se trata de una clasificación propia, intuyendo el grado de importancia de cada característica, por lo que podría ser recomendable que fuera revisada por una persona especialista en accesibilidad. Esta importancia esperada se contrastará con la importancia obtenida en los modelos entrenados para cada perfil (H6).
+Se trata de una clasificación propia, intuyendo el grado de importancia de cada característica, por lo que podría ser recomendable que fuera revisada por una persona especialista en accesibilidad. Esta importancia esperada se contrastará con la importancia obtenida en los modelos entrenados para cada perfil (H6). Como el conjunto unificado agrupa los cinco perfiles de la tabla en tres (sección~\ref{subsec:arq-unificacion-datos}), la comparación se realiza a nivel de esos tres perfiles: funcional agrupa silla de ruedas y movilidad reducida, sensorial agrupa visual e hipoacusia, y cognitiva se mantiene.
 \\
 
 % =====================================================================
@@ -394,17 +394,17 @@ En esta sección se recogen las fuentes de datos públicas que contienen informa
 \subsection{Geometrías en los visores de accesibilidad}
 \label{subsec:geometrias-visores}
 
-El visor de Albacete tiene la posibilidad de exportar los datos en formato GeoJSON, mientras que en el caso de Algeciras se ha podido extraer la información a partir del mapa de Google Maps, realizando la extracción del KML.
+El visor de Albacete tiene la posibilidad de exportar los datos en formato GeoJSON, mientras que el visor de Algeciras permite exportarlos en formato KML, a partir del mapa de Google Maps.
 \\
 
 Estas geometrías se han incorporado al análisis exploratorio de los datos. En el caso de Albacete, la mayoría de tramos y calles con las que se contaba en el conjunto de datos inicial tienen los datos de geometría disponibles (12 calles no lo tienen).
 \\
 
 En el caso de Algeciras, no todas las calles contienen geometría: solo 285 de las 506 calles (el 56\,\%) la tienen en el KML, y las 221 restantes no.
-Por lo tanto, se debe investigar de qué manera se puede completar la información geográfica de las calles.
+Esta información se puede completar con OpenStreetMap (sección~\ref{subsec:arq-limpieza-transformacion}).
 \\
 
-Además, el visor de Albacete no incluía la información de los barrios. Buscando directamente en la web del ayuntamiento, se ha encontrado en la cartoteca, dentro de las divisiones administrativas, el mapa general de barrios (\texttt{2016MapaGeneralBarrios.pdf}), aunque únicamente está disponible en formato PDF e imágenes \parencite{cartoteca_barrios_albacete_2016}.
+Además, el visor de Albacete no incluía la información de los barrios. Buscando directamente en la web del ayuntamiento, se ha encontrado en la cartoteca, dentro de las divisiones administrativas, el mapa general de barrios (\texttt{2016MapaGeneralBarrios.pdf}), aunque únicamente está disponible en formato PDF e imágenes \parencite{cartoteca_barrios_albacete_2016}. Por lo que se debe cruzar manualmente con las 27 zonas de las referencias de Albacete (sección~\ref{subsec:arq-limpieza-transformacion}).
 
 \subsection{Fuentes cartográficas públicas}
 \label{subsec:fuentes-cartograficas}
@@ -559,10 +559,10 @@ En este capítulo se ha abordado la normativa legal sobre accesibilidad en vías
 \textit{Normativa y perfiles de accesibilidad.} (secciones~\ref{sec:caracteristicas} y~\ref{sec:perfiles-dalco}) Se ha basado el análisis en la Orden TMA/851/2021, en la que se fijan todos los requisitos medibles y sus umbrales en varias dimensiones (anchura, pendiente, pavimento, cruces, señalización, iluminación o mobiliario urbano); y se ha usado el marco DALCO para inferir la importancia de cada característica para cada tipo de diversidad funcional.
 \\
 
-\textit{Análisis y unificación de datos.} (sección~\ref{sec:analisis-exploratorio}) Se ha realizado un análisis exploratorio de los datos de Albacete y Algeciras. Los datos provienen de la misma empresa, aunque tienen escalas y perfiles de accesibilidad diferentes, y contienen las puntuaciones otorgadas en cada calle, por cada dimensión y tipo de diversidad. Se desconocen tanto la forma de recopilar los datos, como el algoritmo usado para las puntuaciones, así como las medidas realizadas. Se ha realizado una propuesta de unificación de los conjuntos de datos.
+\textit{Análisis y unificación de datos.} (sección~\ref{sec:analisis-exploratorio}) Se ha realizado un análisis exploratorio de los datos de Albacete y Algeciras. Los datos provienen de la misma empresa, aunque tienen escalas y perfiles de accesibilidad diferentes, y contienen las puntuaciones otorgadas en cada calle, por cada dimensión y tipo de diversidad. Se desconocen tanto la forma de recopilar los datos, como el algoritmo usado para las puntuaciones, así como las medidas realizadas. Se han unificado los conjuntos de datos en uno solo (sección~\ref{subsec:arq-unificacion-datos}).
 \\
 
-\textit{Datos cartográficos públicos.} (sección~\ref{sec:datos-cartograficos-publicos}) Se han revisado las geometrías disponibles en los visores de accesibilidad de ambas ciudades y las fuentes cartográficas públicas: el PNOA-LiDAR y el MDT para la pendiente de las calles, y la Cartografía Vectorial del Catastro para la anchura entre fachadas.
+\textit{Datos cartográficos públicos.} (sección~\ref{sec:datos-cartograficos-publicos}) Se han revisado las geometrías disponibles en los visores de accesibilidad de ambas ciudades y las fuentes cartográficas públicas: el PNOA-LiDAR y el MDT para la pendiente de las calles, y la Cartografía Vectorial del Catastro para la anchura entre fachadas. Las geometrías de Algeciras que faltaban en el KML se completan con OpenStreetMap.
 \\
 
 \textit{Viabilidad de extracción de información en cartografía e imágenes.} (sección~\ref{sec:viabilidad}) Se ha realizado una estimación del grado de obtención de datos a partir de cartografía pública, de imágenes aéreas o a pie de calle, y se ha determinado que la captura es desigual: mientras que las anchuras y cruces son más fáciles de obtener, otras dimensiones como el pavimento o la iluminación necesitan en mayor parte inspección in situ.

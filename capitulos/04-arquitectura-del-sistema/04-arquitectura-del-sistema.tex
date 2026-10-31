@@ -179,10 +179,10 @@ Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único
 \medskip
 \noindent\textit{Cómo leer la tabla.}
 \begin{itemize}
-  \item \textbf{Columnas \texttt{puntuacion\_*\_*}:} el primer comodín es una de las dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación, mobiliario y transporte, esta última solo en Albacete) y el segundo uno de los tipos de diversidad (funcional, sensorial y cognitiva).
+  \item \textbf{Columnas \texttt{puntuacion\_*\_*}:} el primer comodín es una de las dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación y mobiliario) y el segundo uno de los tipos de diversidad (funcional, sensorial y cognitiva).
   \item \textbf{Escala:} las puntuaciones están normalizadas a la escala de 0 a 1.
   \item \textbf{Tipos de diversidad en Albacete:} para unificarlos, funcional es la media de silla de ruedas y movilidad reducida, sensorial la media de visión e hipoacusia, y cognitiva es la de diversidad cognitiva.
-  \item \textbf{Transporte:} los ceros de transporte, que indican que no hay datos, se sustituyen por valores nulos.
+  \item \textbf{Transporte:} solo está puntuado en Albacete, por lo que se deja fuera del conjunto unificado.
   \item \textbf{Tramo:} identifica la parte de una calle que está dividida (por ejemplo, la letra B de Algeciras es el tramo 2), y es nulo si la calle no tiene marca de tramo.
 \end{itemize}
 
@@ -199,6 +199,7 @@ A continuación se detallan las diferentes fases involucradas en la preparación
   \componenteflujo{Conjunto unificado (\texttt{streets\_unified.csv}) y estimación de viabilidad por dimensión (tabla~\ref{tab:viabilidad}).}{Un conjunto por origen: cartográfico y aéreo, a pie de calle, la combinación de ambos y el completo.}
   \componentedecisiones{
     \item Implementación: \texttt{urban\_accessibility\_ml/features.py}, con la correspondencia entre dimensiones y origen en \texttt{config.py}.
+    \item El transporte queda fuera, porque no está en el conjunto unificado ni en la estimación de viabilidad, por lo que no tiene origen asignado.
     \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-fiabilidad} y \ref{subsec:ml-conclusiones}.
   }
 \end{fichacomponente}
