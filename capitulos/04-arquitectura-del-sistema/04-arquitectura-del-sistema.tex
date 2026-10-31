@@ -39,31 +39,78 @@ Esta sección recoge los datos con los que trabaja el sistema, su limpieza y uni
 \subsection{Fuentes}
 \label{subsec:arq-fuentes-datos}
 
-\begin{table}[htbp]
-  \centering\small
-  \caption{Fuentes de datos del sistema.}
-  \label{tab:arq-fuentes}
-  \begin{tabularx}{\textwidth}{@{}l l X >{\raggedright\arraybackslash}p{3.6cm}@{}}
-    \toprule
-    \cabeceratabla Fuente & Formato & Contenido & Acceso \\
-    \midrule
-    \filagrupo{4}{Objetivo principal}
-    Datos de Albacete & SQL & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
-    Datos de Algeciras & Excel & 506 calles con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
-    Geometrías de Albacete & GeoJSON & Trazado de las calles. & Visor~\parencite{visor_albacete_accesibilidad} \\
-    Geometrías de Algeciras & KML & Trazado de las calles. & Visor~\parencite{visor_algeciras_accesibilidad} y OSM~\parencite{openstreetmap} \\
-    \filagrupo{4}{Objetivo secundario (OS2): cartografía pública}
-    PNOA-LiDAR & Nube de puntos & Elevación del terreno. & \hueco{enlace}~\parencite{pnoa_lidar} \\
-    MDT02 & Ráster & Modelo digital del terreno (malla de 2 m). & \hueco{enlace}~\parencite{pnoa_mdt} \\
-    Catastro & Vectorial & Fachadas y línea de acera. & \hueco{enlace}~\parencite{catastro_descarga_datos} \\
-    \bottomrule
-  \end{tabularx}
-  \fuente{Elaboración propia.}
-\end{table}
+\begingroup
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-2.8cm-2.2cm-4.4cm-8\tabcolsep\relax} >{\raggedright\arraybackslash}p{4.4cm}}
+  \caption{Fuentes de datos del sistema.}\label{tab:arq-fuentes}\\
+  \toprule
+  \cabeceratabla Fuente & Formato & Contenido & Acceso \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \cabeceratabla Fuente & Formato & Contenido & Acceso \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  \bottomrule
+  \endlastfoot
+  \filagrupo{4}{Objetivo principal}
+  Datos de Albacete & SQL & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  Datos de Algeciras & Excel & 506 calles con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  Geometrías de Albacete & GeoJSON & Trazado de las calles. & Visor~\parencite{visor_albacete_accesibilidad} \\
+  Geometrías de Algeciras & KML & Trazado de las calles. & Visor~\parencite{visor_algeciras_accesibilidad} y OSM~\parencite{openstreetmap} \\
+  \filagrupo{4}{Objetivo secundario (OS2): cartografía pública}
+  PNOA-LiDAR & Nube de puntos & Elevación del terreno. & Centro de Descargas del CNIG \parencite{lidar_segunda_cobertura_cnig} \\
+  MDT02 & Ráster & Modelo digital del terreno (malla de 2 m). & Centro de Descargas del CNIG \parencite{mdt02_segunda_cobertura_cnig} \\
+  Catastro & Vectorial & Fachadas y línea de acera. & Cartografía vectorial del Catastro \parencite{catastro_descarga_datos} \\
+\end{longtable}
+\endgroup
+\fuente{Elaboración propia.}
 
+En primer lugar, los archivos de datos de Albacete y Algeciras han sido facilitados por el tutor, y se han subido a Zenodo, para que estén accesibles para su descarga. En cuanto a los datos de geometrías, se ha tenido que acceder a los visores de accesibilidad de los municipios.
+\\
 
-\subsection{Ingesta de datos}
-\label{subsec:arq-ingesta}
+En el caso de Albacete, el visor dispone de un apartado de descargas, en el que se puede exportar a formato GeoJSON, mientras que en el caso del visor de Algeciras, se puede exportar en formato KLM. En ambos casos, solo se ha descargado la información relativa a las calles, pero no a los edificios.
+\\
+
+Por último, se dispone de las fuentes de cartografía pública de los organismos estatales, a partir del centro de descargas del CNIG (PONA-LiDAR y MDT02), así como de Catastro (cartografía vectorial).
+\\
+
+\subsection{Limpieza y transformación de datos}
+\label{subsec:arq-limpieza-transformacion}
+
+La limpieza y transformación de los conjuntos de datos se ha realizado durante el análisis exploratorio, y está disponible en los \textit{notebooks} del respositorio. También se ha incluido un comando para poder ejecutar en orden todos los archivos, y poder reproducir el proceso.
+\\
+
+Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpetas del repositorio. En \texttt{data/raw/} se guardan los ficheros originales, que se dejan tal cual están al inicio. En \texttt{data/interim/} se guardan los tramos de calles limpios, junto con su geometría. Finalmente, en \texttt{data/processed/} se guarda el conjunto unificado que se usa en los modelos.
+\\
+
+\subsubsection{Limpieza de datos}
+\label{subsubsec:arq-limpieza}
+
+\begin{itemize}
+  \item \textbf{Algeciras (\textit{notebook} 0.01):} de un dataset inicial de 610 filas, se eliminan las 104 filas de totales y de totales por barriada (quedan 506 calles) y 2 columnas vacías. Se convierten las puntuaciones y el presupuesto a numéricos, y se separan el nombre base de la calle y el número de tramo. Salida: calles limpias de Algeciras (CSV): \texttt{algeciras\_streets\_cleaned.csv}.
+  \item \textbf{Albacete (\textit{notebook} 0.02):} se carga el volcado SQL de 916 filas, se eliminan 34 columnas de fotografías y enlaces y la de municipio, se limitan a 100 cinco puntuaciones que lo superaban y se añaden el nombre base de la calle, el tramo y la zona. Salida: calles limpias de Albacete (CSV): \texttt{albacete\_streets\_cleaned.csv}.
+\end{itemize}
+
+\subsubsection{Integración con geometrías}
+\label{subsubsec:arq-integracion-geometrias}
+
+\begin{itemize}
+  \item \textbf{Algeciras (\textit{notebook} 0.03):} se une el KML por la referencia de la calle (285 de 506 calles) y se completa el resto con OpenStreetMap. Salida: calles de Algeciras con geometría (GeoJSON): \texttt{algeciras\_streets\_geo.geojson}.
+  \item \textbf{Albacete (\textit{notebook} 0.04):} se une el GeoJSON por la referencia de la calle (se fusionan las 14 filas repetidas y 12 calles quedan sin geometría) y se asigna el barrio a partir de las letras de la zona y el catálogo de barrios de la ciudad. Salida: calles de Albacete con geometría (GeoJSON): \texttt{albacete\_streets\_geo.geojson}. Así como actualización de las calles limpias de Albacete.
+\end{itemize}
+
+\subsubsection{Normalización y unificación}
+\label{subsubsec:arq-normalizacion-unificacion}
+
+\begin{itemize}
+  \item \textbf{Comparación y unificación (\textit{notebook} 0.05):} se normalizan nombres, escalas, tipos de diversidad y categorías y se calculan las clases. Salida: conjunto unificado, y perfiles de Albacete (CSV): \texttt{streets\_unified.csv} y \texttt{albacete\_profiles.csv}.
+\end{itemize}
+
+\subsection{Conjunto unificado de datos}
+\label{subsec:arq-unificacion-datos}
 
 Para trabajar con ambas ciudades a la vez, se unifican sus columnas en un único conjunto de datos, cuya correspondencia se muestra en la tabla~\ref{tab:columnas-unificadas}.
 
