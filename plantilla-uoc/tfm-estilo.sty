@@ -3,7 +3,7 @@
 % Compatible con TFUOC.cls: no redefine sus colores (darkblueUOC, lightblueUOC, greyUOC).
 % Los nombres de color coinciden con los tokens del sistema de diseño.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tfm-estilo}[2026/10/23 v1.9 Sistema visual TFM]
+\ProvidesPackage{tfm-estilo}[2026/10/25 v1.10 Sistema visual TFM]
 
 % Opción [tabla]: "Tabla" / "Índice de tablas" en lugar de "Cuadro" / "Índice de cuadros" (babel spanish)
 \newif\iftfm@tabla
@@ -273,7 +273,7 @@
 \colorlet{tfm@recfondo@definicion}{uoc-azul-suave}\colorlet{tfm@recborde@definicion}{uoc-azul}\colorlet{tfm@rectit@definicion}{papel}
 \colorlet{tfm@recfondo@hipotesis}{estado-revision-fondo}\colorlet{tfm@recborde@hipotesis}{estado-revision}\colorlet{tfm@rectit@hipotesis}{papel}
 \colorlet{tfm@recfondo@atencion}{estado-en-curso-fondo}\colorlet{tfm@recborde@atencion}{estado-en-curso}\colorlet{tfm@rectit@atencion}{tinta}% papel sobre ámbar no llega a 4,5:1
-\newtcolorbox{recuadro}[2][nota]{enhanced, breakable, sharp corners, boxrule=0.8pt,
+\newtcolorbox{recuadro}[2][nota]{enhanced, sharp corners, boxrule=0.8pt,
   colback=tfm@recfondo@#1, colframe=tfm@recborde@#1, coltitle=tfm@rectit@#1,
   fonttitle=\sffamily\small\bfseries, title={\csname tfm@rec@#1\endcsname\ifx\relax#2\relax\else\ ·\ #2\fi},
   left=6pt, right=6pt, top=4pt, bottom=4pt, before skip=10pt, after skip=10pt}
@@ -585,6 +585,45 @@
     borderline west={2pt}{0pt}{uoc-azul},
     left=6pt, right=6pt, top=3pt, bottom=3pt, before skip=2pt, after skip=2pt, fontupper=\small]
   \begin{itemize}[label=\tfm@icocheck, leftmargin=6mm, labelsep=2mm, topsep=0pt, itemsep=2pt]#1\end{itemize}\end{tcolorbox}}
+
+% ---------------------------------------------------------------- Fichas de componente (v1.10)
+% Arquitectura: una ficha por componente del sistema, numerada igual que en el diagrama.
+% \numcomponente{3}  → círculo azul con el número (también dentro de TikZ)
+% \begin{fichacomponente}{3}{División agrupada}{sec:division-agrupada}
+%   Responsabilidad en una o dos frases.
+%   \componenteflujo{Qué recibe}{Qué produce}
+%   \componentedecisiones{\item ... \item ...}
+% \end{fichacomponente}
+% (la sección es opcional: con {} vacío no se muestra)
+% Objetivo secundario (gris, como en el diagrama): \begin{fichasecundaria}{OS1}{Visor}{sec:...}
+\newcommand{\numcomponente}[1]{\tikz[baseline=(n.base)]\node[circle, fill=uoc-azul, text=papel,
+  inner sep=0pt, minimum size=4.2mm, font=\sffamily\scriptsize\bfseries] (n) {#1};}
+\newcommand{\tfm@numsecundario}[1]{\tikz[baseline=(n.base)]\node[rounded corners=2pt, draw=serie-base, dashed,
+  text=tinta-suave, inner sep=1.5pt, minimum height=4.2mm, font=\sffamily\scriptsize\bfseries] (n) {#1};}
+\tcbset{tfm@comp/.style={enhanced, breakable, sharp corners, colback=papel, colframe=uoc-azul,
+  boxrule=0pt, leftrule=0pt, rightrule=0pt, toprule=1.2pt, bottomrule=0.4pt,
+  colbacktitle=superficie, coltitle=uoc-azul, titlerule=0.4pt, titlerule style={draw=filete},
+  fonttitle=\sffamily\small\bfseries, fontupper=\small,
+  left=6pt, right=6pt, top=5pt, bottom=5pt, before skip=8pt, after skip=8pt}}
+\newtcolorbox{fichacomponente}[3]{tfm@comp,
+  title={\numcomponente{#1}\ \ #2\ifx\relax#3\relax\else\hfill{\mdseries\footnotesize\color{tinta-suave}Sección~\ref{#3}}\fi}}
+\newtcolorbox{fichasecundaria}[3]{tfm@comp, colframe=serie-base, coltitle=tinta-suave,
+  title={\tfm@numsecundario{#1}\ \ #2\ifx\relax#3\relax\else\hfill{\mdseries\footnotesize\color{tinta-suave}Sección~\ref{#3}}\fi}}
+% Entrada → salida en dos columnas
+\newcommand{\componenteflujo}[2]{\par\smallskip\noindent
+  \begin{tcolorbox}[enhanced, sharp corners, colback=superficie, frame hidden, boxrule=0pt,
+    left=5pt, right=5pt, top=3pt, bottom=3pt, before skip=2pt, after skip=4pt, fontupper=\small, sidebyside,
+    sidebyside gap=9mm, lefthand ratio=0.5, segmentation hidden,
+    overlay={\node[font=\sffamily\large, text=uoc-azul] at (segmentation) {$\rightarrow$};}]
+  {\sffamily\footnotesize\bfseries\color{uoc-azul}Recibe}\par\nopagebreak #1
+  \tcblower
+  {\sffamily\footnotesize\bfseries\color{uoc-azul}Produce}\par\nopagebreak #2
+  \end{tcolorbox}}
+% Decisiones de diseño del componente (icono de flecha, como en la síntesis)
+\newcommand{\componentedecisiones}[1]{\par\noindent{\sffamily\footnotesize\bfseries\color{uoc-azul}Decisiones de implementación}\par\nopagebreak
+  \begin{itemize}[label=\tfm@icocheck, leftmargin=6mm, labelsep=2mm, topsep=2pt, itemsep=2pt]#1\end{itemize}}
+% Texto de relleno de una plantilla (gris, cursiva). Desaparece con [final] para que no se olvide ninguno.
+\newcommand{\hueco}[1]{\iftfm@final\else\leavevmode{\color{acc-sin-datos}\itshape[\ifx\relax#1\relax\ldots\else#1\fi]}\fi}
 
 % ---------------------------------------------------------------- Imágenes externas
 % Carpetas donde LaTeX busca imágenes (crea las que uses junto al .tex)

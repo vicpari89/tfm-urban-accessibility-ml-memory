@@ -1,0 +1,20 @@
+% Fase 1 · Ingestión y unificación de los datos
+\begin{tikzpicture}
+\input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-estilos.tex}
+\node[dato] (datasets) at (0.2,0) {Datasets de Albacete\\y Algeciras};
+\node[dato] (geom)     at (5.9,2.0) {Geometrías\\calles y barrios};
+\node[comp] (limpieza) at (3.3,0) {Limpieza\\de datos};
+\node[comp] (integra)  at (5.9,0) {Integración con geometrías};
+\node[comp] (normal)   at (8.5,0) {Normalización y unificación};
+\node[dato] (unificado) at (11.2,0) {Conjunto\\unificado};
+\draw[flecha] (datasets) -- (limpieza);
+\draw[flecha] (limpieza) -- (integra);
+\draw[flecha] (geom) -- (integra);
+\draw[flecha] (integra) -- (normal);
+\draw[flecha] (normal) -- (unificado);
+\begin{scope}[on background layer]
+  \node[carril, fit=(limpieza)(integra)(normal)] (cingesta) {};
+\end{scope}
+\node[rotulo, anchor=south west] at ([xshift=4mm]cingesta.north west) {Ingestión y unificación};
+\node[num] at (cingesta.north west) {1};
+\end{tikzpicture}
