@@ -1,0 +1,56 @@
+\label{cap:diseno-implementacion}
+
+En este capítulo se indican los pasos seguidos a la hora de elaborar el diseño y la implementación de los algoritmos de los modelos de clasificación.
+\\
+
+\section{Variable objetivo y variables de entrada}
+\label{sec:dis-variables}
+
+La \gls{variable-objetivo} del modelo es la clase de accesibilidad, una variable ordinal que puede tomar como valores A, B y C, de mayor a menor accesibilidad.
+\\
+
+Existen cuatro variables objetivo, una por cada perfil de diversidad y una global, en el conjunto unificado de datos (tabla~\ref{tab:columnas-unificadas}): \texttt{clase\_total}, \texttt{clase\_funcional}, \texttt{clase\_sensorial} y \texttt{clase\_cognitiva}.
+\\
+
+En cuanto a las variables de entrada, se van a utilizar las 28 puntuaciones por dimensión y perfil, \texttt{puntuacion\_*\_*}, una por cada combinación de las siete dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación y mobiliario) y los cuatro perfiles (global, funcional, sensorial y cognitivo). Por ejemplo, \texttt{puntuacion\_pendiente\_global} o \texttt{puntuacion\_cruces\_sensorial}.
+\\
+
+Quedan fuera las cuatro puntuaciones totales (\texttt{puntuacion\_total}, \texttt{puntuacion\_total\_funcional}, \texttt{puntuacion\_total\_sensorial} y \texttt{puntuacion\_total\_cognitiva}), por provocar \gls{fuga-informacion}: la clase se calcula directamente a partir de ellas.
+\\
+
+\section{División de los datos}
+\label{sec:dis-division}
+
+Se ha comprobado si los tramos de una misma calle son similares entre sí, así como los tramos de cada barrio. Al comparar la puntuación total de un tramo con la de otro tramo de su misma calle, la diferencia media es menor que con un tramo elegido al azar de la misma ciudad (0,104 frente a 0,130 en Albacete, y 0,144 frente a 0,160 en Algeciras). La relación es bastante moderada, pero suficiente para continuar con la agrupación por calle.
+\\
+
+Sin embargo, aunque se ha evaluado la agrupación por barrio, se ha descartado puesto que los barrios tienen tamaños bastante desiguales (oscilan entre 1 y 79 tramos por barrio en Algeciras), y existen muy pocos barrios con clase A, lo que impediría obtener en los conjuntos de test tramos de clase A.
+\\
+
+Por lo tanto, la división de los datos se agrupa por calle (columna \texttt{nombre\_calle\_base}), de forma que todos los tramos de una calle quedan en el mismo conjunto (o bien de entrenamiento, o de test). Concuerda con la conclusión de la subsección~\ref{subsec:validacion-conclusiones} (figura~\ref{fig:split-misma-calle}).
+\\
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{capitulos/05-diseno-implementacion/figuras/diferencia_misma_calle_vs_azar.png}
+  \caption{Diferencia de puntuación total entre un tramo y otro de su misma calle, o de un tramo al azar de la ciudad.}
+  \label{fig:split-misma-calle}
+  \fuente{Elaboración propia.}
+\end{figure}
+
+Para evaluar los modelos se va a utilizar \gls{validacion-cruzada}: el conjunto de datos se divide en varios subconjuntos disjuntos, denominados \glspl{pliegue} (\textit{folds}). En cada iteración, uno de los pliegues se reserva para test y los restantes se usan para entrenamiento, de forma que cada pliegue actúa como test una vez. Se han establecido un total de 5 pliegues.
+\\
+
+El conjunto de datos es bastante desbalanceado, y la clase A es muy minoritaria (24 tramos en Albacete y 28 en Algeciras). Es necesario que los pliegues se hagan teniendo en cuenta esto, para evitar que existan algunos con muy pocos tramos de clase A (o ninguno), tanto en entrenamiento como en test.
+\\
+
+Como se busca poder tener pliegues con una proporción parecida de tramos de clase A, B y C a la del conjunto de datos completo, se ha decidido utilizar \texttt{StratifiedGroupKFold} de \textit{scikit-learn}. Permite realizar la agrupación por calle, y además reparte las clases de manera proporcional (\gls{estratificacion}), en base a la \texttt{clase\_total}. Se ha establecido una \gls{semilla} (\textit{seed}) fija con valor 42, para poder reproducir la división.
+\\
+
+Se contemplan tres estrategias de división:
+\begin{itemize}
+  \item \textbf{Dentro de cada ciudad:} entrenamiento y test de la misma ciudad (Albacete o Algeciras).
+  \item \textbf{Entre ciudades:} entrenamiento en una ciudad y test en la otra.
+  \item \textbf{Mezclada:} entrenamiento y test con las dos ciudades juntas.
+\end{itemize}
+\vspace{0.5em}
