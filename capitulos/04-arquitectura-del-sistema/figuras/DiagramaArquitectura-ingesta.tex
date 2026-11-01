@@ -1,4 +1,4 @@
-% Fase 1 · Ingestión y unificación de los datos
+% Fase 1 · Ingesta y unificación de los datos
 \begin{tikzpicture}
 \input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-estilos.tex}
 \node[dato] (datasets) at (0.2,0) {Datasets de Albacete\\y Algeciras};
@@ -15,6 +15,6 @@
 \begin{scope}[on background layer]
   \node[carril, fit=(limpieza)(integra)(normal)] (cingesta) {};
 \end{scope}
-\node[rotulo, anchor=south west] at ([xshift=4mm]cingesta.north west) {Ingestión y unificación};
+\node[rotulo, anchor=south west] at ([xshift=4mm]cingesta.north west) {Ingesta y unificación};
 \node[num] at (cingesta.north west) {1};
 \end{tikzpicture}
