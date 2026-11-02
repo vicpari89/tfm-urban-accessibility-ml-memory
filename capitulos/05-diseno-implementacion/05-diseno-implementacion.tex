@@ -81,7 +81,7 @@ Se contemplan tres estrategias de división (tabla~\ref{tab:estrategias-division
 \section{Conjuntos de variables}
 \label{sec:dis-conjuntos-variables}
 
-Se han organizado los conjuntos de variables según el origen del que se podrían obtener las dimensiones. Se ha seleccionado el límite del 50\,\% para el porcentaje de requisitos mínimos que se puedan obtener de una fuente concreta en una dimensión específica, y se ha utilizado la estimación de viabilidad de la tabla~\ref{tab:viabilidad}.
+Se han organizado los conjuntos de variables según el origen del que se podrían obtener las dimensiones. Una dimensión se incluye en un conjunto si su viabilidad estimada para esa fuente (tabla~\ref{tab:viabilidad}) es de al menos el 50\,\%. Se ha elegido este umbral porque, si al menos la mitad de las características de una dimensión se pueden obtener de esa fuente, se considera suficiente para evaluarla. Un umbral más exigente, como el 75\,\%, dejaría vacío el conjunto cartográfico y aéreo.
 \\
 
 Se han definido cuatro conjuntos diferentes: cartográfico y aéreo, calle, combinado y completo. El cartográfico y aéreo reúne las dimensiones obtenibles de cartografía pública o de imágenes aéreas; el de calle, las que se pueden obtener a partir de imágenes a pie de calle; el combinado, las que se obtienen de cualquiera de las tres fuentes de imagen o cartografía; y el completo incluye todas las dimensiones. La tabla~\ref{tab:conjuntos-variables} indica qué dimensiones pertenecen a cada conjunto.
@@ -108,8 +108,11 @@ Se han definido cuatro conjuntos diferentes: cartográfico y aéreo, calle, comb
   \fuente{Elaboración propia.}
 \end{table}
 
-Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; para calle y combinado, anchura, cruces, señalización y mobiliario. Como nota, el conjunto combinado coincide exactamente con el de calle, por lo que no se podría contrastar la hipótesis H3, ya que no aporta ninguna dimensión que no se pueda obtener con el de calle.
+Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; para calle y combinado, anchura, cruces, señalización y mobiliario. La pendiente no entra en el conjunto cartográfico y aéreo porque su puntuación incluye la pendiente transversal y la del vado, que la cartografía no permite estimar. Como nota, el conjunto combinado coincide exactamente con el de calle, por lo que no se podría contrastar la hipótesis H3, ya que no aporta ninguna dimensión que no se pueda obtener con el de calle.
 \\
+
+\sintesisdecision{
+  \item \sintesisclave{Conjuntos de variables} cartográfico y aéreo, a pie de calle, combinado y completo; una dimensión se incluye si su viabilidad estimada para esa fuente es de al menos el 50\,\%.}
 
 \section{Métricas}
 \label{sec:dis-metricas}
@@ -117,20 +120,23 @@ Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; par
 Se utilizan tres métricas, todas de scikit-learn \parencite{sklearn_metrics}.
 \\
 
-La \textbf{\glslink{f1-macro}{F1 macro}} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K=3$ es el número de clases (C, B y A) y $F1_c$ es la F1 de la clase $c$:
+La \glslink{f1-macro}{F1 macro} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K=3$ es el número de clases (C, B y A) y $F1_c$ es la F1 de la clase $c$:
 \begin{equation}
   \text{F1 macro} = \frac{1}{K} \sum_{c=1}^{K} F1_c
   \label{eq:f1-macro}
 \end{equation}
 
-La \textbf{\glslink{exactitud-balanceada}{exactitud balanceada}} (\textit{balanced accuracy}; \texttt{balanced\_\allowbreak accuracy\_\allowbreak score}) es la media de la proporción de tramos que se acierta en cada clase, de manera que cada clase cuenta igual, sea cual sea su tamaño.
+La \glslink{exactitud-balanceada}{exactitud balanceada} (\textit{balanced accuracy}; \texttt{balanced\_\allowbreak accuracy\_\allowbreak score}) es la media de la proporción de tramos que se acierta en cada clase, de manera que cada clase cuenta igual, sea cual sea su tamaño.
 \\
 
-La \textbf{\glslink{kappa-ponderada}{kappa ponderada cuadrática}} (\textit{quadratic weighted kappa}; \texttt{cohen\_\allowbreak kappa\_\allowbreak score} con \texttt{weights=\allowbreak "quadratic"}) compara la clase real con la predicha, sin tener en cuenta los aciertos por azar \parencite{cohen1968}. Los errores que predicen una clase más lejana en cuanto al orden penalizan más, es decir, confundir A con C penaliza más que confundir A con B.
+La \glslink{kappa-ponderada}{kappa ponderada cuadrática} (\textit{quadratic weighted kappa}; \texttt{cohen\_\allowbreak kappa\_\allowbreak score} con \texttt{weights=\allowbreak "quadratic"}) compara la clase real con la predicha, descontando los aciertos que se esperarían por azar \parencite{cohen1968}. Los errores que predicen una clase más lejana en cuanto al orden penalizan más, es decir, confundir A con C penaliza más que confundir A con B.
 \\
 
-La elección de estas métricas está justificada en la subsección~\ref{subsec:ml-ordinal}. Por eso no se utiliza la exactitud (\textit{accuracy}).
+No se utiliza la exactitud (\textit{accuracy}) porque favorece a la clase mayoritaria: en Albacete, predecir siempre B daría un 78,2\,\%. La justificación de las métricas está en la subsección~\ref{subsec:ml-ordinal}.
 \\
+
+\sintesisdecision{
+  \item \sintesisclave{Métricas} F1 macro, exactitud balanceada y kappa ponderada cuadrática.}
 
 \section{Modelos de referencia}
 \label{sec:dis-modelos-referencia}
@@ -138,5 +144,104 @@ La elección de estas métricas está justificada en la subsección~\ref{subsec:
 Se usan dos \glslink{modelo-referencia}{modelos de referencia}. El modelo \textit{dummy} (\texttt{DummyClassifier} de scikit-learn, con \texttt{strategy=\allowbreak "most\_\allowbreak frequent"}), que predice siempre la clase más frecuente ignorando las variables de entrada, por lo que es el modelo mínimo: cualquier otro modelo debería mejorarlo.
 \\
 
-Por otro lado, la \glslink{regresion-logistica}{regresión logística} (\texttt{LogisticRegression} de scikit-learn, con \texttt{class\_\allowbreak weight=\allowbreak "balanced"} y \texttt{max\_\allowbreak iter=\allowbreak 1000}) asigna a cada clase un peso inversamente proporcional a su frecuencia, de esta manera los errores en clases minoritarias penalizan más durante el entrenamiento. Es la referencia seleccionada por el autor como base.
+Por otro lado, se usa la \glslink{regresion-logistica}{regresión logística} (\texttt{LogisticRegression} de scikit-learn, con \mbox{\texttt{max\_iter=1000}}). Con \texttt{class\_\allowbreak weight=\allowbreak "balanced"} se asigna a cada clase un peso inversamente proporcional a su frecuencia, de esta manera los errores en clases minoritarias penalizan más durante el entrenamiento. Es la referencia seleccionada por el autor como base.
 \\
+
+\sintesisdecision{
+  \item \sintesisclave{Modelos de referencia} \textit{dummy} (clase más frecuente) y regresión logística con \texttt{class\_\allowbreak weight=\allowbreak "balanced"}.}
+
+\section{Modelos de árboles}
+\label{sec:dis-modelos-arboles}
+
+Se utilizan tres modelos basados en árboles, con la interfaz de scikit-learn: \glslink{random-forest}{\textit{random forest}} (\texttt{Random\allowbreak Forest\allowbreak Classifier}), XGBoost (\texttt{XGB\allowbreak Classifier}) y LightGBM (\texttt{LGBM\allowbreak Classifier}), estos dos últimos de tipo \glslink{gradient-boosting}{\textit{gradient boosting}}. Referencia: subsección~\ref{subsec:ml-tabular}.
+\\
+
+Las clases se tratan como independientes, aunque se codifican en orden (C = 0, B = 1 y A = 2), y se entrena un modelo para cada combinación de conjunto de variables, perfil y partición.
+\\
+
+En cuanto a la configuración base, los tres modelos se han creado con 300 árboles (\mbox{\texttt{n\_estimators=300}}), con todos los procesadores en paralelo disponibles en el entrenamiento (\texttt{n\_jobs=\allowbreak -1}), así como con el mismo \textit{seed} que en la división de datos. El resto de hiperparámetros se dejan con los valores por defecto de cada librería, puesto que de momento no se ha realizado la hiperparametrización.
+\\
+
+Como se había indicado en la subsección~\ref{subsec:ml-ordinal}, se realiza una ponderación de clases para tratar el desbalanceo de las clases minoritarias. Concretamente, en \textit{random forest} y LightGBM se usa el parámetro \texttt{class\_\allowbreak weight=\allowbreak "balanced"}, así como en la regresión logística.
+\\
+
+Sin embargo, en XGBoost no existe ese parámetro, por lo que se utiliza el método \mbox{\texttt{compute\_sample\_weight}} de scikit-learn pasando como argumento \texttt{sample\_weight} los pesos inversamente proporcionales a la frecuencia de cada clase, en los tramos de entrenamiento.
+\\
+
+\section{Matriz de experimentos}
+\label{sec:dis-matriz-experimentos}
+
+Se ha definido un \textbf{experimento} como la combinación del conjunto de variables, partición de los datos, perfil y modelo. Se realiza un experimento con todas las combinaciones posibles de estos valores.
+\\
+
+Los modelos de los experimentos son los modelos base descritos en las secciones anteriores, sin hiperparametrizar. La hiperparametrización está pendiente y se resolverá en la siguiente sección.
+\\
+
+En cada experimento, se realizan los siguientes pasos:
+
+\begin{enumerate}
+  \item Se entrena el modelo en los tramos de la partición de entrenamiento.
+  \item Se predice con el modelo en los tramos de la partición de test.
+  \item Se calculan las tres métricas seleccionadas (sección~\ref{sec:dis-metricas}).
+\end{enumerate}
+
+Una vez se terminan todos los experimentos con todas las combinaciones posibles, se genera la matriz de experimentos, descrita en la tabla~\ref{tab:matriz-experimentos}.
+\\
+
+\begin{table}[htbp]
+  \centering
+  \caption{Dimensiones de la matriz de experimentos.}
+  \label{tab:matriz-experimentos}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.1\textwidth}}
+    \toprule
+    \cabeceratabla Dimensión & Valores & Número \\
+    \midrule
+    Particiones & Dentro de cada ciudad (5 pliegues por ciudad), entre ciudades (una por sentido) y mezclada (5 pliegues). & 17 \\
+    Conjuntos de variables & Cartográfico y aéreo, calle, combinado y completo. & 4 \\
+    Perfiles & Global, funcional, sensorial y cognitivo. & 4 \\
+    Modelos & \textit{Dummy}, regresión logística, \textit{random forest}, XGBoost y LightGBM. & 5 \\
+    \midrule
+    Total de experimentos & $17 \times 4 \times 4 \times 5$ & 1360 \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{Elaboración propia.}
+\end{table}
+
+Se calcula, para cada estrategia de división, la media y la desviación típica de las métricas entre pliegues, para los casos de dentro de cada ciudad y mezclada entre ciudades. Sin embargo, no se realiza ese cálculo en la transferencia entre ciudades, puesto que no existen pliegues (sección~\ref{sec:dis-division}).
+\\
+
+Como el conjunto combinado tiene las mismas dimensiones que el de calle (sección~\ref{sec:dis-conjuntos-variables}), se obtienen resultados idénticos para los dos, aunque se han comprobado igualmente.
+\\
+
+Para poder realizar el contraste de hipótesis, se utiliza la F1 macro, con el valor más alto entre los modelos ejecutados para cada conjunto (el de mayor F1 macro medio en el caso de las particiones con pliegues). Siguiendo los criterios de refutación de la subsección~\ref{subsec:ml-conclusiones} (hipótesis en la tabla~\ref{tab:hipotesis}), se refutan las hipótesis cuando el valor de F1 macro es inferior al 80\,\% del modelo de comparación, que en H1, H2 y H5 es el del conjunto de datos completo y en H3 y H4 el indicado en la tabla~\ref{tab:comparaciones-hipotesis}.
+\\
+
+Elegir el mejor modelo de cada conjunto a partir de los datos de test puede estar inflado por el azar, puesto que hay pocos tramos de las clases minoritarias. Por ello, la mejor forma de comparar se decidirá más adelante.
+\\
+
+Las hipótesis H6 y H7 no se contrastan con la matriz de experimentos, por lo que no aparecen en la tabla~\ref{tab:comparaciones-hipotesis}.
+\\
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparaciones de la matriz para cada hipótesis.}
+  \label{tab:comparaciones-hipotesis}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.12\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \cabeceratabla Hipótesis & Se evalúa & Se compara con \\
+    \midrule
+    H1 & Conjunto cartográfico y aéreo. & Conjunto completo. \\
+    H2 & Conjunto de calle. & Conjunto completo. \\
+    H3 & Conjunto combinado. & El mejor de los conjuntos cartográfico y aéreo, y de calle. No se puede evaluar la hipótesis, por ser igual que el de calle. \\
+    H4 & Entrenamiento en una ciudad y test en la otra. & Validación dentro de la ciudad de destino. \\
+    H5 & Conjunto combinado, que no incluye ninguna dimensión in situ. & Conjunto completo. \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{Elaboración propia.}
+\end{table}
+
+\sintesisdecision{
+  \item \sintesisclave{Modelos de árboles} \textit{random forest}, XGBoost y LightGBM, con 300 árboles y con las clases balanceadas. Son modelos base, sin hiperparametrizar de momento.
+  \item \sintesisclave{Matriz de experimentos} 17 particiones, 4 conjuntos de variables, 4 perfiles y 5 modelos (1360 experimentos), comparados con la F1 macro del mejor modelo de cada conjunto. Se usan los modelos base, a la espera de la hiperparametrización de la siguiente sección.}
