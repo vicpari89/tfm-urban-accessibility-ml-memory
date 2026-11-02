@@ -905,4 +905,16 @@
 }
 \lstset{style=tfmcodigo}
 
+% Árbol de carpetas: nombres en monoespaciada y descripciones (entre @...@) en la misma fuente pero en gris.
+\newcommand{\descarbol}[1]{{\color{tinta-suave}#1}}
+\lstdefinestyle{tfmarbol}{
+  style=tfmcodigo,
+  basicstyle=\ttfamily\footnotesize\color{tinta},
+  numbers=none, xleftmargin=0pt, framexleftmargin=0pt, belowskip=0pt,
+  columns=fixed, breaklines=false, upquote=true, escapeinside={@}{@},
+}
+
+% Margen de estiramiento: evita que el código en línea (\mbox{\texttt{...}}) se salga del margen
+\emergencystretch=3em
+
 \endinput

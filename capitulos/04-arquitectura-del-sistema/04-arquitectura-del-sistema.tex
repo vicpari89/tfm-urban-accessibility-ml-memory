@@ -1,23 +1,24 @@
 \label{cap:arquitectura}
 
-Una vez analizado el estudio del arte, antes de pasar a la implementación, se debe tener claro cuál es el sistema en su conjunto. En este capítulo se analizan las fuentes de datos utilizadas, cuáles son los componentes del sistema y su relación entre ellos. Se indica el flujo que se realiza, desde la ingesta inicial de datos, el entrenamiento, o las conclusiones inferidas tras el contraste de hipótesis.
+Una vez analizado el estado del arte, antes de pasar a la implementación, se debe tener claro cuál es el sistema en su conjunto. En este capítulo se analizan las fuentes de datos utilizadas, cuáles son los componentes del sistema y su relación entre ellos. Se indica el flujo que se realiza, desde la ingesta inicial de datos hasta las conclusiones inferidas tras el contraste de hipótesis. La estructura del repositorio donde se implementan estos componentes se describe en la sección~\ref{sec:dis-implementacion}.
 \\
 
 
 \section{Visión general}
 \label{sec:arq-vision}
 
-Como en todo proyecto de ciencia de datos, el inicio de cualquier sistema está en los datos de las fuentes originales de Albacete y Algeciras, así como las geometrías de las calles. Tras la ingestión de los mismos, se necesita realizar un análisis exploratorio, y tras una limpieza y homogeneización se llega al conjunto unificado de los datos. Se representa en la figura \ref{fig:arquitectura-ingesta}.
+Como en todo proyecto de ciencia de datos, el inicio de cualquier sistema está en los datos de las fuentes originales de Albacete y Algeciras, así como las geometrías de las calles. Tras la ingesta de los mismos, se necesita realizar un análisis exploratorio, y tras una limpieza y homogeneización se llega al conjunto unificado de los datos. Se representa en la figura~\ref{fig:arquitectura-ingesta}.
 \\
 
 \begin{figure}[htbp]
   \centering
   \resizebox{\linewidth}{!}{\input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-ingesta.tex}}
-  \caption{Arquitectura del sistema (1/2): ingestión y unificación de los datos.}
+  \caption{Arquitectura del sistema (1/2): ingesta y unificación de los datos.}
   \label{fig:arquitectura-ingesta}
+  \fuente{Elaboración propia.}
 \end{figure}
 
-Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que consiste en la realización de los conjuntos de datos según el origen que se puedan obtener (aéreo o cartografía, a pie de calle o in situ), una división en entrenamiento y test de los datos, para realizar el entrenamiento, su posterior evaluación, y finalmente la interpretación de los resultados. Se representa en la figura \ref{fig:arquitectura-modelado}.
+Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que consiste en la realización de los conjuntos de datos según el origen que se puedan obtener (aéreo o cartografía, a pie de calle o \textit{in situ}), una división en entrenamiento y test de los datos, para realizar el entrenamiento, su posterior evaluación, y finalmente la interpretación de los resultados. Se representa en la figura~\ref{fig:arquitectura-modelado}.
 \\
 
 \begin{figure}[htbp]
@@ -25,9 +26,10 @@ Usando el conjunto unificado, se pasa a la fase de modelado y evaluación, que c
   \resizebox{\linewidth}{!}{\input{capitulos/04-arquitectura-del-sistema/figuras/DiagramaArquitectura-modelado.tex}}
   \caption{Arquitectura del sistema (2/2): modelado, evaluación y objetivos secundarios. Las líneas discontinuas corresponden a los objetivos secundarios.}
   \label{fig:arquitectura-modelado}
+  \fuente{Elaboración propia.}
 \end{figure}
 
-Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se extraen las variables útiles para el sistema, y se unifican al conjunto unificado de los datos. Los números en los diagramas representan los componentes del sistema numerados, que se detallan a continuación.
+Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se extraen las variables útiles para el sistema, y se unifican en el conjunto unificado de los datos. Los números en los diagramas representan los componentes del sistema numerados, que se detallan a continuación.
 \\
 
 \section{Ingesta y unificación de datos}
@@ -36,11 +38,11 @@ Como objetivo adicional, se incluyen las fuentes cartográficas públicas, se ex
 Esta sección recoge los datos con los que trabaja el sistema, su limpieza y unificación.
 \\
 
-\begin{fichacomponente}{1}{Ingestión y unificación}{}
+\begin{fichacomponente}{1}{Ingesta y unificación}{}
   Limpia los datos de cada ciudad, les añade la geometría de las calles y los unifica en un único conjunto.
-  \componenteflujo{\raggedright Datasets de Albacete y Algeciras, y geometrías de las calles y los barrios.}{\raggedright Conjunto unificado de datos (\texttt{streets\_unified.csv}).}
+  \componenteflujo{\raggedright \textit{Datasets} de Albacete y Algeciras, y geometrías de las calles y los barrios.}{\raggedright Conjunto unificado de datos (\texttt{streets\_unified.csv}).}
   \componentedecisiones{
-    \item Implementación: \texttt{urban\_accessibility\_ml/pipeline.py} (\texttt{DatasetPipeline}), con módulos para cada ciudad y uno común. Los \textit{notebooks} 0.01 a 0.06 se pueden ejecutar en orden como alternativa (\texttt{make unified}).
+    \item Implementación: \texttt{urban\_accessibility\_ml/data/pipeline.py} (\texttt{DatasetPipeline}), con módulos para cada ciudad y uno común. Los \textit{notebooks} 0.01 a 0.06 se pueden ejecutar en orden como alternativa (\texttt{make unified}).
   }
 \end{fichacomponente}
 
@@ -64,13 +66,18 @@ Esta sección recoge los datos con los que trabaja el sistema, su limpieza y uni
   \bottomrule
   \endlastfoot
   \filagrupo{4}{Objetivo principal}
-  Datos de Albacete & SQL & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  Datos de Albacete & \glslink{SQL}{SQL} & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   Datos de Algeciras & Excel & 506 calles con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
-  Geometrías de Albacete & GeoJSON & Trazado de las calles. & Visor~\parencite{visor_albacete_accesibilidad} \\
-  Geometrías de Algeciras & KML & Trazado de las calles. & Visor~\parencite{visor_algeciras_accesibilidad} y OSM~\parencite{openstreetmap} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+  Geometrías de Albacete & \gls{GeoJSON} & Trazado de las calles. & Visor~\parencite{visor_albacete_accesibilidad} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+  Geometrías de Algeciras & \gls{KML} & Trazado de las calles. & Visor~\parencite{visor_algeciras_accesibilidad} y \gls{OSM}~\parencite{openstreetmap} \\
   \filagrupo{4}{Objetivo secundario (OS2): cartografía pública}
-  PNOA-LiDAR & Nube de puntos & Elevación del terreno. & Centro de Descargas del CNIG \parencite{lidar_segunda_cobertura_cnig} \\
-  MDT02 & Ráster & Modelo digital del terreno (malla de 2 m). & Centro de Descargas del CNIG \parencite{mdt02_segunda_cobertura_cnig} \\
+  \gls{PNOA}-\gls{LiDAR} & Nube de puntos & Elevación del terreno. & Centro de descargas del \gls{CNIG}~\parencite{lidar_segunda_cobertura_cnig} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
+  MDT02 & Ráster & Modelo digital del terreno (malla de 2 m). & Centro de descargas del \gls{CNIG}~\parencite{mdt02_segunda_cobertura_cnig} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   Catastro & Vectorial & Fachadas y línea de acera. & Cartografía vectorial del Catastro \parencite{catastro_descarga_datos} \\
 \end{longtable}
 \endgroup
@@ -79,16 +86,16 @@ Esta sección recoge los datos con los que trabaja el sistema, su limpieza y uni
 En primer lugar, los archivos de datos de Albacete y Algeciras han sido facilitados por el tutor, y se han subido a Zenodo, para que estén accesibles para su descarga. En cuanto a los datos de geometrías, se ha tenido que acceder a los visores de accesibilidad de los municipios.
 \\
 
-En el caso de Albacete, el visor dispone de un apartado de descargas, en el que se puede exportar a formato GeoJSON, mientras que en el caso del visor de Algeciras, se puede exportar en formato KML. En ambos casos, solo se ha descargado la información relativa a las calles, pero no a los edificios.
+En el caso de Albacete, el visor dispone de un apartado de descargas, en el que se puede exportar a formato \gls{GeoJSON}, mientras que en el caso del visor de Algeciras, se puede exportar en formato \gls{KML}. En ambos casos, solo se ha descargado la información relativa a las calles, pero no a los edificios.
 \\
 
-Por último, se dispone de las fuentes de cartografía pública de los organismos estatales, a partir del centro de descargas del CNIG (PNOA-LiDAR y MDT02), así como de Catastro (cartografía vectorial).
+Por último, se dispone de las fuentes de cartografía pública de los organismos estatales, a partir del centro de descargas del \gls{CNIG} (\gls{PNOA}-\gls{LiDAR} y MDT02), así como de Catastro (cartografía vectorial).
 \\
 
 \subsection{Limpieza y transformación de datos}
 \label{subsec:arq-limpieza-transformacion}
 
-La limpieza y transformación de los conjuntos de datos se realiza durante el análisis exploratorio, en los \textit{notebooks} del repositorio. Después, se traslada a código, y el comando \texttt{make data} ejecuta todo el proceso (comprobación de los ficheros originales, limpieza, unificación y validación) con la clase \texttt{DatasetPipeline} (\texttt{urban\_accessibility\_ml/pipeline.py}). Con \texttt{make unified} se obtiene el mismo resultado ejecutando los \textit{notebooks} en orden.
+La limpieza y transformación de los conjuntos de datos se realiza durante el análisis exploratorio, en los \textit{notebooks} del repositorio. Después, se traslada a código, y el comando \texttt{make data} ejecuta todo el proceso (comprobación de los ficheros originales, limpieza, unificación y validación) con la clase \texttt{DatasetPipeline} (\texttt{urban\_accessibility\_ml/data/pipeline.py}). Con \texttt{make unified} se obtiene el mismo resultado ejecutando los \textit{notebooks} en orden.
 \\
 
 Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpetas del repositorio. En \texttt{data/raw/} se guardan los ficheros originales, que se dejan tal cual están al inicio. En \texttt{data/interim/} se guardan los tramos de calles limpios, junto con su geometría. Finalmente, en \texttt{data/processed/} se guarda el conjunto unificado que se usa en los modelos.
@@ -98,16 +105,16 @@ Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpet
 \label{subsubsec:arq-limpieza}
 
 \begin{itemize}
-  \item \textbf{Algeciras (\textit{notebook} 0.01):} de un dataset inicial de 610 filas, se eliminan las 104 filas de totales y de totales por barriada (quedan 506 calles) y 2 columnas vacías. Se convierten las puntuaciones y el presupuesto a numéricos, y se separan el nombre base de la calle y el número de tramo. Salida: calles limpias de Algeciras (CSV): \texttt{algeciras\_streets\_cleaned.csv}.
-  \item \textbf{Albacete (\textit{notebook} 0.02):} se carga el volcado SQL de 916 filas, se eliminan 34 columnas de fotografías y enlaces y la de municipio, se limitan a 100 cinco puntuaciones que lo superaban y se añaden el nombre base de la calle, el tramo y la zona. Salida: calles limpias de Albacete (CSV): \texttt{albacete\_streets\_cleaned.csv}.
+  \item \textbf{Algeciras (\textit{notebook} 0.01):} de un \textit{dataset} inicial de 610 filas, se eliminan las 104 filas de totales y de totales por barriada (quedan 506 calles) y 2 columnas vacías. Se convierten las puntuaciones y el presupuesto a numéricos, y se separan el nombre base de la calle y el número de tramo. Salida: calles limpias de Algeciras (\gls{CSV}): \texttt{algeciras\_streets\_cleaned.csv}.
+  \item \textbf{Albacete (\textit{notebook} 0.02):} se carga el volcado \gls{SQL} de 916 filas, se eliminan 34 columnas de fotografías y enlaces y la de municipio, se limitan a 100 cinco puntuaciones que lo superaban y se añaden el nombre base de la calle, el tramo y la zona. Salida: calles limpias de Albacete (\gls{CSV}): \texttt{albacete\_streets\_cleaned.csv}.
 \end{itemize}
 
 \subsubsection{Integración con geometrías}
 \label{subsubsec:arq-integracion-geometrias}
 
 \begin{itemize}
-  \item \textbf{Algeciras (\textit{notebook} 0.03):} se une el KML por la referencia de la calle (285 de 506 calles) y se completa el resto con OpenStreetMap. Salida: calles de Algeciras con geometría (GeoJSON): \texttt{algeciras\_streets\_geo.geojson}.
-  \item \textbf{Albacete (\textit{notebook} 0.04):} se une el GeoJSON por la referencia de la calle (se fusionan las 14 filas repetidas y 12 calles quedan sin geometría) y se asigna el barrio a partir de las letras de la zona y el catálogo de barrios de la ciudad. Salida: calles de Albacete con geometría (GeoJSON): \texttt{albacete\_streets\_geo.geojson}. Así como actualización de las calles limpias de Albacete.
+  \item \textbf{Algeciras (\textit{notebook} 0.03):} se une el \gls{KML} por la referencia de la calle (285 de 506 calles) y se completa el resto con \gls{OSM}. Salida: calles de Algeciras con geometría (\gls{GeoJSON}): \texttt{algeciras\_streets\_geo.geojson}.
+  \item \textbf{Albacete (\textit{notebook} 0.04):} se une el \gls{GeoJSON} por la referencia de la calle (se fusionan las 14 filas repetidas y 12 calles quedan sin geometría) y se asigna el barrio a partir de las letras de la zona y el catálogo de barrios de la ciudad. Salida: calles de Albacete con geometría (\gls{GeoJSON}): \texttt{albacete\_streets\_geo.geojson}. Así como actualización de las calles limpias de Albacete.
 \end{itemize}
 
 \noindent\textit{Zonas y barrios.} En Algeciras el barrio viene en los datos (la columna \texttt{Barriada}, con 44 barriadas). En Albacete no, pero las letras de la referencia identifican 27 zonas, y comparando manualmente sus iniciales con el mapa general de barrios del ayuntamiento \parencite{cartoteca_barrios_albacete_2016} se han asignado 25 barrios. Las zonas X e Y no se han podido relacionar con ningún barrio y conservan su letra.
@@ -116,7 +123,7 @@ Los conjuntos de datos pasan por tres etapas, que se corresponden con las carpet
 \label{subsubsec:arq-normalizacion-unificacion}
 
 \begin{itemize}
-  \item \textbf{Comparación y unificación (\textit{notebook} 0.05):} se normalizan nombres, escalas, tipos de diversidad y categorías y se calculan las clases. Salida: conjunto unificado, y perfiles de Albacete (CSV): \texttt{streets\_unified.csv} y \texttt{albacete\_profiles.csv}.
+  \item \textbf{Comparación y unificación (\textit{notebook} 0.05):} se normalizan nombres, escalas, tipos de diversidad y categorías y se calculan las clases. Salida: conjunto unificado, y perfiles de Albacete (\gls{CSV}): \texttt{streets\_unified.csv} y \texttt{albacete\_profiles.csv}.
 \end{itemize}
 
 \subsection{Conjunto unificado de datos}
@@ -198,20 +205,20 @@ A continuación se detallan las diferentes fases involucradas en la preparación
 \\
 
 \begin{fichacomponente}{2}{Conjuntos de variables}{}
-  Se organizan los conjuntos de variables de entrada a partir del origen del que se podrían obtener las dimensiones: de cartografía pública e imágenes aéreas, de imágenes a pie de calle o de datos capturados in situ.
+  Se organizan los conjuntos de variables de entrada a partir del origen del que se podrían obtener las dimensiones: de cartografía pública e imágenes aéreas, de imágenes a pie de calle o de datos capturados \textit{in situ}.
   \componenteflujo{Conjunto unificado (\texttt{streets\_unified.csv}) y estimación de viabilidad por dimensión (tabla~\ref{tab:viabilidad}).}{Un conjunto por origen: cartográfico y aéreo, a pie de calle, la combinación de ambos y el completo.}
   \componentedecisiones{
-    \item Implementación: \texttt{urban\_accessibility\_ml/features.py}, con la correspondencia entre dimensiones y origen en \texttt{config.py}.
+    \item Implementación: \texttt{urban\_accessibility\_ml/preprocessing/features.py}, con la correspondencia entre dimensiones y origen en \texttt{config.py}.
     \item El transporte queda fuera, porque no está en el conjunto unificado ni en la estimación de viabilidad, por lo que no tiene origen asignado.
     \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-fiabilidad} y \ref{subsec:ml-conclusiones}.
   }
 \end{fichacomponente}
 
 \begin{fichacomponente}{3}{División agrupada}{}
-  Se dividen los tramos en entrenamiento y test, sin separar los tramos de una misma calle o barrio. En esta fase, también se definen las estrategias de validación.
-  \componenteflujo{Conjuntos de variables, con el nombre base de la calle (\texttt{nombre\_calle\_base}) y el barrio de cada tramo (\texttt{barrio}).}{Particiones de entrenamiento y test para cada estrategia de validación.}
+  Se dividen los tramos en entrenamiento y test, sin separar los tramos de una misma calle. En esta fase, también se definen las estrategias de validación.
+  \componenteflujo{Conjuntos de variables, con el nombre base de la calle de cada tramo (\texttt{nombre\_calle\_base}).}{Particiones de entrenamiento y test para cada estrategia de validación.}
   \componentedecisiones{
-    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/split.py}.
+    \item Implementación: \texttt{urban\_accessibility\_ml/preprocessing/split.py}.
     \item Justificación de las decisiones: subsección~\ref{subsec:validacion-conclusiones}.
   }
 \end{fichacomponente}
@@ -220,7 +227,7 @@ A continuación se detallan las diferentes fases involucradas en la preparación
   Se entrenan los modelos de clasificación con cada conjunto de variables, con un modelo para cada perfil de diversidad (funcional, sensorial y cognitiva).
   \componenteflujo{Particiones de entrenamiento de la división agrupada.}{Modelos entrenados por conjunto de variables, perfil y estrategia de validación.}
   \componentedecisiones{
-    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/train.py}. Los modelos se guardan en \texttt{models/}.
+    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/train.py}.
     \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-tabular}, \ref{subsec:ml-ordinal} y \ref{subsec:perfiles-conclusiones}.
   }
 \end{fichacomponente}
@@ -251,7 +258,7 @@ Los componentes secundarios son objetivos de valor añadido, por lo que solo se 
 
 \begin{fichasecundaria}{OS1}{Visor de predicciones}{}
   Muestra en un mapa interactivo las predicciones de accesibilidad de los modelos entrenados.
-  \componenteflujo{Predicciones por tramo y geometrías del callejero.}{Visor GIS con las predicciones sobre el mapa.}
+  \componenteflujo{Predicciones por tramo y geometrías del callejero.}{Visor \gls{GIS} con las predicciones sobre el mapa.}
 \end{fichasecundaria}
 
 \begin{fichasecundaria}{OS2}{Variables cartográficas}{}
