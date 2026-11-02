@@ -12,7 +12,7 @@ La \gls{variable-objetivo} del modelo es la clase de accesibilidad, una variable
 Existen cuatro variables objetivo, una por cada perfil de diversidad (funcional, sensorial y cognitivo) y una global, en el conjunto unificado de datos (tabla~\ref{tab:columnas-unificadas}): \texttt{clase\_total}, \texttt{clase\_funcional}, \texttt{clase\_sensorial} y \texttt{clase\_cognitiva}.
 \\
 
-En cuanto a las variables de entrada, se van a utilizar las 28 puntuaciones por dimensión, \texttt{puntuacion\_*\_*}, una por cada combinación de las siete dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación y mobiliario) y las cuatro puntuaciones: la global y las de los tres perfiles de diversidad (funcional, sensorial y cognitivo). Por ejemplo, \texttt{puntuacion\_pendiente\_global} o \texttt{puntuacion\_cruces\_sensorial}.
+En cuanto a las variables de entrada, se van a utilizar las 28 puntuaciones por dimensión, \texttt{puntuacion\_*\_*}, una por cada combinación de las 7 dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación y mobiliario) y las 4 puntuaciones: la global y las de los 3 perfiles de diversidad (funcional, sensorial y cognitivo). Por ejemplo, \texttt{puntuacion\_pendiente\_global} o \texttt{puntuacion\_cruces\_sensorial}.
 \\
 
 Quedan fuera las cuatro puntuaciones totales (\texttt{puntuacion\_\allowbreak total}, \texttt{puntuacion\_\allowbreak total\_\allowbreak funcional}, \texttt{puntuacion\_\allowbreak total\_\allowbreak sensorial} y \texttt{puntuacion\_\allowbreak total\_\allowbreak cognitiva}), por provocar \gls{fuga-informacion}: la clase se calcula directamente a partir de ellas.
@@ -48,13 +48,14 @@ Para evaluar los modelos se va a utilizar \gls{validacion-cruzada}: el conjunto 
 El conjunto de datos es bastante desbalanceado, y la clase A es muy minoritaria (24 tramos en Albacete y 28 en Algeciras). Es necesario que los pliegues se hagan teniendo en cuenta esto, para evitar que existan algunos con muy pocos tramos de clase A (o ninguno), tanto en entrenamiento como en test.
 \\
 
-Como se busca tener pliegues con una proporción parecida de tramos de clase A, B y C a la del conjunto de datos completo, se ha decidido utilizar \texttt{StratifiedGroupKFold} de scikit-learn. Permite realizar la agrupación por calle, y además reparte las clases de manera proporcional (\gls{estratificacion}), en base a la \texttt{clase\_total}. Se estratifica siempre con esta clase, también para los modelos de cada perfil de diversidad, para que todos los modelos usen los mismos pliegues y la comparación entre ellos sea justa. Se ha establecido una \gls{semilla} (\textit{seed}) fija con valor 42, para poder reproducir la división.
+Como se busca tener pliegues con una proporción parecida de tramos de clase A, B y C a la del conjunto de datos completo, se ha decidido utilizar \texttt{StratifiedGroupKFold} de scikit-learn \parencite{sklearn_metrics}. Permite realizar la agrupación por calle, y además reparte las clases de manera proporcional (\gls{estratificacion}), en base a la \texttt{clase\_total}. Se estratifica siempre con esta clase, también para los modelos de cada perfil de diversidad, para que todos los modelos usen los mismos pliegues y la comparación entre ellos sea justa. Se ha establecido una \gls{semilla} (\textit{seed}) fija con valor 42, para poder reproducir la división.
 \\
 
 La estratificación es aproximada, porque las calles no se pueden partir: con la agrupación por calle, algunos pliegues de test tienen solo 2 tramos de clase A (en ambas ciudades). Por ello, se informará de la variabilidad de las métricas entre pliegues, y no solo de su media.
 \\
 
 Se contemplan tres estrategias de división (tabla~\ref{tab:estrategias-division}). En la estrategia entre ciudades no hay pliegues, sino una única partición por sentido (de Albacete a Algeciras, y viceversa).
+\\
 
 \begin{table}[htbp]
   \centering
@@ -122,9 +123,9 @@ Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; par
 Se utilizan tres métricas, todas de scikit-learn \parencite{sklearn_metrics}.
 \\
 
-La \glslink{f1-macro}{F1 macro} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K=3$ es el número de clases (C, B y A) y $F1_c$ es la F1 de la clase $c$:
+La \glslink{f1-macro}{F1 macro} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K = 3$ es el número de clases (C, B y A) y $\mathrm{F1}_c$ es la F1 de la clase $c$:
 \begin{equation}
-  \text{F1 macro} = \frac{1}{K} \sum_{c=1}^{K} F1_c
+  \text{F1 macro} = \frac{1}{K} \sum_{c=1}^{K} \mathrm{F1}_c
   \label{eq:f1-macro}
 \end{equation}
 
@@ -161,7 +162,7 @@ Se utilizan tres modelos basados en árboles, con la interfaz de scikit-learn: \
 Las clases se tratan como independientes, aunque se codifican en orden (C = 0, B = 1 y A = 2), y se entrena un modelo para cada combinación de conjunto de variables, perfil y partición.
 \\
 
-En cuanto a la configuración base, los tres modelos se han creado con 300 árboles (\mbox{\texttt{n\_estimators=300}}), con todos los procesadores en paralelo disponibles en el entrenamiento (\texttt{n\_jobs=\allowbreak -1}), así como con el mismo \textit{seed} que en la división de datos. El resto de hiperparámetros se dejan con los valores por defecto de cada librería, puesto que de momento no se ha realizado la hiperparametrización.
+En cuanto a la configuración base, los tres modelos se han creado con 300 árboles (\mbox{\texttt{n\_estimators=300}}), con todos los procesadores disponibles en paralelo durante el entrenamiento (\texttt{n\_jobs=\allowbreak -1}), así como con el mismo \textit{seed} que en la división de datos. El resto de hiperparámetros se dejan con los valores por defecto de cada librería, puesto que de momento no se ha realizado la hiperparametrización.
 \\
 
 Como se había indicado en la subsección~\ref{subsec:ml-ordinal}, se realiza una ponderación de clases para tratar el desbalanceo de las clases minoritarias. Concretamente, en \textit{random forest} y LightGBM se usa el parámetro \texttt{class\_\allowbreak weight=\allowbreak "balanced"}, así como en la regresión logística.
@@ -222,7 +223,7 @@ Como el conjunto combinado tiene las mismas dimensiones que el de calle (secció
 Para poder realizar el contraste de hipótesis, se utiliza la F1 macro, con el valor más alto entre los modelos ejecutados para cada conjunto (el de mayor F1 macro medio en el caso de las particiones con pliegues). Siguiendo los criterios de refutación de la subsección~\ref{subsec:ml-conclusiones} (hipótesis en la tabla~\ref{tab:hipotesis}), se refutan las hipótesis cuando el valor de F1 macro es inferior al 80\,\% del modelo de comparación, que en H1, H2 y H5 es el del conjunto de datos completo y en H3 y H4 el indicado en la tabla~\ref{tab:comparaciones-hipotesis}.
 \\
 
-Elegir el mejor modelo de cada conjunto a partir de los datos de test puede estar inflado por el azar, puesto que hay pocos tramos de las clases minoritarias. Por ello, la mejor forma de comparar se decidirá más adelante.
+El resultado de elegir el mejor modelo de cada conjunto a partir de los datos de test puede estar inflado por el azar, puesto que hay pocos tramos de las clases minoritarias. Por ello, la mejor forma de comparar se decidirá más adelante.
 \\
 
 Las hipótesis H6 y H7 no se contrastan con la matriz de experimentos, por lo que no aparecen en la tabla~\ref{tab:comparaciones-hipotesis}.
@@ -245,7 +246,7 @@ Las hipótesis H6 y H7 no se contrastan con la matriz de experimentos, por lo qu
     \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     H4 & Entrenamiento en una ciudad y test en la otra. & Validación dentro de la ciudad de destino. \\
     \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
-    H5 & Conjunto combinado, que no incluye ninguna dimensión in situ. & Conjunto completo. \\
+    H5 & Conjunto combinado, que no incluye ninguna dimensión \textit{in situ}. & Conjunto completo. \\
     \bottomrule
   \end{tabularx}
   \fuente{Elaboración propia.}
@@ -263,13 +264,13 @@ Nota: pendiente de realizar.
 \section{Implementación y reproducibilidad}
 \label{sec:dis-implementacion}
 
-Se ha utilizado la plantilla Cookiecutter Data Science v2 \parencite{drivendata_2024} para estructurar el proyecto de una manera estándar en el mundo de la ciencia de datos, separando los datos, el código, los \textit{notebooks} y los informes.
+Se ha utilizado la plantilla Cookiecutter Data Science, versión 2 \parencite{drivendata_2024} para estructurar el proyecto de una manera estándar en el mundo de la ciencia de datos, separando los datos, el código, los \textit{notebooks} y los informes.
 \\
 
 El entorno se gestiona con uv y el fichero \texttt{pyproject.toml}, el formato y el estilo se comprueban con ruff, las pruebas se escriben con pytest y la documentación se genera con mkdocs.
 \\
 
-La estructura del repositorio se muestra en la figura~\ref{fig:estructura-repositorio}. Las carpetas de datos y los \textit{notebooks} de limpieza ya se han descrito en la subsección~\ref{subsec:arq-limpieza-transformacion}, por lo que no se repiten aquí. No debe confundirse la carpeta \texttt{data/} de la raíz, con los ficheros de datos (sin versionar), con \texttt{urban\_accessibility\_ml/data/}, que contiene el código del flujo de datos.
+La estructura del repositorio se muestra en la figura~\ref{fig:estructura-repositorio}. Las carpetas de datos y los \textit{notebooks} de limpieza ya se han descrito en la subsección~\ref{subsec:arq-limpieza-transformacion}, por lo que no se repiten aquí. No debe confundirse la carpeta \texttt{data/} de la raíz, que contiene los ficheros de datos (sin versionar), con \texttt{urban\_accessibility\_ml/data/}, que contiene el código del flujo de datos.
 \\
 
 \begin{figure}[htbp]
