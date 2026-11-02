@@ -77,3 +77,66 @@ Se contemplan tres estrategias de división (tabla~\ref{tab:estrategias-division
   \item \sintesisclave{Agrupación} por calle (\texttt{nombre\_calle\_base}), no por barrio.
   \item \sintesisclave{Validación} cruzada con \texttt{StratifiedGroupKFold}, 5 pliegues, estratificada con \texttt{clase\_total} y semilla 42.
   \item \sintesisclave{Estrategias} dentro de cada ciudad, entre ciudades y mezclada.}
+
+\section{Conjuntos de variables}
+\label{sec:dis-conjuntos-variables}
+
+Se han organizado los conjuntos de variables según el origen del que se podrían obtener las dimensiones. Se ha seleccionado el límite del 50\,\% para el porcentaje de requisitos mínimos que se puedan obtener de una fuente concreta en una dimensión específica, y se ha utilizado la estimación de viabilidad de la tabla~\ref{tab:viabilidad}.
+\\
+
+Se han definido cuatro conjuntos diferentes: cartográfico y aéreo, calle, combinado y completo. El cartográfico y aéreo reúne las dimensiones obtenibles de cartografía pública o de imágenes aéreas; el de calle, las que se pueden obtener a partir de imágenes a pie de calle; el combinado, las que se obtienen de cualquiera de las tres fuentes de imagen o cartografía; y el completo incluye todas las dimensiones. La tabla~\ref{tab:conjuntos-variables} indica qué dimensiones pertenecen a cada conjunto.
+\\
+
+\begin{table}[htbp]
+  \centering
+  \caption{Dimensiones incluidas en cada conjunto de variables.}
+  \label{tab:conjuntos-variables}
+  \small
+  \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c c c c}
+    \toprule
+    \cabeceratabla Dimensión & Cartográfico y aéreo & Calle & Combinado & Completo \\
+    \midrule
+    Pendiente    & No & No & No & Sí \\
+    Anchura      & No & Sí & Sí & Sí \\
+    Pavimento    & No & No & No & Sí \\
+    Cruces       & Sí & Sí & Sí & Sí \\
+    Señalización & No & Sí & Sí & Sí \\
+    Iluminación  & No & No & No & Sí \\
+    Mobiliario   & Sí & Sí & Sí & Sí \\
+    \bottomrule
+  \end{tabularx}
+  \fuente{Elaboración propia.}
+\end{table}
+
+Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; para calle y combinado, anchura, cruces, señalización y mobiliario. Como nota, el conjunto combinado de dimensiones combinado coincide exactamente con el de calle, por lo que no se podría contastar la hipótesis H3, debido a que todas las dimensiones que se pueden obtener con el de calle.
+\\
+
+\section{Métricas}
+\label{sec:dis-metricas}
+
+Se utilizan tres métricas, todas de \textit{scikit-learn} \parencite{sklearn_metrics}.
+\\
+
+La \textbf{F1 macro} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K=3$ es el número de clases (C, B y A) y $F1_c$ es la F1 de la clase $c$:
+\begin{equation}
+  \text{F1 macro} = \frac{1}{K} \sum_{c=1}^{K} F1_c
+  \label{eq:f1-macro}
+\end{equation}
+
+La \textbf{exactitud balanceada} (\textit{balanced accuracy}; \texttt{balanced\_\allowbreak accuracy\_\allowbreak score}) es la media de la proporción de tramos que se acierta en cada clase, de manera que cada clase cuenta igual, sea cual sea su tamaño.
+\\
+
+La \textbf{kappa ponderada cuadrática} (\textit{quadratic weighted kappa}; \texttt{cohen\_\allowbreak kappa\_\allowbreak score} con \texttt{weights=\allowbreak "quadratic"}) compara la clase real con la predicha, sin tener en cuenta los aciertos por azar \parencite{cohen1968}. Los errores que predicen una clase más lejana en cuanto al orden penalizan más, es decir, confundir A con C penaliza más que confundir A con B.
+\\
+
+La elección de estas métricas está justificada en la subsección~\ref{subsec:ml-ordinal}. Por eso no se utiliza la exactitud (\textit{accuracy}).
+\\
+
+\section{Modelos de referencia}
+\label{sec:dis-modelos-referencia}
+
+Se usan dos modelos de referencia. El modelo \textit{dummy} (\texttt{DummyClassifier} de \textit{scikit-learn}, con \texttt{strategy=\allowbreak "most\_\allowbreak frequent"}) que predice siempre la clase más frecuente ignorando las variables de entrada, por lo que es el modelo mínimo: cualquier otro modelo debería mejorarlo.
+\\
+
+Por otro lado, la regresión logística (\texttt{LogisticRegression} de \textit{scikit-learn}, con \texttt{class\_\allowbreak weight=\allowbreak "balanced"} y \texttt{max\_\allowbreak iter=\allowbreak 1000}), que asigna a cada clase un peso inversamente proporcional a su frecuencia, de esta manera los errores en clases minoritarias penalizan más durante el entrenamiento. Es la referencia seleccionada por el autor como base.
+\\
