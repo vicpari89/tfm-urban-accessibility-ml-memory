@@ -15,7 +15,7 @@ Existen cuatro variables objetivo, una por cada perfil de diversidad (funcional,
 En cuanto a las variables de entrada, se van a utilizar las 28 puntuaciones por dimensión, \texttt{puntuacion\_*\_*}, una por cada combinación de las siete dimensiones (pendiente, anchura, pavimento, cruces, señalización, iluminación y mobiliario) y las cuatro puntuaciones: la global y las de los tres perfiles de diversidad (funcional, sensorial y cognitivo). Por ejemplo, \texttt{puntuacion\_pendiente\_global} o \texttt{puntuacion\_cruces\_sensorial}.
 \\
 
-Quedan fuera las cuatro puntuaciones totales (\texttt{puntuacion\_total}, \texttt{puntuacion\_total\_funcional}, \texttt{puntuacion\_total\_sensorial} y \texttt{puntuacion\_total\_cognitiva}), por provocar \gls{fuga-informacion}: la clase se calcula directamente a partir de ellas.
+Quedan fuera las cuatro puntuaciones totales (\texttt{puntuacion\_\allowbreak total}, \texttt{puntuacion\_\allowbreak total\_\allowbreak funcional}, \texttt{puntuacion\_\allowbreak total\_\allowbreak sensorial} y \texttt{puntuacion\_\allowbreak total\_\allowbreak cognitiva}), por provocar \gls{fuga-informacion}: la clase se calcula directamente a partir de ellas.
 \\
 
 \sintesisdecision{
@@ -66,7 +66,9 @@ Se contemplan tres estrategias de división (tabla~\ref{tab:estrategias-division
     \cabeceratabla Estrategia & Entrenamiento & Test & Qué contrasta \\
     \midrule
     Dentro de cada ciudad & 4 pliegues de la misma ciudad (Albacete o Algeciras). & 1 pliegue de esa ciudad. & Rendimiento en una ciudad. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
     Entre ciudades & Todos los tramos de una ciudad. & Todos los tramos de la otra ciudad (sin pliegues). & Transferibilidad entre ciudades (H4). \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
     Mezclada & 4 pliegues con las dos ciudades juntas. & 1 pliegue con las dos ciudades. & Rendimiento con ambas ciudades. \\
     \bottomrule
   \end{tabularx}
@@ -75,7 +77,7 @@ Se contemplan tres estrategias de división (tabla~\ref{tab:estrategias-division
 
 \sintesisdecision{
   \item \sintesisclave{Agrupación} por calle (\texttt{nombre\_calle\_base}), no por barrio.
-  \item \sintesisclave{Validación} cruzada con \texttt{StratifiedGroupKFold}, 5 pliegues, estratificada con \texttt{clase\_total} y semilla 42.
+  \item \sintesisclave{Validación} cruzada con \texttt{StratifiedGroupKFold}, 5 pliegues, estratificada con \texttt{clase\_total} y \textit{seed} 42.
   \item \sintesisclave{Estrategias} dentro de cada ciudad, entre ciudades y mezclada.}
 
 \section{Conjuntos de variables}
@@ -198,8 +200,11 @@ Una vez se terminan todos los experimentos con todas las combinaciones posibles,
     \cabeceratabla Dimensión & Valores & Número \\
     \midrule
     Particiones & Dentro de cada ciudad (5 pliegues por ciudad), entre ciudades (una por sentido) y mezclada (5 pliegues). & 17 \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     Conjuntos de variables & Cartográfico y aéreo, calle, combinado y completo. & 4 \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     Perfiles & Global, funcional, sensorial y cognitivo. & 4 \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     Modelos & \textit{Dummy}, regresión logística, \textit{random forest}, XGBoost y LightGBM. & 5 \\
     \midrule
     Total de experimentos & $17 \times 4 \times 4 \times 5$ & 1360 \\
@@ -233,9 +238,13 @@ Las hipótesis H6 y H7 no se contrastan con la matriz de experimentos, por lo qu
     \cabeceratabla Hipótesis & Se evalúa & Se compara con \\
     \midrule
     H1 & Conjunto cartográfico y aéreo. & Conjunto completo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     H2 & Conjunto de calle. & Conjunto completo. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     H3 & Conjunto combinado. & El mejor de los conjuntos cartográfico y aéreo, y de calle. No se puede evaluar la hipótesis, por ser igual que el de calle. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     H4 & Entrenamiento en una ciudad y test en la otra. & Validación dentro de la ciudad de destino. \\
+    \arrayrulecolor{black!25}\cmidrule(lr){1-3}\arrayrulecolor{black}
     H5 & Conjunto combinado, que no incluye ninguna dimensión in situ. & Conjunto completo. \\
     \bottomrule
   \end{tabularx}
@@ -245,3 +254,70 @@ Las hipótesis H6 y H7 no se contrastan con la matriz de experimentos, por lo qu
 \sintesisdecision{
   \item \sintesisclave{Modelos de árboles} \textit{random forest}, XGBoost y LightGBM, con 300 árboles y con las clases balanceadas. Son modelos base, sin hiperparametrizar de momento.
   \item \sintesisclave{Matriz de experimentos} 17 particiones, 4 conjuntos de variables, 4 perfiles y 5 modelos (1360 experimentos), comparados con la F1 macro del mejor modelo de cada conjunto. Se usan los modelos base, a la espera de la hiperparametrización de la siguiente sección.}
+
+\section{Hiperparametrización}
+\label{sec:dis-hiperparametrizacion}
+
+Nota: pendiente de realizar.
+
+\section{Implementación y reproducibilidad}
+\label{sec:dis-implementacion}
+
+Se ha utilizado la plantilla Cookiecutter Data Science v2 \parencite{drivendata_2024} para estructurar el proyecto de una manera estándar en el mundo de la ciencia de datos, separando los datos, el código, los \textit{notebooks} y los informes.
+\\
+
+El entorno se gestiona con uv y el fichero \texttt{pyproject.toml}, el formato y el estilo se comprueban con ruff, las pruebas se escriben con pytest y la documentación se genera con mkdocs.
+\\
+
+La estructura del repositorio se muestra en la figura~\ref{fig:estructura-repositorio}. Las carpetas de datos y los \textit{notebooks} de limpieza ya se han descrito en la subsección~\ref{subsec:arq-limpieza-transformacion}, por lo que no se repiten aquí. No debe confundirse la carpeta \texttt{data/} de la raíz, con los ficheros de datos (sin versionar), con \texttt{urban\_accessibility\_ml/data/}, que contiene el código del flujo de datos.
+\\
+
+\begin{figure}[htbp]
+\begin{lstlisting}[style=tfmarbol]
+urban_accessibility_ml/
+|-- config.py          @\descarbol{Constantes: seed, dimensiones, perfiles y umbrales}@
+|-- data/              @\descarbol{Flujo de los datos (ingesta, limpieza y}@
+                       @\descarbol{unificación)}@
+|-- preprocessing/
+|   |-- features.py    @\descarbol{Conjuntos de variables}@
+|   `-- split.py       @\descarbol{Particiones de entrenamiento y test}@
+|-- modeling/
+|   |-- models/        @\descarbol{Un módulo por modelo (dummy, regresión logística,}@
+                       @\descarbol{random forest, XGBoost con y sin pesos y LightGBM),}@
+                       @\descarbol{con las funciones que los construyen}@
+|   |-- train.py       @\descarbol{Entrenamiento y predicción de un experimento}@
+|   |-- experiments.py @\descarbol{Ejecución de todos los experimentos y guardado}@
+                       @\descarbol{de los resultados}@
+|   `-- evaluate.py    @\descarbol{Métricas utilizadas}@
+`-- plotting/          @\descarbol{Estilos y código de los gráficos}@
+data/                  @\descarbol{Ficheros de datos, sin versionar (raw/, interim/ y}@
+                       @\descarbol{processed/)}@
+docs/                  @\descarbol{Documentación del proyecto}@
+notebooks/             @\descarbol{Del análisis exploratorio a la matriz de}@
+                       @\descarbol{experimentos}@
+tests/                 @\descarbol{Misma estructura que el código}@
+                       @\descarbol{(data, preprocessing, modeling)}@
+reports/               @\descarbol{Resultados y gráficos}@
+scripts/               @\descarbol{Descarga de datos desde Zenodo}@
+\end{lstlisting}
+\caption{Estructura del repositorio.}\label{fig:estructura-repositorio}
+\fuente{Elaboración propia.}
+\end{figure}
+
+Para que los resultados se puedan reproducir, se usa una \textit{seed} fija (42) tanto en la división de los datos como en los modelos. Además, el código de datos, preprocesado y modelado tiene pruebas unitarias.
+\\
+
+Las órdenes principales se lanzan con \texttt{make}:
+
+\begin{itemize}
+  \item \texttt{make data}: construye el conjunto unificado.
+  \item \texttt{make test}: ejecuta las pruebas.
+  \item \texttt{make lint}: comprueba el formato y el estilo.
+  \item \texttt{make docs}: construye la documentación.
+\end{itemize}
+
+Los datos originales están alojados en Zenodo y se descargan con el \textit{script} \texttt{scripts/\allowbreak download\_\allowbreak raw.py}. Por último, los \textit{notebooks} están pensados para ejecutarse en orden, y se publican como una página web con GitHub Pages mediante el flujo \texttt{docs.yml}.
+\\
+
+\sintesisdecision{
+  \item \sintesisclave{Implementación} estructura Cookiecutter Data Science, entorno con uv, pruebas con pytest y \textit{seed} fija (42).}

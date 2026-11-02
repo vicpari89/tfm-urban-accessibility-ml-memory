@@ -1,6 +1,6 @@
 \label{cap:arquitectura}
 
-Una vez analizado el estado del arte, antes de pasar a la implementación, se debe tener claro cuál es el sistema en su conjunto. En este capítulo se analizan las fuentes de datos utilizadas, cuáles son los componentes del sistema y su relación entre ellos. Se indica el flujo que se realiza, desde la ingesta inicial de datos hasta las conclusiones inferidas tras el contraste de hipótesis.
+Una vez analizado el estado del arte, antes de pasar a la implementación, se debe tener claro cuál es el sistema en su conjunto. En este capítulo se analizan las fuentes de datos utilizadas, cuáles son los componentes del sistema y su relación entre ellos. Se indica el flujo que se realiza, desde la ingesta inicial de datos hasta las conclusiones inferidas tras el contraste de hipótesis. La estructura del repositorio donde se implementan estos componentes se describe en la sección~\ref{sec:dis-implementacion}.
 \\
 
 
@@ -66,13 +66,18 @@ Esta sección recoge los datos con los que trabaja el sistema, su limpieza y uni
   \bottomrule
   \endlastfoot
   \filagrupo{4}{Objetivo principal}
-  Datos de Albacete & \gls{SQL} & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  Datos de Albacete & \glslink{SQL}{SQL} & 916 tramos de calle con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   Datos de Algeciras & Excel & 506 calles con sus puntuaciones, clase y propuesta de actuación. & Tutor \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   Geometrías de Albacete & \gls{GeoJSON} & Trazado de las calles. & Visor~\parencite{visor_albacete_accesibilidad} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   Geometrías de Algeciras & \gls{KML} & Trazado de las calles. & Visor~\parencite{visor_algeciras_accesibilidad} y \gls{OSM}~\parencite{openstreetmap} \\
   \filagrupo{4}{Objetivo secundario (OS2): cartografía pública}
   \gls{PNOA}-\gls{LiDAR} & Nube de puntos & Elevación del terreno. & Centro de descargas del \gls{CNIG}~\parencite{lidar_segunda_cobertura_cnig} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   MDT02 & Ráster & Modelo digital del terreno (malla de 2 m). & Centro de descargas del \gls{CNIG}~\parencite{mdt02_segunda_cobertura_cnig} \\
+  \arrayrulecolor{black!25}\cmidrule(lr){1-4}\arrayrulecolor{black}
   Catastro & Vectorial & Fachadas y línea de acera. & Cartografía vectorial del Catastro \parencite{catastro_descarga_datos} \\
 \end{longtable}
 \endgroup
@@ -222,7 +227,7 @@ A continuación se detallan las diferentes fases involucradas en la preparación
   Se entrenan los modelos de clasificación con cada conjunto de variables, con un modelo para cada perfil de diversidad (funcional, sensorial y cognitiva).
   \componenteflujo{Particiones de entrenamiento de la división agrupada.}{Modelos entrenados por conjunto de variables, perfil y estrategia de validación.}
   \componentedecisiones{
-    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/train.py}. Los modelos se guardan en \texttt{models/}.
+    \item Implementación: \texttt{urban\_accessibility\_ml/modeling/train.py}.
     \item Justificación de las decisiones: subsecciones~\ref{subsec:ml-tabular}, \ref{subsec:ml-ordinal} y \ref{subsec:perfiles-conclusiones}.
   }
 \end{fichacomponente}
