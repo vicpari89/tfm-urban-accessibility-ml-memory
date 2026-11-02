@@ -48,7 +48,7 @@ Para evaluar los modelos se va a utilizar \gls{validacion-cruzada}: el conjunto 
 El conjunto de datos es bastante desbalanceado, y la clase A es muy minoritaria (24 tramos en Albacete y 28 en Algeciras). Es necesario que los pliegues se hagan teniendo en cuenta esto, para evitar que existan algunos con muy pocos tramos de clase A (o ninguno), tanto en entrenamiento como en test.
 \\
 
-Como se busca tener pliegues con una proporción parecida de tramos de clase A, B y C a la del conjunto de datos completo, se ha decidido utilizar \texttt{StratifiedGroupKFold} de \textit{scikit-learn}. Permite realizar la agrupación por calle, y además reparte las clases de manera proporcional (\gls{estratificacion}), en base a la \texttt{clase\_total}. Se estratifica siempre con esta clase, también para los modelos de cada perfil de diversidad, para que todos los modelos usen los mismos pliegues y la comparación entre ellos sea justa. Se ha establecido una \gls{semilla} (\textit{seed}) fija con valor 42, para poder reproducir la división.
+Como se busca tener pliegues con una proporción parecida de tramos de clase A, B y C a la del conjunto de datos completo, se ha decidido utilizar \texttt{StratifiedGroupKFold} de scikit-learn. Permite realizar la agrupación por calle, y además reparte las clases de manera proporcional (\gls{estratificacion}), en base a la \texttt{clase\_total}. Se estratifica siempre con esta clase, también para los modelos de cada perfil de diversidad, para que todos los modelos usen los mismos pliegues y la comparación entre ellos sea justa. Se ha establecido una \gls{semilla} (\textit{seed}) fija con valor 42, para poder reproducir la división.
 \\
 
 La estratificación es aproximada, porque las calles no se pueden partir: con la agrupación por calle, algunos pliegues de test tienen solo 2 tramos de clase A (en ambas ciudades). Por ello, se informará de la variabilidad de las métricas entre pliegues, y no solo de su media.
@@ -108,25 +108,25 @@ Se han definido cuatro conjuntos diferentes: cartográfico y aéreo, calle, comb
   \fuente{Elaboración propia.}
 \end{table}
 
-Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; para calle y combinado, anchura, cruces, señalización y mobiliario. Como nota, el conjunto combinado de dimensiones combinado coincide exactamente con el de calle, por lo que no se podría contastar la hipótesis H3, debido a que todas las dimensiones que se pueden obtener con el de calle.
+Para cartográfico y aéreo se incluyen las dimensiones cruces y mobiliario; para calle y combinado, anchura, cruces, señalización y mobiliario. Como nota, el conjunto combinado coincide exactamente con el de calle, por lo que no se podría contrastar la hipótesis H3, ya que no aporta ninguna dimensión que no se pueda obtener con el de calle.
 \\
 
 \section{Métricas}
 \label{sec:dis-metricas}
 
-Se utilizan tres métricas, todas de \textit{scikit-learn} \parencite{sklearn_metrics}.
+Se utilizan tres métricas, todas de scikit-learn \parencite{sklearn_metrics}.
 \\
 
-La \textbf{F1 macro} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K=3$ es el número de clases (C, B y A) y $F1_c$ es la F1 de la clase $c$:
+La \textbf{\glslink{f1-macro}{F1 macro}} (\textit{macro F1}; \texttt{f1\_\allowbreak score} con \texttt{average=\allowbreak "macro"}) es la media de la F1 de cada clase, dando el mismo peso a cada clase (ecuación~\ref{eq:f1-macro}), donde $K=3$ es el número de clases (C, B y A) y $F1_c$ es la F1 de la clase $c$:
 \begin{equation}
   \text{F1 macro} = \frac{1}{K} \sum_{c=1}^{K} F1_c
   \label{eq:f1-macro}
 \end{equation}
 
-La \textbf{exactitud balanceada} (\textit{balanced accuracy}; \texttt{balanced\_\allowbreak accuracy\_\allowbreak score}) es la media de la proporción de tramos que se acierta en cada clase, de manera que cada clase cuenta igual, sea cual sea su tamaño.
+La \textbf{\glslink{exactitud-balanceada}{exactitud balanceada}} (\textit{balanced accuracy}; \texttt{balanced\_\allowbreak accuracy\_\allowbreak score}) es la media de la proporción de tramos que se acierta en cada clase, de manera que cada clase cuenta igual, sea cual sea su tamaño.
 \\
 
-La \textbf{kappa ponderada cuadrática} (\textit{quadratic weighted kappa}; \texttt{cohen\_\allowbreak kappa\_\allowbreak score} con \texttt{weights=\allowbreak "quadratic"}) compara la clase real con la predicha, sin tener en cuenta los aciertos por azar \parencite{cohen1968}. Los errores que predicen una clase más lejana en cuanto al orden penalizan más, es decir, confundir A con C penaliza más que confundir A con B.
+La \textbf{\glslink{kappa-ponderada}{kappa ponderada cuadrática}} (\textit{quadratic weighted kappa}; \texttt{cohen\_\allowbreak kappa\_\allowbreak score} con \texttt{weights=\allowbreak "quadratic"}) compara la clase real con la predicha, sin tener en cuenta los aciertos por azar \parencite{cohen1968}. Los errores que predicen una clase más lejana en cuanto al orden penalizan más, es decir, confundir A con C penaliza más que confundir A con B.
 \\
 
 La elección de estas métricas está justificada en la subsección~\ref{subsec:ml-ordinal}. Por eso no se utiliza la exactitud (\textit{accuracy}).
@@ -135,8 +135,8 @@ La elección de estas métricas está justificada en la subsección~\ref{subsec:
 \section{Modelos de referencia}
 \label{sec:dis-modelos-referencia}
 
-Se usan dos modelos de referencia. El modelo \textit{dummy} (\texttt{DummyClassifier} de \textit{scikit-learn}, con \texttt{strategy=\allowbreak "most\_\allowbreak frequent"}) que predice siempre la clase más frecuente ignorando las variables de entrada, por lo que es el modelo mínimo: cualquier otro modelo debería mejorarlo.
+Se usan dos \glslink{modelo-referencia}{modelos de referencia}. El modelo \textit{dummy} (\texttt{DummyClassifier} de scikit-learn, con \texttt{strategy=\allowbreak "most\_\allowbreak frequent"}), que predice siempre la clase más frecuente ignorando las variables de entrada, por lo que es el modelo mínimo: cualquier otro modelo debería mejorarlo.
 \\
 
-Por otro lado, la regresión logística (\texttt{LogisticRegression} de \textit{scikit-learn}, con \texttt{class\_\allowbreak weight=\allowbreak "balanced"} y \texttt{max\_\allowbreak iter=\allowbreak 1000}), que asigna a cada clase un peso inversamente proporcional a su frecuencia, de esta manera los errores en clases minoritarias penalizan más durante el entrenamiento. Es la referencia seleccionada por el autor como base.
+Por otro lado, la \glslink{regresion-logistica}{regresión logística} (\texttt{LogisticRegression} de scikit-learn, con \texttt{class\_\allowbreak weight=\allowbreak "balanced"} y \texttt{max\_\allowbreak iter=\allowbreak 1000}) asigna a cada clase un peso inversamente proporcional a su frecuencia, de esta manera los errores en clases minoritarias penalizan más durante el entrenamiento. Es la referencia seleccionada por el autor como base.
 \\
