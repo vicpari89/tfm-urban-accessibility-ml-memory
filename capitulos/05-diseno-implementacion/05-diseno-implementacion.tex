@@ -28,13 +28,13 @@ Quedan fuera las cuatro puntuaciones totales (\texttt{puntuacion\_\allowbreak to
 Se han analizado las correlaciones del conjunto de datos unificado para estudiar la relación entre las dimensiones, ver si los perfiles son similares o no, y comprobar la relación de cada dimensión con la clase.
 \\
 
-Como la clase es ordinal (C < B < A), se ha decidido utilizar el coeficiente de rangos de Spearman en lugar del de Pearson. Los valores cercanos al 1 indican una correlación positiva, mientras que los valores cercanos al 0, falta de correlación. De igual manera, los cercanos a -1 indican correlación negativa.
+Como la clase es \textit{ordinal} ($\mathrm{C} < \mathrm{B} < \mathrm{A}$), se ha decidido utilizar el coeficiente de rangos de Spearman en lugar del de Pearson \parencite{minitab_pearson_spearman}. Los valores cercanos a $1$ indican una correlación positiva, mientras que los cercanos a $0$ indican falta de correlación. De igual manera, los cercanos a $-1$ indican correlación negativa.
 \\
 
 \textit{Relación entre dimensiones.} En el perfil global (figura~\ref{fig:corr-dimensiones-global}) se ha comprobado que en ambas ciudades las dimensiones más relacionadas son el pavimento y la anchura con los cruces, destacando especialmente en Albacete (pavimento-cruces con 0,80 y anchura-cruces con 0,74). También destacan en esta ciudad pavimento con mobiliario (0,78), anchura con pavimento (0,70) y cruces con mobiliario (0,69).
 \\
 
-En Algeciras la correlación es menor: pavimento-cruces (0,65) y anchura-pavimento (0,59). En ambas ciudades es bastante baja la correlación de la pendiente con el resto de dimensiones (0,00 con la iluminación en Albacete). Los perfiles repiten estas correlaciones.
+En Algeciras la correlación es menor: pavimento-cruces (0,65) y anchura-pavimento (0,59). En ambas ciudades la correlación de la pendiente con el resto de dimensiones es la más baja, llegando a 0,00 con la iluminación en Albacete. Estas correlaciones se repiten en los tres perfiles, sin diferencias en Algeciras y con diferencias muy limitadas en Albacete.
 \\
 
 \begin{figure}[htbp]
@@ -51,14 +51,14 @@ En Algeciras la correlación es menor: pavimento-cruces (0,65) y anchura-pavimen
 La correlación es muy elevada en casi todos los casos. En Algeciras es 1 en todas las dimensiones, por lo que no se aprecia diferencia entre perfiles. En Albacete varía algo más, sobre todo en cruces, señalización e iluminación, con los valores más bajos entre funcional y cognitiva: 0,71 en señalización y 0,84 en iluminación.
 \\
 
-\textit{Relación con la clase.} Se codifica como ordinal (C = 0, B = 1 y A = 2) y cada perfil se compara con su propia clase (el global, con \texttt{clase\_total}). Todas las dimensiones tienen correlación positiva con ella (figura~\ref{fig:corr-dimension-clase}).
+\textit{Relación con la clase.} Se codifica como ordinal ($\mathrm{C} = 0$, $\mathrm{B} = 1$ y $\mathrm{A} = 2$) y cada perfil se compara con su propia clase (el global, con \texttt{clase\_total}). Todas las dimensiones tienen correlación positiva con ella (figura~\ref{fig:corr-dimension-clase}).
 \\
 
 Destacan los cruces, la anchura y el pavimento, con valores de entre 0,55 y 0,75 según el perfil (entre 0,60 y 0,67 en el global), mientras que la pendiente y la señalización son más bajas. Se observan diferencias entre ciudades:
 \begin{itemize}
-  \item En el perfil cognitivo, Algeciras tiene como orden cruces (0,75), pavimento (0,62) y anchura (0,59), siendo la pendiente la más baja (0,25), seguida de la señalización (0,44). Albacete tiene más alto el pavimento (0,74), seguido de anchura y cruces (0,70), y son más bajas la iluminación (0,37) y la pendiente (0,45).
+  \item En el perfil cognitivo, en Algeciras el orden es cruces (0,75), pavimento (0,62) y anchura (0,59), y las más bajas son la pendiente (0,25) y la señalización (0,44). En Albacete la más alta es el pavimento (0,74), seguido de la anchura y los cruces (0,70), y las más bajas son la iluminación (0,37) y la pendiente (0,45).
   \item En el sensorial los datos son bastante similares entre ciudades; solo es algo más baja la pendiente en Algeciras (0,38 frente a 0,45).
-  \item En el funcional, Albacete tiene más elevadas las correlaciones de señalización, iluminación y mobiliario.
+  \item En el funcional, Albacete tiene más elevadas las correlaciones de señalización (0,55 frente a 0,40 en Algeciras), iluminación (0,54 frente a 0,42) y mobiliario (0,63 frente a 0,49).
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -72,10 +72,10 @@ Destacan los cruces, la anchura y el pavimento, con valores de entre 0,55 y 0,75
 Ninguna dimensión explica la clase por sí sola, puesto que ninguna se acerca a 1, y la dimensión de la pendiente es la más diferente respecto a las demás.
 \\
 
-\textit{Puntuaciones totales.} Se ha comprobado que, en los cuatro perfiles y en las dos ciudades, cada clase sale exactamente de los tercios de su puntuación total (C por debajo de 1/3, B hasta 2/3 y A desde 2/3).
+\textit{Puntuaciones totales.} Se ha comprobado que, en los cuatro perfiles y en las dos ciudades, cada clase se obtiene exactamente a partir de los tercios de su puntuación total ($\mathrm{C}$ por debajo de $1/3$, $\mathrm{B}$ hasta $2/3$ y $\mathrm{A}$ desde $2/3$).
 \\
 
-Además, el total está más correlado con la clase que cualquier dimensión por separado (0,88 frente a 0,67 de los cruces en el perfil global de Algeciras). Por eso no se usa como variable de entrada (sección~\ref{sec:dis-variables}), ya que si se usara, el modelo solo tendría que aprender de ella.
+Además, el total está más correlacionado con la clase que cualquier dimensión por separado (0,88 frente a 0,67 de los cruces en el perfil global de Algeciras). Por eso no se usa como variable de entrada (sección~\ref{sec:dis-variables}). Si se usara, el modelo solo tendría que aprender de ella.
 \\
 
 \sintesisdecision{
@@ -219,7 +219,7 @@ Por otro lado, se usa la \glslink{regresion-logistica}{regresión logística} (\
 Se utilizan tres modelos basados en árboles, con la interfaz de scikit-learn: \glslink{random-forest}{\textit{random forest}} (\texttt{Random\allowbreak Forest\allowbreak Classifier}), XGBoost (\texttt{XGB\allowbreak Classifier}) y LightGBM (\texttt{LGBM\allowbreak Classifier}), estos dos últimos de tipo \glslink{gradient-boosting}{\textit{gradient boosting}}. Referencia: subsección~\ref{subsec:ml-tabular}.
 \\
 
-Las clases se tratan como independientes, aunque se codifican en orden (C = 0, B = 1 y A = 2), y se entrena un modelo para cada combinación de conjunto de variables, perfil y partición.
+Las clases se tratan como independientes, aunque se codifican en orden ($\mathrm{C} = 0$, $\mathrm{B} = 1$ y $\mathrm{A} = 2$), y se entrena un modelo para cada combinación de conjunto de variables, perfil y partición.
 \\
 
 En cuanto a la configuración base, los tres modelos se han creado con 300 árboles (\mbox{\texttt{n\_estimators=300}}), con todos los procesadores disponibles en paralelo durante el entrenamiento (\texttt{n\_jobs=\allowbreak -1}), así como con el mismo \textit{seed} que en la división de datos. El resto de hiperparámetros se dejan con los valores por defecto de cada librería, puesto que de momento no se ha realizado la hiperparametrización.
