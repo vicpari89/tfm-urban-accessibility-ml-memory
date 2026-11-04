@@ -22,6 +22,66 @@ Quedan fuera las cuatro puntuaciones totales (\texttt{puntuacion\_\allowbreak to
   \item \sintesisclave{Variables objetivo} \texttt{clase\_total}, \texttt{clase\_funcional}, \texttt{clase\_sensorial} y \texttt{clase\_cognitiva}.
   \item \sintesisclave{Variables de entrada} las 28 puntuaciones \texttt{puntuacion\_*\_*}, sin las cuatro puntuaciones totales.}
 
+\section{Análisis de correlaciones}
+\label{sec:dis-correlaciones}
+
+Se han analizado las correlaciones del conjunto de datos unificado para estudiar la relación entre las dimensiones, ver si los perfiles son similares o no, y comprobar la relación de cada dimensión con la clase.
+\\
+
+Como la clase es ordinal (C < B < A), se ha decidido utilizar el coeficiente de rangos de Spearman en lugar del de Pearson. Los valores cercanos al 1 indican una correlación positiva, mientras que los valores cercanos al 0, falta de correlación. De igual manera, los cercanos a -1 indican correlación negativa.
+\\
+
+\textit{Relación entre dimensiones.} En el perfil global (figura~\ref{fig:corr-dimensiones-global}) se ha comprobado que en ambas ciudades las dimensiones más relacionadas son el pavimento y la anchura con los cruces, destacando especialmente en Albacete (pavimento-cruces con 0,80 y anchura-cruces con 0,74). También destacan en esta ciudad pavimento con mobiliario (0,78), anchura con pavimento (0,70) y cruces con mobiliario (0,69).
+\\
+
+En Algeciras la correlación es menor: pavimento-cruces (0,65) y anchura-pavimento (0,59). En ambas ciudades es bastante baja la correlación de la pendiente con el resto de dimensiones (0,00 con la iluminación en Albacete). Los perfiles repiten estas correlaciones.
+\\
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.55\linewidth]{capitulos/05-diseno-implementacion/figuras/correlacion_dimensiones_global.png}
+  \caption{Correlación de Spearman entre las puntuaciones de las dimensiones, perfil global.}
+  \label{fig:corr-dimensiones-global}
+  \fuente{Elaboración propia.}
+\end{figure}
+
+\textit{Relación entre perfiles.} Para ver si los perfiles son similares o no, se ha comparado la puntuación de cada dimensión en un perfil con la de los demás. Una correlación cercana a 1 indicaría que los perfiles aportan casi la misma información.
+\\
+
+La correlación es muy elevada en casi todos los casos. En Algeciras es 1 en todas las dimensiones, por lo que no se aprecia diferencia entre perfiles. En Albacete varía algo más, sobre todo en cruces, señalización e iluminación, con los valores más bajos entre funcional y cognitiva: 0,71 en señalización y 0,84 en iluminación.
+\\
+
+\textit{Relación con la clase.} Se codifica como ordinal (C = 0, B = 1 y A = 2) y cada perfil se compara con su propia clase (el global, con \texttt{clase\_total}). Todas las dimensiones tienen correlación positiva con ella (figura~\ref{fig:corr-dimension-clase}).
+\\
+
+Destacan los cruces, la anchura y el pavimento, con valores de entre 0,55 y 0,75 según el perfil (entre 0,60 y 0,67 en el global), mientras que la pendiente y la señalización son más bajas. Se observan diferencias entre ciudades:
+\begin{itemize}
+  \item En el perfil cognitivo, Algeciras tiene como orden cruces (0,75), pavimento (0,62) y anchura (0,59), siendo la pendiente la más baja (0,25), seguida de la señalización (0,44). Albacete tiene más alto el pavimento (0,74), seguido de anchura y cruces (0,70), y son más bajas la iluminación (0,37) y la pendiente (0,45).
+  \item En el sensorial los datos son bastante similares entre ciudades; solo es algo más baja la pendiente en Algeciras (0,38 frente a 0,45).
+  \item En el funcional, Albacete tiene más elevadas las correlaciones de señalización, iluminación y mobiliario.
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.55\linewidth]{capitulos/05-diseno-implementacion/figuras/correlacion_dimension_clase.png}
+  \caption{Correlación de Spearman entre la puntuación de cada dimensión y la clase, por perfil y ciudad.}
+  \label{fig:corr-dimension-clase}
+  \fuente{Elaboración propia.}
+\end{figure}
+
+Ninguna dimensión explica la clase por sí sola, puesto que ninguna se acerca a 1, y la dimensión de la pendiente es la más diferente respecto a las demás.
+\\
+
+\textit{Puntuaciones totales.} Se ha comprobado que, en los cuatro perfiles y en las dos ciudades, cada clase sale exactamente de los tercios de su puntuación total (C por debajo de 1/3, B hasta 2/3 y A desde 2/3).
+\\
+
+Además, el total está más correlado con la clase que cualquier dimensión por separado (0,88 frente a 0,67 de los cruces en el perfil global de Algeciras). Por eso no se usa como variable de entrada (sección~\ref{sec:dis-variables}), ya que si se usara, el modelo solo tendría que aprender de ella.
+\\
+
+\sintesisdecision{
+  \item \sintesisclave{Dimensiones y perfiles} las más correladas son pavimento, cruces y anchura, y la pendiente la que menos; los perfiles ordenan las calles casi igual.
+  \item \sintesisclave{Clase} ninguna dimensión la explica sola, los totales quedan fuera de la entrada.}
+
 \section{División de los datos}
 \label{sec:dis-division}
 
